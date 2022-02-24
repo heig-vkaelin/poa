@@ -1,7 +1,3 @@
-//
-// Created by Valentin Kaelin on 24.02.22.
-//
-
 #include "Utils.hpp"
 #include <ctime>
 #include <cstdlib>

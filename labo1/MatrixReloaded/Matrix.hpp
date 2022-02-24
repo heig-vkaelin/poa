@@ -1,18 +1,38 @@
-//
-// Created by Valentin Kaelin on 24.02.22.
-//
-
 #ifndef MATRIXRELOADED_MATRIX_HPP
 #define MATRIXRELOADED_MATRIX_HPP
 
 #include <iostream>
 
-
+/**
+ * Classe permettant de modéliser une Matrice. Il est également possible de réaliser
+ * diverses opérations arithmétiques sur deux Matrices.
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 class Matrix {
-	friend std::ostream &operator<<(std::ostream &lhs, const Matrix &rhs);
+	/**
+	 * Affiche la représentation de la Matrice
+	 *
+	 * @param lhs : flux sur lequel afficher la Matrice
+	 * @param rhs : Matrice à afficher
+	 * @return le flux d'affichage
+	 */
+	friend std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs);
 
 public:
+	/**
+	 * Constructeur de Matrice remplie de valeurs aléatoires selon le modulo choisi.
+	 *
+	 * @param rows : nombre de lignes de la matrice
+	 * @param columns : nombre de colonnes de la matrice
+	 * @param modulus : modulo de la matrice
+	 */
 	Matrix(unsigned rows, unsigned columns, unsigned modulus);
+
+	/**
+	 * Détruit les allocations dynamiques de la Matrice
+	 */
 	~Matrix();
 
 private:
