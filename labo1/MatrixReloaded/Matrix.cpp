@@ -3,6 +3,7 @@
 //
 
 #include "Matrix.hpp"
+#include "Utils.hpp"
 
 std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs) {
 	for (unsigned row = 0; row < rhs.rows; ++row) {
@@ -18,6 +19,10 @@ std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs) {
 }
 
 Matrix::Matrix(unsigned rows, unsigned columns, unsigned modulus) {
+	if (modulus == 0) {
+		throw std::runtime_error("Le modulo ne peut pas être nul.");
+	}
+
 	this->rows = rows;
 	this->columns = columns;
 	this->modulus = modulus;
@@ -28,11 +33,10 @@ Matrix::Matrix(unsigned rows, unsigned columns, unsigned modulus) {
 		data[i] = new unsigned[columns];
 	}
 
-	// TODO: TMP: hard-coded value
-	unsigned counter = 1;
+	// Insertion des valeurs aléatoires
 	for (unsigned i = 0; i < rows; ++i) {
 		for (unsigned j = 0; j < columns; ++j) {
-			data[i][j] = counter++;
+			data[i][j] = Utils::getRandom(modulus);
 		}
 	}
 }

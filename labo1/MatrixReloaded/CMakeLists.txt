@@ -4,4 +4,4 @@ project(MatrixReloaded)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wconversion -Wsign-conversion -pedantic")
 
-add_executable(MatrixReloaded main.cpp Matrix.cpp Matrix.hpp)
+add_executable(MatrixReloaded main.cpp Matrix.cpp Matrix.hpp Utils.cpp Utils.hpp)
