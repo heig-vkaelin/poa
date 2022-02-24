@@ -1,7 +1,3 @@
-//
-// Created by Valentin Kaelin on 24.02.22.
-//
-
 #include "Matrix.hpp"
 #include "Utils.hpp"
 
