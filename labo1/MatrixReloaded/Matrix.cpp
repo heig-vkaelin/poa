@@ -2,13 +2,10 @@
 #include "Matrix.hpp"
 #include "Utils.hpp"
 #include "Add.hpp"
+#include "Subtract.hpp"
+#include "Multiply.hpp"
 
 using namespace std;
-
-int floor_mod(int a, int b) {
-	int res = a % b;
-	return res < 0 ? res + b : res;
-}
 
 std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs) {
 	for (unsigned row = 0; row < rhs.rows; ++row) {
@@ -48,8 +45,33 @@ Matrix::~Matrix() {
 	deleteData();
 }
 
+Matrix& Matrix::operator=(const Matrix& other) {
+	if (&other != this) {
+		replaceData(other.rows, other.columns, other);
+	}
+	return *this;
+}
+
+unsigned Matrix::get(unsigned row, unsigned column) const {
+	if (row >= rows || column >= columns)
+		return 0;
+	return data[row][column];
+}
+
 Matrix Matrix::add(const Matrix& other) {
 	Add op;
+	applyOperator(other, op);
+	return *this;
+}
+
+Matrix Matrix::subtract(const Matrix& other) {
+	Subtract op;
+	applyOperator(other, op);
+	return *this;
+}
+
+Matrix Matrix::multiply(const Matrix& other) {
+	Multiply op;
 	applyOperator(other, op);
 	return *this;
 }
@@ -61,29 +83,20 @@ void Matrix::deleteData() {
 	delete[] data;
 }
 
-
-Matrix& Matrix::operator=(const Matrix& other) {
-	if (&other != this) {
-		replaceData(other);
-	}
-	return *this;
-}
-
-void Matrix::replaceData(const Matrix& other) {
-	deleteData();
-
-	rows = other.rows;
-	columns = other.columns;
-	modulus = other.modulus;
-
-	data = new unsigned* [rows];
-	for (unsigned i = 0; i < rows; i++) {
-		data[i] = new unsigned[columns];
-		for (unsigned j = 0; j < columns; ++j) {
-			// Ou 0
-			data[i][j] = other.data[i][j];
+void Matrix::replaceData(unsigned newRows, unsigned newCols, const Matrix& other) {
+	unsigned** newData = new unsigned* [newRows];
+	for (unsigned i = 0; i < newRows; i++) {
+		newData[i] = new unsigned[newCols];
+		for (unsigned j = 0; j < newCols; ++j) {
+			newData[i][j] = other.get(i, j);
 		}
 	}
+
+	deleteData();
+	swap(data, newData);
+
+	rows = newRows;
+	columns = newCols;
 }
 
 void Matrix::applyOperator(const Matrix& other, const Operator& op) {
@@ -93,22 +106,17 @@ void Matrix::applyOperator(const Matrix& other, const Operator& op) {
 	unsigned maxRows = max(rows, other.rows);
 	unsigned maxColumns = max(columns, other.columns);
 
+	// Modification de la taille de la matrice nécessaire
 	if (rows < maxRows || columns < maxColumns) {
-		rows = maxRows;
-		columns = maxColumns;
-		replaceData(*this);
+		replaceData(maxRows, maxColumns, *this);
 	}
 
+	// Applique les opérations opérande par opérande
 	for (unsigned row = 0; row < maxRows; ++row) {
 		for (unsigned col = 0; col < maxColumns; ++col) {
-			unsigned op1 = row >= rows || col >= columns ? 0 : data[row][col];
-			unsigned op2 = row >= other.rows || col >= other.columns ? 0 :
-								other.data[row][col];
-			// TODO: test if mod ok
-			data[row][col] = (unsigned)floor_mod(op.apply((int)op1, (int)op2),
-															 (int)modulus);
+			data[row][col] = Utils::floorMod(
+				op.apply((int)data[row][col], (int)other.data[row][col]), (int)modulus
+			);
 		}
 	}
 }
-
-

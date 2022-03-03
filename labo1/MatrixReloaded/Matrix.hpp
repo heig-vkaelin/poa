@@ -38,7 +38,13 @@ public:
 
 	Matrix& operator=(const Matrix& other);
 
+	unsigned get(unsigned row, unsigned column) const;
+
 	Matrix add(const Matrix& other);
+
+	Matrix subtract(const Matrix& other);
+
+	Matrix multiply(const Matrix& other);
 
 private:
 	unsigned rows;
@@ -48,7 +54,7 @@ private:
 
 	void deleteData();
 
-	void replaceData(const Matrix& other);
+	void replaceData(unsigned newRows, unsigned newCols, const Matrix& other);
 
 	void applyOperator(const Matrix& other, const Operator& op);
 };

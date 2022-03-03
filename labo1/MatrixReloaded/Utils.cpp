@@ -9,5 +9,10 @@ unsigned Utils::getRandom(unsigned int max) {
 		srand(42);
 	}
 	alreadyCalled = true;
-	return static_cast<unsigned>(rand()) % max;
+	return (unsigned)(rand()) % max;
+}
+
+unsigned Utils::floorMod(int a, int b) {
+	int res = a % b;
+	return (unsigned)(res < 0 ? res + b : res);
 }

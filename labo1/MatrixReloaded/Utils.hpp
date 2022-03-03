@@ -15,6 +15,14 @@ public:
 	 * @return le nombre aléatoire
 	 */
 	static unsigned getRandom(unsigned max);
+
+	/**
+	 * Une version du modulo sans résultat négatif
+	 * @param a : opérande de gauche du modulo
+	 * @param b : opérande de droite du modulo
+	 * @return a modulo b
+	 */
+	static unsigned floorMod(int a, int b);
 };
 
 
