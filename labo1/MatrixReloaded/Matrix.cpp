@@ -42,4 +42,28 @@ Matrix::~Matrix() {
 	delete[] data;
 }
 
+Matrix& Matrix::operator=(const Matrix& other) {
+	if (&other != this) {
+		// Destruction des éléments alloués dynamiquement
+		for (unsigned i = 0; i < this->rows; ++i) {
+			delete[] data[i];
+		}
+		delete[] data;
+
+		rows = other.rows;
+		columns = other.columns;
+		modulus = other.modulus;
+
+		// Création des nouveaux tableaux dynamiquement avec les valeurs de la rvalue.
+		data = new unsigned* [rows];
+		for (unsigned i = 0; i < rows; i++) {
+			data[i] = new unsigned[columns];
+			for (unsigned j = 0; j < columns; ++j) {
+				data[i][j] = other.data[i][j];
+			}
+		}
+	}
+	return *this;
+}
+
 

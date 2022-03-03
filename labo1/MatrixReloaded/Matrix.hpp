@@ -35,6 +35,8 @@ public:
 	 */
 	~Matrix();
 
+	Matrix& operator=(const Matrix& other);
+
 private:
 	unsigned rows;
 	unsigned columns;
