@@ -27,10 +27,8 @@ Matrix::Matrix(unsigned rows, unsigned columns, unsigned modulus) {
 	data = new unsigned* [rows];
 	for (unsigned i = 0; i < rows; i++) {
 		data[i] = new unsigned[columns];
-	}
 
-	// Insertion des valeurs aléatoires
-	for (unsigned i = 0; i < rows; ++i) {
+		// Insertion des valeurs aléatoires
 		for (unsigned j = 0; j < columns; ++j) {
 			data[i][j] = Utils::getRandom(modulus);
 		}
