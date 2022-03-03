@@ -37,11 +37,19 @@ public:
 
 	Matrix& operator=(const Matrix& other);
 
+	Matrix add(const Matrix& other);
+
 private:
 	unsigned rows;
 	unsigned columns;
 	unsigned modulus;
 	unsigned** data;
+
+	void deleteData();
+
+	void replaceData(const Matrix& other);
+
+	void applyOperator(const Matrix& other);
 };
 
 

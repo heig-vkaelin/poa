@@ -1,5 +1,8 @@
+#include <algorithm>
 #include "Matrix.hpp"
 #include "Utils.hpp"
+
+using namespace std;
 
 std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs) {
 	for (unsigned row = 0; row < rhs.rows; ++row) {
@@ -36,11 +39,20 @@ Matrix::Matrix(unsigned rows, unsigned columns, unsigned modulus) {
 }
 
 Matrix::~Matrix() {
+	deleteData();
+}
+
+Matrix Matrix::add(const Matrix& other) {
+	return Matrix(0, 0, 0);
+}
+
+void Matrix::deleteData() {
 	for (unsigned i = 0; i < rows; ++i) {
 		delete[] data[i];
 	}
 	delete[] data;
 }
+
 
 Matrix& Matrix::operator=(const Matrix& other) {
 	if (&other != this) {
@@ -64,6 +76,32 @@ Matrix& Matrix::operator=(const Matrix& other) {
 		}
 	}
 	return *this;
+}
+
+void Matrix::replaceData(const Matrix& other) {
+	deleteData();
+
+	rows = other.rows;
+	columns = other.columns;
+	modulus = other.modulus;
+
+	data = new unsigned* [rows];
+	for (unsigned i = 0; i < rows; i++) {
+		data[i] = new unsigned[columns];
+
+		// Insertion des valeurs aléatoires
+		for (unsigned j = 0; j < columns; ++j) {
+			data[i][j] = Utils::getRandom(modulus);
+		}
+	}
+}
+
+void Matrix::applyOperator(const Matrix& other) {
+	if (other.modulus != modulus)
+		throw std::invalid_argument("Les modulos ne sont pas compatibles.");
+
+	unsigned maxRow = max(rows, other.rows);
+	unsigned maxCol = max(columns, other.columns);
 }
 
 
