@@ -12,7 +12,12 @@ int main(int argc, char* argv[]) {
 
    unsigned rows1, cols1, rows2, cols2, modulus;
 
+   // TODO: Rendre tout clean
    try {
+      for (int i = 1; i < argc; ++i) {
+         if (stoi(argv[i]) < 0)
+            throw exception();
+      }
       rows1 = (unsigned) stoi(argv[1]);
       cols1 = (unsigned) stoi(argv[2]);
       rows2 = (unsigned) stoi(argv[3]);
