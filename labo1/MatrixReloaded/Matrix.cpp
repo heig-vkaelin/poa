@@ -1,8 +1,14 @@
 #include <algorithm>
 #include "Matrix.hpp"
 #include "Utils.hpp"
+#include "Add.hpp"
 
 using namespace std;
+
+int floor_mod(int a, int b) {
+	int res = a % b;
+	return res < 0 ? res + b : res;
+}
 
 std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs) {
 	for (unsigned row = 0; row < rhs.rows; ++row) {
@@ -43,7 +49,9 @@ Matrix::~Matrix() {
 }
 
 Matrix Matrix::add(const Matrix& other) {
-	return Matrix(0, 0, 0);
+	Add op;
+	applyOperator(other, op);
+	return *this;
 }
 
 void Matrix::deleteData() {
@@ -56,24 +64,7 @@ void Matrix::deleteData() {
 
 Matrix& Matrix::operator=(const Matrix& other) {
 	if (&other != this) {
-		// Destruction des éléments alloués dynamiquement
-		for (unsigned i = 0; i < this->rows; ++i) {
-			delete[] data[i];
-		}
-		delete[] data;
-
-		rows = other.rows;
-		columns = other.columns;
-		modulus = other.modulus;
-
-		// Création des nouveaux tableaux dynamiquement avec les valeurs de la rvalue.
-		data = new unsigned* [rows];
-		for (unsigned i = 0; i < rows; i++) {
-			data[i] = new unsigned[columns];
-			for (unsigned j = 0; j < columns; ++j) {
-				data[i][j] = other.data[i][j];
-			}
-		}
+		replaceData(other);
 	}
 	return *this;
 }
@@ -88,20 +79,36 @@ void Matrix::replaceData(const Matrix& other) {
 	data = new unsigned* [rows];
 	for (unsigned i = 0; i < rows; i++) {
 		data[i] = new unsigned[columns];
-
-		// Insertion des valeurs aléatoires
 		for (unsigned j = 0; j < columns; ++j) {
-			data[i][j] = Utils::getRandom(modulus);
+			// Ou 0
+			data[i][j] = other.data[i][j];
 		}
 	}
 }
 
-void Matrix::applyOperator(const Matrix& other) {
+void Matrix::applyOperator(const Matrix& other, const Operator& op) {
 	if (other.modulus != modulus)
 		throw std::invalid_argument("Les modulos ne sont pas compatibles.");
 
-	unsigned maxRow = max(rows, other.rows);
-	unsigned maxCol = max(columns, other.columns);
+	unsigned maxRows = max(rows, other.rows);
+	unsigned maxColumns = max(columns, other.columns);
+
+	if (rows < maxRows || columns < maxColumns) {
+		rows = maxRows;
+		columns = maxColumns;
+		replaceData(*this);
+	}
+
+	for (unsigned row = 0; row < maxRows; ++row) {
+		for (unsigned col = 0; col < maxColumns; ++col) {
+			unsigned op1 = row >= rows || col >= columns ? 0 : data[row][col];
+			unsigned op2 = row >= other.rows || col >= other.columns ? 0 :
+								other.data[row][col];
+			// TODO: test if mod ok
+			data[row][col] = (unsigned)floor_mod(op.apply((int)op1, (int)op2),
+															 (int)modulus);
+		}
+	}
 }
 
 

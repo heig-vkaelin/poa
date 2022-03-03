@@ -2,6 +2,7 @@
 #define MATRIXRELOADED_MATRIX_HPP
 
 #include <iostream>
+#include "Operator.hpp"
 
 /**
  * Classe permettant de modéliser une Matrice. Il est également possible de réaliser
@@ -49,7 +50,7 @@ private:
 
 	void replaceData(const Matrix& other);
 
-	void applyOperator(const Matrix& other);
+	void applyOperator(const Matrix& other, const Operator& op);
 };
 
 

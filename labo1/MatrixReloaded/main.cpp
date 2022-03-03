@@ -31,5 +31,9 @@ int main(int argc, char* argv[]) {
    Matrix m2 = Matrix(rows2, cols2, modulus);
    cout << m1 << endl;
    cout << m2 << endl;
+
+	cout << "one + two" << endl;
+	cout << m1.add(m2) << endl;
+
    return 0;
 }
