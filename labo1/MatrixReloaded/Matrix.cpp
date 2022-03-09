@@ -7,7 +7,7 @@
 
 using namespace std;
 
-std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs) {
+ostream& operator<<(ostream& lhs, const Matrix& rhs) {
 	for (unsigned row = 0; row < rhs.rows; ++row) {
 		for (unsigned col = 0; col < rhs.columns; ++col) {
 			lhs << rhs.data[row][col];
@@ -15,7 +15,7 @@ std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs) {
 				lhs << " ";
 		}
 		if (row != rhs.rows)
-			lhs << std::endl;
+			lhs << endl;
 	}
 	return lhs;
 }
@@ -23,7 +23,7 @@ std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs) {
 Matrix::Matrix(unsigned rows, unsigned columns, unsigned modulus)
 	: rows(rows), columns(columns), modulus(modulus) {
 	if (modulus == 0) {
-		throw std::runtime_error("Le modulo ne peut pas être nul.");
+		throw runtime_error("Le modulo ne peut pas être nul.");
 	}
 
 	// TODO: refactor ça en utilisant replaceData() vvv
@@ -134,7 +134,7 @@ void Matrix::replaceData(unsigned newRows, unsigned newCols, const Matrix& other
 	for (unsigned i = 0; i < newRows; i++) {
 		newData[i] = new unsigned[newCols];
 		for (unsigned j = 0; j < newCols; ++j) {
-			newData[i][j] = other.get(i, j);
+			newData[i][j] = other.get(i, j); // TODO: ou Utils::getRandom(modulus)
 		}
 	}
 
@@ -147,7 +147,7 @@ void Matrix::replaceData(unsigned newRows, unsigned newCols, const Matrix& other
 
 void Matrix::applyOperator(const Matrix& other, const Operator& op) {
 	if (other.modulus != modulus)
-		throw std::invalid_argument("Les modulos ne sont pas compatibles.");
+		throw invalid_argument("Les modulos ne sont pas compatibles.");
 
 	unsigned maxRows = max(rows, other.rows);
 	unsigned maxColumns = max(columns, other.columns);
