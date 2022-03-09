@@ -20,14 +20,13 @@ std::ostream& operator<<(std::ostream& lhs, const Matrix& rhs) {
 	return lhs;
 }
 
-Matrix::Matrix(unsigned rows, unsigned columns, unsigned modulus) {
+Matrix::Matrix(unsigned rows, unsigned columns, unsigned modulus)
+	: rows(rows), columns(columns), modulus(modulus) {
 	if (modulus == 0) {
 		throw std::runtime_error("Le modulo ne peut pas être nul.");
 	}
 
-	this->rows = rows;
-	this->columns = columns;
-	this->modulus = modulus;
+	// TODO: refactor ça en utilisant replaceData() vvv
 
 	// Création du contenu
 	data = new unsigned* [rows];
@@ -41,12 +40,21 @@ Matrix::Matrix(unsigned rows, unsigned columns, unsigned modulus) {
 	}
 }
 
+Matrix::Matrix(const Matrix& other)
+	: rows(other.rows), columns(other.columns),
+	  modulus(other.modulus), data(nullptr) {
+
+	if (this != &other) {
+		replaceData(rows, columns, other);
+	}
+}
+
 Matrix::~Matrix() {
 	deleteData();
 }
 
 Matrix& Matrix::operator=(const Matrix& other) {
-	if (&other != this) {
+	if (this != &other) {
 		replaceData(other.rows, other.columns, other);
 	}
 	return *this;
@@ -58,29 +66,67 @@ unsigned Matrix::get(unsigned row, unsigned column) const {
 	return data[row][column];
 }
 
-Matrix Matrix::add(const Matrix& other) {
+void Matrix::add(const Matrix& other) {
 	Add op;
 	applyOperator(other, op);
-	return *this;
+//	return *this;
 }
 
-Matrix Matrix::subtract(const Matrix& other) {
+void Matrix::subtract(const Matrix& other) {
 	Subtract op;
 	applyOperator(other, op);
-	return *this;
+//	return *this;
 }
 
-Matrix Matrix::multiply(const Matrix& other) {
+void Matrix::multiply(const Matrix& other) {
 	Multiply op;
 	applyOperator(other, op);
-	return *this;
+//	return *this;
+}
+
+Matrix Matrix::addVal(const Matrix& other) const {
+	Matrix result(*this);
+	result.add(other);
+	return result;
+}
+
+Matrix* Matrix::addPtr(const Matrix& other) const {
+	Matrix* result = new Matrix(*this);
+	result->add(other);
+	return result;
+}
+
+Matrix Matrix::subtractVal(const Matrix& other) const {
+	Matrix result(*this);
+	result.subtract(other);
+	return result;
+}
+
+Matrix* Matrix::subtractPtr(const Matrix& other) const {
+	Matrix* result = new Matrix(*this);
+	result->subtract(other);
+	return result;
+}
+
+Matrix Matrix::multiplyVal(const Matrix& other) const {
+	Matrix result(*this);
+	result.multiply(other);
+	return result;
+}
+
+Matrix* Matrix::multiplyPtr(const Matrix& other) const {
+	Matrix* result = new Matrix(*this);
+	result->multiply(other);
+	return result;
 }
 
 void Matrix::deleteData() {
-	for (unsigned i = 0; i < rows; ++i) {
-		delete[] data[i];
+	if (data != nullptr) {
+		for (unsigned i = 0; i < rows; ++i) {
+			delete[] data[i];
+		}
+		delete[] data;
 	}
-	delete[] data;
 }
 
 void Matrix::replaceData(unsigned newRows, unsigned newCols, const Matrix& other) {
@@ -106,7 +152,7 @@ void Matrix::applyOperator(const Matrix& other, const Operator& op) {
 	unsigned maxRows = max(rows, other.rows);
 	unsigned maxColumns = max(columns, other.columns);
 
-	// Modification de la taille de la matrice nécessaire
+	// Modification de la taille de la matrice si nécessaire
 	if (rows < maxRows || columns < maxColumns) {
 		replaceData(maxRows, maxColumns, *this);
 	}
@@ -115,7 +161,7 @@ void Matrix::applyOperator(const Matrix& other, const Operator& op) {
 	for (unsigned row = 0; row < maxRows; ++row) {
 		for (unsigned col = 0; col < maxColumns; ++col) {
 			data[row][col] = Utils::floorMod(
-				op.apply((int)data[row][col], (int)other.data[row][col]), (int)modulus
+				op.apply((int)get(row, col), (int)other.get(row, col)), (int)modulus
 			);
 		}
 	}

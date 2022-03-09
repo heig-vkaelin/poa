@@ -31,6 +31,8 @@ public:
 	 */
 	Matrix(unsigned rows, unsigned columns, unsigned modulus);
 
+	Matrix(const Matrix& other);
+
 	/**
 	 * Détruit les allocations dynamiques de la Matrice
 	 */
@@ -40,11 +42,23 @@ public:
 
 	unsigned get(unsigned row, unsigned column) const;
 
-	Matrix add(const Matrix& other);
+	void add(const Matrix& other);
 
-	Matrix subtract(const Matrix& other);
+	Matrix addVal(const Matrix& other) const;
 
-	Matrix multiply(const Matrix& other);
+	Matrix* addPtr(const Matrix& other) const;
+
+	void subtract(const Matrix& other);
+
+	Matrix subtractVal(const Matrix& other) const;
+
+	Matrix* subtractPtr(const Matrix& other) const;
+
+	void multiply(const Matrix& other);
+
+	Matrix multiplyVal(const Matrix& other) const;
+
+	Matrix* multiplyPtr(const Matrix& other) const;
 
 private:
 	unsigned rows;

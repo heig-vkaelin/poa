@@ -32,13 +32,22 @@ int main(int argc, char* argv[]) {
 	cout << m1 << endl;
 	cout << m2 << endl;
 
-	cout << "one + two" << endl;
-	cout << m1.add(m2) << endl;
+//	cout << "one + two" << endl;
+//	m1.add(m2);
+//	cout << m1 << endl;
 
+//	cout << "one + two by value" << endl;
+//	Matrix res = m1.addVal(m2);
+//	cout << m1 << endl;
+//	cout << m2 << endl;
+//	cout << res << endl;
 
-	// TODO: check pk pas les mêmes valeurs que la ligne 36
-	cout << "Test m1" << endl;
+	cout << "one + two by ptr" << endl;
+	Matrix* res = m1.addPtr(m2);
 	cout << m1 << endl;
+	cout << m2 << endl;
+	cout << *res << endl;
+	delete res;
 
 	return EXIT_SUCCESS;
 }
