@@ -70,7 +70,7 @@ private:
 
 	void deleteData();
 
-	void replaceData(unsigned newRows, unsigned newCols, const Matrix& other);
+	void replaceData(unsigned newRows, unsigned newCols, const Matrix* other);
 
 	void applyOperator(const Matrix& other, const Operator& op);
 };

@@ -22,28 +22,13 @@ ostream& operator<<(ostream& lhs, const Matrix& rhs) {
 
 Matrix::Matrix(unsigned rows, unsigned columns, unsigned modulus) {
 	init(rows, columns, modulus);
-
-	// TODO: refactor ça en utilisant replaceData() vvv
-
-//	replaceData(rows, columns, nullptr);
-
-
-	// Création du contenu
-	data = new unsigned* [rows];
-	for (unsigned i = 0; i < rows; i++) {
-		data[i] = new unsigned[columns];
-
-		// Insertion des valeurs aléatoires
-		for (unsigned j = 0; j < columns; ++j) {
-			data[i][j] = Utils::getRandom(modulus);
-		}
-	}
+	replaceData(rows, columns, nullptr);
 }
 
 Matrix::Matrix(const Matrix& other) {
 	if (this != &other) {
 		init(rows, columns, modulus);
-		replaceData(rows, columns, other);
+		replaceData(rows, columns, &other);
 	}
 }
 
@@ -53,7 +38,7 @@ Matrix::~Matrix() {
 
 Matrix& Matrix::operator=(const Matrix& other) {
 	if (this != &other) {
-		replaceData(other.rows, other.columns, other);
+		replaceData(other.rows, other.columns, &other);
 	}
 	return *this;
 }
@@ -138,12 +123,14 @@ void Matrix::deleteData() {
 	}
 }
 
-void Matrix::replaceData(unsigned newRows, unsigned newCols, const Matrix& other) {
+void Matrix::replaceData(unsigned newRows, unsigned newCols, const Matrix* other) {
 	unsigned** newData = new unsigned* [newRows];
 	for (unsigned i = 0; i < newRows; i++) {
 		newData[i] = new unsigned[newCols];
 		for (unsigned j = 0; j < newCols; ++j) {
-			newData[i][j] = other.get(i, j); // TODO: ou Utils::getRandom(modulus)
+			newData[i][j] = other == nullptr ?
+								 Utils::getRandom(modulus) :
+								 other->get(i, j);
 		}
 	}
 
@@ -163,7 +150,7 @@ void Matrix::applyOperator(const Matrix& other, const Operator& op) {
 
 	// Modification de la taille de la matrice si nécessaire
 	if (rows < maxRows || columns < maxColumns) {
-		replaceData(maxRows, maxColumns, *this);
+		replaceData(maxRows, maxColumns, this);
 	}
 
 	// Applique les opérations opérande par opérande
