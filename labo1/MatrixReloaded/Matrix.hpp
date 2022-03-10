@@ -2,7 +2,7 @@
 #define MATRIXRELOADED_MATRIX_HPP
 
 #include <iostream>
-#include "Operator.hpp"
+#include "operators/Operator.hpp"
 
 /**
  * Classe permettant de modéliser une Matrice. Il est également possible de réaliser

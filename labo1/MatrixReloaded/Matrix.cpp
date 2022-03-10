@@ -1,9 +1,9 @@
 #include <algorithm>
 #include "Matrix.hpp"
 #include "Utils.hpp"
-#include "Add.hpp"
-#include "Subtract.hpp"
-#include "Multiply.hpp"
+#include "operators/Add.hpp"
+#include "operators/Subtract.hpp"
+#include "operators/Multiply.hpp"
 
 using namespace std;
 
