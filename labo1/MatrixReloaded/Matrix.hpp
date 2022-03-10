@@ -44,21 +44,21 @@ public:
 
 	void add(const Matrix& other);
 
-	Matrix addVal(const Matrix& other) const;
+	Matrix addStatic(const Matrix& other) const;
 
-	Matrix* addPtr(const Matrix& other) const;
+	Matrix* addDynamic(const Matrix& other) const;
 
 	void subtract(const Matrix& other);
 
-	Matrix subtractVal(const Matrix& other) const;
+	Matrix subtractStatic(const Matrix& other) const;
 
-	Matrix* subtractPtr(const Matrix& other) const;
+	Matrix* subtractDynamic(const Matrix& other) const;
 
 	void multiply(const Matrix& other);
 
-	Matrix multiplyVal(const Matrix& other) const;
+	Matrix multiplyStatic(const Matrix& other) const;
 
-	Matrix* multiplyPtr(const Matrix& other) const;
+	Matrix* multiplyDynamic(const Matrix& other) const;
 
 private:
 	unsigned rows;

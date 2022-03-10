@@ -82,37 +82,37 @@ void Matrix::multiply(const Matrix& other) {
 //	return *this;
 }
 
-Matrix Matrix::addVal(const Matrix& other) const {
+Matrix Matrix::addStatic(const Matrix& other) const {
 	Matrix result(*this);
 	result.add(other);
 	return result;
 }
 
-Matrix* Matrix::addPtr(const Matrix& other) const {
+Matrix* Matrix::addDynamic(const Matrix& other) const {
 	Matrix* result = new Matrix(*this);
 	result->add(other);
 	return result;
 }
 
-Matrix Matrix::subtractVal(const Matrix& other) const {
+Matrix Matrix::subtractStatic(const Matrix& other) const {
 	Matrix result(*this);
 	result.subtract(other);
 	return result;
 }
 
-Matrix* Matrix::subtractPtr(const Matrix& other) const {
+Matrix* Matrix::subtractDynamic(const Matrix& other) const {
 	Matrix* result = new Matrix(*this);
 	result->subtract(other);
 	return result;
 }
 
-Matrix Matrix::multiplyVal(const Matrix& other) const {
+Matrix Matrix::multiplyStatic(const Matrix& other) const {
 	Matrix result(*this);
 	result.multiply(other);
 	return result;
 }
 
-Matrix* Matrix::multiplyPtr(const Matrix& other) const {
+Matrix* Matrix::multiplyDynamic(const Matrix& other) const {
 	Matrix* result = new Matrix(*this);
 	result->multiply(other);
 	return result;

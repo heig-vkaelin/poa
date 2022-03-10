@@ -37,13 +37,13 @@ int main(int argc, char* argv[]) {
 //	cout << m1 << endl;
 
 //	cout << "one + two by value" << endl;
-//	Matrix res = m1.addVal(m2);
+//	Matrix res = m1.addStatic(m2);
 //	cout << m1 << endl;
 //	cout << m2 << endl;
 //	cout << res << endl;
 
 	cout << "one + two by ptr" << endl;
-	Matrix* res = m1.addPtr(m2);
+	Matrix* res = m1.addDynamic(m2);
 	cout << m1 << endl;
 	cout << m2 << endl;
 	cout << *res << endl;
