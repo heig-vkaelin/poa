@@ -49,22 +49,22 @@ unsigned Matrix::get(unsigned row, unsigned column) const {
 	return data[row][column];
 }
 
-void Matrix::add(const Matrix& other) {
+Matrix& Matrix::add(const Matrix& other) {
 	static Add op;
 	applyOperator(other, op);
-//	return *this;
+	return *this;
 }
 
-void Matrix::subtract(const Matrix& other) {
+Matrix& Matrix::subtract(const Matrix& other) {
 	static Subtract op;
 	applyOperator(other, op);
-//	return *this;
+	return *this;
 }
 
-void Matrix::multiply(const Matrix& other) {
+Matrix& Matrix::multiply(const Matrix& other) {
 	static Multiply op;
 	applyOperator(other, op);
-//	return *this;
+	return *this;
 }
 
 Matrix Matrix::addStatic(const Matrix& other) const {

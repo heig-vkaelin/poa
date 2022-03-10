@@ -42,19 +42,19 @@ public:
 
 	unsigned get(unsigned row, unsigned column) const;
 
-	void add(const Matrix& other);
+	Matrix& add(const Matrix& other);
 
 	Matrix addStatic(const Matrix& other) const;
 
 	Matrix* addDynamic(const Matrix& other) const;
 
-	void subtract(const Matrix& other);
+	Matrix& subtract(const Matrix& other);
 
 	Matrix subtractStatic(const Matrix& other) const;
 
 	Matrix* subtractDynamic(const Matrix& other) const;
 
-	void multiply(const Matrix& other);
+	Matrix& multiply(const Matrix& other);
 
 	Matrix multiplyStatic(const Matrix& other) const;
 
