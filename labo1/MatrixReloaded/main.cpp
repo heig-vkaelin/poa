@@ -12,11 +12,13 @@ int main(int argc, char* argv[]) {
 
 	unsigned rows1, cols1, rows2, cols2, modulus;
 
-	// TODO: Rendre tout clean
+	// TODO: maybe check les stringstream: https://stackoverflow.com/a/13846191/9188650
 	try {
 		for (int i = 1; i < argc; ++i) {
-			if (stoi(argv[i]) < 0)
+			if (stoi(argv[i]) < 0) {
+				// Vérification que les différentes tailles ne sont pas négatives
 				throw exception();
+			}
 		}
 		rows1 = (unsigned)stoi(argv[1]);
 		cols1 = (unsigned)stoi(argv[2]);
@@ -24,7 +26,7 @@ int main(int argc, char* argv[]) {
 		cols2 = (unsigned)stoi(argv[4]);
 		modulus = (unsigned)stoi(argv[5]);
 	} catch (exception& e) {
-		throw invalid_argument("Erreur: Un argument n'est pas une valeur correcte.");
+		throw invalid_argument("Erreur: Un argument n'a pas une valeur correcte.");
 	}
 
 	Matrix m1 = Matrix(rows1, cols1, modulus);
@@ -48,6 +50,20 @@ int main(int argc, char* argv[]) {
 	cout << m2 << endl;
 	cout << *res << endl;
 	delete res;
+
+	return EXIT_SUCCESS;
+}
+
+int test_main(int argc, char* argv[]) {
+	Matrix test = Matrix(4, 3, 100);
+	Matrix test2 = Matrix(2, 2, 100);
+//	test2 = test;
+
+	cout << test << endl;
+	cout << test2 << endl;
+	test.subtract(test2);
+	cout << "test - test2" << endl;
+	cout << test << endl;
 
 	return EXIT_SUCCESS;
 }
