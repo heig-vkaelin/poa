@@ -66,6 +66,8 @@ private:
 	unsigned modulus;
 	unsigned** data;
 
+	void init(unsigned rows, unsigned columns, unsigned modulus);
+
 	void deleteData();
 
 	void replaceData(unsigned newRows, unsigned newCols, const Matrix& other);

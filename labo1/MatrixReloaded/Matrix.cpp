@@ -20,13 +20,13 @@ ostream& operator<<(ostream& lhs, const Matrix& rhs) {
 	return lhs;
 }
 
-Matrix::Matrix(unsigned rows, unsigned columns, unsigned modulus)
-	: rows(rows), columns(columns), modulus(modulus) {
-	if (modulus == 0) {
-		throw runtime_error("Le modulo ne peut pas être nul.");
-	}
+Matrix::Matrix(unsigned rows, unsigned columns, unsigned modulus) {
+	init(rows, columns, modulus);
 
 	// TODO: refactor ça en utilisant replaceData() vvv
+
+//	replaceData(rows, columns, nullptr);
+
 
 	// Création du contenu
 	data = new unsigned* [rows];
@@ -40,11 +40,9 @@ Matrix::Matrix(unsigned rows, unsigned columns, unsigned modulus)
 	}
 }
 
-Matrix::Matrix(const Matrix& other)
-	: rows(other.rows), columns(other.columns),
-	  modulus(other.modulus), data(nullptr) {
-
+Matrix::Matrix(const Matrix& other) {
 	if (this != &other) {
+		init(rows, columns, modulus);
 		replaceData(rows, columns, other);
 	}
 }
@@ -67,19 +65,19 @@ unsigned Matrix::get(unsigned row, unsigned column) const {
 }
 
 void Matrix::add(const Matrix& other) {
-	Add op;
+	static Add op;
 	applyOperator(other, op);
 //	return *this;
 }
 
 void Matrix::subtract(const Matrix& other) {
-	Subtract op;
+	static Subtract op;
 	applyOperator(other, op);
 //	return *this;
 }
 
 void Matrix::multiply(const Matrix& other) {
-	Multiply op;
+	static Multiply op;
 	applyOperator(other, op);
 //	return *this;
 }
@@ -118,6 +116,17 @@ Matrix* Matrix::multiplyPtr(const Matrix& other) const {
 	Matrix* result = new Matrix(*this);
 	result->multiply(other);
 	return result;
+}
+
+void Matrix::init(unsigned rows, unsigned columns, unsigned modulus) {
+	if (modulus == 0) {
+		throw runtime_error("Le modulo ne peut pas être nul.");
+	}
+
+	this->rows = rows;
+	this->columns = columns;
+	this->modulus = modulus;
+	this->data = nullptr;
 }
 
 void Matrix::deleteData() {
