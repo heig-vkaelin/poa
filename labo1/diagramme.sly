@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="iso-8859-15" standalone="no"?>
 <classDiagram>
   <diagramElements defaultViewEntities="ALL" defaultViewEnum="true" defaultViewMethods="TYPE_AND_NAME" defaultVisibleTypes="true" informations="" name="Matrix Reloaded">
-    <inheritance id="1282">
-      <child>6</child>
+    <entity entityType="CLASS" id="1284" isAbstract="false" name="Utils" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="true" name="getRandom" returnType="unsigned" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="max" type="int"/>
+      </method>
+      <method isAbstract="false" isStatic="true" name="floorMod" returnType="unsigned" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="a" type="int"/>
+        <variable const="false" name="b" type="int"/>
+      </method>
+    </entity>
+    <inheritance id="1280">
+      <child>4</child>
       <parent>3</parent>
     </inheritance>
     <inheritance id="1281">
       <child>5</child>
       <parent>3</parent>
     </inheritance>
-    <inheritance id="1280">
-      <child>4</child>
+    <inheritance id="1282">
+      <child>6</child>
       <parent>3</parent>
     </inheritance>
+    <entity entityType="CLASS" id="6" isAbstract="false" name="Subtract" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="apply_const" returnType="int" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="a" type="int"/>
+        <variable const="false" name="b" type="int"/>
+      </method>
+    </entity>
+    <entity entityType="CLASS" id="5" isAbstract="false" name="Multiply" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="apply_const" returnType="int" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="a" type="int"/>
+        <variable const="false" name="b" type="int"/>
+      </method>
+    </entity>
+    <entity entityType="CLASS" id="4" isAbstract="false" name="Add" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="apply_const" returnType="int" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="a" type="int"/>
+        <variable const="false" name="b" type="int"/>
+      </method>
+    </entity>
+    <entity entityType="CLASS" id="3" isAbstract="true" name="Operator" visibility="PUBLIC">
+      <method is-constructor="true" isAbstract="true" isStatic="false" name="Operator" returnType="" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="true" isStatic="false" name="apply_const" returnType="int" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="a" type="int"/>
+        <variable const="false" name="b" type="int"/>
+      </method>
+    </entity>
     <entity entityType="CLASS" id="1" isAbstract="false" name="Matrix" visibility="PUBLIC">
       <attribute const="false" defaultValue="" isStatic="false" name="rows" type="unsigned" visibility="PRIVATE"/>
       <attribute const="false" defaultValue="" isStatic="false" name="columns" type="unsigned" visibility="PRIVATE"/>
@@ -77,41 +111,16 @@
         <variable const="false" name="op" type="const_Operator&amp;"/>
       </method>
     </entity>
-    <entity entityType="CLASS" id="3" isAbstract="true" name="Operator" visibility="PUBLIC">
-      <method is-constructor="true" isAbstract="true" isStatic="false" name="Operator" returnType="" view="DEFAULT" visibility="PUBLIC"/>
-      <method isAbstract="true" isStatic="false" name="apply_const" returnType="int" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="a" type="int"/>
-        <variable const="false" name="b" type="int"/>
-      </method>
-    </entity>
-    <entity entityType="CLASS" id="4" isAbstract="false" name="Add" visibility="PUBLIC">
-      <method isAbstract="false" isStatic="false" name="apply_const" returnType="int" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="a" type="int"/>
-        <variable const="false" name="b" type="int"/>
-      </method>
-    </entity>
-    <entity entityType="CLASS" id="5" isAbstract="false" name="Multiply" visibility="PUBLIC">
-      <method isAbstract="false" isStatic="false" name="apply_const" returnType="int" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="a" type="int"/>
-        <variable const="false" name="b" type="int"/>
-      </method>
-    </entity>
-    <entity entityType="CLASS" id="6" isAbstract="false" name="Subtract" visibility="PUBLIC">
-      <method isAbstract="false" isStatic="false" name="apply_const" returnType="int" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="a" type="int"/>
-        <variable const="false" name="b" type="int"/>
-      </method>
-    </entity>
   </diagramElements>
   <umlView grid="10" name="Main view" open="true">
-    <relationView color="-12566464" relationId="1280">
+    <relationView color="-12566464" relationId="1282">
       <line>
         <point>
-          <x>101</x>
+          <x>521</x>
           <y>691</y>
         </point>
         <point>
-          <x>101</x>
+          <x>521</x>
           <y>681</y>
         </point>
         <point>
@@ -136,14 +145,14 @@
         </point>
       </line>
     </relationView>
-    <relationView color="-12566464" relationId="1282">
+    <relationView color="-12566464" relationId="1280">
       <line>
         <point>
-          <x>521</x>
+          <x>101</x>
           <y>691</y>
         </point>
         <point>
-          <x>521</x>
+          <x>101</x>
           <y>681</y>
         </point>
         <point>
@@ -156,11 +165,27 @@
         </point>
       </line>
     </relationView>
-    <componentView color="-2079" componentID="6" displayAttributes="true" displayDefault="true" displayMethods="true">
+    <componentView color="-2079" componentID="1" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>420</x>
+        <x>50</x>
+        <y>130</y>
+        <w>530</w>
+        <h>385</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="3" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>210</x>
+        <y>560</y>
+        <w>190</w>
+        <h>85</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="4" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>0</x>
         <y>690</y>
-        <w>200</w>
+        <w>190</w>
         <h>70</h>
       </geometry>
     </componentView>
@@ -172,28 +197,20 @@
         <h>70</h>
       </geometry>
     </componentView>
-    <componentView color="-2079" componentID="4" displayAttributes="true" displayDefault="true" displayMethods="true">
+    <componentView color="-2079" componentID="6" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>0</x>
+        <x>420</x>
         <y>690</y>
-        <w>190</w>
+        <w>200</w>
         <h>70</h>
       </geometry>
     </componentView>
-    <componentView color="-2079" componentID="3" displayAttributes="true" displayDefault="true" displayMethods="true">
+    <componentView color="-2079" componentID="1284" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>210</x>
-        <y>560</y>
-        <w>190</w>
+        <x>200</x>
+        <y>790</y>
+        <w>220</w>
         <h>85</h>
-      </geometry>
-    </componentView>
-    <componentView color="-2079" componentID="1" displayAttributes="true" displayDefault="true" displayMethods="true">
-      <geometry>
-        <x>50</x>
-        <y>130</y>
-        <w>530</w>
-        <h>385</h>
       </geometry>
     </componentView>
     <note color="-2079" content="friend operator&lt;&lt; (lhs : ostream&amp;, rhs : const_Matrix&amp;) : ostream&amp;">
