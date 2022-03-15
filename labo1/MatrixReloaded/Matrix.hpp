@@ -146,6 +146,7 @@ private:
 	 * @param rows : nombre de lignes de la matrice
 	 * @param columns : nombre de colonnes de la matrice
 	 * @param modulus : modulo de la matrice
+	 * @throws runtime_error : si le modulo est nul
 	 */
 	void init(unsigned rows, unsigned columns, unsigned modulus);
 
@@ -169,6 +170,7 @@ private:
 	 *
 	 * @param other : la matrice utilisée comme opérande
 	 * @param op : la référence sur l'opérateur voulu
+	 * @throws invalid_argument : si les modulos ne sont pas compatibles
 	 */
 	void applyOperator(const Matrix& other, const Operator& op);
 };
