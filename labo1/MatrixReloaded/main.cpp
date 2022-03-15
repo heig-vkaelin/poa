@@ -12,7 +12,6 @@ int main(int argc, char* argv[]) {
 
 	unsigned rows1, cols1, rows2, cols2, modulus;
 
-	// TODO: maybe check les stringstream: https://stackoverflow.com/a/13846191/9188650
 	try {
 		for (int i = 1; i < argc; ++i) {
 			if (stoi(argv[i]) < 0) {
