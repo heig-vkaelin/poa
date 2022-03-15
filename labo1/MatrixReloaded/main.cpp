@@ -30,25 +30,23 @@ int main(int argc, char* argv[]) {
 
 	Matrix m1 = Matrix(rows1, cols1, modulus);
 	Matrix m2 = Matrix(rows2, cols2, modulus);
-	cout << m1 << endl;
+
+   cout << "The modulus is " <<  modulus << endl;
+
+   cout << "\none" << endl;
+   cout << m1 << endl;
+
+   cout << "two" << endl;
 	cout << m2 << endl;
 
-//	cout << "one + two" << endl;
-//	m1.add(m2);
-//	cout << m1 << endl;
+	cout << "one + two" << endl;
+	cout << m1.addStatic(m2) << endl;
 
-//	cout << "one + two by value" << endl;
-//	Matrix res = m1.addStatic(m2);
-//	cout << m1 << endl;
-//	cout << m2 << endl;
-//	cout << res << endl;
+   cout << "one - two" << endl;
+   cout << m1.subtractStatic(m2) << endl;
 
-	cout << "one + two by ptr" << endl;
-	Matrix* res = m1.addDynamic(m2);
-	cout << m1 << endl;
-	cout << m2 << endl;
-	cout << *res << endl;
-	delete res;
+   cout << "one x two" << endl;
+   cout << m1.multiplyStatic(m2) << endl;
 
 	return EXIT_SUCCESS;
 }

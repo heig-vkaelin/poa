@@ -105,7 +105,7 @@ Matrix* Matrix::multiplyDynamic(const Matrix& other) const {
 
 void Matrix::init(unsigned rows, unsigned columns, unsigned modulus) {
 	if (modulus == 0) {
-		throw runtime_error("Le modulo ne peut pas être nul.");
+		throw runtime_error("Erreur: Le modulo ne peut pas être nul.");
 	}
 
 	this->rows = rows;
@@ -143,7 +143,7 @@ void Matrix::replaceData(unsigned newRows, unsigned newCols, const Matrix* other
 
 void Matrix::applyOperator(const Matrix& other, const Operator& op) {
 	if (other.modulus != modulus)
-		throw invalid_argument("Les modulos ne sont pas compatibles.");
+		throw invalid_argument("Erreur: Les modulos ne sont pas compatibles.");
 
 	unsigned maxRows = max(rows, other.rows);
 	unsigned maxColumns = max(columns, other.columns);
