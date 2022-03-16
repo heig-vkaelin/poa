@@ -165,7 +165,7 @@ void Matrix::applyOperator(const Matrix& other, const Operator& op) {
 	for (unsigned row = 0; row < maxRows; ++row) {
 		for (unsigned col = 0; col < maxColumns; ++col) {
 			data[row][col] = (unsigned)Utils::floorMod(
-				op.apply(get(row, col), other.get(row, col)), modulus
+				op.apply((long)get(row, col), (long)other.get(row, col)), (long)modulus
 			);
 		}
 	}
