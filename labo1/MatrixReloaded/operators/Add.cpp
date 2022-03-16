@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 03.03.22.
-//
+/**
+ * Classe représentant un opérateur d'addition
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 
 #include "Add.hpp"
 

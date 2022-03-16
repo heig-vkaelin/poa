@@ -1,3 +1,10 @@
+/**
+ * Classe mettant à dispositions diverses fonctions utilitaires
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
+
 #include "Utils.hpp"
 #include <ctime>
 #include <cstdlib>

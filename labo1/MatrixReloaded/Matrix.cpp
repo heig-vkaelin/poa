@@ -1,3 +1,11 @@
+/**
+ * Classe permettant de modéliser une Matrice. Il est également possible de réaliser
+ * diverses opérations arithmétiques sur deux Matrices.
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
+
 #include <algorithm>
 #include "Matrix.hpp"
 #include "Utils.hpp"

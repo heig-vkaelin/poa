@@ -1,3 +1,10 @@
+/**
+ * Point d'entrée du programme
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
+
 #include <iostream>
 #include <stdexcept>
 #include "Matrix.hpp"
