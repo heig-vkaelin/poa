@@ -156,8 +156,9 @@ private:
 	void deleteData();
 
 	/**
-	 * Initialise des valeurs aléatoires ou remplace les valeurs d'une matrice par celles d'une
-	 * autre
+	 * Initialise les valeurs de la matrice selon 2 possibilités:
+	 *  - par les valeurs de la matrice accessible par le pointeur en paramètre
+	 *  - par des valeurs aléatoires si le pointeur est null
 	 *
 	 * @param newRows : nouveau nombre de lignes de la matrice
 	 * @param newCols : nouveau nombre de colonnes de la matrice
