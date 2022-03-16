@@ -12,8 +12,7 @@
 unsigned Utils::getRandom(unsigned max) {
 	static bool alreadyCalled = false;
 	if (!alreadyCalled) {
-		// TODO: add time(0) instead of hardcoded value
-		srand(42);
+		srand((unsigned)time(nullptr));
 	}
 	alreadyCalled = true;
 	return (unsigned)(rand()) % max;
