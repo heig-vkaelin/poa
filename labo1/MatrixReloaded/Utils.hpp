@@ -22,7 +22,7 @@ public:
 	 * @param b : opérande de droite du modulo
 	 * @return a modulo b
 	 */
-	static unsigned floorMod(int a, int b);
+	static long floorMod(long a, long b);
 };
 
 

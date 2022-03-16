@@ -156,8 +156,8 @@ void Matrix::applyOperator(const Matrix& other, const Operator& op) {
 	// Applique les opérations opérande par opérande
 	for (unsigned row = 0; row < maxRows; ++row) {
 		for (unsigned col = 0; col < maxColumns; ++col) {
-			data[row][col] = Utils::floorMod(
-				op.apply((int)get(row, col), (int)other.get(row, col)), (int)modulus
+			data[row][col] = (unsigned)Utils::floorMod(
+				op.apply(get(row, col), other.get(row, col)), modulus
 			);
 		}
 	}

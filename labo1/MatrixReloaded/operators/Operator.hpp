@@ -18,7 +18,7 @@ public:
      * @param i2 un entier
      * @return le résultat de l'opération
      */
-	virtual int apply(int a, int b) const = 0;
+	virtual long apply(long a, long b) const = 0;
 };
 
 #endif // MATRIXRELOADED_OPERATOR_HPP

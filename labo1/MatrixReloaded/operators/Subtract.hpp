@@ -11,7 +11,7 @@
  */
 class Subtract : public Operator {
 public:
-	int apply(int a, int b) const override;
+	long apply(long a, long b) const override;
 };
 
 

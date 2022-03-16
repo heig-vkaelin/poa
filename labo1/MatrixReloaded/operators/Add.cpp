@@ -4,6 +4,6 @@
 
 #include "Add.hpp"
 
-int Add::apply(int a, int b) const {
+long Add::apply(long a, long b) const {
 	return a + b;
 }

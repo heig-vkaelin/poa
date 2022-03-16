@@ -2,7 +2,7 @@
 #include <ctime>
 #include <cstdlib>
 
-unsigned Utils::getRandom(unsigned int max) {
+unsigned Utils::getRandom(unsigned max) {
 	static bool alreadyCalled = false;
 	if (!alreadyCalled) {
 		// TODO: add time(0) instead of hardcoded value
@@ -12,7 +12,7 @@ unsigned Utils::getRandom(unsigned int max) {
 	return (unsigned)(rand()) % max;
 }
 
-unsigned Utils::floorMod(int a, int b) {
-	int res = a % b;
-	return (unsigned)(res < 0 ? res + b : res);
+long Utils::floorMod(long a, long b) {
+	long res = a % b;
+	return res < 0 ? res + b : res;
 }
