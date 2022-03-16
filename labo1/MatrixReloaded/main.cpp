@@ -18,7 +18,7 @@ using namespace std;
  * des modules différents
  */
 void testDifferentModulus() {
-	cout << "TEST : Opération avec modulos différents" << endl;
+	cout << "TEST : Operation avec modulos differents" << endl;
 	unsigned rows = 3;
 	unsigned cols = 3;
 	unsigned modulus1 = 4;
@@ -28,9 +28,9 @@ void testDifferentModulus() {
 	try {
 		m1.add(m2);
 	} catch (const exception& e) {
-		cout << "Erreur levée lorsque les modulos ne correspondent pas: " << endl;
+		cout << "Erreur levee lorsque les modulos ne correspondent pas: " << endl;
 		cout << e.what() << endl;
-		cout << "TEST PASSÉ" << endl;
+		cout << "TEST PASSE" << endl;
 	}
 }
 
@@ -48,7 +48,7 @@ void testEmptyMatrix() {
 		Matrix m4 = Matrix(3, 3, modulus);
 		m3.multiply(m4);
 		cout << m3;
-		cout << "TEST PASSÉ" << endl;
+		cout << "TEST PASSE" << endl;
 	} catch (const exception& e) {
 		cout << "ERREUR: une addition avec une matrice vide ne devrait pas lever "
 				  "d'exception" << endl;
@@ -59,15 +59,15 @@ void testEmptyMatrix() {
  * Teste qu'une exception est levée à la création d'une matrice avec un modulo nul
  */
 void testModulusZero() {
-	cout << "TEST : Valeurs illégales" << endl;
+	cout << "TEST : Valeurs illegales" << endl;
 	unsigned modulus = 0;
 	try {
 		Matrix m1 = Matrix(3, 4, modulus);
 	} catch (const exception& e) {
-		cout << "Erreur levée lors de la création d'une matrice avec des valeurs plus "
+		cout << "Erreur levee lors de la creation d'une matrice avec des valeurs plus "
 				  "grandes que le modulo - 1 : " << endl;
 		cout << e.what() << endl;
-		cout << "TEST PASSÉ" << endl;
+		cout << "TEST PASSE" << endl;
 	}
 }
 
@@ -76,7 +76,7 @@ void testModulusZero() {
  */
 void testStaticOperations() {
 	unsigned modulus = 10;
-	cout << "TEST : Opérations statiques - modulo " << modulus << endl;
+	cout << "TEST : Operations statiques - modulo " << modulus << endl;
 	Matrix m1(3, 4, modulus);
 	Matrix m2(3, 4, modulus);
 
@@ -89,9 +89,9 @@ void testStaticOperations() {
 	Matrix result = m1.addStatic(m2);
 	cout << result << endl;
 
-	cout << "Valeurs inchangées m1" << endl;
+	cout << "Valeurs inchangees m1" << endl;
 	cout << m1 << endl;
-	cout << "Valeurs inchangées m2" << endl;
+	cout << "Valeurs inchangees m2" << endl;
 	cout << m2 << endl;
 }
 
@@ -101,7 +101,7 @@ void testStaticOperations() {
 void testDynamicOperations() {
 	unsigned modulus = 10;
 
-	cout << "TEST : Opérations dynamiques - modulo " << modulus << endl;
+	cout << "TEST : Operations dynamiques - modulo " << modulus << endl;
 	Matrix m1(3, 4, modulus);
 	Matrix m2(3, 4, modulus);
 
@@ -114,9 +114,9 @@ void testDynamicOperations() {
 	Matrix* result = m1.subtractDynamic(m2);
 	cout << *result << endl;
 
-	cout << "Valeurs inchangées m1" << endl;
+	cout << "Valeurs inchangees m1" << endl;
 	cout << m1 << endl;
-	cout << "Valeurs inchangées m2" << endl;
+	cout << "Valeurs inchangees m2" << endl;
 	cout << m2 << endl;
 
 	delete result;
@@ -128,7 +128,7 @@ void testDynamicOperations() {
 void testSelfOperations() {
 	unsigned modulus = 10;
 
-	cout << "TEST : Opérations dynamiques - modulo " << modulus << endl;
+	cout << "TEST : Operations dynamiques - modulo " << modulus << endl;
 	Matrix m1(3, 4, modulus);
 	Matrix m2(3, 4, modulus);
 
@@ -141,12 +141,12 @@ void testSelfOperations() {
 	Matrix& result = m1.multiply(m2);
 	cout << result << endl;
 
-	cout << "Vérification que la matrice retournée est bien la même: ";
+	cout << "Verification que la matrice retournee est bien la meme: ";
 	cout << (&result == &m1 ? "OK!" : "ERREUR!!") << endl;
 
-	cout << "Valeurs changées m1" << endl;
+	cout << "Valeurs changees m1" << endl;
 	cout << m1 << endl;
-	cout << "Valeurs inchangées m2" << endl;
+	cout << "Valeurs inchangees m2" << endl;
 	cout << m2 << endl;
 }
 

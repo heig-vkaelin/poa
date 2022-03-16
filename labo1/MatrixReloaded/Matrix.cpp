@@ -113,7 +113,7 @@ Matrix* Matrix::multiplyDynamic(const Matrix& other) const {
 
 void Matrix::init(unsigned rows, unsigned columns, unsigned modulus) {
 	if (modulus == 0) {
-		throw runtime_error("Erreur: Le modulo ne peut pas être nul.");
+		throw runtime_error("Erreur: Le modulo ne peut pas etre nul.");
 	}
 
 	this->rows = rows;
