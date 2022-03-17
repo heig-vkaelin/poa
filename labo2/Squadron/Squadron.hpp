@@ -9,8 +9,8 @@
 
 class Squadron {
 	friend std::ostream& operator<<(std::ostream& lhs, const Squadron& rhs);
-	friend Squadron operator+(const Squadron& squad);
-	friend Squadron operator-(const Squadron& squad);
+	friend Squadron operator+(const Ship& ship);
+	friend Squadron operator-(const Ship& ship);
 public:
 	Squadron(const std::string& name);
 	Squadron(const Squadron& squad);
@@ -26,14 +26,14 @@ public:
 	unsigned computeConsumption(double distance, double speed);
 private:
 	struct Member {
-		Ship& ship;
+		const Ship& ship;
 		Member* next;
 	};
 
-	const std::string name;
+	std::string name;
 	size_t size;
 	Ship* leader;
-	Member head;
+	Member* head;
 };
 
 #endif //SQUADRON_SQUADRON_HPP
