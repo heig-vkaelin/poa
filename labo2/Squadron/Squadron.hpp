@@ -29,7 +29,7 @@ public:
 
    void setName(const std::string& name);
 
-   void setLeader(const Ship* ship); // S'il n'est pas dans la squad, on l'ajoute
+   void setLeader(const Ship& ship); // S'il n'est pas dans la squad, on l'ajoute
    void removeLeader();
 
    unsigned computeConsumption(double distance, double speed);
@@ -42,9 +42,9 @@ private:
 
    std::string name;
    size_t size;
-   Ship* leader;
-   Member* head;
-   Member* tail;
+   Member* leader;
+   Member* first;
+   Member* last;
 };
 
 #endif //SQUADRON_SQUADRON_HPP

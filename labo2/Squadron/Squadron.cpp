@@ -5,18 +5,18 @@
 
 using namespace std;
 
-Squadron::Squadron(const string& name) : name(name), size(0), leader(nullptr), head(nullptr),
-                                         tail(nullptr) {}
+Squadron::Squadron(const string& name) : name(name), size(0), leader(nullptr), first(nullptr),
+                                         last(nullptr) {}
 
 Squadron& Squadron::operator+=(const Ship& ship) {
    Member* member = new Member{ship, nullptr};
 
-   if (head != nullptr) {
-      tail->next = member;
-      tail = tail->next;
+   if (first != nullptr) {
+      last->next = member;
+      last = last->next;
    } else {
-      head = member;
-      tail = member;
+      first = member;
+      last = member;
    }
 
    size++;
@@ -25,4 +25,22 @@ Squadron& Squadron::operator+=(const Ship& ship) {
 
 void Squadron::setName(const string& name) {
    this->name = name;
+}
+
+// TODO : A tester lorsque operator== sera implémenté
+void Squadron::setLeader(const Ship& ship) {
+//   if (leader && leader->ship == ship)
+//      return;
+
+   Member* iter = first;
+   while (iter) {
+//      if (iter->ship == ship) {
+//         leader = iter;
+//         return;
+//      }
+      iter = iter->next;
+   }
+
+   *this += ship;
+   leader = last;
 }
