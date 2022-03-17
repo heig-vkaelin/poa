@@ -34,10 +34,8 @@ Matrix::Matrix(unsigned rows, unsigned columns, unsigned modulus) {
 }
 
 Matrix::Matrix(const Matrix& other) {
-	if (this != &other) {
-		init(other.rows, other.columns, other.modulus);
-		replaceData(other.rows, other.columns, &other);
-	}
+	init(other.rows, other.columns, other.modulus);
+	replaceData(other.rows, other.columns, &other);
 }
 
 Matrix::~Matrix() {
@@ -46,6 +44,7 @@ Matrix::~Matrix() {
 
 Matrix& Matrix::operator=(const Matrix& other) {
 	if (this != &other) {
+		modulus = other.modulus;
 		replaceData(other.rows, other.columns, &other);
 	}
 	return *this;
