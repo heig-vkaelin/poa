@@ -3,3 +3,7 @@
 //
 
 #include "Shuttle.hpp"
+
+Shuttle::Shuttle(double cargo) : CargoShip(54, 360, cargo) {
+
+}
