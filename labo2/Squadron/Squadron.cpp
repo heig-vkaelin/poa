@@ -5,18 +5,24 @@
 
 using namespace std;
 
-Squadron::Squadron(const string& name) : name(name), size(0), leader(nullptr), head(nullptr) {}
+Squadron::Squadron(const string& name) : name(name), size(0), leader(nullptr), head(nullptr),
+                                         tail(nullptr) {}
 
 Squadron& Squadron::operator+=(const Ship& ship) {
-	auto member = new Member{ship, nullptr};
-	if (head) {
-		// TODO avec un itérateur
-	} else {
-		head = member;
-	}
-	return *this;
+   Member* member = new Member{ship, nullptr};
+
+   if (head != nullptr) {
+      tail->next = member;
+      tail = tail->next;
+   } else {
+      head = member;
+      tail = member;
+   }
+
+   size++;
+   return *this;
 }
 
 void Squadron::setName(const string& name) {
-	this->name = name;
+   this->name = name;
 }
