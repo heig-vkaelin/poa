@@ -9,10 +9,10 @@ using namespace std;
 int main() {
 	cout << "Hello World from Labo2!" << endl;
 
-//	TIE blackLeader;
-//	blackLeader.setNickname("Black leader");
-//	TIE blackTwo;
-//	Shuttle shuttle(23.4); // 23.4 tonnes de marchandises
+	TIE blackLeader;
+	blackLeader.setNickname("Black leader");
+	TIE blackTwo;
+	Shuttle shuttle(23.4); // 23.4 tonnes de marchandises
 //
 //	Squadron squad("Black Squadron");
 //	squad += blackLeader;

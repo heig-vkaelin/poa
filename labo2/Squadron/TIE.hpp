@@ -5,9 +5,11 @@
 #ifndef SQUADRON_TIE_HPP
 #define SQUADRON_TIE_HPP
 
+#include "Ship.hpp"
 
-class TIE {
-
+class TIE : public Ship {
+public:
+	TIE();
 };
 
 

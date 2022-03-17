@@ -5,9 +5,11 @@
 #ifndef SQUADRON_SHUTTLE_HPP
 #define SQUADRON_SHUTTLE_HPP
 
+#include "CargoShip.hpp"
 
-class Shuttle {
-
+class Shuttle : public CargoShip {
+public:
+	explicit Shuttle(double cargo);
 };
 
 
