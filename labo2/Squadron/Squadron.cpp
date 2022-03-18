@@ -27,17 +27,16 @@ void Squadron::setName(const string& name) {
    this->name = name;
 }
 
-// TODO : A tester lorsque operator== sera implémenté
 void Squadron::setLeader(const Ship& ship) {
-//   if (leader && leader->ship == ship)
-//      return;
+   if (leader && &(leader->ship) == &ship)
+      return;
 
    Member* iter = first;
    while (iter) {
-//      if (iter->ship == ship) {
-//         leader = iter;
-//         return;
-//      }
+      if (&(iter->ship) == &ship) {
+         leader = iter;
+         return;
+      }
       iter = iter->next;
    }
 
