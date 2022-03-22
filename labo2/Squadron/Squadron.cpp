@@ -5,41 +5,53 @@
 
 using namespace std;
 
-Squadron::Squadron(const string& name) : name(name), size(0), leader(nullptr), first(nullptr),
-                                         last(nullptr) {}
+ostream& operator<<(ostream& os, const Squadron& squadron) {
+	auto* member = squadron.first;
+
+	while (member->next != nullptr) {
+		os << member->ship;
+		member = member->next;
+	}
+
+	return os;
+}
+
+Squadron::Squadron(const string& name) : name(name), size(0), leader(nullptr),
+													  first(nullptr),
+													  last(nullptr) {}
 
 Squadron& Squadron::operator+=(const Ship& ship) {
-   Member* member = new Member{ship, nullptr};
+	Member* member = new Member{ship, nullptr};
 
-   if (first != nullptr) {
-      last->next = member;
-      last = last->next;
-   } else {
-      first = member;
-      last = member;
-   }
+	if (first != nullptr) {
+		last->next = member;
+		last = last->next;
+	} else {
+		first = member;
+		last = member;
+	}
 
-   size++;
-   return *this;
+	size++;
+	return *this;
 }
 
 void Squadron::setName(const string& name) {
-   this->name = name;
+	this->name = name;
 }
 
 void Squadron::setLeader(const Ship& ship) {
-   if (leader && &(leader->ship) == &ship)
-      return;
+	if (leader && &(leader->ship) == &ship)
+		return;
 
-   Member* iter = first;
-   while (iter) {
-      if (&(iter->ship) == &ship) {
-         leader = iter;
-         return;
-      }
-      iter = iter->next;
-   }
+	Member* iter = first;
+	while (iter) {
+		if (&(iter->ship) == &ship) {
+			leader = iter;
+			return;
+		}
+		iter = iter->next;
+	}
 
-   *this += ship;
-   leader = last;
+	*this += ship;
+	leader = last;
 }
