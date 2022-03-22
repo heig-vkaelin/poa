@@ -7,5 +7,5 @@
 
 TIE::TIE() : Ship(100, 6) {
 	// TODO: wtf is this, need to check how to do that
-	Ship::modelName = "TIE";
+//	Ship::modelName = "TIE";
 }

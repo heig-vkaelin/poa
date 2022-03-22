@@ -26,7 +26,7 @@ Ship::~Ship() {
 ostream& Ship::toStream(ostream& os) const {
 	// TODO, remove space before [
 	// TODO: moddeName en static: CRASH
-	return os << nickname << " [" << modelName << " #1]" << endl
+	return os << nickname << " [" << "MODELNAME" << " #1]" << endl
 				 << "  weight : " << weight << " tons" << endl
 				 << "  max speed : " << maxSpeed << " MGLT" << endl;
 }

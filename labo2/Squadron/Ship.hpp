@@ -20,7 +20,7 @@ public:
 
 protected:
 	Ship(unsigned maxSpeed, double weight);
-	static std::string modelName;
+//	static std::string modelName;
 
 private:
 	/* à compléter */
