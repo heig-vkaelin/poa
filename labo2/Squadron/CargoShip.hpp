@@ -11,6 +11,10 @@ class CargoShip : public Ship {
 public:
 	void setCargo(double newCargo);
 
+	virtual std::ostream& toStream(std::ostream& os) const;
+
+	virtual double getWeight() const;
+
 protected:
 	CargoShip(unsigned maxSpeed, double weight, double cargo);
 

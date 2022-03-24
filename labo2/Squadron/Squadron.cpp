@@ -1,25 +1,40 @@
 //
 // Created by Valentin Kaelin on 17.03.22.
 //
+#include <iostream>
+#include <sstream>
+
 #include "Squadron.hpp"
 
 using namespace std;
 
 ostream& operator<<(ostream& os, const Squadron& squadron) {
-	auto* leader = squadron.leader;
-	auto* member = squadron.first;
+	stringstream header;
+	stringstream ships;
+	Squadron::Member* leader = squadron.leader;
+	Squadron::Member* member = squadron.first;
 
-	os << "-- Leader:" << endl
-		<< leader->ship << endl
-		<< "-- Members:" << endl;
+	unsigned maxSpeed = UINT_MAX;
+	double totalWeight = 0;
+
+	header << "Squadron: " << squadron.name << endl;
+	ships << "-- Leader:" << endl
+			<< leader->ship << endl
+			<< "-- Members:" << endl;
 
 	while (member != nullptr) {
 		if (member != leader) {
-			os << member->ship << endl;
+			ships << member->ship << endl;
 		}
+		totalWeight += member->ship.getWeight();
+		maxSpeed = min(maxSpeed, member->ship.getMaxSpeed());
 		member = member->next;
 	}
-	return os;
+
+	header << "  max speed: " << maxSpeed << " MGLT" << endl
+			 << "  total weight: " << totalWeight << " tons" << endl;
+
+	return os << header.str() << endl << ships.str();
 }
 
 Squadron::Squadron(const string& name) : name(name), size(0), leader(nullptr),

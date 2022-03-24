@@ -16,6 +16,10 @@ public:
 
 	void setNickname(const std::string& nick);
 
+	unsigned getMaxSpeed() const;
+
+	virtual double getWeight() const;
+
 	virtual std::ostream& toStream(std::ostream& os) const;
 
 protected:

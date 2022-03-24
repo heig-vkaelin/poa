@@ -19,6 +19,14 @@ void Ship::setNickname(const string& nick) {
 	nickname = nick;
 }
 
+unsigned Ship::getMaxSpeed() const {
+	return maxSpeed;
+}
+
+double Ship::getWeight() const {
+	return weight;
+}
+
 Ship::~Ship() {
 	// TODO
 }
@@ -27,7 +35,7 @@ ostream& Ship::toStream(ostream& os) const {
 	// TODO, remove space before [
 	// TODO: moddeName en static: CRASH
 	return os << nickname << " [" << "MODELNAME" << " #1]" << endl
-				 << "  weight : " << weight << " tons" << endl
+				 << "  weight : " << getWeight() << " tons" << endl
 				 << "  max speed : " << maxSpeed << " MGLT" << endl;
 }
 

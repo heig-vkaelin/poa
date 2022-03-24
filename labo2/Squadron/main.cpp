@@ -7,8 +7,6 @@
 using namespace std;
 
 int main() {
-	cout << "Hello World from Labo2!" << endl;
-
 	TIEFighter blackLeader;
 	blackLeader.setNickname("Black leader");
 	TIEFighter blackTwo;
