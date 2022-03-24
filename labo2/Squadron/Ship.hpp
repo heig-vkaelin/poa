@@ -22,8 +22,12 @@ public:
 
 	virtual std::ostream& toStream(std::ostream& os) const;
 
+protected:
+	explicit Ship(unsigned id);
+
 private:
 	std::string nickname;
+	unsigned id;
 //	double consumption; // in tons
 };
 

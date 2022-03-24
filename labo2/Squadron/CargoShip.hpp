@@ -18,7 +18,7 @@ public:
 	virtual std::ostream& toStream(std::ostream& os) const;
 
 protected:
-	explicit CargoShip(double cargo);
+	explicit CargoShip(unsigned id, double cargo);
 
 private:
 	double cargo; // in tons

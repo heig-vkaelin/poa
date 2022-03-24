@@ -6,7 +6,7 @@
 
 using namespace std;
 
-CargoShip::CargoShip(double cargo) : cargo(cargo) {
+CargoShip::CargoShip(unsigned id, double cargo) : Ship(id), cargo(cargo) {
 }
 
 double CargoShip::getCargo() const {
