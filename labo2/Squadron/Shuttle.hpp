@@ -10,7 +10,20 @@
 class Shuttle : public CargoShip {
 public:
 	explicit Shuttle(double cargo);
+
+	unsigned getMaxSpeed() const override;
+
+	std::string getModelName() const override;
+
+	double getWeight() const override;
+
+	double getMaxCargo() const override;
+
+private:
+	const static std::string MODEL_NAME;
+	const static unsigned MAX_SPEED;
+	const static double WEIGHT;
+	const static double MAX_CARGO;
 };
 
-
-#endif //SQUADRON_SHUTTLE_HPP
+#endif // SQUADRON_SHUTTLE_HPP

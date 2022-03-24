@@ -11,16 +11,17 @@ class CargoShip : public Ship {
 public:
 	void setCargo(double newCargo);
 
+	double getCargo() const;
+
+	virtual double getMaxCargo() const = 0;
+
 	virtual std::ostream& toStream(std::ostream& os) const;
 
-	virtual double getWeight() const;
-
 protected:
-	CargoShip(unsigned maxSpeed, double weight, double cargo);
+	explicit CargoShip(double cargo);
 
 private:
 	double cargo; // in tons
-	double maxCargo; // in tons TODO: en static ??
 };
 
 

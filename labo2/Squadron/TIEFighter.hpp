@@ -9,7 +9,18 @@
 
 class TIEFighter : public Ship {
 public:
-	TIEFighter();
+	TIEFighter() = default;
+
+	unsigned getMaxSpeed() const override;
+
+	std::string getModelName() const override;
+
+	double getWeight() const override;
+
+private:
+	const static std::string MODEL_NAME;
+	const static unsigned MAX_SPEED;
+	const static double WEIGHT;
 };
 
 

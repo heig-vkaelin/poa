@@ -10,21 +10,8 @@ ostream& operator<<(ostream& os, const Ship& ship) {
 	return ship.toStream(os);
 }
 
-Ship::Ship(unsigned maxSpeed, double weight) : maxSpeed(maxSpeed), weight(weight) {
-	// TODO: make a method to compute consumption
-	consumption = 66;
-}
-
 void Ship::setNickname(const string& nick) {
 	nickname = nick;
-}
-
-unsigned Ship::getMaxSpeed() const {
-	return maxSpeed;
-}
-
-double Ship::getWeight() const {
-	return weight;
 }
 
 Ship::~Ship() {
@@ -32,10 +19,8 @@ Ship::~Ship() {
 }
 
 ostream& Ship::toStream(ostream& os) const {
-	// TODO, remove space before [
-	// TODO: moddeName en static: CRASH
-	return os << nickname << " [" << "MODELNAME" << " #1]" << endl
+	return os << nickname << (nickname.empty() ? "" : " ")
+				 << "[" << getModelName() << " #1]" << endl
 				 << "  weight : " << getWeight() << " tons" << endl
-				 << "  max speed : " << maxSpeed << " MGLT" << endl;
+				 << "  max speed : " << getMaxSpeed() << " MGLT" << endl;
 }
-

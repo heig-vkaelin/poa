@@ -12,27 +12,19 @@ class Ship {
 public:
 	virtual ~Ship();
 
-	/* à compléter */
-
 	void setNickname(const std::string& nick);
 
-	unsigned getMaxSpeed() const;
+	virtual unsigned getMaxSpeed() const = 0;
 
-	virtual double getWeight() const;
+	virtual std::string getModelName() const = 0;
+
+	virtual double getWeight() const = 0;
 
 	virtual std::ostream& toStream(std::ostream& os) const;
 
-protected:
-	Ship(unsigned maxSpeed, double weight);
-//	static std::string modelName;
-
 private:
-	/* à compléter */
-
 	std::string nickname;
-	unsigned maxSpeed; // in MGLT
-	double weight; // in tons
-	double consumption; // in tons
+//	double consumption; // in tons
 };
 
 #endif /* SHIP_HPP */

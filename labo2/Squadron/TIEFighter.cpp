@@ -4,8 +4,20 @@
 
 #include "TIEFighter.hpp"
 
+using namespace std;
 
-TIEFighter::TIEFighter() : Ship(100, 6) {
-	// TODO: wtf is this, need to check how to do that
-//	Ship::modelName = "TIEFighter";
+const string TIEFighter::MODEL_NAME = "TIE/LN";
+const unsigned TIEFighter::MAX_SPEED = 100;
+const double TIEFighter::WEIGHT = 6;
+
+unsigned TIEFighter::getMaxSpeed() const {
+	return MAX_SPEED;
+}
+
+string TIEFighter::getModelName() const {
+	return MODEL_NAME;
+}
+
+double TIEFighter::getWeight() const {
+	return WEIGHT;
 }
