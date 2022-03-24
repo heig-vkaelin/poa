@@ -25,26 +25,27 @@ public:
 
    Squadron& operator[](unsigned index);
 
-   Ship get(unsigned index);
+   Ship& get(unsigned index) const;
 
    void setName(const std::string& name);
 
-   void setLeader(const Ship& ship); // S'il n'est pas dans la squad, on l'ajoute
-   void removeLeader();
+   void setLeader(const Ship& ship);
+
+	void removeLeader();
 
    unsigned computeConsumption(double distance, double speed);
 
 private:
    struct Member {
-      const Ship& ship;
+      Ship& ship;
       Member* next;
    };
 
    std::string name;
    size_t size;
    Member* leader;
-   Member* first;
-   Member* last;
+   Member* head;
+   Member* tail;
 };
 
 #endif //SQUADRON_SQUADRON_HPP

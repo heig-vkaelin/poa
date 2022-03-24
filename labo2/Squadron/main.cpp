@@ -21,5 +21,9 @@ int main() {
 
 	cout << squad << endl;
 
+	squad -= blackLeader;
+
+	cout << squad << endl;
+	
 	return EXIT_SUCCESS;
 }
