@@ -2,16 +2,16 @@
 #include <iostream>
 #include "Shuttle.hpp"
 #include "Squadron.hpp"
-#include "TIE.hpp"
+#include "TIEFighter.hpp"
 
 using namespace std;
 
 int main() {
 	cout << "Hello World from Labo2!" << endl;
 
-	TIE blackLeader;
+	TIEFighter blackLeader;
 	blackLeader.setNickname("Black leader");
-	TIE blackTwo;
+	TIEFighter blackTwo;
 	Shuttle shuttle(23.4); // 23.4 tonnes de marchandises
 
 	Squadron squad("Black Squadron");

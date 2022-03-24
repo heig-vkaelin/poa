@@ -6,13 +6,19 @@
 using namespace std;
 
 ostream& operator<<(ostream& os, const Squadron& squadron) {
+	auto* leader = squadron.leader;
 	auto* member = squadron.first;
 
-	while (member->next != nullptr) {
-		os << member->ship;
+	os << "-- Leader:" << endl
+		<< leader->ship << endl
+		<< "-- Members:" << endl;
+
+	while (member != nullptr) {
+		if (member != leader) {
+			os << member->ship << endl;
+		}
 		member = member->next;
 	}
-
 	return os;
 }
 
