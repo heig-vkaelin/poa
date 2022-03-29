@@ -3,9 +3,9 @@
 //
 #include <iostream>
 #include <sstream>
+#include <exception>
 
 #include "Squadron.hpp"
-#include <exception>
 
 using namespace std;
 
@@ -46,8 +46,18 @@ ostream& operator<<(ostream& os, const Squadron& squadron) {
 
 Squadron::Squadron(const string& name) : name(name), size(0), leader(nullptr), head(nullptr) {}
 
+// TODO : check avec Valgrind
+Squadron::~Squadron() {
+   Member* iter = head;
+   while (iter) {
+      Member* tmp = iter->next;
+      delete iter;
+      iter = tmp; // Reaffecation possible après delete ??
+   }
+}
+
 Squadron& Squadron::operator+=(const Ship& ship) {
-	Member* member = new Member{const_cast<Ship&>(ship), nullptr};
+	auto member = new Member{const_cast<Ship&>(ship), nullptr};
 
 	if (head != nullptr) {
       Member* tmp = head;
@@ -116,8 +126,8 @@ Squadron& Squadron::operator-=(const Ship& ship) {
 				iter->next = iter->next->next;
 				delete tmp;
 			} else {
-				iter->next = nullptr;
 				delete iter->next;
+				iter->next = nullptr;
 			}
 			deleted = true;
 			break;
@@ -135,10 +145,9 @@ Ship& Squadron::operator[](unsigned int index) {
       throw runtime_error("Erreur: L'index demande n'est pas conforme.");
 
    Member* iter = head;
-   unsigned i = 0;
-   while (i != index) {
+   for (unsigned i = 0; i != index; ++i) {
       iter = iter->next;
-      ++i;
    }
+
    return iter->ship;
 }

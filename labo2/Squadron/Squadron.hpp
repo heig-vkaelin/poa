@@ -17,6 +17,8 @@ class Squadron {
 public:
    Squadron(const std::string& name);
 
+   ~Squadron();
+
    Squadron(const Squadron& squad);
 
    Squadron& operator+=(const Ship& ship);
