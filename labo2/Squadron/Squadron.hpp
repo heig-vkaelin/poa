@@ -23,9 +23,7 @@ public:
 
    Squadron& operator-=(const Ship& ship);
 
-   Squadron& operator[](unsigned index);
-
-   Ship& get(unsigned index) const;
+   Ship& operator[](unsigned index);
 
    void setName(const std::string& name);
 

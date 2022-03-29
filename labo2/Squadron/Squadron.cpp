@@ -25,7 +25,7 @@ ostream& operator<<(ostream& os, const Squadron& squadron) {
 				<< leader->ship << endl;
 	} else {
 		ships << "-- Leader:" << endl
-				<< "No leader" << endl;
+				<< "No leader" << endl << endl;
 	}
 	ships << "-- Members:" << endl;
 
@@ -62,8 +62,8 @@ Squadron& Squadron::operator+=(const Ship& ship) {
 	return *this;
 }
 
-void Squadron::setName(const string& name) {
-	this->name = name;
+void Squadron::setName(const string& n) {
+	name = n;
 }
 
 void Squadron::setLeader(const Ship& ship) {
@@ -131,15 +131,15 @@ Squadron& Squadron::operator-=(const Ship& ship) {
 	return *this;
 }
 
-Ship& Squadron::get(unsigned int index) const {
-	if (index >= size)
-		throw runtime_error("Erreur: L'index demande n'est pas conforme.");
+Ship& Squadron::operator[](unsigned int index) {
+   if (index >= size)
+      throw runtime_error("Erreur: L'index demande n'est pas conforme.");
 
-	Member* iter = head;
-	unsigned i = 0;
-	while (i != index) {
-		iter = iter->next;
-		++i;
-	}
-	return iter->ship;
+   Member* iter = head;
+   unsigned i = 0;
+   while (i != index) {
+      iter = iter->next;
+      ++i;
+   }
+   return iter->ship;
 }
