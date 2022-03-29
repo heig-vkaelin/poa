@@ -29,7 +29,7 @@ public:
 
    void setLeader(const Ship& ship);
 
-	void removeLeader();
+   void removeLeader();
 
    unsigned computeConsumption(double distance, double speed);
 
@@ -43,7 +43,6 @@ private:
    size_t size;
    Member* leader;
    Member* head;
-   Member* tail;
 };
 
 #endif //SQUADRON_SQUADRON_HPP

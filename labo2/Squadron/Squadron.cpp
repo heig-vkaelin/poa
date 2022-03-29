@@ -44,18 +44,17 @@ ostream& operator<<(ostream& os, const Squadron& squadron) {
 	return os << header.str() << endl << ships.str();
 }
 
-Squadron::Squadron(const string& name) : name(name), size(0), leader(nullptr),
-													  head(nullptr), tail(nullptr) {}
+Squadron::Squadron(const string& name) : name(name), size(0), leader(nullptr), head(nullptr) {}
 
 Squadron& Squadron::operator+=(const Ship& ship) {
 	Member* member = new Member{const_cast<Ship&>(ship), nullptr};
 
 	if (head != nullptr) {
-		tail->next = member;
-		tail = tail->next;
+      Member* tmp = head;
+      head = member;
+      head->next = tmp;
 	} else {
 		head = member;
-		tail = member;
 	}
 
 	size++;
@@ -80,7 +79,7 @@ void Squadron::setLeader(const Ship& ship) {
 	}
 
 	*this += ship;
-	leader = tail;
+	leader = head;
 }
 
 void Squadron::removeLeader() {
