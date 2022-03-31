@@ -117,8 +117,8 @@ Squadron& Squadron::removeShip(const Ship& ship) {
 			head = head->next;
 			delete tmp;
 		} else {
-			head = nullptr;
 			delete head;
+			head = nullptr;
 		}
 		deleted = true;
 	}
@@ -205,7 +205,7 @@ double Squadron::computeConsumption(double distance, double speed) {
 
 	Squadron::Member* member = head;
 	double totalWeight = 0;
-	unsigned maxSpeed = UINT_MAX;
+	unsigned maxSpeed = UINT_MAX; // TODO: affiche uint_max sur squadron vide
 
 	while (member != nullptr) {
 		totalWeight += member->ship.getWeight();
