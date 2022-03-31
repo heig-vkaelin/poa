@@ -87,6 +87,14 @@ Squadron::Squadron(const Squadron& squad) {
 Squadron& Squadron::addShip(const Ship& ship) {
 	auto member = new Member{ship, nullptr};
 
+   Member* iter = head;
+   while (iter) {
+      if (&(iter->ship) == &ship) {
+         return *this;
+      }
+      iter = iter->next;
+   }
+
 	if (head != nullptr) {
 		Member* tmp = head;
 		head = member;
