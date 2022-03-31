@@ -20,13 +20,12 @@ ostream& operator<<(ostream& os, const Squadron& squadron) {
 
 	header << "Squadron: " << squadron.name << endl;
 
-	if (leader) {
-		ships << "-- Leader:" << endl
-				<< leader->ship << endl;
-	} else {
-		ships << "-- Leader:" << endl
-				<< "No leader" << endl << endl;
-	}
+	ships << "-- Leader:" << endl;
+	if (leader)
+		ships << leader->ship << endl;
+	else
+		ships << "No leader" << endl << endl;
+
 	ships << "-- Members:" << endl;
 
 	while (member != nullptr) {
@@ -44,25 +43,26 @@ ostream& operator<<(ostream& os, const Squadron& squadron) {
 	return os << header.str() << endl << ships.str();
 }
 
-Squadron::Squadron(const string& name) : name(name), size(0), leader(nullptr), head(nullptr) {}
+Squadron::Squadron(const string& name) : name(name), size(0), leader(nullptr),
+													  head(nullptr) {}
 
 // TODO : check avec Valgrind
 Squadron::~Squadron() {
-   Member* iter = head;
-   while (iter) {
-      Member* tmp = iter->next;
-      delete iter;
-      iter = tmp; // Reaffecation possible après delete ??
-   }
+	Member* iter = head;
+	while (iter) {
+		Member* tmp = iter->next;
+		delete iter;
+		iter = tmp; // Reaffecation possible après delete ??
+	}
 }
 
 Squadron& Squadron::operator+=(const Ship& ship) {
 	auto member = new Member{const_cast<Ship&>(ship), nullptr};
 
 	if (head != nullptr) {
-      Member* tmp = head;
-      head = member;
-      head->next = tmp;
+		Member* tmp = head;
+		head = member;
+		head->next = tmp;
 	} else {
 		head = member;
 	}
@@ -141,13 +141,13 @@ Squadron& Squadron::operator-=(const Ship& ship) {
 }
 
 Ship& Squadron::operator[](unsigned int index) {
-   if (index >= size)
-      throw runtime_error("Erreur: L'index demande n'est pas conforme.");
+	if (index >= size)
+		throw runtime_error("Erreur: L'index demande n'est pas conforme.");
 
-   Member* iter = head;
-   for (unsigned i = 0; i != index; ++i) {
-      iter = iter->next;
-   }
+	Member* iter = head;
+	for (unsigned i = 0; i != index; ++i) {
+		iter = iter->next;
+	}
 
-   return iter->ship;
+	return iter->ship;
 }
