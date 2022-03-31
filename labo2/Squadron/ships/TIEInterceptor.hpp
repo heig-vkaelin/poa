@@ -1,12 +1,14 @@
-//
-// Created by Valentin Kaelin on 24.03.22.
-//
-
 #ifndef SQUADRON_TIEINTERCEPTOR_HPP
 #define SQUADRON_TIEINTERCEPTOR_HPP
 
 #include "Ship.hpp"
 
+/**
+ * Classe représentant un vaisseau de type Intercepteur TIE
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 class TIEInterceptor : public Ship {
 public:
 	TIEInterceptor();

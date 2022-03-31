@@ -1,6 +1,10 @@
-//
-// Created by Valentin Kaelin on 17.03.22.
-//
+/**
+ * Classe représentant une escadrille de divers vaisseaux pouvant être mise à jour
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
+
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
@@ -223,12 +227,12 @@ bool Squadron::contains(Ship& ship) {
 	return false;
 }
 
-Ship& Squadron::getByIndex(std::size_t index) const {
+Ship& Squadron::getByIndex(size_t index) const {
 	if (index >= size)
 		throw runtime_error("Erreur: L'index demande n'est pas conforme.");
 
 	Member* iter = head;
-	for (unsigned i = 0; i != index; ++i) {
+	for (size_t i = 0; i != index; ++i) {
 		iter = iter->next;
 	}
 

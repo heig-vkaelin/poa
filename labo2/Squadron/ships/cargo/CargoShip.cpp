@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 17.03.22.
-//
+/**
+ * Classe représentant un vaisseau avec une cargaison
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 
 #include "CargoShip.hpp"
 

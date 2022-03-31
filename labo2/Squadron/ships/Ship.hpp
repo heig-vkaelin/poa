@@ -4,6 +4,12 @@
 #include <ostream>
 #include <string>
 
+/**
+ * Classe représentant un vaisseau de tout type
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 class Ship;
 
 /**

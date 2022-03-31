@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 17.03.22.
-//
+/**
+ * Classe représentant un vaisseau de type navette impériale
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 
 #include "Shuttle.hpp"
 

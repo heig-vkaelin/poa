@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 17.03.22.
-//
+/**
+ * Classe représentant un vaisseau de tout type
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 
 #include "Ship.hpp"
 

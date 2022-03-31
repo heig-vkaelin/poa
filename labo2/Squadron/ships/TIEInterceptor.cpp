@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 24.03.22.
-//
+/**
+ * Classe représentant un vaisseau de type Intercepteur TIE
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 
 #include "TIEInterceptor.hpp"
 

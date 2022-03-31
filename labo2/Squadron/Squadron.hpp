@@ -1,12 +1,14 @@
-//
-// Created by Valentin Kaelin on 17.03.22.
-//
-
 #ifndef SQUADRON_SQUADRON_HPP
 #define SQUADRON_SQUADRON_HPP
 
 #include "ships/Ship.hpp"
 
+/**
+ * Classe représentant une escadrille de divers vaisseaux pouvant être mise à jour
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 class Squadron {
 	friend std::ostream& operator<<(std::ostream& lhs, const Squadron& rhs);
 

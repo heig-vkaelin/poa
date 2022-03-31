@@ -1,12 +1,14 @@
-//
-// Created by Valentin Kaelin on 17.03.22.
-//
-
 #ifndef SQUADRON_STARDREADNOUGHT_HPP
 #define SQUADRON_STARDREADNOUGHT_HPP
 
 #include "CargoShip.hpp"
 
+/**
+ * Classe représentant un vaisseau de type Star Destroyer
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 class StarDreadnought : public CargoShip {
 public:
 	explicit StarDreadnought(double cargo);
@@ -28,4 +30,4 @@ private:
 };
 
 
-#endif //SQUADRON_STARDREADNOUGHT_HPP
+#endif // SQUADRON_STARDREADNOUGHT_HPP

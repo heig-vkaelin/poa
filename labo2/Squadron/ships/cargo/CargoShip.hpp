@@ -1,12 +1,14 @@
-//
-// Created by Valentin Kaelin on 17.03.22.
-//
-
 #ifndef SQUADRON_CARGOSHIP_HPP
 #define SQUADRON_CARGOSHIP_HPP
 
 #include "../Ship.hpp"
 
+/**
+ * Classe représentant un vaisseau avec une cargaison
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 class CargoShip : public Ship {
 public:
 	/**

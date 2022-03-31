@@ -1,12 +1,14 @@
-//
-// Created by Valentin Kaelin on 17.03.22.
-//
-
 #ifndef SQUADRON_TIEFIGHTER_HPP
 #define SQUADRON_TIEFIGHTER_HPP
 
 #include "Ship.hpp"
 
+/**
+ * Classe représentant un vaisseau de type Chasseur TIE
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 class TIEFighter : public Ship {
 public:
 	TIEFighter();
@@ -25,4 +27,4 @@ private:
 };
 
 
-#endif //SQUADRON_TIEFIGHTER_HPP
+#endif // SQUADRON_TIEFIGHTER_HPP
