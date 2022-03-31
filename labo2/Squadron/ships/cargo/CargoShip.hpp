@@ -9,19 +9,29 @@
 
 class CargoShip : public Ship {
 public:
+	/**
+	 * Modifie la cargaison actuelle
+	 * @param newCargo : la nouvelle cargaison
+	 */
 	void setCargo(double newCargo);
 
+	/**
+	 * @return la cargaison actuelle en [tonnes]
+	 */
 	double getCargo() const;
 
+	/**
+	 * @return la cargaison maximale du vaisseau, en [tonnes]
+	 */
 	virtual double getMaxCargo() const = 0;
 
-	virtual std::ostream& toStream(std::ostream& os) const;
+	std::ostream& toStream(std::ostream& os) const override;
 
 protected:
 	explicit CargoShip(unsigned id, double cargo);
 
 private:
-	double cargo; // in tons
+	double cargo; // en [tonnes]
 };
 
 

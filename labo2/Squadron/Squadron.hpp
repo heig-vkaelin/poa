@@ -5,7 +5,7 @@
 #ifndef SQUADRON_SQUADRON_HPP
 #define SQUADRON_SQUADRON_HPP
 
-#include "Ships/Ship.hpp"
+#include "ships/Ship.hpp"
 
 class Squadron {
 	friend std::ostream& operator<<(std::ostream& lhs, const Squadron& rhs);

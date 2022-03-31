@@ -22,9 +22,9 @@ public:
 private:
 	static unsigned counter;
 	const static std::string MODEL_NAME;
-	const static unsigned MAX_SPEED;
-	const static double WEIGHT;
-	const static double MAX_CARGO;
+	const static unsigned MAX_SPEED; // en [MGLT]
+	const static double WEIGHT; // en [tonnes]
+	const static double MAX_CARGO; // en [tonnes]
 };
 
 #endif // SQUADRON_SHUTTLE_HPP
