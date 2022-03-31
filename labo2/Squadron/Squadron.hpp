@@ -8,43 +8,42 @@
 #include "Ship.hpp"
 
 class Squadron {
-   friend std::ostream& operator<<(std::ostream& lhs, const Squadron& rhs);
+	friend std::ostream& operator<<(std::ostream& lhs, const Squadron& rhs);
 
-   friend Squadron operator+(const Ship& ship);
+	friend Squadron operator+(const Ship& ship);
 
-   friend Squadron operator-(const Ship& ship);
+	friend Squadron operator-(const Ship& ship);
 
 public:
-   Squadron(const std::string& name);
+	Squadron(const std::string& name);
 
-   ~Squadron();
+	~Squadron();
 
-   Squadron(const Squadron& squad);
+	Squadron(const Squadron& squad);
 
-   Squadron& operator+=(const Ship& ship);
+	Squadron& operator+=(const Ship& ship);
 
-   Squadron& operator-=(const Ship& ship);
+	Squadron& operator-=(const Ship& ship);
 
-   Ship& operator[](unsigned index);
+	Ship& operator[](unsigned index);
 
-   void setName(const std::string& name);
+	void setName(const std::string& name);
 
-   void setLeader(const Ship& ship);
+	void setLeader(const Ship& ship);
 
-   void removeLeader();
+	void removeLeader();
 
-   unsigned computeConsumption(double distance, double speed);
+	double computeConsumption(double distance, double speed);
 
 private:
-   struct Member {
-      Ship& ship;
-      Member* next;
-   };
+	struct Member;
 
-   std::string name;
-   size_t size;
-   Member* leader;
-   Member* head;
+	std::string name;
+	size_t size;
+	Member* leader;
+	Member* head;
+
+//	void getSpecs(double& totalWeight, double& maxSpeed);
 };
 
 #endif //SQUADRON_SQUADRON_HPP

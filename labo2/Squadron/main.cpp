@@ -21,7 +21,9 @@ int main() {
 
 	cout << squad << endl;
 
-   cout << squad[0];
-	
+	cout << squad[0] << endl << endl;
+
+	cout << "Consommation: " << squad.computeConsumption(200, 40) << endl;
+
 	return EXIT_SUCCESS;
 }

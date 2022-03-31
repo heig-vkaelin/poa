@@ -4,10 +4,16 @@
 #include <iostream>
 #include <sstream>
 #include <exception>
+#include <cmath>
 
 #include "Squadron.hpp"
 
 using namespace std;
+
+struct Squadron::Member {
+	Ship& ship;
+	Member* next;
+};
 
 ostream& operator<<(ostream& os, const Squadron& squadron) {
 	stringstream header;
@@ -150,4 +156,23 @@ Ship& Squadron::operator[](unsigned int index) {
 	}
 
 	return iter->ship;
+}
+
+double Squadron::computeConsumption(double distance, double speed) {
+	// TODO: check if we can remove duplication with flux operator
+
+	Squadron::Member* member = head;
+	double totalWeight = 0;
+	unsigned maxSpeed = UINT_MAX;
+
+	while (member != nullptr) {
+		totalWeight += member->ship.getWeight();
+		maxSpeed = min(maxSpeed, member->ship.getMaxSpeed());
+		member = member->next;
+	}
+
+	if (maxSpeed < speed)
+		throw runtime_error("La vitesse est trop rapide pour l'escadrille.");
+
+	return cbrt(totalWeight) / 2 * log10(totalWeight * speed) * log10(distance + 1);
 }
