@@ -64,6 +64,7 @@ private:
 	std::size_t size;
 	Ship* leader;
 	Member* head;
+   Member* tail;
 
 //	void getSpecs(double& totalWeight, double& maxSpeed);
 };

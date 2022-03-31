@@ -92,7 +92,15 @@ Squadron& Squadron::addShip(Ship& ship) {
 	if (contains(ship))
 		return *this;
 
-	head = new Member{ship, head};
+	auto member = new Member{ship, nullptr};
+
+   if (head) {
+      tail->next = member;
+      tail = tail->next;
+   } else {
+      head = member;
+      tail = member;
+   }
 
 	size++;
 	return *this;
@@ -103,46 +111,44 @@ Squadron Squadron::addShipCopy(Ship& ship) const {
 }
 
 Squadron& Squadron::removeShip(Ship& ship) {
-	if (!size)
+	if (!size || !contains(ship))
 		return *this;
 
-	bool deleted = false;
+   size--; // A partir de là on est sûr d'enlever un ship
 
-	if (&head->ship == &ship) {
-		if (&head->ship == leader)
-			removeLeader();
-		if (head->next != nullptr) {
-			Member* tmp = head;
-			head = head->next;
-			delete tmp;
-		} else {
-			delete head;
-			head = nullptr;
-		}
-		deleted = true;
-	}
+   if (leader == &ship)
+      removeLeader();
 
-	Member* iter = head;
-	while (!deleted && iter->next != nullptr) {
-		if (&iter->next->ship == &ship) {
-			if (&iter->next->ship == leader)
-				removeLeader();
-			if (iter->next->next != nullptr) {
-				Member* tmp = iter->next;
-				iter->next = iter->next->next;
-				delete tmp;
-			} else {
-				delete iter->next;
-				iter->next = nullptr;
-			}
-			deleted = true;
-		}
-		iter = iter->next;
-	}
-	if (deleted)
-		size--;
+   Member* currentMember = head;
+   Member* previousMember = nullptr;
 
-	return *this;
+   while (currentMember) {
+      if (&currentMember->ship == &ship) {
+         if (currentMember->next) {
+            Member* tmp = currentMember->next;
+            delete currentMember;
+            currentMember = tmp;
+
+            if (previousMember)
+               previousMember->next = currentMember;
+            else // Forcément la head
+               head = currentMember;
+
+         } else { // Forcément de la tail
+            delete tail;
+
+            if (previousMember)
+               previousMember->next = nullptr;
+            else // Sans membre précédent, la tail est forcément la head
+               head = nullptr;
+         }
+            return *this;
+      } else {
+         previousMember = currentMember;
+         currentMember = currentMember->next;
+      }
+   }
+   return *this; // Clion gueule si on met pas celui-là...
 }
 
 Squadron Squadron::removeShipCopy(Ship& ship) const {
@@ -191,6 +197,7 @@ Ship& Squadron::operator[](size_t index) {
 	return get(index);
 }
 
+// TODO: Throw si on appelle la méthode sur un squadron vide
 double Squadron::computeConsumption(double distance, double speed) {
 	// TODO: check if we can remove duplication with flux operator
 	Squadron::Member* member = head;
@@ -214,6 +221,7 @@ void Squadron::init(const string& n) {
 	size = 0;
 	leader = nullptr;
 	head = nullptr;
+   tail = nullptr;
 }
 
 bool Squadron::contains(Ship& ship) {
