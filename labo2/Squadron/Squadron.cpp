@@ -21,7 +21,7 @@ ostream& operator<<(ostream& os, const Squadron& squadron) {
 	const Ship* leader = squadron.leader;
 	Squadron::Member* member = squadron.head;
 
-	unsigned maxSpeed = UINT_MAX;
+	unsigned maxSpeed = squadron.head != nullptr ? UINT_MAX : 0;
 	double totalWeight = 0;
 
 	header << "Squadron: " << squadron.name << endl;
@@ -205,7 +205,7 @@ double Squadron::computeConsumption(double distance, double speed) {
 
 	Squadron::Member* member = head;
 	double totalWeight = 0;
-	unsigned maxSpeed = UINT_MAX; // TODO: affiche uint_max sur squadron vide
+	unsigned maxSpeed = head != nullptr ? UINT_MAX : 0;
 
 	while (member != nullptr) {
 		totalWeight += member->ship.getWeight();
