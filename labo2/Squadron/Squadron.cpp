@@ -11,7 +11,7 @@
 using namespace std;
 
 struct Squadron::Member {
-	const Ship& ship;
+	Ship& ship;
 	Member* next;
 };
 
@@ -49,11 +49,11 @@ ostream& operator<<(ostream& os, const Squadron& squadron) {
 	return os << header.str() << endl << ships.str();
 }
 
-Squadron operator+(const Squadron& squadron, const Ship& ship) {
+Squadron operator+(const Squadron& squadron, Ship& ship) {
 	return squadron.addShipCopy(ship);
 }
 
-Squadron operator-(const Squadron& squadron, const Ship& ship) {
+Squadron operator-(const Squadron& squadron, Ship& ship) {
 	return squadron.removeShipCopy(ship);
 }
 
@@ -71,40 +71,33 @@ Squadron::~Squadron() {
 }
 
 Squadron::Squadron(const Squadron& squad) {
-	Member* iter = squad.head;
-
 	setName(squad.name);
 	if (squad.leader) {
 		setLeader(*squad.leader);
 	}
 
+	Member* iter = squad.head;
 	while (iter) {
 		addShip(iter->ship);
 		iter = iter->next;
 	}
 }
 
-Squadron& Squadron::addShip(const Ship& ship) {
+Squadron& Squadron::addShip(Ship& ship) {
+	if (contains(ship))
+		return *this;
 
-   Member* iter = head;
-   while (iter) {
-      if (&iter->ship == &ship) {
-         return *this;
-      }
-      iter = iter->next;
-   }
+	head = new Member{ship, head};
 
-   head = head != nullptr ? new Member{ship, head} : new Member{ship, nullptr};
-   
 	size++;
 	return *this;
 }
 
-Squadron Squadron::addShipCopy(const Ship& ship) const {
+Squadron Squadron::addShipCopy(Ship& ship) const {
 	return Squadron(*this).addShip(ship);
 }
 
-Squadron& Squadron::removeShip(const Ship& ship) {
+Squadron& Squadron::removeShip(Ship& ship) {
 	if (!size)
 		return *this;
 
@@ -147,7 +140,7 @@ Squadron& Squadron::removeShip(const Ship& ship) {
 	return *this;
 }
 
-Squadron Squadron::removeShipCopy(const Ship& ship) const {
+Squadron Squadron::removeShipCopy(Ship& ship) const {
 	return Squadron(*this).removeShip(ship);
 }
 
@@ -163,7 +156,12 @@ const Ship& Squadron::get(size_t index) const {
 	return iter->ship;
 }
 
-Squadron& Squadron::operator+=(const Ship& ship) {
+Ship& Squadron::get(size_t index) {
+	// TODO: 2e get()
+	return head->ship;
+}
+
+Squadron& Squadron::operator+=(Ship& ship) {
 	return addShip(ship);
 }
 
@@ -171,28 +169,21 @@ void Squadron::setName(const string& n) {
 	name = n;
 }
 
-void Squadron::setLeader(const Ship& ship) {
+void Squadron::setLeader(Ship& ship) {
 	if (leader && leader == &ship)
 		return;
 
-	Member* iter = head;
-	while (iter) {
-		if (&iter->ship == &ship) {
-			leader = &ship;
-			return;
-		}
-		iter = iter->next;
-	}
+	if (!contains(ship))
+		addShip(ship);
 
-	*this += ship;
-	leader = &head->ship;
+	leader = &ship;
 }
 
 void Squadron::removeLeader() {
 	leader = nullptr;
 }
 
-Squadron& Squadron::operator-=(const Ship& ship) {
+Squadron& Squadron::operator-=(Ship& ship) {
 	return removeShip(ship);
 }
 
@@ -202,7 +193,6 @@ const Ship& Squadron::operator[](size_t index) const {
 
 double Squadron::computeConsumption(double distance, double speed) {
 	// TODO: check if we can remove duplication with flux operator
-
 	Squadron::Member* member = head;
 	double totalWeight = 0;
 	unsigned maxSpeed = head != nullptr ? UINT_MAX : 0;
@@ -217,4 +207,15 @@ double Squadron::computeConsumption(double distance, double speed) {
 		throw runtime_error("La vitesse est trop rapide pour l'escadrille.");
 
 	return cbrt(totalWeight) / 2 * log10(totalWeight * speed) * log10(distance + 1);
+}
+
+bool Squadron::contains(Ship& ship) {
+	Member* iter = head;
+	while (iter) {
+		if (&iter->ship == &ship) {
+			return true;
+		}
+		iter = iter->next;
+	}
+	return false;
 }
