@@ -21,7 +21,7 @@ ostream& operator<<(ostream& os, const Squadron& squadron) {
 	const Ship* leader = squadron.leader;
 	Squadron::Member* member = squadron.head;
 
-	unsigned maxSpeed = squadron.head != nullptr ? UINT_MAX : 0;
+	unsigned maxSpeed = squadron.head ? UINT_MAX : 0;
 	double totalWeight = 0;
 
 	header << "Squadron: " << squadron.name << endl;
@@ -57,8 +57,9 @@ Squadron operator-(const Squadron& squadron, Ship& ship) {
 	return squadron.removeShipCopy(ship);
 }
 
-Squadron::Squadron(const string& name) : name(name), size(0), leader(nullptr),
-													  head(nullptr) {}
+Squadron::Squadron(const string& name) {
+	init(name);
+}
 
 // TODO : check avec Valgrind
 Squadron::~Squadron() {
@@ -144,23 +145,6 @@ Squadron Squadron::removeShipCopy(Ship& ship) const {
 	return Squadron(*this).removeShip(ship);
 }
 
-const Ship& Squadron::get(size_t index) const {
-	if (index >= size)
-		throw runtime_error("Erreur: L'index demande n'est pas conforme.");
-
-	Member* iter = head;
-	for (unsigned i = 0; i != index; ++i) {
-		iter = iter->next;
-	}
-
-	return iter->ship;
-}
-
-Ship& Squadron::get(size_t index) {
-	// TODO: 2e get()
-	return head->ship;
-}
-
 Squadron& Squadron::operator+=(Ship& ship) {
 	return addShip(ship);
 }
@@ -187,7 +171,19 @@ Squadron& Squadron::operator-=(Ship& ship) {
 	return removeShip(ship);
 }
 
+const Ship& Squadron::get(size_t index) const {
+	return getByIndex(index);
+}
+
+Ship& Squadron::get(size_t index) {
+	return getByIndex(index);
+}
+
 const Ship& Squadron::operator[](size_t index) const {
+	return get(index);
+}
+
+Ship& Squadron::operator[](size_t index) {
 	return get(index);
 }
 
@@ -195,7 +191,7 @@ double Squadron::computeConsumption(double distance, double speed) {
 	// TODO: check if we can remove duplication with flux operator
 	Squadron::Member* member = head;
 	double totalWeight = 0;
-	unsigned maxSpeed = head != nullptr ? UINT_MAX : 0;
+	unsigned maxSpeed = head ? UINT_MAX : 0;
 
 	while (member != nullptr) {
 		totalWeight += member->ship.getWeight();
@@ -209,6 +205,13 @@ double Squadron::computeConsumption(double distance, double speed) {
 	return cbrt(totalWeight) / 2 * log10(totalWeight * speed) * log10(distance + 1);
 }
 
+void Squadron::init(const string& n) {
+	name = n;
+	size = 0;
+	leader = nullptr;
+	head = nullptr;
+}
+
 bool Squadron::contains(Ship& ship) {
 	Member* iter = head;
 	while (iter) {
@@ -218,4 +221,16 @@ bool Squadron::contains(Ship& ship) {
 		iter = iter->next;
 	}
 	return false;
+}
+
+Ship& Squadron::getByIndex(std::size_t index) const {
+	if (index >= size)
+		throw runtime_error("Erreur: L'index demande n'est pas conforme.");
+
+	Member* iter = head;
+	for (unsigned i = 0; i != index; ++i) {
+		iter = iter->next;
+	}
+
+	return iter->ship;
 }

@@ -19,5 +19,5 @@ void CargoShip::setCargo(double newCargo) {
 
 ostream& CargoShip::toStream(ostream& os) const {
 	return Ship::toStream(os) << "  cargo: " << cargo << " tons (max : "
-									  << getMaxCargo() << ")";
+									  << getMaxCargo() << ")" << endl;
 }

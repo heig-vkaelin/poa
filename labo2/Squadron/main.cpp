@@ -19,9 +19,9 @@ int main() {
 
 	squad.setLeader(blackLeader);
 
-	cout << squad << endl;
+	cout << squad;
 
-	cout << squad[0] << endl << endl;
+//	cout << squad[0] << endl << endl;
 
 	cout << "Consommation: " << squad.computeConsumption(200, 40) << endl;
 

@@ -29,15 +29,17 @@ public:
 
 	Squadron removeShipCopy(Ship& ship) const;
 
-	const Ship& get(size_t index) const;
-
-	Ship& get(size_t index);
-
 	Squadron& operator+=(Ship& ship);
 
 	Squadron& operator-=(Ship& ship);
 
-	const Ship& operator[](size_t index) const;
+	const Ship& get(std::size_t index) const;
+
+	Ship& get(std::size_t index);
+
+	const Ship& operator[](std::size_t index) const;
+
+	Ship& operator[](std::size_t index);
 
 	void setName(const std::string& name);
 
@@ -48,16 +50,20 @@ public:
 	double computeConsumption(double distance, double speed);
 
 private:
+	void init(const std::string& name);
+
 	bool contains(Ship& ship);
+
+	Ship& getByIndex(std::size_t index) const;
 
 	struct Member;
 
 	std::string name;
-	size_t size;
+	std::size_t size;
 	Ship* leader;
 	Member* head;
 
 //	void getSpecs(double& totalWeight, double& maxSpeed);
 };
 
-#endif //SQUADRON_SQUADRON_HPP
+#endif // SQUADRON_SQUADRON_HPP
