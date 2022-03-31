@@ -1,8 +1,8 @@
 #include <cstdlib>
 #include <iostream>
-#include "Shuttle.hpp"
 #include "Squadron.hpp"
-#include "TIEFighter.hpp"
+#include "ships/cargo/Shuttle.hpp"
+#include "ships/TIEFighter.hpp"
 
 using namespace std;
 

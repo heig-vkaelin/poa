@@ -5,7 +5,7 @@
 #ifndef SQUADRON_CARGOSHIP_HPP
 #define SQUADRON_CARGOSHIP_HPP
 
-#include "Ship.hpp"
+#include "../Ship.hpp"
 
 class CargoShip : public Ship {
 public:
