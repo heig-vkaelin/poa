@@ -3,7 +3,7 @@
 //
 #include <iostream>
 #include <sstream>
-#include <exception>
+#include <stdexcept>
 #include <cmath>
 
 #include "Squadron.hpp"
@@ -11,14 +11,14 @@
 using namespace std;
 
 struct Squadron::Member {
-	Ship& ship;
+	const Ship& ship;
 	Member* next;
 };
 
 ostream& operator<<(ostream& os, const Squadron& squadron) {
 	stringstream header;
 	stringstream ships;
-	Squadron::Member* leader = squadron.leader;
+	const Ship* leader = squadron.leader;
 	Squadron::Member* member = squadron.head;
 
 	unsigned maxSpeed = UINT_MAX;
@@ -28,14 +28,14 @@ ostream& operator<<(ostream& os, const Squadron& squadron) {
 
 	ships << "-- Leader:" << endl;
 	if (leader)
-		ships << leader->ship << endl;
+		ships << *leader << endl;
 	else
 		ships << "No leader" << endl << endl;
 
 	ships << "-- Members:" << endl;
 
 	while (member != nullptr) {
-		if (member != leader) {
+		if (&member->ship != leader) {
 			ships << member->ship << endl;
 		}
 		totalWeight += member->ship.getWeight();
@@ -49,6 +49,14 @@ ostream& operator<<(ostream& os, const Squadron& squadron) {
 	return os << header.str() << endl << ships.str();
 }
 
+Squadron operator+(const Squadron& squadron, const Ship& ship) {
+	return squadron.addShipCopy(ship);
+}
+
+Squadron operator-(const Squadron& squadron, const Ship& ship) {
+	return squadron.removeShipCopy(ship);
+}
+
 Squadron::Squadron(const string& name) : name(name), size(0), leader(nullptr),
 													  head(nullptr) {}
 
@@ -58,12 +66,26 @@ Squadron::~Squadron() {
 	while (iter) {
 		Member* tmp = iter->next;
 		delete iter;
-		iter = tmp; // Reaffecation possible après delete ??
+		iter = tmp;
 	}
 }
 
-Squadron& Squadron::operator+=(const Ship& ship) {
-	auto member = new Member{const_cast<Ship&>(ship), nullptr};
+Squadron::Squadron(const Squadron& squad) {
+	Member* iter = squad.head;
+
+	setName(squad.name);
+	if (squad.leader) {
+		setLeader(*squad.leader);
+	}
+
+	while (iter) {
+		addShip(iter->ship);
+		iter = iter->next;
+	}
+}
+
+Squadron& Squadron::addShip(const Ship& ship) {
+	auto member = new Member{ship, nullptr};
 
 	if (head != nullptr) {
 		Member* tmp = head;
@@ -77,39 +99,18 @@ Squadron& Squadron::operator+=(const Ship& ship) {
 	return *this;
 }
 
-void Squadron::setName(const string& n) {
-	name = n;
+Squadron Squadron::addShipCopy(const Ship& ship) const {
+	return Squadron(*this).addShip(ship);
 }
 
-void Squadron::setLeader(const Ship& ship) {
-	if (leader && &(leader->ship) == &ship)
-		return;
-
-	Member* iter = head;
-	while (iter) {
-		if (&(iter->ship) == &ship) {
-			leader = iter;
-			return;
-		}
-		iter = iter->next;
-	}
-
-	*this += ship;
-	leader = head;
-}
-
-void Squadron::removeLeader() {
-	leader = nullptr;
-}
-
-Squadron& Squadron::operator-=(const Ship& ship) {
+Squadron& Squadron::removeShip(const Ship& ship) {
 	if (!size)
 		return *this;
 
 	bool deleted = false;
 
 	if (&(head->ship) == &ship) {
-		if (head == leader)
+		if (&head->ship == leader)
 			removeLeader();
 		if (head->next != nullptr) {
 			Member* tmp = head;
@@ -125,7 +126,7 @@ Squadron& Squadron::operator-=(const Ship& ship) {
 	Member* iter = head;
 	while (!deleted && iter->next != nullptr) {
 		if (&(iter->next->ship) == &ship) {
-			if (iter->next == leader)
+			if (&iter->next->ship == leader)
 				removeLeader();
 			if (iter->next->next != nullptr) {
 				Member* tmp = iter->next;
@@ -146,7 +147,11 @@ Squadron& Squadron::operator-=(const Ship& ship) {
 	return *this;
 }
 
-Ship& Squadron::operator[](unsigned int index) {
+Squadron Squadron::removeShipCopy(const Ship& ship) const {
+	return Squadron(*this).removeShip(ship);
+}
+
+const Ship& Squadron::get(size_t index) const {
 	if (index >= size)
 		throw runtime_error("Erreur: L'index demande n'est pas conforme.");
 
@@ -156,6 +161,43 @@ Ship& Squadron::operator[](unsigned int index) {
 	}
 
 	return iter->ship;
+}
+
+Squadron& Squadron::operator+=(const Ship& ship) {
+	return addShip(ship);
+}
+
+void Squadron::setName(const string& n) {
+	name = n;
+}
+
+void Squadron::setLeader(const Ship& ship) {
+	if (leader && leader == &ship)
+		return;
+
+	Member* iter = head;
+	while (iter) {
+		if (&(iter->ship) == &ship) {
+			leader = &ship;
+			return;
+		}
+		iter = iter->next;
+	}
+
+	*this += ship;
+	leader = &head->ship;
+}
+
+void Squadron::removeLeader() {
+	leader = nullptr;
+}
+
+Squadron& Squadron::operator-=(const Ship& ship) {
+	return removeShip(ship);
+}
+
+const Ship& Squadron::operator[](size_t index) const {
+	return get(index);
 }
 
 double Squadron::computeConsumption(double distance, double speed) {

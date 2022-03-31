@@ -10,22 +10,32 @@
 class Squadron {
 	friend std::ostream& operator<<(std::ostream& lhs, const Squadron& rhs);
 
-	friend Squadron operator+(const Ship& ship);
+	friend Squadron operator+(const Squadron& squadron, const Ship& ship);
 
-	friend Squadron operator-(const Ship& ship);
+	friend Squadron operator-(const Squadron& squadron, const Ship& ship);
 
 public:
-	Squadron(const std::string& name);
+	explicit Squadron(const std::string& name);
 
 	~Squadron();
 
 	Squadron(const Squadron& squad);
 
+	Squadron& addShip(const Ship& ship);
+
+	Squadron addShipCopy(const Ship& ship) const;
+
+	Squadron& removeShip(const Ship& ship);
+
+	Squadron removeShipCopy(const Ship& ship) const;
+
+	const Ship& get(size_t index) const;
+
 	Squadron& operator+=(const Ship& ship);
 
 	Squadron& operator-=(const Ship& ship);
 
-	Ship& operator[](unsigned index);
+	const Ship& operator[](size_t index) const;
 
 	void setName(const std::string& name);
 
@@ -40,7 +50,7 @@ private:
 
 	std::string name;
 	size_t size;
-	Member* leader;
+	const Ship* leader;
 	Member* head;
 
 //	void getSpecs(double& totalWeight, double& maxSpeed);
