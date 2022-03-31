@@ -88,7 +88,7 @@ Squadron& Squadron::addShip(const Ship& ship) {
 
    Member* iter = head;
    while (iter) {
-      if (&(iter->ship) == &ship) {
+      if (&iter->ship == &ship) {
          return *this;
       }
       iter = iter->next;
@@ -110,7 +110,7 @@ Squadron& Squadron::removeShip(const Ship& ship) {
 
 	bool deleted = false;
 
-	if (&(head->ship) == &ship) {
+	if (&head->ship == &ship) {
 		if (&head->ship == leader)
 			removeLeader();
 		if (head->next != nullptr) {
@@ -126,7 +126,7 @@ Squadron& Squadron::removeShip(const Ship& ship) {
 
 	Member* iter = head;
 	while (!deleted && iter->next != nullptr) {
-		if (&(iter->next->ship) == &ship) {
+		if (&iter->next->ship == &ship) {
 			if (&iter->next->ship == leader)
 				removeLeader();
 			if (iter->next->next != nullptr) {
@@ -138,7 +138,6 @@ Squadron& Squadron::removeShip(const Ship& ship) {
 				iter->next = nullptr;
 			}
 			deleted = true;
-			break;
 		}
 		iter = iter->next;
 	}
@@ -178,7 +177,7 @@ void Squadron::setLeader(const Ship& ship) {
 
 	Member* iter = head;
 	while (iter) {
-		if (&(iter->ship) == &ship) {
+		if (&iter->ship == &ship) {
 			leader = &ship;
 			return;
 		}
