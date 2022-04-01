@@ -89,20 +89,21 @@ Squadron::Squadron(const Squadron& squad) {
 }
 
 Squadron& Squadron::addShip(Ship& ship) {
-	if (contains(ship))
-		return *this;
-
-	auto member = new Member{ship, nullptr};
-
    if (head) {
-      tail->next = member;
-      tail = tail->next;
+      Member* previous = nullptr;
+      Member* current = head;
+      while (current) {
+         if (&current->ship == &ship)
+            return *this;
+         previous = current;
+         current = current->next;
+      }
+      previous->next = new Member{ship, nullptr};
    } else {
-      head = member;
-      tail = member;
+      head = new Member{ship, nullptr};
    }
 
-	size++;
+   size++;
 	return *this;
 }
 
@@ -111,44 +112,32 @@ Squadron Squadron::addShipCopy(Ship& ship) const {
 }
 
 Squadron& Squadron::removeShip(Ship& ship) {
-	if (!size || !contains(ship))
-		return *this;
+	if (size && contains(ship)) {
+      size--; // A partir de là on est sûr d'enlever un ship
 
-   size--; // A partir de là on est sûr d'enlever un ship
+      if (leader == &ship)
+         removeLeader();
 
-   if (leader == &ship)
-      removeLeader();
-
-   Member* currentMember = head;
-   Member* previousMember = nullptr;
-
-   while (currentMember) {
-      if (&currentMember->ship == &ship) {
-         if (currentMember->next) {
-            Member* tmp = currentMember->next;
-            delete currentMember;
-            currentMember = tmp;
-
-            if (previousMember)
-               previousMember->next = currentMember;
-            else // Forcément la head
-               head = currentMember;
-
-         } else { // Forcément de la tail
-            delete tail;
-
-            if (previousMember)
-               previousMember->next = nullptr;
-            else // Sans membre précédent, la tail est forcément la head
-               head = nullptr;
-         }
+      Member* previous = nullptr;
+      Member* current = head;
+      while (current) {
+         if (&current->ship == &ship) {
+            if (current->next) { // On raccorde le précédent au suivant
+               Member* next = current->next;
+               delete current;
+               previous ? previous->next = next : head = next;
+            } else { // On est en bout de liste
+               delete current;
+               previous ? previous->next = nullptr : head = nullptr;
+            }
             return *this;
-      } else {
-         previousMember = currentMember;
-         currentMember = currentMember->next;
+         } else {
+            previous = current;
+            current = current->next;
+         }
       }
    }
-   return *this; // Clion gueule si on met pas celui-là...
+   return *this;
 }
 
 Squadron Squadron::removeShipCopy(Ship& ship) const {
@@ -197,8 +186,12 @@ Ship& Squadron::operator[](size_t index) {
 	return get(index);
 }
 
-// TODO: Throw si on appelle la méthode sur un squadron vide
+// TODO: A déplacer dans Ship ??
 double Squadron::computeConsumption(double distance, double speed) {
+   if (!size)
+      throw runtime_error("Il n'est pas possible de calculer la consommation car l'escadrille est"
+                          " vide.");
+
 	// TODO: check if we can remove duplication with flux operator
 	Squadron::Member* member = head;
 	double totalWeight = 0;
@@ -221,7 +214,6 @@ void Squadron::init(const string& n) {
 	size = 0;
 	leader = nullptr;
 	head = nullptr;
-   tail = nullptr;
 }
 
 bool Squadron::contains(Ship& ship) {
