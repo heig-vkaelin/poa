@@ -8,7 +8,6 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-#include <cmath>
 
 #include "Squadron.hpp"
 
@@ -89,21 +88,21 @@ Squadron::Squadron(const Squadron& squad) {
 }
 
 Squadron& Squadron::addShip(Ship& ship) {
-   if (head) {
-      Member* previous = nullptr;
-      Member* current = head;
-      while (current) {
-         if (&current->ship == &ship)
-            return *this;
-         previous = current;
-         current = current->next;
-      }
-      previous->next = new Member{ship, nullptr};
-   } else {
-      head = new Member{ship, nullptr};
-   }
+	if (head) {
+		Member* previous = nullptr;
+		Member* current = head;
+		while (current) {
+			if (&current->ship == &ship)
+				return *this;
+			previous = current;
+			current = current->next;
+		}
+		previous->next = new Member{ship, nullptr};
+	} else {
+		head = new Member{ship, nullptr};
+	}
 
-   size++;
+	size++;
 	return *this;
 }
 
@@ -113,31 +112,31 @@ Squadron Squadron::addShipCopy(Ship& ship) const {
 
 Squadron& Squadron::removeShip(Ship& ship) {
 	if (size && contains(ship)) {
-      size--; // A partir de là on est sûr d'enlever un ship
+		size--; // A partir de là on est sûr d'enlever un ship
 
-      if (leader == &ship)
-         removeLeader();
+		if (leader == &ship)
+			removeLeader();
 
-      Member* previous = nullptr;
-      Member* current = head;
-      while (current) {
-         if (&current->ship == &ship) {
-            if (current->next) { // On raccorde le précédent au suivant
-               Member* next = current->next;
-               delete current;
-               previous ? previous->next = next : head = next;
-            } else { // On est en bout de liste
-               delete current;
-               previous ? previous->next = nullptr : head = nullptr;
-            }
-            return *this;
-         } else {
-            previous = current;
-            current = current->next;
-         }
-      }
-   }
-   return *this;
+		Member* previous = nullptr;
+		Member* current = head;
+		while (current) {
+			if (&current->ship == &ship) {
+				if (current->next) { // On raccorde le précédent au suivant
+					Member* next = current->next;
+					delete current;
+					previous ? previous->next = next : head = next;
+				} else { // On est en bout de liste
+					delete current;
+					previous ? previous->next = nullptr : head = nullptr;
+				}
+				return *this;
+			} else {
+				previous = current;
+				current = current->next;
+			}
+		}
+	}
+	return *this;
 }
 
 Squadron Squadron::removeShipCopy(Ship& ship) const {
@@ -186,27 +185,19 @@ Ship& Squadron::operator[](size_t index) {
 	return get(index);
 }
 
-// TODO: A déplacer dans Ship ??
 double Squadron::computeConsumption(double distance, double speed) {
-   if (!size)
-      throw runtime_error("Il n'est pas possible de calculer la consommation car l'escadrille est"
-                          " vide.");
+	if (!size)
+		throw runtime_error(
+			"Il n'est pas possible de calculer la consommation car l'escadrille est"
+			" vide.");
 
-	// TODO: check if we can remove duplication with flux operator
+	double totalConsumption = 0;
 	Squadron::Member* member = head;
-	double totalWeight = 0;
-	unsigned maxSpeed = head ? UINT_MAX : 0;
-
 	while (member != nullptr) {
-		totalWeight += member->ship.getWeight();
-		maxSpeed = min(maxSpeed, member->ship.getMaxSpeed());
+		totalConsumption += member->ship.computeConsumption(distance, speed);
 		member = member->next;
 	}
-
-	if (maxSpeed < speed)
-		throw runtime_error("La vitesse est trop rapide pour l'escadrille.");
-
-	return cbrt(totalWeight) / 2 * log10(totalWeight * speed) * log10(distance + 1);
+	return totalConsumption;
 }
 
 void Squadron::init(const string& n) {

@@ -22,13 +22,21 @@ std::ostream& operator<<(std::ostream& os, const Ship& ship);
 
 class Ship {
 public:
-	virtual ~Ship();
+	virtual ~Ship() = default;
 
 	/**
 	 * Modifie le surnom du vaisseau
 	 * @param nick : nouveau surnom
 	 */
 	void setNickname(const std::string& nick);
+
+	/**
+	 * Retourne la consommation du vaisseau pour le trajet souhaité
+	 * @param distance : distance du trajet
+	 * @param speed : vitesse lors du trajet
+	 * @return la consommation calculée
+	 */
+	double computeConsumption(double distance, double speed);
 
 	/**
 	 * @return la vitesse maximale du vaisseau, en [MGLT]
