@@ -6,6 +6,7 @@
  */
 
 #include <iostream>
+#include <iomanip>
 #include <sstream>
 #include <stdexcept>
 
@@ -46,7 +47,8 @@ ostream& operator<<(ostream& os, const Squadron& squadron) {
 		member = member->next;
 	}
 
-	header << "  max speed: " << maxSpeed << " MGLT" << endl
+	header << fixed << setprecision(2)
+			 << "  max speed: " << maxSpeed << " MGLT" << endl
 			 << "  total weight: " << totalWeight << " tons" << endl;
 
 	return os << header.str() << endl << ships.str();
@@ -147,8 +149,8 @@ Squadron& Squadron::operator+=(Ship& ship) {
 	return addShip(ship);
 }
 
-void Squadron::setName(const string& n) {
-	name = n;
+void Squadron::setName(const string& newName) {
+	name = newName;
 }
 
 void Squadron::setLeader(Ship& ship) {

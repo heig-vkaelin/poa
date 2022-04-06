@@ -64,8 +64,6 @@ private:
 	std::size_t size;
 	Ship* leader;
 	Member* head;
-
-//	void getSpecs(double& totalWeight, double& maxSpeed);
 };
 
 #endif // SQUADRON_SQUADRON_HPP
