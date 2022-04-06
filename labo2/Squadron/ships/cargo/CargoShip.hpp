@@ -22,19 +22,16 @@ public:
 	 */
 	double getCargo() const;
 
-	/**
-	 * @return la cargaison maximale du vaisseau, en [tonnes]
-	 */
-	virtual double getMaxCargo() const = 0;
-
 	std::ostream& toStream(std::ostream& os) const override;
 
 protected:
-	explicit CargoShip(unsigned id, double cargo);
+	explicit CargoShip(unsigned id, double cargo, double maxCargo);
 
 private:
-	double cargo; // en [tonnes]
-};
+	void init(double cargo, double maxCargo);
 
+	double cargo; // en [tonnes]
+	double maxCargo; // en [tonnes]
+};
 
 #endif // SQUADRON_CARGOSHIP_HPP

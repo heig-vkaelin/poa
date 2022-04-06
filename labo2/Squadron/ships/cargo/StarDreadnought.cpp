@@ -15,7 +15,8 @@ const unsigned StarDreadnought::MAX_SPEED = 40;
 const double StarDreadnought::WEIGHT = 9000000000;
 const double StarDreadnought::MAX_CARGO = 250000;
 
-StarDreadnought::StarDreadnought(double cargo) : CargoShip(++counter, cargo) {
+StarDreadnought::StarDreadnought(double cargo)
+	: CargoShip(++counter, cargo, MAX_CARGO) {
 }
 
 unsigned StarDreadnought::getMaxSpeed() const {
@@ -28,8 +29,4 @@ string StarDreadnought::getModelName() const {
 
 double StarDreadnought::getWeight() const {
 	return WEIGHT + getCargo();
-}
-
-double StarDreadnought::getMaxCargo() const {
-	return MAX_CARGO;
 }

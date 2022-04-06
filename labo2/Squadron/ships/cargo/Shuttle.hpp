@@ -19,8 +19,6 @@ public:
 
 	double getWeight() const override;
 
-	double getMaxCargo() const override;
-
 private:
 	static unsigned counter;
 	const static std::string MODEL_NAME;

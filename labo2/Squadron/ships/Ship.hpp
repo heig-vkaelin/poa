@@ -36,7 +36,7 @@ public:
 	 * @param speed : vitesse lors du trajet
 	 * @return la consommation calculée
 	 */
-	double computeConsumption(double distance, double speed);
+	double computeConsumption(double distance, double speed) const;
 
 	/**
 	 * @return la vitesse maximale du vaisseau, en [MGLT]
