@@ -56,19 +56,16 @@ Squadron& Squadron::operator=(const Squadron& squad) {
 
 Squadron& Squadron::addShip(Ship& ship) {
 	if (head) {
-		Member* previous = nullptr;
 		Member* current = head;
-		while (current) {
-			if (current->ship == &ship)
+		while (current->next) {
+			if (current->ship == &ship || current->next->ship == &ship)
 				return *this;
-			previous = current;
 			current = current->next;
 		}
-		previous->next = new Member{&ship, nullptr};
+		current->next = new Member{&ship, nullptr};
 	} else {
 		head = new Member{&ship, nullptr};
 	}
-
 	size++;
 	return *this;
 }
@@ -78,30 +75,23 @@ Squadron Squadron::addShipCopy(Ship& ship) const {
 }
 
 Squadron& Squadron::removeShip(Ship& ship) {
-	if (size && contains(ship)) {
-		size--; // A partir de là on est sûr d'enlever un ship
+	Member* previous = nullptr;
+	Member* current = head;
+	while (current) {
+		if (current->ship == &ship) {
+			if (previous)
+				previous->next = current->next;
+			else
+				head = current->next;
 
-		if (leader == &ship)
-			removeLeader();
-
-		Member* previous = nullptr;
-		Member* current = head;
-		while (current) {
-			if (current->ship == &ship) {
-				if (current->next) { // On raccorde le précédent au suivant
-					Member* next = current->next;
-					delete current;
-					previous ? previous->next = next : head = next;
-				} else { // On est en bout de liste
-					delete current;
-					previous ? previous->next = nullptr : head = nullptr;
-				}
-				return *this;
-			} else {
-				previous = current;
-				current = current->next;
-			}
+			if (current->ship == leader)
+				removeLeader();
+			size--;
+			delete current;
+			break;
 		}
+		previous = current;
+		current = current->next;
 	}
 	return *this;
 }
@@ -122,9 +112,7 @@ void Squadron::setLeader(Ship& ship) {
 	if (leader && leader == &ship)
 		return;
 
-	if (!contains(ship))
-		addShip(ship);
-
+	addShip(ship);
 	leader = &ship;
 }
 
@@ -185,13 +173,17 @@ ostream& Squadron::toStream(ostream& os) const {
 
 	ships << "-- Members:" << endl;
 
-	while (member != nullptr) {
-		if (member->ship != leader) {
-			ships << *member->ship << endl;
+	if (size) {
+		while (member != nullptr) {
+			if (member->ship != leader) {
+				ships << *member->ship << endl;
+			}
+			totalWeight += member->ship->getWeight();
+			maxSpeed = min(maxSpeed, member->ship->getMaxSpeed());
+			member = member->next;
 		}
-		totalWeight += member->ship->getWeight();
-		maxSpeed = min(maxSpeed, member->ship->getMaxSpeed());
-		member = member->next;
+	} else {
+		ships << "No member" << endl;
 	}
 
 	header << fixed << setprecision(0)
@@ -225,17 +217,6 @@ void Squadron::freeSquadron() {
 		delete iter;
 		iter = tmp;
 	}
-}
-
-bool Squadron::contains(Ship& ship) {
-	Member* iter = head;
-	while (iter) {
-		if (iter->ship == &ship) {
-			return true;
-		}
-		iter = iter->next;
-	}
-	return false;
 }
 
 Ship& Squadron::getByIndex(size_t index) const {

@@ -26,6 +26,9 @@ void testComputeSingleConsumption() {
 	// - speed trop rapide pour le ship
 }
 
+/**
+ * Teste les différentes possibilités d'ajouts de vaisseaux aux escadrilles
+ */
 void testAddShips() {
 	Squadron squad = Squadron("Squadron de test");
 	TIEFighter ship1;
@@ -46,13 +49,18 @@ void testAddShips() {
 	cout << "Le 2eme squadron doit contenir 4 ships" << endl << endl;
 	cout << squadCopy << endl;
 
-	cout << "TEST : Ajout d'un ship qui est deja dans le squadron" << endl;
+	cout << "TEST : Ajout de ships qui sont deja dans le squadron" << endl;
 	squad += ship1;
+	squad += ship2;
+	squad += ship3;
 
 	cout << "Il n'y a pas de doublons dans la liste des ships" << endl << endl;
 	cout << squad << endl;
 }
 
+/**
+ * Teste les différentes possibilités de suppressions de vaisseaux des escadrilles
+ */
 void testRemoveShips() {
 	Squadron squad = Squadron("Squadron de test");
 	TIEFighter ship1;
@@ -64,15 +72,15 @@ void testRemoveShips() {
 	squad += ship3;
 	squad += ship4;
 
-	cout << "TEST : Suppresion de ship avec differentes methodes" << endl;
+	cout << "TEST : Suppression de ship avec differentes methodes" << endl;
 	squad -= ship1;
-	// squad = squad - ship2;
+	squad = squad - ship2;
 	squad.removeShip(ship3);
-	// squad.removeShipCopy(ship4);
+	squad = squad.removeShipCopy(ship4);
 	cout << "Le squadron doit etre vide" << endl << endl;
 	cout << squad << endl;
 
-	cout << "TEST : Suppresion de ship d'un squadron vide" << endl;
+	cout << "TEST : Suppression de ship d'un squadron vide" << endl;
 	squad -= ship1;
 	cout << "Il ne se passe rien. Le squadron reste vide" << endl << endl;
 	cout << squad << endl;
@@ -82,15 +90,15 @@ void testRemoveShips() {
 	squad += ship3;
 	squad += ship4;
 
-	cout << "TEST : Suppresion d'un ship au milieu" << endl;
+	cout << "TEST : Suppression d'un ship au milieu" << endl;
 	squad -= ship3;
 	cout << squad << endl;
 
-	cout << "TEST : Suppresion du premier ship" << endl;
+	cout << "TEST : Suppression du premier ship" << endl;
 	squad -= ship1;
 	cout << squad << endl;
 
-	cout << "TEST : Suppresion du dernier ship" << endl;
+	cout << "TEST : Suppression du dernier ship" << endl;
 	squad -= ship4;
 	cout << squad << endl;
 }
@@ -128,7 +136,8 @@ void testRemoveLeader() {
 }
 
 int main() {
-	testAddShips();
+//	testAddShips();
+	testRemoveShips();
 	return EXIT_SUCCESS;
 
 	TIEFighter blackLeader;

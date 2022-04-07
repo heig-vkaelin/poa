@@ -167,8 +167,6 @@ private:
 
 	void freeSquadron();
 
-	bool contains(Ship& ship);
-
 	Ship& getByIndex(std::size_t index) const;
 
 	struct Member;
