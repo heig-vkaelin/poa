@@ -38,10 +38,27 @@ void testComputeSingleConsumption() {
 }
 
 void testAddShips() {
-	// TODO
-	// - ajouter un ship via les 4 méthodes différentes
-	// - ajouter dans list vide
-	// - ajouter dans liste avec déjà des vaisseaux
+   Squadron squad = Squadron("Squadron de test");
+   TIEFighter ship1;
+   TIEFighter ship2;
+   TIEFighter ship3;
+   TIEFighter ship4;
+
+   cout << "TEST : Ajouts de ship avec différentes méthodes" << endl;
+
+   squad += ship1;
+//   squad = squad + ship2;
+   squad.addShip(ship3);
+//   squad.addShipCopy(ship4);
+
+   cout << "Les quatre ships doivent figurer dans le squadron" << endl << endl;
+   cout << squad << endl;
+
+   cout << "TEST : Ajout d'un ship qui est déjà dans le squadron" << endl;
+   squad += ship1;
+
+   cout << "Il n'y a pas de doublons dans la liste des ships" << endl << endl;
+   cout << squad << endl;
 }
 
 void testRemoveShips() {
