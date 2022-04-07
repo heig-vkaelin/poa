@@ -19,6 +19,8 @@
  * retour d'operator[] lors d'une affectation, HOW ??
  * levée d'exceptions ou retourner le squadron (ex: dans un addShip déjà présent)
  *
+ * Commentaires: opérateurs surchargés ? / méthodes privées / protected ?
+ *
  */
 
 using namespace std;
