@@ -44,7 +44,7 @@ void testAddShips() {
    TIEFighter ship3;
    TIEFighter ship4;
 
-   cout << "TEST : Ajouts de ship avec différentes méthodes" << endl;
+   cout << "TEST : Ajouts de ship avec differentes methodes" << endl;
 
    squad += ship1;
 //   squad = squad + ship2;
@@ -54,7 +54,7 @@ void testAddShips() {
    cout << "Les quatre ships doivent figurer dans le squadron" << endl << endl;
    cout << squad << endl;
 
-   cout << "TEST : Ajout d'un ship qui est déjà dans le squadron" << endl;
+   cout << "TEST : Ajout d'un ship qui est deja dans le squadron" << endl;
    squad += ship1;
 
    cout << "Il n'y a pas de doublons dans la liste des ships" << endl << endl;
@@ -62,12 +62,45 @@ void testAddShips() {
 }
 
 void testRemoveShips() {
-	// TODO
-	// - supprimer un ship via les 4 méthodes différentes
-	// - supprimer dans liste vide
-	// - supprimer head
-	// - supprimer tail
-	// - supprimer au milieu
+   Squadron squad = Squadron("Squadron de test");
+   TIEFighter ship1;
+   TIEFighter ship2;
+   TIEFighter ship3;
+   TIEFighter ship4;
+   squad += ship1;
+   squad += ship2;
+   squad += ship3;
+   squad += ship4;
+
+   cout << "TEST : Suppresion de ship avec differentes methodes" << endl;
+   squad -= ship1;
+   // squad = squad - ship2;
+   squad.removeShip(ship3);
+   // squad.removeShipCopy(ship4);
+   cout << "Le squadron doit etre vide" << endl << endl;
+   cout << squad << endl;
+
+   cout << "TEST : Suppresion de ship d'un squadron vide" << endl;
+   squad -= ship1;
+   cout << "Il ne se passe rien. Le squadron reste vide" << endl << endl;
+   cout << squad << endl;
+
+   squad += ship1;
+   squad += ship2;
+   squad += ship3;
+   squad += ship4;
+
+   cout << "TEST : Suppresion d'un ship au milieu" << endl;
+   squad -= ship3;
+   cout << squad << endl;
+
+   cout << "TEST : Suppresion du premier ship" << endl;
+   squad -= ship1;
+   cout << squad << endl;
+
+   cout << "TEST : Suppresion du dernier ship" << endl;
+   squad -= ship4;
+   cout << squad << endl;
 }
 
 void testAccessShip() {
