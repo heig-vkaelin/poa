@@ -38,10 +38,15 @@ void testAddShips() {
    squad += ship1;
 //   squad = squad + ship2;
    squad.addShip(ship3);
-//   squad.addShipCopy(ship4);
 
-   cout << "Les quatre ships doivent figurer dans le squadron" << endl << endl;
+	// TODO: fix this
+   Squadron squadCopy = squad.addShipCopy(ship4);
+
+   cout << "Les 2 ships doivent figurer dans le squadron" << endl << endl;
    cout << squad << endl;
+
+	cout << "Le 2eme squadron doit contenir 3 ships" << endl << endl;
+	cout << squadCopy << endl;
 
    cout << "TEST : Ajout d'un ship qui est deja dans le squadron" << endl;
    squad += ship1;
@@ -125,6 +130,9 @@ void testRemoveLeader() {
 }
 
 int main() {
+	testAddShips();
+	return EXIT_SUCCESS;
+
 	TIEFighter blackLeader;
 	blackLeader.setNickname("Black leader");
 	TIEFighter blackTwo;
