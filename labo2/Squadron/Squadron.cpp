@@ -15,7 +15,7 @@
 using namespace std;
 
 struct Squadron::Member {
-	Ship& ship;
+	Ship* ship;
 	Member* next;
 };
 
@@ -53,7 +53,7 @@ Squadron::Squadron(const Squadron& squad) {
 
 	Member* iter = squad.head;
 	while (iter) {
-		addShip(iter->ship);
+		addShip(*iter->ship);
 		iter = iter->next;
 	}
 }
@@ -63,14 +63,14 @@ Squadron& Squadron::addShip(Ship& ship) {
 		Member* previous = nullptr;
 		Member* current = head;
 		while (current) {
-			if (&current->ship == &ship)
+			if (&*current->ship == &ship)
 				return *this;
 			previous = current;
 			current = current->next;
 		}
-		previous->next = new Member{ship, nullptr};
+		previous->next = new Member{&ship, nullptr};
 	} else {
-		head = new Member{ship, nullptr};
+		head = new Member{&ship, nullptr};
 	}
 
 	size++;
@@ -91,7 +91,7 @@ Squadron& Squadron::removeShip(Ship& ship) {
 		Member* previous = nullptr;
 		Member* current = head;
 		while (current) {
-			if (&current->ship == &ship) {
+			if (&*current->ship == &ship) {
 				if (current->next) { // On raccorde le précédent au suivant
 					Member* next = current->next;
 					delete current;
@@ -165,7 +165,7 @@ double Squadron::computeConsumption(double distance, double speed) {
 	double totalConsumption = 0;
 	Squadron::Member* member = head;
 	while (member != nullptr) {
-		totalConsumption += member->ship.computeConsumption(distance, speed);
+		totalConsumption += member->ship->computeConsumption(distance, speed);
 		member = member->next;
 	}
 	return totalConsumption;
@@ -190,11 +190,11 @@ ostream& Squadron::toStream(ostream& os) const {
 	ships << "-- Members:" << endl;
 
 	while (member != nullptr) {
-		if (&member->ship != leader) {
-			ships << member->ship << endl;
+		if (member->ship != leader) {
+			ships << *member->ship << endl;
 		}
-		totalWeight += member->ship.getWeight();
-		maxSpeed = min(maxSpeed, member->ship.getMaxSpeed());
+		totalWeight += member->ship->getWeight();
+		maxSpeed = min(maxSpeed, member->ship->getMaxSpeed());
 		member = member->next;
 	}
 
@@ -215,7 +215,7 @@ void Squadron::init(const string& n) {
 bool Squadron::contains(Ship& ship) {
 	Member* iter = head;
 	while (iter) {
-		if (&iter->ship == &ship) {
+		if (&*iter->ship == &ship) {
 			return true;
 		}
 		iter = iter->next;
@@ -232,5 +232,5 @@ Ship& Squadron::getByIndex(size_t index) const {
 		iter = iter->next;
 	}
 
-	return iter->ship;
+	return *iter->ship;
 }
