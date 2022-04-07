@@ -12,17 +12,6 @@
 #include "ships/cargo/StarDreadnought.hpp"
 #include "ships/TIEFighter.hpp"
 
-/*
- * A demander:
- *
- * opérateur +/- méthode ou fonction vu qu'un paramètre est privilégié sur l'autre
- * retour d'operator[] lors d'une affectation, HOW ??
- * levée d'exceptions ou retourner le squadron (ex: dans un addShip déjà présent)
- *
- * Commentaires: opérateurs surchargés ? / méthodes privées / protected ?
- *
- */
-
 using namespace std;
 
 void testInvalidCargo() {
@@ -116,8 +105,7 @@ void testAccessConstShip() {
 void testReplaceByIndex() {
 	// TODO: voir comment faire ça ???
 
-//	StarDreadnought xx(200);
-//	squad[0] = xx;
+
 }
 
 void testCopySquadron() {

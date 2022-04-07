@@ -20,38 +20,7 @@ struct Squadron::Member {
 };
 
 ostream& operator<<(ostream& os, const Squadron& squadron) {
-	stringstream header;
-	stringstream ships;
-	const Ship* leader = squadron.leader;
-	Squadron::Member* member = squadron.head;
-
-	unsigned maxSpeed = squadron.head ? UINT_MAX : 0;
-	double totalWeight = 0;
-
-	header << "Squadron: " << squadron.name << endl;
-
-	ships << "-- Leader:" << endl;
-	if (leader)
-		ships << *leader << endl;
-	else
-		ships << "No leader" << endl << endl;
-
-	ships << "-- Members:" << endl;
-
-	while (member != nullptr) {
-		if (&member->ship != leader) {
-			ships << member->ship << endl;
-		}
-		totalWeight += member->ship.getWeight();
-		maxSpeed = min(maxSpeed, member->ship.getMaxSpeed());
-		member = member->next;
-	}
-
-	header << fixed << setprecision(2)
-			 << "  max speed: " << maxSpeed << " MGLT" << endl
-			 << "  total weight: " << totalWeight << " tons" << endl;
-
-	return os << header.str() << endl << ships.str();
+	return squadron.toStream(os);
 }
 
 Squadron operator+(const Squadron& squadron, Ship& ship) {
@@ -183,9 +152,9 @@ const Ship& Squadron::operator[](size_t index) const {
 	return get(index);
 }
 
-Ship& Squadron::operator[](size_t index) {
-	return get(index);
-}
+//Ship& Squadron::operator[](size_t index) {
+//	return get(index);
+//}
 
 double Squadron::computeConsumption(double distance, double speed) {
 	if (!size)
@@ -200,6 +169,40 @@ double Squadron::computeConsumption(double distance, double speed) {
 		member = member->next;
 	}
 	return totalConsumption;
+}
+
+ostream& Squadron::toStream(ostream& os) const {
+	stringstream header;
+	stringstream ships;
+	Squadron::Member* member = head;
+
+	unsigned maxSpeed = head ? UINT_MAX : 0;
+	double totalWeight = 0;
+
+	header << "Squadron: " << name << endl;
+
+	ships << "-- Leader:" << endl;
+	if (leader)
+		ships << *leader << endl;
+	else
+		ships << "No leader" << endl << endl;
+
+	ships << "-- Members:" << endl;
+
+	while (member != nullptr) {
+		if (&member->ship != leader) {
+			ships << member->ship << endl;
+		}
+		totalWeight += member->ship.getWeight();
+		maxSpeed = min(maxSpeed, member->ship.getMaxSpeed());
+		member = member->next;
+	}
+
+	header << fixed << setprecision(2)
+			 << "  max speed: " << maxSpeed << " MGLT" << endl
+			 << "  total weight: " << totalWeight << " tons" << endl;
+
+	return os << header.str() << endl << ships.str();
 }
 
 void Squadron::init(const string& n) {

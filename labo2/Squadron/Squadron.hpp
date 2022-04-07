@@ -3,6 +3,14 @@
 
 #include "ships/Ship.hpp"
 
+class Squadron;
+
+Squadron operator+(const Squadron& squadron, Ship& ship);
+
+Squadron operator-(const Squadron& squadron, Ship& ship);
+
+std::ostream& operator<<(std::ostream& lhs, const Squadron& rhs);
+
 /**
  * Classe représentant une escadrille de divers vaisseaux pouvant être mise à jour
  *
@@ -10,11 +18,6 @@
  * @author Valentin Kaelin
  */
 class Squadron {
-	friend std::ostream& operator<<(std::ostream& lhs, const Squadron& rhs);
-
-	friend Squadron operator+(const Squadron& squadron, Ship& ship);
-
-	friend Squadron operator-(const Squadron& squadron, Ship& ship);
 
 public:
 	/**
@@ -84,7 +87,8 @@ public:
 
 	const Ship& operator[](std::size_t index) const;
 
-	Ship& operator[](std::size_t index);
+	// TODO: voir si on garde
+//	Ship& operator[](std::size_t index);
 
 	/**
 	 * Modifie le nom de l'escadrille
@@ -106,12 +110,20 @@ public:
 	void removeLeader();
 
 	/**
-	 * Calcule la consommation totale de l'escadrille pour le voyage souhaité
-	 * @param distance : distance du voyage en [millions de km]
-	 * @param speed : vitesse des vaisseaux lors du voyage en [MGLT]
+	 * Calcule la consommation totale de l'escadrille pour l'opération souhaitée
+	 * @param distance : distance de l'opération en [millions de km]
+	 * @param speed : vitesse des vaisseaux lors de l'opération en [MGLT]
 	 * @return le nombre de [tonnes] consommées
+	 * @throws runtime_error si la nouvelle distance ou la vitesse est invalide
 	 */
 	double computeConsumption(double distance, double speed);
+
+	/**
+	 * Affiche l'escadrille sur le stream souhaité
+	 * @param os : le stream sur lequel afficher le squadron
+	 * @return le stream modifié
+	 */
+	std::ostream& toStream(std::ostream& os) const;
 
 private:
 	void init(const std::string& name);

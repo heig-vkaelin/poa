@@ -14,6 +14,7 @@ public:
 	/**
 	 * Modifie la cargaison actuelle
 	 * @param newCargo : la nouvelle cargaison
+	 * @throws runtime_error si la nouvelle cargaison est invalide
 	 */
 	void setCargo(double newCargo);
 
@@ -22,9 +23,20 @@ public:
 	 */
 	double getCargo() const;
 
+	/**
+	 * Affiche les caractéristiques du cargo sur le stream souhaité
+	 * @param os : stream sur lequel afficher le cargo
+	 * @return le stream avec les infos du cargo en plus
+	 */
 	std::ostream& toStream(std::ostream& os) const override;
 
 protected:
+	/**
+	 * Crée un vaisseau cargo
+	 * @param id : id du cargo
+	 * @param cargo : cargaison actuelle du cargo
+	 * @param maxCargo : cargaison maximale du cargo
+	 */
 	explicit CargoShip(unsigned id, double cargo, double maxCargo);
 
 private:
