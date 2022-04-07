@@ -56,6 +56,13 @@ public:
 	Squadron(const Squadron& squad);
 
 	/**
+	 * Opérateur d'affectation prenant la référence d'une autre escadrille
+	 * @param squad : l'escadrille à copier
+	 * @return la référence de l'escadrille dupliquée
+	 */
+	Squadron& operator=(const Squadron& squad);
+
+	/**
 	 * Ajoute un vaisseau à l'escadrille
 	 * @param ship : vaisseau à ajouter
 	 * @return l'escadrille modifiée
@@ -105,13 +112,13 @@ public:
 	 */
 	const Ship& get(std::size_t index) const;
 
-	/**
-	 * Accès indexé à un vaisseau dans une escadrille constante
-	 * @param index du vaisseau à retourner
-	 * @return le vaisseau cherché
-	 * @throws runtime_error si l'index est trop grand
-	 */
-	Ship& get(std::size_t index);
+//	/**
+//	 * Accès indexé à un vaisseau
+//	 * @param index du vaisseau à retourner
+//	 * @return le vaisseau cherché
+//	 * @throws runtime_error si l'index est trop grand
+//	 */
+//	Ship& get(std::size_t index);
 
 	const Ship& operator[](std::size_t index) const;
 
@@ -154,7 +161,11 @@ public:
 	std::ostream& toStream(std::ostream& os) const;
 
 private:
-	void init(const std::string& name);
+	void init(const std::string& name, Ship* leader);
+
+	void copyShips(const Squadron& squad);
+
+	void freeSquadron();
 
 	bool contains(Ship& ship);
 

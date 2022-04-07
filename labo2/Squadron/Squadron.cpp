@@ -33,30 +33,25 @@ Squadron operator-(const Squadron& squadron, Ship& ship) {
 }
 
 Squadron::Squadron(const string& name) {
-	init(name);
+	init(name, nullptr);
 }
 
-// TODO : check avec Valgrind
 Squadron::~Squadron() {
-	Member* iter = head;
-	while (iter) {
-		Member* tmp = iter->next;
-		delete iter;
-		iter = tmp;
-	}
+	freeSquadron();
 }
 
 Squadron::Squadron(const Squadron& squad) {
-	setName(squad.name);
-	if (squad.leader) {
-		setLeader(*squad.leader);
-	}
+	init(squad.name, squad.leader);
+	copyShips(squad);
+}
 
-	Member* iter = squad.head;
-	while (iter) {
-		addShip(*iter->ship);
-		iter = iter->next;
+Squadron& Squadron::operator=(const Squadron& squad) {
+	if (this != &squad) {
+		freeSquadron();
+		init(squad.name, squad.leader);
+		copyShips(squad);
 	}
+	return *this;
 }
 
 Squadron& Squadron::addShip(Ship& ship) {
@@ -145,9 +140,9 @@ const Ship& Squadron::get(size_t index) const {
 	return getByIndex(index);
 }
 
-Ship& Squadron::get(size_t index) {
-	return getByIndex(index);
-}
+//Ship& Squadron::get(size_t index) {
+//	return getByIndex(index);
+//}
 
 const Ship& Squadron::operator[](size_t index) const {
 	return get(index);
@@ -207,11 +202,29 @@ ostream& Squadron::toStream(ostream& os) const {
 	return os << header.str() << endl << ships.str();
 }
 
-void Squadron::init(const string& n) {
-	name = n;
+void Squadron::init(const string& newName, Ship* newLeader) {
+	name = newName;
 	size = 0;
-	leader = nullptr;
+	leader = newLeader;
 	head = nullptr;
+}
+
+void Squadron::copyShips(const Squadron& squad) {
+	Member* iter = squad.head;
+	while (iter) {
+		addShip(*iter->ship);
+		iter = iter->next;
+	}
+}
+
+void Squadron::freeSquadron() {
+	// TODO : check avec Valgrind
+	Member* iter = head;
+	while (iter) {
+		Member* tmp = iter->next;
+		delete iter;
+		iter = tmp;
+	}
 }
 
 bool Squadron::contains(Ship& ship) {
