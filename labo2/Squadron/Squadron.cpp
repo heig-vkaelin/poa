@@ -9,6 +9,7 @@
 #include <iomanip>
 #include <sstream>
 #include <stdexcept>
+#include <limits>
 
 #include "Squadron.hpp"
 
@@ -156,7 +157,7 @@ const Ship& Squadron::operator[](size_t index) const {
 //	return get(index);
 //}
 
-double Squadron::computeConsumption(double distance, double speed) {
+double Squadron::computeConsumption(double distance, unsigned speed) {
 	if (!size)
 		throw runtime_error(
 			"Il n'est pas possible de calculer la consommation car l'escadrille est"
@@ -176,7 +177,7 @@ ostream& Squadron::toStream(ostream& os) const {
 	stringstream ships;
 	Squadron::Member* member = head;
 
-	unsigned maxSpeed = head ? UINT_MAX : 0;
+	double maxSpeed = head ? numeric_limits<double>::max() : 0;
 	double totalWeight = 0;
 
 	header << "Squadron: " << name << endl;
@@ -198,8 +199,9 @@ ostream& Squadron::toStream(ostream& os) const {
 		member = member->next;
 	}
 
-	header << fixed << setprecision(2)
+	header << fixed << setprecision(0)
 			 << "  max speed: " << maxSpeed << " MGLT" << endl
+			 << setprecision(2)
 			 << "  total weight: " << totalWeight << " tons" << endl;
 
 	return os << header.str() << endl << ships.str();

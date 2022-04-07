@@ -11,13 +11,13 @@ using namespace std;
 
 unsigned TIEFighter::counter = 0;
 const string TIEFighter::MODEL_NAME = "TIE/LN";
-const unsigned TIEFighter::MAX_SPEED = 100;
+const double TIEFighter::MAX_SPEED = 100;
 const double TIEFighter::WEIGHT = 6;
 
 TIEFighter::TIEFighter() : Ship(++counter) {
 }
 
-unsigned TIEFighter::getMaxSpeed() const {
+double TIEFighter::getMaxSpeed() const {
 	return MAX_SPEED;
 }
 

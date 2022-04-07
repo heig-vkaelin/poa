@@ -42,7 +42,7 @@ public:
 	/**
 	 * @return la vitesse maximale du vaisseau, en [MGLT]
 	 */
-	virtual unsigned getMaxSpeed() const = 0;
+	virtual double getMaxSpeed() const = 0;
 
 	/**
 	 * @return le nom du modèle du vaisseau

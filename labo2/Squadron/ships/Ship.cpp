@@ -35,5 +35,6 @@ ostream& Ship::toStream(ostream& os) const {
 				 << (nickname.empty() ? "" : nickname + " ")
 				 << "[" << getModelName() << " #" << id << "]" << endl
 				 << "  weight : " << getWeight() << " tons" << endl
+				 << setprecision(0)
 				 << "  max speed : " << getMaxSpeed() << " MGLT" << endl;
 }

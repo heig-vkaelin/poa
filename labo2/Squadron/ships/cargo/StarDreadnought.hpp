@@ -11,9 +11,13 @@
  */
 class StarDreadnought : public CargoShip {
 public:
+	/**
+	 * Crée un nouveau Star Destroyer
+	 * @param cargo : cargaison actuelle en [tonnes]
+	 */
 	explicit StarDreadnought(double cargo);
 
-	unsigned getMaxSpeed() const override;
+	double getMaxSpeed() const override;
 
 	std::string getModelName() const override;
 
@@ -22,7 +26,7 @@ public:
 private:
 	static unsigned counter;
 	const static std::string MODEL_NAME;
-	const static unsigned MAX_SPEED; // en [MGLT]
+	const static double MAX_SPEED; // en [MGLT]
 	const static double WEIGHT; // en [tonnes]
 	const static double MAX_CARGO; // en [tonnes]
 };
