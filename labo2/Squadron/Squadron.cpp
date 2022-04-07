@@ -63,7 +63,7 @@ Squadron& Squadron::addShip(Ship& ship) {
 		Member* previous = nullptr;
 		Member* current = head;
 		while (current) {
-			if (&*current->ship == &ship)
+			if (current->ship == &ship)
 				return *this;
 			previous = current;
 			current = current->next;
@@ -91,7 +91,7 @@ Squadron& Squadron::removeShip(Ship& ship) {
 		Member* previous = nullptr;
 		Member* current = head;
 		while (current) {
-			if (&*current->ship == &ship) {
+			if (current->ship == &ship) {
 				if (current->next) { // On raccorde le précédent au suivant
 					Member* next = current->next;
 					delete current;
@@ -215,7 +215,7 @@ void Squadron::init(const string& n) {
 bool Squadron::contains(Ship& ship) {
 	Member* iter = head;
 	while (iter) {
-		if (&*iter->ship == &ship) {
+		if (iter->ship == &ship) {
 			return true;
 		}
 		iter = iter->next;
