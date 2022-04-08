@@ -104,6 +104,10 @@ Squadron& Squadron::operator+=(Ship& ship) {
 	return addShip(ship);
 }
 
+const string& Squadron::getName() const {
+	return name;
+}
+
 void Squadron::setName(const string& newName) {
 	name = newName;
 }
@@ -125,22 +129,22 @@ Squadron& Squadron::operator-=(Ship& ship) {
 }
 
 const Ship& Squadron::get(size_t index) const {
-	return getByIndex(index);
-}
+	if (index >= size)
+		throw runtime_error("Erreur: L'index demande n'est pas conforme.");
 
-//Ship& Squadron::get(size_t index) {
-//	return getByIndex(index);
-//}
+	Member* iter = head;
+	for (size_t i = 0; i != index; ++i) {
+		iter = iter->next;
+	}
+
+	return *iter->ship;
+}
 
 const Ship& Squadron::operator[](size_t index) const {
 	return get(index);
 }
 
-//Ship& Squadron::operator[](size_t index) {
-//	return get(index);
-//}
-
-double Squadron::computeConsumption(double distance, unsigned speed) {
+double Squadron::computeConsumption(double distance, double speed) const {
 	if (!size)
 		throw runtime_error(
 			"Il n'est pas possible de calculer la consommation car l'escadrille est"
@@ -217,16 +221,4 @@ void Squadron::freeSquadron() {
 		delete iter;
 		iter = tmp;
 	}
-}
-
-Ship& Squadron::getByIndex(size_t index) const {
-	if (index >= size)
-		throw runtime_error("Erreur: L'index demande n'est pas conforme.");
-
-	Member* iter = head;
-	for (size_t i = 0; i != index; ++i) {
-		iter = iter->next;
-	}
-
-	return *iter->ship;
 }

@@ -65,8 +65,6 @@ public:
 protected:
 	explicit Ship(ShipSpecs* specs);
 
-	explicit Ship(unsigned id);
-
 private:
 	std::string nickname;
 	unsigned id;

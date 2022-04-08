@@ -16,9 +16,6 @@ ostream& operator<<(ostream& os, const Ship& ship) {
 	return ship.toStream(os);
 }
 
-Ship::Ship(unsigned id) : id(id) {
-}
-
 Ship::Ship(ShipSpecs* specifications) {
 	if (specifications == nullptr)
 		throw runtime_error("Specifications du vaisseau invalide.");

@@ -1,6 +1,7 @@
 #ifndef SQUADRON_CARGOSHIPSPECS_HPP
 #define SQUADRON_CARGOSHIPSPECS_HPP
 
+#include <string>
 #include "../ShipSpecs.hpp"
 
 /**

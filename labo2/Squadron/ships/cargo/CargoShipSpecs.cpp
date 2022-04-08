@@ -10,7 +10,7 @@
 
 using namespace std;
 
-CargoShipSpecs::CargoShipSpecs(const std::string& modelName, double maxSpeed,
+CargoShipSpecs::CargoShipSpecs(const string& modelName, double maxSpeed,
 										 double weight, double maxCargo)
 	: ShipSpecs(modelName, maxSpeed, weight), maxCargo(maxCargo) {
 	if (maxCargo < 0)

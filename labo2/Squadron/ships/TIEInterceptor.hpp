@@ -17,5 +17,4 @@ private:
 	static ShipSpecs specs;
 };
 
-
 #endif // SQUADRON_TIEINTERCEPTOR_HPP
