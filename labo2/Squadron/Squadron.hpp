@@ -149,7 +149,8 @@ public:
 	 * @param distance : distance de l'opération en [millions de km]
 	 * @param speed : vitesse des vaisseaux lors de l'opération en [MGLT]
 	 * @return le nombre de [tonnes] consommées
-	 * @throws runtime_error si la nouvelle distance ou la vitesse est invalide
+	 * @throws runtime_error si la distance ou la vitesse est invalide ou si le
+	 * squadron ne contient aucun vaisseau
 	 */
 	double computeConsumption(double distance, double speed) const;
 

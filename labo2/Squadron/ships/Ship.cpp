@@ -29,6 +29,8 @@ void Ship::setNickname(const string& nick) {
 }
 
 double Ship::computeConsumption(double distance, double speed) const {
+	if (distance < 0)
+		throw runtime_error("La distance doit etre positive.");
 	if (speed > getMaxSpeed())
 		throw runtime_error("La vitesse est trop rapide pour le vaisseau.");
 
