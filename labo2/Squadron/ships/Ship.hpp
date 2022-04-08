@@ -3,6 +3,7 @@
 
 #include <ostream>
 #include <string>
+#include "ShipSpecs.hpp"
 
 /**
  * Classe représentant un vaisseau de tout type
@@ -42,17 +43,17 @@ public:
 	/**
 	 * @return la vitesse maximale du vaisseau, en [MGLT]
 	 */
-	virtual double getMaxSpeed() const = 0;
+	double getMaxSpeed() const;
 
 	/**
 	 * @return le nom du modèle du vaisseau
 	 */
-	virtual std::string getModelName() const = 0;
+	std::string getModelName() const;
 
 	/**
 	 * @return le poids du vaisseau, en [tonnes]
 	 */
-	virtual double getWeight() const = 0;
+	virtual double getWeight() const;
 
 	/**
 	 * Affiche les caractéristiques du vaisseau sur le stream souhaité
@@ -62,11 +63,14 @@ public:
 	virtual std::ostream& toStream(std::ostream& os) const;
 
 protected:
+	explicit Ship(ShipSpecs* specs);
+
 	explicit Ship(unsigned id);
 
 private:
 	std::string nickname;
 	unsigned id;
+	ShipSpecs* specs;
 };
 
 #endif /* SHIP_HPP */

@@ -13,17 +13,8 @@ class TIEInterceptor : public Ship {
 public:
 	TIEInterceptor();
 
-	double getMaxSpeed() const override;
-
-	std::string getModelName() const override;
-
-	double getWeight() const override;
-
 private:
-	static unsigned counter;
-	const static std::string MODEL_NAME;
-	const static double MAX_SPEED; // en [MGLT]
-	const static double WEIGHT; // en [tonnes]
+	static ShipSpecs specs;
 };
 
 

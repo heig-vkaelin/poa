@@ -11,34 +11,32 @@
 
 using namespace std;
 
-CargoShip::CargoShip(unsigned id, double cargo, double maxCargo) : Ship(id) {
-	init(cargo, maxCargo);
-}
-
-double CargoShip::getCargo() const {
-	return cargo;
+CargoShip::CargoShip(CargoShipSpecs* specifications, double cargo)
+	: Ship(specifications) {
+	specs = specifications;
+	setCargo(cargo);
 }
 
 void CargoShip::setCargo(double newCargo) {
 	if (newCargo < 0)
 		throw runtime_error("La cargaison est invalide.");
 
-	if (newCargo > maxCargo)
+	if (newCargo > specs->getMaxCargo())
 		throw runtime_error("La cargaison est trop grosse pour le vaisseau.");
 
 	cargo = newCargo;
 }
 
+double CargoShip::getCargo() const {
+	return cargo;
+}
+
+double CargoShip::getWeight() const {
+	return Ship::getWeight() + cargo;
+}
+
 ostream& CargoShip::toStream(ostream& os) const {
 	return Ship::toStream(os) << setprecision(1)
 									  << "  cargo: " << cargo << " tons (max : "
-									  << maxCargo << ")" << endl;
-}
-
-void CargoShip::init(double carg, double maxCarg) {
-	if (maxCarg < 0)
-		throw runtime_error("La cargaison maximale est invalide.");
-
-	maxCargo = maxCarg;
-	setCargo(carg);
+									  << specs->getMaxCargo() << ")" << endl;
 }

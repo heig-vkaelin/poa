@@ -2,6 +2,7 @@
 #define SQUADRON_TIEFIGHTER_HPP
 
 #include "Ship.hpp"
+#include "ShipSpecs.hpp"
 
 /**
  * Classe représentant un vaisseau de type Chasseur TIE
@@ -13,17 +14,8 @@ class TIEFighter : public Ship {
 public:
 	TIEFighter();
 
-	double getMaxSpeed() const override;
-
-	std::string getModelName() const override;
-
-	double getWeight() const override;
-
 private:
-	static unsigned counter;
-	const static std::string MODEL_NAME;
-	const static double MAX_SPEED; // en [MGLT]
-	const static double WEIGHT; // en [tonnes]
+	static ShipSpecs specs;
 };
 
 

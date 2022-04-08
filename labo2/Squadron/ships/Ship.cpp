@@ -19,6 +19,14 @@ ostream& operator<<(ostream& os, const Ship& ship) {
 Ship::Ship(unsigned id) : id(id) {
 }
 
+Ship::Ship(ShipSpecs* specifications) {
+	if (specifications == nullptr)
+		throw runtime_error("Specifications du vaisseau invalide.");
+
+	specs = specifications;
+	id = specs->getNextId();
+}
+
 void Ship::setNickname(const string& nick) {
 	nickname = nick;
 }
@@ -28,6 +36,18 @@ double Ship::computeConsumption(double distance, double speed) const {
 		throw runtime_error("La vitesse est trop rapide pour le vaisseau.");
 
 	return cbrt(getWeight()) / 2 * log10(getWeight() * speed) * log10(distance + 1);
+}
+
+string Ship::getModelName() const {
+	return specs->getModelName();
+}
+
+double Ship::getMaxSpeed() const {
+	return specs->getMaxSpeed();
+}
+
+double Ship::getWeight() const {
+	return specs->getWeight();
 }
 
 ostream& Ship::toStream(ostream& os) const {

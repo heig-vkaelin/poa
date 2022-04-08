@@ -2,6 +2,7 @@
 #define SQUADRON_CARGOSHIP_HPP
 
 #include "../Ship.hpp"
+#include "CargoShipSpecs.hpp"
 
 /**
  * Classe représentant un vaisseau avec une cargaison
@@ -24,6 +25,11 @@ public:
 	double getCargo() const;
 
 	/**
+	 * @return le poids du vaisseau (cargaison comprise)
+	 */
+	double getWeight() const override;
+
+	/**
 	 * Affiche les caractéristiques du cargo sur le stream souhaité
 	 * @param os : stream sur lequel afficher le cargo
 	 * @return le stream avec les infos du cargo en plus
@@ -35,15 +41,12 @@ protected:
 	 * Crée un vaisseau cargo
 	 * @param id : id du cargo
 	 * @param cargo : cargaison actuelle du cargo
-	 * @param maxCargo : cargaison maximale du cargo
 	 */
-	explicit CargoShip(unsigned id, double cargo, double maxCargo);
+	explicit CargoShip(CargoShipSpecs* specs, double cargo);
 
 private:
-	void init(double cargo, double maxCargo);
-
 	double cargo; // en [tonnes]
-	double maxCargo; // en [tonnes]
+	CargoShipSpecs* specs;
 };
 
 #endif // SQUADRON_CARGOSHIP_HPP
