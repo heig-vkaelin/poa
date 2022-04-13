@@ -3,6 +3,12 @@
 
 #include "ships/Ship.hpp"
 
+/**
+ * Classe représentant une escadrille de divers vaisseaux pouvant être mise à jour
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 class Squadron;
 
 /**
@@ -27,12 +33,6 @@ Squadron operator-(const Squadron& squadron, Ship& ship);
  */
 std::ostream& operator<<(std::ostream& os, const Squadron& squad);
 
-/**
- * Classe représentant une escadrille de divers vaisseaux pouvant être mise à jour
- *
- * @author Lazar Pavicevic
- * @author Valentin Kaelin
- */
 class Squadron {
 
 public:
