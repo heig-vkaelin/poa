@@ -32,10 +32,10 @@ unsigned ShipSpecs::getNextId() {
 
 void ShipSpecs::init(const string& name, double speed, double mass) {
 	if (speed < 0)
-		throw runtime_error("Vitesse invalide");
+		throw invalid_argument("Vitesse invalide");
 
 	if (mass <= 0)
-		throw runtime_error("Poids invalide");
+		throw invalid_argument("Poids invalide");
 
 	modelName = name;
 	maxSpeed = speed;

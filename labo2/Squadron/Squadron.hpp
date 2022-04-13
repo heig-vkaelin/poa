@@ -108,7 +108,7 @@ public:
 	 * Accès indexé à un vaisseau
 	 * @param index du vaisseau à retourner
 	 * @return le vaisseau cherché
-	 * @throws runtime_error si l'index est trop grand
+	 * @throws out_of_range si l'index est trop grand
 	 */
 	const Ship& get(std::size_t index) const;
 
@@ -116,7 +116,7 @@ public:
 	 * Accès indexé à un vaisseau
 	 * @param index du vaisseau à retourner
 	 * @return le vaisseau cherché
-	 * @throws runtime_error si l'index est trop grand
+	 * @throws out_of_range si l'index est trop grand
 	 */
 	const Ship& operator[](std::size_t index) const;
 
@@ -149,7 +149,7 @@ public:
 	 * @param distance : distance de l'opération en [millions de km]
 	 * @param speed : vitesse des vaisseaux lors de l'opération en [MGLT]
 	 * @return le nombre de [tonnes] consommées
-	 * @throws runtime_error si la distance ou la vitesse est invalide ou si le
+	 * @throws invalid_argument si la distance ou la vitesse est invalide ou si le
 	 * squadron ne contient aucun vaisseau
 	 */
 	double computeConsumption(double distance, double speed) const;
