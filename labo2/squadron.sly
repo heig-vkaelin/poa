@@ -29,7 +29,7 @@
       <child>11334</child>
       <parent>9146</parent>
     </inheritance>
-    <association aggregation="NONE" direction="FIRST_TO_SECOND" id="9949" name="contient">
+    <association aggregation="NONE" direction="FIRST_TO_SECOND" id="9949" name="contient &gt;">
       <role componentId="9147" name="" visibility="PRIVATE">
         <multiplicity>
           <min>2147483647</min>
@@ -43,7 +43,7 @@
         </multiplicity>
       </role>
     </association>
-    <association aggregation="NONE" direction="SECOND_TO_FIRST" id="10187" name="contient">
+    <association aggregation="NONE" direction="SECOND_TO_FIRST" id="10187" name="contient &gt;">
       <role componentId="9152" name="" visibility="PRIVATE">
         <multiplicity>
           <min>1</min>
@@ -57,7 +57,7 @@
         </multiplicity>
       </role>
     </association>
-    <association aggregation="NONE" direction="SECOND_TO_FIRST" id="11796" name="possède">
+    <association aggregation="NONE" direction="SECOND_TO_FIRST" id="11796" name="possède &gt;">
       <role componentId="11334" name="" visibility="PRIVATE">
         <multiplicity>
           <min>0</min>
@@ -66,12 +66,12 @@
       </role>
       <role componentId="9146" name="" visibility="PRIVATE">
         <multiplicity>
-          <min>1</min>
+          <min>0</min>
           <max>1</max>
         </multiplicity>
       </role>
     </association>
-    <association aggregation="NONE" direction="SECOND_TO_FIRST" id="11822" name="est suivi par">
+    <association aggregation="NONE" direction="SECOND_TO_FIRST" id="11822" name="est suivi par &gt;">
       <role componentId="11334" name="" visibility="PRIVATE">
         <multiplicity>
           <min>0</min>
@@ -80,12 +80,12 @@
       </role>
       <role componentId="11334" name="" visibility="PRIVATE">
         <multiplicity>
-          <min>1</min>
+          <min>0</min>
           <max>1</max>
         </multiplicity>
       </role>
     </association>
-    <association aggregation="NONE" direction="FIRST_TO_SECOND" id="11848" name="est un">
+    <association aggregation="NONE" direction="FIRST_TO_SECOND" id="11848" name="&lt; est un">
       <role componentId="11334" name="" visibility="PRIVATE">
         <multiplicity>
           <min>2147483647</min>
@@ -94,12 +94,12 @@
       </role>
       <role componentId="9147" name="" visibility="PRIVATE">
         <multiplicity>
-          <min>1</min>
+          <min>0</min>
           <max>1</max>
         </multiplicity>
       </role>
     </association>
-    <association aggregation="NONE" direction="FIRST_TO_SECOND" id="12032" name="a un leader">
+    <association aggregation="NONE" direction="FIRST_TO_SECOND" id="12032" name="&lt; est leader de">
       <role componentId="9146" name="" visibility="PRIVATE">
         <multiplicity>
           <min>2147483647</min>
@@ -147,9 +147,10 @@
       <method isAbstract="false" isStatic="false" name="get_const" returnType="const_Ship&amp;" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="index" type="size_t"/>
       </method>
-      <method isAbstract="false" isStatic="false" name="operator[]_const" returnType="void" view="DEFAULT" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="operator[]_const" returnType="const_Ship&amp;" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="index" type="size_t"/>
       </method>
+      <method isAbstract="false" isStatic="false" name="getName_const" returnType="const_string&amp;" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="false" isStatic="false" name="setName" returnType="void" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="name" type="const_string&amp;"/>
       </method>
@@ -172,9 +173,6 @@
         <variable const="false" name="squad" type="const_Squadron&amp;"/>
       </method>
       <method isAbstract="false" isStatic="false" name="freeSquadron" returnType="void" view="DEFAULT" visibility="PRIVATE"/>
-      <method isAbstract="false" isStatic="false" name="getByIndex_const" returnType="Ship&amp;" view="DEFAULT" visibility="PRIVATE">
-        <variable const="false" name="index" type="size_t"/>
-      </method>
     </entity>
     <entity entityType="CLASS" id="9147" isAbstract="true" name="Ship" visibility="PUBLIC">
       <attribute const="false" defaultValue="" isStatic="false" name="nickname" type="string" visibility="PRIVATE"/>
@@ -182,10 +180,7 @@
       <method is-constructor="true" isAbstract="true" isStatic="false" name="explicit_Ship" returnType="" view="DEFAULT" visibility="PROTECTED">
         <variable const="false" name="specs" type="ShipSpecs*"/>
       </method>
-      <method is-constructor="true" isAbstract="true" isStatic="false" name="explicit_Ship" returnType="" view="DEFAULT" visibility="PROTECTED">
-        <variable const="false" name="id" type="unsigned"/>
-      </method>
-      <method is-constructor="true" isAbstract="true" isStatic="false" name="virtual_~Ship" returnType="" view="DEFAULT" visibility="PUBLIC"/>
+      <method is-constructor="true" isAbstract="true" isStatic="false" name="~Ship" returnType="" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="false" isStatic="false" name="setNickname" returnType="void" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="nick" type="const_string&amp;"/>
       </method>
@@ -210,6 +205,7 @@
         <variable const="false" name="maxSpeed" type="double"/>
         <variable const="false" name="weight" type="double"/>
       </method>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="~ShipSpecs" returnType="" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="false" isStatic="false" name="getModelName_const" returnType="const_string&amp;" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="false" isStatic="false" name="getMaxSpeed_const" returnType="double" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="false" isStatic="false" name="getWeight_const" returnType="double" view="DEFAULT" visibility="PUBLIC"/>
@@ -240,6 +236,7 @@
       </method>
     </entity>
     <entity entityType="CLASS" id="9152" isAbstract="false" name="CargoShipSpecs" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="maxCargo" type="double" visibility="PRIVATE"/>
       <method is-constructor="true" isAbstract="false" isStatic="false" name="CargoShipSpecs" returnType="" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="modelName" type="const_string&amp;"/>
         <variable const="false" name="maxSpeed" type="double"/>
@@ -271,11 +268,11 @@
       <line>
         <point>
           <x>421</x>
-          <y>421</y>
+          <y>411</y>
         </point>
         <point>
           <x>621</x>
-          <y>421</y>
+          <y>411</y>
         </point>
         <point>
           <x>621</x>
@@ -287,14 +284,14 @@
         </point>
       </line>
       <labelAssociation>
-        <x>542</x>
-        <y>426</y>
-        <w>70</w>
+        <x>513</x>
+        <y>415</y>
+        <w>94</w>
         <h>16</h>
       </labelAssociation>
       <roleAssociation>
         <x>425</x>
-        <y>425</y>
+        <y>415</y>
         <w>0</w>
         <h>16</h>
       </roleAssociation>
@@ -306,7 +303,7 @@
       </roleAssociation>
       <multipliciteAssociation>
         <x>427</x>
-        <y>400</y>
+        <y>390</y>
         <w>7</w>
         <h>16</h>
       </multipliciteAssociation>
@@ -333,9 +330,9 @@
         </point>
       </line>
       <labelAssociation>
-        <x>650</x>
-        <y>215</y>
-        <w>39</w>
+        <x>648</x>
+        <y>216</y>
+        <w>50</w>
         <h>16</h>
       </labelAssociation>
       <roleAssociation>
@@ -352,14 +349,14 @@
       </roleAssociation>
       <multipliciteAssociation>
         <x>617</x>
-        <y>180</y>
+        <y>183</y>
         <w>7</w>
         <h>16</h>
       </multipliciteAssociation>
       <multipliciteAssociation>
-        <x>726</x>
-        <y>189</y>
-        <w>8</w>
+        <x>710</x>
+        <y>190</y>
+        <w>23</w>
         <h>16</h>
       </multipliciteAssociation>
     </relationView>
@@ -378,18 +375,18 @@
           <y>91</y>
         </point>
         <point>
-          <x>541</x>
+          <x>561</x>
           <y>91</y>
         </point>
         <point>
-          <x>541</x>
+          <x>561</x>
           <y>121</y>
         </point>
       </line>
       <labelAssociation>
-        <x>633</x>
-        <y>67</y>
-        <w>75</w>
+        <x>618</x>
+        <y>69</y>
+        <w>87</w>
         <h>16</h>
       </labelAssociation>
       <roleAssociation>
@@ -399,7 +396,7 @@
         <h>16</h>
       </roleAssociation>
       <roleAssociation>
-        <x>545</x>
+        <x>565</x>
         <y>99</y>
         <w>0</w>
         <h>16</h>
@@ -411,9 +408,9 @@
         <h>16</h>
       </multipliciteAssociation>
       <multipliciteAssociation>
-        <x>527</x>
+        <x>533</x>
         <y>99</y>
-        <w>8</w>
+        <w>23</w>
         <h>16</h>
       </multipliciteAssociation>
     </relationView>
@@ -433,9 +430,9 @@
         </point>
       </line>
       <labelAssociation>
-        <x>512</x>
-        <y>366</y>
-        <w>53</w>
+        <x>498</x>
+        <y>365</y>
+        <w>64</w>
         <h>16</h>
       </labelAssociation>
       <roleAssociation>
@@ -451,15 +448,15 @@
         <h>16</h>
       </roleAssociation>
       <multipliciteAssociation>
-        <x>532</x>
-        <y>186</y>
+        <x>531</x>
+        <y>185</y>
         <w>23</w>
         <h>16</h>
       </multipliciteAssociation>
       <multipliciteAssociation>
         <x>427</x>
         <y>340</y>
-        <w>8</w>
+        <w>23</w>
         <h>16</h>
       </multipliciteAssociation>
     </relationView>
@@ -477,7 +474,7 @@
       <labelAssociation>
         <x>1106</x>
         <y>594</y>
-        <w>53</w>
+        <w>65</w>
         <h>16</h>
       </labelAssociation>
       <roleAssociation>
@@ -519,7 +516,7 @@
       <labelAssociation>
         <x>1253</x>
         <y>266</y>
-        <w>53</w>
+        <w>65</w>
         <h>16</h>
       </labelAssociation>
       <roleAssociation>
@@ -615,7 +612,7 @@
         </point>
         <point>
           <x>1601</x>
-          <y>366</y>
+          <y>381</y>
         </point>
       </line>
     </relationView>
@@ -635,7 +632,7 @@
         </point>
         <point>
           <x>981</x>
-          <y>371</y>
+          <y>356</y>
         </point>
       </line>
     </relationView>
@@ -655,7 +652,7 @@
         </point>
         <point>
           <x>981</x>
-          <y>371</y>
+          <y>356</y>
         </point>
       </line>
     </relationView>
@@ -675,7 +672,7 @@
         </point>
         <point>
           <x>981</x>
-          <y>371</y>
+          <y>356</y>
         </point>
       </line>
     </relationView>
@@ -716,7 +713,7 @@
         <x>1310</x>
         <y>550</y>
         <w>590</w>
-        <h>85</h>
+        <h>100</h>
       </geometry>
     </componentView>
     <componentView color="-2079" componentID="9151" displayAttributes="true" displayDefault="true" displayMethods="true">
@@ -740,7 +737,7 @@
         <x>1380</x>
         <y>160</y>
         <w>460</w>
-        <h>205</h>
+        <h>220</h>
       </geometry>
     </componentView>
     <componentView color="-2079" componentID="9147" displayAttributes="true" displayDefault="true" displayMethods="true">
@@ -748,7 +745,7 @@
         <x>760</x>
         <y>150</y>
         <w>430</w>
-        <h>220</h>
+        <h>205</h>
       </geometry>
     </componentView>
     <componentView color="-2079" componentID="9146" displayAttributes="true" displayDefault="true" displayMethods="true">
@@ -777,21 +774,21 @@
         </point>
       </noteLine>
     </note>
-    <note color="-2079" content="~Ship() = default, getWeight &amp; toStream ne sont pas des virtual pures">
+    <note color="-2079" content="virtual ~Ship() = default, getWeight &amp; toStream ne sont pas des virtual pures">
       <noteGeometry>
-        <x>1180</x>
-        <y>60</y>
+        <x>1080</x>
+        <y>20</y>
         <w>170</w>
         <h>60</h>
       </noteGeometry>
       <noteLine color="-12566464" relationId="9147">
         <point>
-          <x>1271</x>
-          <y>121</y>
+          <x>1171</x>
+          <y>81</y>
         </point>
         <point>
-          <x>1191</x>
-          <y>191</y>
+          <x>1171</x>
+          <y>151</y>
         </point>
       </noteLine>
     </note>
@@ -810,6 +807,82 @@
         <point>
           <x>121</x>
           <y>271</y>
+        </point>
+      </noteLine>
+    </note>
+    <note color="-2079" content="CI : Un membre ne peut pas se suivre lui-même">
+      <noteGeometry>
+        <x>410</x>
+        <y>30</y>
+        <w>280</w>
+        <h>30</h>
+      </noteGeometry>
+      <noteLine color="-12566464" relationId="11334">
+        <point>
+          <x>521</x>
+          <y>61</y>
+        </point>
+        <point>
+          <x>521</x>
+          <y>121</y>
+        </point>
+      </noteLine>
+    </note>
+    <note color="-2079" content="struct privée">
+      <noteGeometry>
+        <x>390</x>
+        <y>90</y>
+        <w>97</w>
+        <h>30</h>
+      </noteGeometry>
+      <noteLine color="-12566464" relationId="11334">
+        <point>
+          <x>441</x>
+          <y>121</y>
+        </point>
+        <point>
+          <x>441</x>
+          <y>141</y>
+        </point>
+        <point>
+          <x>501</x>
+          <y>141</y>
+        </point>
+      </noteLine>
+    </note>
+    <note color="-2079" content="CI : Le leader est un membre de Squadron">
+      <noteGeometry>
+        <x>480</x>
+        <y>440</y>
+        <w>255</w>
+        <h>30</h>
+      </noteGeometry>
+      <noteLine color="-12566464" relationId="12032">
+        <point>
+          <x>651</x>
+          <y>441</y>
+        </point>
+        <point>
+          <x>651</x>
+          <y>311</y>
+        </point>
+      </noteLine>
+    </note>
+    <note color="-2079" content="virtual ~ShipSpecs() = default">
+      <noteGeometry>
+        <x>1429</x>
+        <y>92</y>
+        <w>187</w>
+        <h>30</h>
+      </noteGeometry>
+      <noteLine color="-12566464" relationId="9148">
+        <point>
+          <x>1511</x>
+          <y>123</y>
+        </point>
+        <point>
+          <x>1511</x>
+          <y>161</y>
         </point>
       </noteLine>
     </note>
