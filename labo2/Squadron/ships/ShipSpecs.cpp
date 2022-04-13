@@ -40,4 +40,5 @@ void ShipSpecs::init(const string& name, double speed, double mass) {
 	modelName = name;
 	maxSpeed = speed;
 	weight = mass;
+	counter = 0;
 }

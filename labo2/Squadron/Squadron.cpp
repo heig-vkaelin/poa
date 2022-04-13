@@ -214,7 +214,6 @@ void Squadron::copyShips(const Squadron& squad) {
 }
 
 void Squadron::freeSquadron() {
-	// TODO : check avec Valgrind
 	Member* iter = head;
 	while (iter) {
 		Member* tmp = iter->next;
