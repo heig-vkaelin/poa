@@ -130,7 +130,7 @@ Squadron& Squadron::operator-=(Ship& ship) {
 
 const Ship& Squadron::get(size_t index) const {
 	if (index >= size)
-		throw runtime_error("Erreur: L'index demande n'est pas conforme.");
+		throw out_of_range("Erreur: L'index demande n'est pas conforme.");
 
 	Member* iter = head;
 	for (size_t i = 0; i != index; ++i) {
@@ -146,7 +146,7 @@ const Ship& Squadron::operator[](size_t index) const {
 
 double Squadron::computeConsumption(double distance, double speed) const {
 	if (!size)
-		throw runtime_error(
+		throw invalid_argument(
 			"Il n'est pas possible de calculer la consommation car l'escadrille est"
 			" vide.");
 

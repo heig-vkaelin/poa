@@ -36,7 +36,7 @@ public:
 	 * @param distance : distance du trajet
 	 * @param speed : vitesse lors du trajet
 	 * @return la consommation calculée
-	 * @throws runtime_error si la distance ou la vitesse sont invalides
+	 * @throws invalid_argument si la distance ou la vitesse sont invalides
 	 */
 	double computeConsumption(double distance, double speed) const;
 

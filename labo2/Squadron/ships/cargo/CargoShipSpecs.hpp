@@ -18,7 +18,7 @@ public:
 	 * @param maxSpeed : vitesse maximale en [MGLT]
 	 * @param weight : poids en [tonnes]
 	 * @param maxCargo : cargaison maximale en [tonnes]
-	 * @throws runtime_error si un des paramètres numériques est < 0
+	 * @throws invalid_argument si un des paramètres numériques est < 0
 	 */
 	CargoShipSpecs(const std::string& modelName, double maxSpeed, double weight,
 						double maxCargo);

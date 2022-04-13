@@ -18,7 +18,7 @@ ostream& operator<<(ostream& os, const Ship& ship) {
 
 Ship::Ship(ShipSpecs* specifications) {
 	if (specifications == nullptr)
-		throw runtime_error("Specifications du vaisseau invalide.");
+		throw invalid_argument("Specifications du vaisseau invalide.");
 
 	specs = specifications;
 	id = specs->getNextId();
@@ -30,9 +30,9 @@ void Ship::setNickname(const string& nick) {
 
 double Ship::computeConsumption(double distance, double speed) const {
 	if (distance < 0)
-		throw runtime_error("La distance doit etre positive.");
+		throw invalid_argument("La distance doit etre positive.");
 	if (speed > getMaxSpeed())
-		throw runtime_error("La vitesse est trop rapide pour le vaisseau.");
+		throw invalid_argument("La vitesse est trop rapide pour le vaisseau.");
 
 	return cbrt(getWeight()) / 2 * log10(getWeight() * speed) * log10(distance + 1);
 }
