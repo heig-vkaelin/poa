@@ -52,7 +52,7 @@ std::size_t Array<T>::size() const {
 template<typename T>
 T& Array<T>::operator[](std::size_t index) {
 	if (index >= _size)
-		throw std::out_of_range("Array::operator[]: index out of range");
+		throw std::out_of_range("Index out of range");
 
 	return data[index];
 }
@@ -63,12 +63,12 @@ void Array<T>::destroy() {
 }
 
 template<typename T>
-Iterator Array<T>::begin() {
+typename Array<T>::Iterator Array<T>::begin() {
 	return Iterator(data);
 }
 
 template<typename T>
-Iterator Array<T>::end() {
+typename Array<T>::Iterator Array<T>::end() {
 	return Iterator(data + _size);
 }
 
@@ -77,9 +77,20 @@ Array<T>::Iterator::Iterator(T* ptr) {
 	this->ptr = ptr;
 }
 
+template<typename T>
+typename Array<T>::Iterator& Array<T>::Iterator::operator++() {
+	if (ptr == nullptr)
+		throw std::out_of_range("Operator++ out of range");
+
+	++ptr;
+	return *this;
+}
 
 template<typename T>
-Iterator Array<T>::Iterator::operator++(int) {
+typename Array<T>::Iterator Array<T>::Iterator::operator++(int) {
+	if (ptr == nullptr)
+		throw std::out_of_range("Operator++ out of range");
+
 	Iterator tmp = *this;
 	++ptr;
 	return tmp;
@@ -98,11 +109,6 @@ bool Array<T>::Iterator::operator!=(const Iterator& o) const {
 template<typename T>
 T& Array<T>::Iterator::operator*() const {
 	return *ptr;
-}
-
-template<typename T>
-Array::Iterator& Array<T>::Iterator::operator++() {
-	return *this;
 }
 
 #endif // EXERCICES_ARRAY_IMPL_HPP

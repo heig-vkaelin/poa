@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "Season/Season.hpp"
 #include "Array/Array.hpp"
 
@@ -16,7 +17,19 @@ int exSeason() {
 	return EXIT_SUCCESS;
 }
 
+int exArray() {
+	Array<string> a(10);
+
+	a[0] = "Hello";
+	a[1] = "World";
+
+	for (auto i = a.begin(); i != a.end(); ++i)
+		cout << *i << endl;
+
+	return EXIT_SUCCESS;
+}
+
 int main() {
-	Array<int> a(10);
 //	return exSeason();
+	return exArray();
 }

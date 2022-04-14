@@ -35,7 +35,6 @@ private:
 
 		Iterator& operator++();
 
-
 		Iterator operator++(int);
 
 		bool operator==(const Iterator& o) const;
