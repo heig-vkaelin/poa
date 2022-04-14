@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Season/Season.hpp"
+#include "Array/Array.hpp"
 
 using namespace std;
 
@@ -16,5 +17,6 @@ int exSeason() {
 }
 
 int main() {
-	return exSeason();
+	Array<int> a(10);
+//	return exSeason();
 }
