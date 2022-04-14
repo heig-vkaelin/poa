@@ -7,14 +7,10 @@
 
 #include <string>
 #include "Container.hpp"
-#include "Boat.hpp"
 
 class Bank : public Container {
 public:
 	explicit Bank(const std::string& name);
-
-private:
-	Boat* boat;
 };
 
 

@@ -23,7 +23,7 @@ public:
 private:
 	void init();
 
-	std::list<Person> persons;
+	std::list<Person*> persons;
 	Boat boat;
 	Bank leftBank;
 	Bank rightBank;
@@ -31,4 +31,4 @@ private:
 };
 
 
-#endif //RIVIERE_CONTROLLER_HPP
+#endif // RIVIERE_CONTROLLER_HPP

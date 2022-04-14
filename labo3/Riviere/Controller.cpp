@@ -6,12 +6,8 @@
 
 using namespace std;
 
-Controller::Controller() {
-	turn = 0;
-	leftBank = Bank("Gauche");
-	rightBank = Bank("Droite");
-	boat = Boat("Bateau");
-	persons = list<Person>();
+Controller::Controller() : boat("Bateau"), leftBank("Gauche"), rightBank("Droite"),
+									turn(0) {
 }
 
 void Controller::showMenu() {
