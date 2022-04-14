@@ -6,11 +6,18 @@
 #define RIVIERE_CONTAINER_HPP
 
 #include <string>
-
+#include <list>
+#include "../persons/Person.hpp"
 
 class Container {
+public:
+	explicit Container(const std::string& name);
+
+	const std::string& getName() const;
+
 private:
 	std::string name;
+	std::list<Person*> persons;
 };
 
 

@@ -1,6 +1,11 @@
+#include "Controller.hpp"
+#include <cstdlib>
 #include <iostream>
 
+using namespace std;
+
 int main() {
-	std::cout << "Hello, World from Labo3!" << std::endl;
-	return 0;
+	Controller controller;
+	controller.nextTurn();
+	return EXIT_SUCCESS;
 }

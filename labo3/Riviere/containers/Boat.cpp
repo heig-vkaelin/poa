@@ -3,3 +3,6 @@
 //
 
 #include "Boat.hpp"
+
+Boat::Boat(const std::string& name) : Container(name) {
+}

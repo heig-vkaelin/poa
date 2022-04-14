@@ -3,3 +3,8 @@
 //
 
 #include "Bank.hpp"
+
+using namespace std;
+
+Bank::Bank(const string& name) : Container(name) {
+}
