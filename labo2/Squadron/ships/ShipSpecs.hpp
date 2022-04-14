@@ -16,9 +16,14 @@ public:
 	 * @param modelName : nom du modèle
 	 * @param maxSpeed : vitesse maximale en [MGLT]
 	 * @param weight : poids en [tonnes]
-	 * @throws runtime_error si un des paramètres numériques est < 0
+	 * @throws invalid_argument si un des paramètres numériques est < 0
 	 */
 	ShipSpecs(const std::string& modelName, double maxSpeed, double weight);
+
+	/**
+	 * Destructeur par défaut des spécifications du modèle
+	 */
+	virtual ~ShipSpecs() = default;
 
 	/**
 	 * @return le nom du modèle

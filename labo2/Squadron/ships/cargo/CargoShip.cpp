@@ -19,10 +19,10 @@ CargoShip::CargoShip(CargoShipSpecs* specifications, double cargo)
 
 void CargoShip::setCargo(double newCargo) {
 	if (newCargo < 0)
-		throw runtime_error("La cargaison est invalide.");
+		throw invalid_argument("La cargaison est invalide.");
 
 	if (newCargo > specs->getMaxCargo())
-		throw runtime_error("La cargaison est trop grosse pour le vaisseau.");
+		throw invalid_argument("La cargaison est trop grosse pour le vaisseau.");
 
 	cargo = newCargo;
 }

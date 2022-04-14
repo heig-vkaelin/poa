@@ -87,6 +87,29 @@ void testComputeSingleConsumption() {
 }
 
 /**
+ * Teste la création de vaisseaux constants
+ */
+void testConstantShips() {
+	const Shuttle ship1(12.2);
+
+	cout << "TEST : Creation et affichage d'un ship constant" << endl;
+	cout << ship1 << endl;
+
+	cout << "TEST : Acces en lecture aux proprietes d'un ship constant" << endl;
+	cout << "Max speed: " << ship1.getMaxSpeed() << endl;
+	cout << "Cargaison: " << ship1.getCargo() << endl;
+	cout << "Poids: " << ship1.getWeight() << endl << endl;
+
+	Shuttle ship2(18);
+
+	cout << "TEST : Copie d'un ship dans un ship constant" << endl;
+	const Shuttle ship3 = ship2;
+	ship2.setCargo(15);
+	cout << "Cargaison ship original: " << ship2.getCargo() << endl;
+	cout << "Cargaison ship copie: " << ship3.getCargo() << endl;
+}
+
+/**
  * Teste les différentes possibilités d'ajouts de vaisseaux aux escadrilles
  */
 void testAddShips() {
@@ -340,6 +363,7 @@ void testSquadronConsumption() {
 void testEverything() {
 	testInvalidCargo();
 	testComputeSingleConsumption();
+	testConstantShips();
 	testAddShips();
 	testRemoveShips();
 	testAccessShip();

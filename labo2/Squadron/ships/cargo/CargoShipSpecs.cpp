@@ -14,7 +14,7 @@ CargoShipSpecs::CargoShipSpecs(const string& modelName, double maxSpeed,
 										 double weight, double maxCargo)
 	: ShipSpecs(modelName, maxSpeed, weight), maxCargo(maxCargo) {
 	if (maxCargo < 0)
-		throw runtime_error("Cargaison maximale du vaisseau invalide.");
+		throw invalid_argument("Cargaison maximale du vaisseau invalide.");
 }
 
 double CargoShipSpecs::getMaxCargo() const {

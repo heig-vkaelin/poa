@@ -15,7 +15,7 @@ public:
 	/**
 	 * Modifie la cargaison actuelle
 	 * @param newCargo : la nouvelle cargaison
-	 * @throws runtime_error si la nouvelle cargaison est invalide
+	 * @throws invalid_argument si la nouvelle cargaison est invalide
 	 */
 	void setCargo(double newCargo);
 
