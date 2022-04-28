@@ -18,10 +18,11 @@ public:
 
 	void nextTurn();
 
-	void showMenu();
+	static void showMenu();
 
 private:
 	void init();
+	std::string displayBoat(bool isOnLeftBank);
 
 	std::list<Person*> persons;
 	Boat boat;
