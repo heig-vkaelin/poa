@@ -8,9 +8,11 @@
 
 using namespace std;
 
-Controller::Controller() : boat("Bateau"), leftBank("Gauche"), rightBank("Droite"),
+Controller::Controller() : boat("Bateau", 2), leftBank("Gauche"),
+									rightBank("Droite"),
 									turn(0), ended(false) {
 	// Personnes
+	// TODO: remplacer "Person" par le vrai type de chaque personne
 	Person* father = new Person{"pere"};
 	Person* mother = new Person{"mere"};
 	Person* paul = new Person{"paul"};

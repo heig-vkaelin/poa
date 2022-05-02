@@ -4,10 +4,13 @@
 
 #include "Boat.hpp"
 
-Boat::Boat(const std::string& name) : Container(name) {
+using namespace std;
+
+Boat::Boat(const string& name, size_t capacity)
+	: Container(name), capacity(capacity) {
 }
 
-std::ostream& Boat::toStream(std::ostream& os) const {
+ostream& Boat::toStream(ostream& os) const {
 	return os << getName() << ": < " << personsToString() << " >";
 }
 

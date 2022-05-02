@@ -10,14 +10,32 @@
 #include "persons/Person.hpp"
 #include <list>
 
+/**
+ * Classe gérant toute la logique globale du programme
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 class Controller {
 public:
+	/**
+	 * Crée un nouveau contrôleur qui gère le déroulement du programme
+	 */
 	Controller();
 
+	/**
+	 * Affiche l'état du bateau et des rives de la rivière
+	 */
 	void display() const;
 
+	/**
+	 * Passe au tour suivant
+	 */
 	void nextTurn();
 
+	/**
+	 * Affiche le menu d'aide du programme
+	 */
 	static void showMenu();
 
 	/**
@@ -48,6 +66,5 @@ private:
 		QUIT = 'q',
 		MENU = 'h';
 };
-
 
 #endif // RIVIERE_CONTROLLER_HPP

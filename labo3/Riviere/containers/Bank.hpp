@@ -8,8 +8,18 @@
 #include <string>
 #include "Container.hpp"
 
+/**
+ * Conteneur représentant la rive d'une rivière
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 class Bank : public Container {
 public:
+	/**
+	 * Crée une nouvelle rive
+	 * @param name : nom de la rive
+	 */
 	explicit Bank(const std::string& name);
 
 	std::ostream& toStream(std::ostream& os) const override;

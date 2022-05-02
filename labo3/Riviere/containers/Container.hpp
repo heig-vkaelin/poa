@@ -10,13 +10,20 @@
 #include <iostream>
 #include "../persons/Person.hpp"
 
+/**
+ * Classe abstraite représentant une conteneur de tout type
+ * Ce conteneur peut contenir un nombre inderterminé de personnes
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 class Container;
 
 /**
- * Affiche un conteneur dans un flux
- * @param os flux dans lequel afficher le conteneur
+ * Affiche un conteneur dans un stream
+ * @param os stream dans lequel afficher le conteneur
  * @param container conteneur souhaité
- * @return le flux avec le conteneur affiché
+ * @return le stream avec le conteneur affiché
  */
 std::ostream& operator<<(std::ostream& os, const Container& container);
 
@@ -65,10 +72,10 @@ public:
 	const Person* findByName(const std::string& name) const;
 
 	/**
-	* Ajoute le conteneur dans un flux
-	* @param os flux souhaité
-	* @return le flux avec le conteneur inséré
-	*/
+	 * Affiche le conteneur sur le stream souhaité
+	 * @param os : stream sur lequel afficher le conteneur
+	 * @return le stream avec les infos du conteneur
+	 */
 	virtual std::ostream& toStream(std::ostream& os) const = 0;
 
 	virtual ~Container() = default;
@@ -81,12 +88,14 @@ protected:
 	 */
 	bool contains(const Person* person) const;
 
+	/**
+	 * @return les personnes contenues sous représentation textuelle
+	 */
 	std::string personsToString() const;
 
 private:
 	std::string name;
 	std::list<const Person*> persons;
 };
-
 
 #endif // RIVIERE_CONTAINER_HPP

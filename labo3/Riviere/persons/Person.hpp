@@ -7,6 +7,12 @@
 
 #include <string>
 
+/**
+ * Classe abstraite représentant une personne
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 class Person {
 public:
 	// TODO: TMP, go bouger après
@@ -15,11 +21,13 @@ public:
 	// TODO: abstract (= 0)
 	virtual bool canDrive() const { return false; };
 
+	/**
+	 * @return le nom de la personne
+	 */
 	std::string getName() const;
 
 private:
 	std::string name;
 };
-
 
 #endif // RIVIERE_PERSON_HPP
