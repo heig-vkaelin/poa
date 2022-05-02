@@ -41,6 +41,11 @@ public:
 	 */
 	void addPersons(const std::list<const Person*>& list);
 
+	/**
+	 * @return true si le conteneur est vide, false sinon
+	 */
+	bool empty() const;
+
 	/*
 	 * Enlève toutes les personnes du conteneur
 	 */
@@ -50,6 +55,14 @@ public:
 	 * @return le nom du conteneur
 	 */
 	const std::string& getName() const;
+
+	/**
+	 * Cherche une personne par so nom
+	 * @param name : nom de la personne recherchée
+	 * @return un pointeur sur la personne si elle est dans le conteneur, nullptr
+	 * sinon
+	 */
+	const Person* findByName(const std::string& name) const;
 
 	/**
 	* Ajoute le conteneur dans un flux

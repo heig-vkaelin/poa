@@ -28,6 +28,10 @@ void Container::addPersons(const list<const Person*>& list) {
 		addPerson(person);
 }
 
+bool Container::empty() const {
+	return persons.empty();
+}
+
 void Container::clear() {
 	persons.clear();
 }
@@ -45,6 +49,13 @@ std::string Container::personsToString() const {
 
 bool Container::contains(const Person* person) const {
 	return find(persons.begin(), persons.end(), person) != persons.end();
+}
+
+const Person* Container::findByName(const string& nameToFind) const {
+	for (const Person* person: persons)
+		if (person->getName() == nameToFind)
+			return person;
+	return nullptr;
 }
 
 

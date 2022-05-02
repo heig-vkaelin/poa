@@ -9,7 +9,7 @@
 using namespace std;
 
 Controller::Controller() : boat("Bateau"), leftBank("Gauche"), rightBank("Droite"),
-									turn(0) {
+									turn(0), ended(false) {
 	// Personnes
 	Person* father = new Person{"pere"};
 	Person* mother = new Person{"mere"};
@@ -82,4 +82,8 @@ void Controller::reset() {
 	rightBank.clear();
 	leftBank.addPersons(persons);
 	boat.setBank(&leftBank);
+}
+
+bool Controller::hasEnded() {
+	return ended;
 }

@@ -6,8 +6,10 @@ using namespace std;
 
 int main() {
 	Controller controller;
-	controller.nextTurn();
 	Controller::showMenu();
 	controller.display();
+	while (!controller.hasEnded()) {
+		controller.nextTurn();
+	}
 	return EXIT_SUCCESS;
 }

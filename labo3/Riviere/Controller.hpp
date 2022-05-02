@@ -20,6 +20,11 @@ public:
 
 	static void showMenu();
 
+	/**
+	 * @return true si le programme doit être arrêté
+	 */
+	bool hasEnded();
+
 private:
 	void init();
 
@@ -30,6 +35,7 @@ private:
 	Bank leftBank;
 	Bank rightBank;
 	int turn;
+	bool ended;
 
 	static const char
 		DISPLAY = 'p',
