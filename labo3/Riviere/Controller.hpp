@@ -14,7 +14,7 @@ class Controller {
 public:
 	Controller();
 
-	void display();
+	void display() const;
 
 	void nextTurn();
 
@@ -23,12 +23,14 @@ public:
 	/**
 	 * @return true si le programme doit être arrêté
 	 */
-	bool hasEnded();
+	bool hasEnded() const;
 
 private:
 	void init();
 
 	void reset();
+
+	void handleCommand(char command);
 
 	std::list<const Person*> persons;
 	Boat boat;

@@ -46,7 +46,7 @@ void Controller::showMenu() {
 		  << MENU << setw(PADDING) << SPACE << ": menu" << endl;
 }
 
-void Controller::display() {
+void Controller::display() const {
 	const unsigned WIDTH = 59;
 	cout
 		<< setw(WIDTH) << setfill('-') << "" << endl
@@ -68,8 +68,13 @@ void Controller::display() {
 }
 
 void Controller::nextTurn() {
-	++turn;
-	// TODO: attendre input utilisateur
+	cout << turn << ">";
+	char command;
+	cin >> command;
+	handleCommand(command);
+
+	// TODO: seulement augmenter le tour s'il le faut
+	turn++;
 }
 
 void Controller::init() {
@@ -84,6 +89,43 @@ void Controller::reset() {
 	boat.setBank(&leftBank);
 }
 
-bool Controller::hasEnded() {
+bool Controller::hasEnded() const {
 	return ended;
+}
+
+void Controller::handleCommand(char command) {
+	switch (command) {
+		case DISPLAY:
+			display();
+			break;
+		case EMBARK: {
+			// TODO
+			string name;
+			cin >> name;
+			break;
+		}
+		case DISEMBARK: {
+			// TODO
+			string name;
+			cin >> name;
+			break;
+		}
+		case MOVE:
+			// TODO
+			// Check que le bateau ait un conducteur
+			// Le switch de rive
+			break;
+		case RESET:
+			reset();
+			break;
+		case QUIT:
+			ended = true;
+			break;
+		case MENU:
+			showMenu();
+			break;
+		default:
+			cout << "Commande inconnue" << endl;
+			break;
+	}
 }
