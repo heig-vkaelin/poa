@@ -13,8 +13,14 @@ class Boat : public Container {
 public:
 	explicit Boat(const std::string& name);
 
+	std::ostream& toStream(std::ostream& os) const override;
+
+	const Bank* getBank() const;
+
+	void setBank(const Bank* bank);
+
 private:
-	Bank* bank;
+	const Bank* bank;
 };
 
 #endif // RIVIERE_BOAT_HPP

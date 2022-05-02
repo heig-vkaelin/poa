@@ -3,3 +3,9 @@
 //
 
 #include "Person.hpp"
+
+using namespace std;
+
+string Person::getName() const {
+	return name;
+}

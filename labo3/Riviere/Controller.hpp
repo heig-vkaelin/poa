@@ -22,13 +22,23 @@ public:
 
 private:
 	void init();
-	std::string displayBoat(bool isOnLeftBank);
 
-	std::list<Person*> persons;
+	void reset();
+
+	std::list<const Person*> persons;
 	Boat boat;
 	Bank leftBank;
 	Bank rightBank;
 	int turn;
+
+	static const char
+		DISPLAY = 'p',
+		EMBARK = 'e',
+		DISEMBARK = 'd',
+		MOVE = 'm',
+		RESET = 'r',
+		QUIT = 'q',
+		MENU = 'h';
 };
 
 

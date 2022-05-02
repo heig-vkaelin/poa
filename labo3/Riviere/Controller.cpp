@@ -3,37 +3,68 @@
 //
 
 #include <iostream>
+#include <iomanip>
 #include "Controller.hpp"
-
 
 using namespace std;
 
 Controller::Controller() : boat("Bateau"), leftBank("Gauche"), rightBank("Droite"),
 									turn(0) {
+	// Personnes
+	Person* father = new Person{"pere"};
+	Person* mother = new Person{"mere"};
+	Person* paul = new Person{"paul"};
+	Person* pierre = new Person{"pierre"};
+	Person* julie = new Person{"julie"};
+	Person* jeanne = new Person{"jeanne"};
+	Person* policeman = new Person{"policier"};
+	Person* thief = new Person{"voleur"};
+
+	persons.emplace_back(father);
+	persons.emplace_back(mother);
+	persons.emplace_back(paul);
+	persons.emplace_back(pierre);
+	persons.emplace_back(julie);
+	persons.emplace_back(jeanne);
+	persons.emplace_back(policeman);
+	persons.emplace_back(thief);
+
+	// Situation initiale
+	leftBank.addPersons(persons);
+	boat.setBank(&leftBank);
 }
 
 void Controller::showMenu() {
-	cout
-		<< "p      : afficher" << endl
-		<< "e <nom>: embarquer <nom>" << endl
-		<< "d <nom>: debarquer <nom>" << endl
-		<< "m      : deplacer bateau" << endl
-		<< "r      : reinitialiser" << endl
-		<< "q      : quitter" << endl
-		<< "h      : menu" << endl << endl;
+	const int PADDING = 6;
+	const char SPACE = ' ';
+	cout << DISPLAY << setw(PADDING) << SPACE << ": afficher" << endl
+		  << EMBARK << setw(PADDING) << "<nom>" << ": embarquer <nom>" << endl
+		  << DISEMBARK << setw(PADDING) << "<nom>" << ": debarquer <nom>" << endl
+		  << MOVE << setw(PADDING) << SPACE << ": deplacer bateau" << endl
+		  << RESET << setw(PADDING) << SPACE << ": reinitialiser" << endl
+		  << QUIT << setw(PADDING) << SPACE << ": quitter" << endl
+		  << MENU << setw(PADDING) << SPACE << ": menu" << endl;
 }
 
 void Controller::display() {
+	const unsigned WIDTH = 59;
 	cout
-		<< "----------------------------------------------------------" << endl
-		// << "Gauche: " << leftBank << endl
-		<< "----------------------------------------------------------" << endl
-		<< displayBoat(true) << endl
-		<< "==========================================================" << endl
-		<< displayBoat(false) << endl
-		<< "----------------------------------------------------------" << endl
-		// << "Droite:" << rightBank << endl
-		<< "----------------------------------------------------------" << endl;
+		<< setw(WIDTH) << setfill('-') << "" << endl
+		<< leftBank << endl
+		<< setw(WIDTH) << setfill('-') << "" << endl;
+
+	if (boat.getBank() == &leftBank)
+		cout << boat;
+
+	cout << endl << setw(WIDTH) << setfill('=') << "" << endl;
+
+	if (boat.getBank() == &rightBank)
+		cout << boat;
+
+	cout << endl
+		  << setw(WIDTH) << setfill('-') << "" << endl
+		  << rightBank << endl
+		  << setw(WIDTH) << setfill('-') << "" << endl;
 }
 
 void Controller::nextTurn() {
@@ -45,6 +76,10 @@ void Controller::init() {
 	// TODO: ptr + init ou ref et constructeur
 }
 
-std::string Controller::displayBoat(bool isOnLeftBank = true) {
-	return isOnLeftBank ? "Bateau: <TODO>" : "";
+void Controller::reset() {
+	boat.clear();
+	leftBank.clear();
+	rightBank.clear();
+	leftBank.addPersons(persons);
+	boat.setBank(&leftBank);
 }

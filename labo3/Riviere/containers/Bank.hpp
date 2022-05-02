@@ -11,6 +11,8 @@
 class Bank : public Container {
 public:
 	explicit Bank(const std::string& name);
+
+	std::ostream& toStream(std::ostream& os) const override;
 };
 
 

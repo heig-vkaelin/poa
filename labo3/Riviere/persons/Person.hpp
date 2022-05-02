@@ -9,8 +9,13 @@
 
 class Person {
 public:
+	// TODO: TMP, go bouger après
+	explicit Person(const std::string& name) { this->name = name; }
 
-	virtual bool canDrive() const = 0;
+	// TODO: abstract (= 0)
+	virtual bool canDrive() const { return false; };
+
+	std::string getName() const;
 
 private:
 	std::string name;
