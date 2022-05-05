@@ -4,6 +4,9 @@
 
 #include "IndependantPerson.hpp"
 
+IndependantPerson::IndependantPerson(const std::string& name) : Person(name) {
+}
+
 bool IndependantPerson::canDrive() const {
 	return true;
 }

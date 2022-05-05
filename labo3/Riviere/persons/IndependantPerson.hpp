@@ -11,6 +11,8 @@
  */
 class IndependantPerson : public Person {
 public:
+	explicit IndependantPerson(const std::string& name);
+
 	bool canDrive() const override;
 };
 

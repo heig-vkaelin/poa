@@ -10,8 +10,9 @@
  * @author Valentin Kaelin
  */
 class DependantPerson : public Person {
-
 public:
+	explicit DependantPerson(const std::string& name);
+
 	bool canDrive() const override;
 };
 

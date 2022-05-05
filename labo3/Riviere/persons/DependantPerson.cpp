@@ -4,6 +4,9 @@
 
 #include "DependantPerson.hpp"
 
+DependantPerson::DependantPerson(const std::string& name) : Person(name) {
+}
+
 bool DependantPerson::canDrive() const {
 	return false;
 }

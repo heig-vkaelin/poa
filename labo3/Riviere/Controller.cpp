@@ -6,6 +6,10 @@
 #include <iomanip>
 #include <limits>
 #include "Controller.hpp"
+#include "persons/IndependantPerson.hpp"
+#include "persons/Thief.hpp"
+#include "persons/Boy.hpp"
+#include "persons/Girl.hpp"
 
 using namespace std;
 
@@ -13,15 +17,14 @@ Controller::Controller() : boat("Bateau", 2), leftBank("Gauche"),
 									rightBank("Droite"),
 									turn(0), ended(false) {
 	// Personnes
-	// TODO: remplacer "Person" par le vrai type de chaque personne
-	Person* father = new Person{"pere"};
-	Person* mother = new Person{"mere"};
-	Person* paul = new Person{"paul"};
-	Person* pierre = new Person{"pierre"};
-	Person* julie = new Person{"julie"};
-	Person* jeanne = new Person{"jeanne"};
-	Person* policeman = new Person{"policier"};
-	Person* thief = new Person{"voleur"};
+	IndependantPerson* father = new IndependantPerson{"pere"};
+	IndependantPerson* mother = new IndependantPerson{"mere"};
+	Boy* paul = new Boy{"paul", mother, father};
+	Boy* pierre = new Boy{"pierre", mother, father};
+	Girl* julie = new Girl{"julie", mother, father};
+	Girl* jeanne = new Girl{"jeanne", mother, father};
+	IndependantPerson* policeman = new IndependantPerson{"policier"};
+	Thief* thief = new Thief{"voleur", policeman};
 
 	persons.emplace_back(father);
 	persons.emplace_back(mother);
