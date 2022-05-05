@@ -36,6 +36,7 @@ Controller::Controller() : boat("Bateau", 2), leftBank("Gauche"),
 	leftBank.addPersons(persons);
 	boat.setBank(&leftBank);
 
+	// TMP
 	boat.addPerson(father);
 }
 

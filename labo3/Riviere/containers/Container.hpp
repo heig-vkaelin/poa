@@ -1,7 +1,3 @@
-//
-// Created by Valentin Kaelin on 14.04.22.
-//
-
 #ifndef RIVIERE_CONTAINER_HPP
 #define RIVIERE_CONTAINER_HPP
 
