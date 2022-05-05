@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <limits>
 #include "Controller.hpp"
 
 using namespace std;
@@ -69,6 +70,8 @@ void Controller::display() const {
 		  << setw(WIDTH) << setfill('-') << "" << endl
 		  << rightBank << endl
 		  << setw(WIDTH) << setfill('-') << "" << endl;
+
+	cout.fill(0);
 }
 
 void Controller::nextTurn() {
