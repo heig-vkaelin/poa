@@ -4,4 +4,4 @@ project(exercices)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wconversion -Wsign-conversion -pedantic")
 
-add_executable(exercices main.cpp Season/Season.cpp Season/Season.hpp Array/Array_impl.hpp Array/Array.hpp)
+add_executable(exercices main.cpp Season/Season.cpp Season/Season.hpp Array/Array_impl.hpp Array/Array.hpp Musician/Musician.cpp Musician/Musician.hpp Musician/Band.cpp Musician/Band.hpp)
