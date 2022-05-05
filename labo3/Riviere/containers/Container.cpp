@@ -47,6 +47,10 @@ std::string Container::personsToString() const {
 	return result;
 }
 
+list<const Person*>& Container::getPersons() {
+	return persons;
+}
+
 bool Container::contains(const Person* person) const {
 	return find(persons.begin(), persons.end(), person) != persons.end();
 }

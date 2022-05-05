@@ -93,10 +93,14 @@ protected:
 	 */
 	std::string personsToString() const;
 
-	std::list<const Person*> persons;
+	/**
+	 * @return les personnes dans le conteneur
+	 */
+	std::list<const Person*>& getPersons();
 
 private:
 	std::string name;
+	std::list<const Person*> persons;
 };
 
 #endif // RIVIERE_CONTAINER_HPP

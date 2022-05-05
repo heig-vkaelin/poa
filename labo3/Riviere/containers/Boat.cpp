@@ -7,7 +7,7 @@
 using namespace std;
 
 Boat::Boat(const string& name, size_t capacity)
-	: Container(name), capacity(capacity) {
+	: Container(name), bank(nullptr), capacity(capacity) {
 }
 
 ostream& Boat::toStream(ostream& os) const {
@@ -23,9 +23,8 @@ void Boat::setBank(const Bank* newBank) {
 }
 
 bool Boat::hasDriver() {
-	for (const Person* person: persons) {
-		if (person->canDrive())
-			return true;
-	}
-	return false;
+	return std::any_of(getPersons().begin(), getPersons().end(),
+							 [](const Person* person) {
+								 return person->canDrive();
+							 });
 }
