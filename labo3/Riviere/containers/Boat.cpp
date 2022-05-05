@@ -2,6 +2,7 @@
 // Created by Valentin Kaelin on 14.04.22.
 //
 
+#include <algorithm>
 #include "Boat.hpp"
 
 using namespace std;
