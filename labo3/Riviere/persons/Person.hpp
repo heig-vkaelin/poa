@@ -19,7 +19,7 @@ public:
 	explicit Person(const std::string& name) { this->name = name; }
 
 	// TODO: abstract (= 0)
-	virtual bool canDrive() const { return false; };
+	virtual bool canDrive() const { return true; };
 
 	/**
 	 * @return le nom de la personne

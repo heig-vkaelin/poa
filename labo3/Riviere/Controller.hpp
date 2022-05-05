@@ -50,6 +50,10 @@ private:
 
 	void handleCommand(char command);
 
+	void moveBoat();
+
+	static void displayError(const std::string& error) ;
+
 	std::list<const Person*> persons;
 	Boat boat;
 	Bank leftBank;

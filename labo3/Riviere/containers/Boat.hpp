@@ -37,6 +37,11 @@ public:
 	 */
 	void setBank(const Bank* bank);
 
+	/**
+	 * @return true si le bateau a un pilote, false sinon
+	 */
+	bool hasDriver();
+
 private:
 	const Bank* bank;
 	std::size_t capacity;

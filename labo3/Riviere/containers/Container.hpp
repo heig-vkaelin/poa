@@ -93,9 +93,10 @@ protected:
 	 */
 	std::string personsToString() const;
 
+	std::list<const Person*> persons;
+
 private:
 	std::string name;
-	std::list<const Person*> persons;
 };
 
 #endif // RIVIERE_CONTAINER_HPP

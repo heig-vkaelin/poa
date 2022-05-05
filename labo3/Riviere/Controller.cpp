@@ -34,6 +34,8 @@ Controller::Controller() : boat("Bateau", 2), leftBank("Gauche"),
 	// Situation initiale
 	leftBank.addPersons(persons);
 	boat.setBank(&leftBank);
+
+	boat.addPerson(father);
 }
 
 void Controller::showMenu() {
@@ -77,6 +79,7 @@ void Controller::nextTurn() {
 
 	// TODO: seulement augmenter le tour s'il le faut
 	turn++;
+	display();
 }
 
 void Controller::init() {
@@ -113,9 +116,7 @@ void Controller::handleCommand(char command) {
 			break;
 		}
 		case MOVE:
-			// TODO
-			// Check que le bateau ait un conducteur
-			// Le switch de rive
+			moveBoat();
 			break;
 		case RESET:
 			reset();
@@ -128,6 +129,18 @@ void Controller::handleCommand(char command) {
 			break;
 		default:
 			cout << "Commande inconnue" << endl;
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			break;
 	}
+}
+
+void Controller::moveBoat() {
+	if (boat.hasDriver())
+		boat.setBank(boat.getBank() == &leftBank ? &rightBank : &leftBank);
+	else
+		displayError("Bateau sans conducteur");
+}
+
+void Controller::displayError(const string& error) {
+	cout << "### " << error << endl;
 }

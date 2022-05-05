@@ -21,3 +21,11 @@ const Bank* Boat::getBank() const {
 void Boat::setBank(const Bank* newBank) {
 	bank = newBank;
 }
+
+bool Boat::hasDriver() {
+	for (const Person* person: persons) {
+		if (person->canDrive())
+			return true;
+	}
+	return false;
+}
