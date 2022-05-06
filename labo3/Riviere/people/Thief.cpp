@@ -14,5 +14,5 @@ Thief::Thief(const string& name, const IndependantPerson& policeman) :
 
 bool Thief::isStateValid(const Container& container) const {
 	return find(container.getPeople().begin(), container.getPeople().end(),
-					policeman) == container.getPeople().end();
+					policeman) != container.getPeople().end();
 }
