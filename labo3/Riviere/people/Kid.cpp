@@ -2,6 +2,7 @@
 // Created by Valentin Kaelin on 05.05.22.
 //
 
+#include <algorithm>
 #include "Kid.hpp"
 #include "../containers/Container.hpp"
 
@@ -11,7 +12,11 @@ Kid::Kid(const std::string& name, const IndependantPerson& dependsOn,
 }
 
 bool Kid::isStateValid(const Container& container) const {
-	// TODO: check si ya le cannotStayWith, si oui, il faut aussi qu'il y ait le
-	//  dependsOn (avec 2 bool et une boucle ça doit etre ez)
-	return false;
+
+   bool isWithCannotStayWith = find(container.getPeople().begin(), container.getPeople().end(),
+                                    cannotStayWith) != container.getPeople().end();
+   bool isWithDependsOn = find(container.getPeople().begin(), container.getPeople().end(),
+                               dependsOn) != container.getPeople().end();
+
+   return !isWithCannotStayWith || isWithDependsOn;
 }

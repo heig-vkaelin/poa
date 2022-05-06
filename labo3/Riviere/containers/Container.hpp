@@ -60,7 +60,7 @@ public:
 	const std::string& getName() const;
 
 	/**
-	 * Cherche une personne par so nom
+	 * Cherche une personne par son nom
 	 * @param name : nom de la personne recherchée
 	 * @return un pointeur sur la personne si elle est dans le conteneur, nullptr
 	 * sinon
