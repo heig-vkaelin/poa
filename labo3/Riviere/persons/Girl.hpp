@@ -11,8 +11,8 @@
  */
 class Girl : public Kid {
 public:
-	Girl(const std::string& name, const IndependantPerson* mother,
-		 const IndependantPerson* father);
+	Girl(const std::string& name, const IndependantPerson& mother,
+		 const IndependantPerson& father);
 };
 
 #endif // RIVIERE_GIRL_HPP

@@ -19,12 +19,12 @@ Controller::Controller() : boat("Bateau", 2), leftBank("Gauche"),
 	// Personnes
 	IndependantPerson* father = new IndependantPerson{"pere"};
 	IndependantPerson* mother = new IndependantPerson{"mere"};
-	Boy* paul = new Boy{"paul", mother, father};
-	Boy* pierre = new Boy{"pierre", mother, father};
-	Girl* julie = new Girl{"julie", mother, father};
-	Girl* jeanne = new Girl{"jeanne", mother, father};
+	Boy* paul = new Boy{"paul", *mother, *father};
+	Boy* pierre = new Boy{"pierre", *mother, *father};
+	Girl* julie = new Girl{"julie", *mother, *father};
+	Girl* jeanne = new Girl{"jeanne", *mother, *father};
 	IndependantPerson* policeman = new IndependantPerson{"policier"};
-	Thief* thief = new Thief{"voleur", policeman};
+	Thief* thief = new Thief{"voleur", *policeman};
 
 	persons.emplace_back(father);
 	persons.emplace_back(mother);
@@ -37,10 +37,10 @@ Controller::Controller() : boat("Bateau", 2), leftBank("Gauche"),
 
 	// Situation initiale
 	leftBank.addPersons(persons);
-	boat.setBank(&leftBank);
+	boat.setBank(leftBank);
 
 	// TMP
-	boat.addPerson(father);
+	boat.addPerson(*father);
 }
 
 void Controller::showMenu() {
@@ -62,12 +62,12 @@ void Controller::display() const {
 		<< leftBank << endl
 		<< setw(WIDTH) << setfill('-') << "" << endl;
 
-	if (boat.getBank() == &leftBank)
+	if (boat.isDockedTo(leftBank))
 		cout << boat;
 
 	cout << endl << setw(WIDTH) << setfill('=') << "" << endl;
 
-	if (boat.getBank() == &rightBank)
+	if (boat.isDockedTo(rightBank))
 		cout << boat;
 
 	cout << endl
@@ -98,7 +98,7 @@ void Controller::reset() {
 	leftBank.clear();
 	rightBank.clear();
 	leftBank.addPersons(persons);
-	boat.setBank(&leftBank);
+	boat.setBank(leftBank);
 }
 
 bool Controller::hasEnded() const {
@@ -143,7 +143,7 @@ void Controller::handleCommand(char command) {
 
 void Controller::moveBoat() {
 	if (boat.hasDriver())
-		boat.setBank(boat.getBank() == &leftBank ? &rightBank : &leftBank);
+		boat.setBank(boat.isDockedTo(leftBank) ? rightBank : leftBank);
 	else
 		displayError("Bateau sans conducteur");
 }

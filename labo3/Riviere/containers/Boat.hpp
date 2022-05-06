@@ -23,15 +23,17 @@ public:
 	std::ostream& toStream(std::ostream& os) const override;
 
 	/**
-	 * @return un pointeur sur la rive actuelle du bateau
+	 * Vérifie si le bâteau est à quai de la rive souhaitée
+	 * @param bank : la rive à vérifier
+	 * @return true si le bâteau se trouve bien sur la rive, false sinon
 	 */
-	const Bank* getBank() const;
+	bool isDockedTo(const Bank& bank) const;
 
 	/**
 	 * Modifie la rive actuelle du bateau
 	 * @param bank : un pointeur sur la nouveau rive
 	 */
-	void setBank(const Bank* bank);
+	void setBank(const Bank& bank);
 
 	/**
 	 * @return true si le bateau a un pilote, false sinon

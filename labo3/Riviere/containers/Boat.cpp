@@ -15,12 +15,12 @@ ostream& Boat::toStream(ostream& os) const {
 	return os << getName() << ": < " << personsToString() << " >";
 }
 
-const Bank* Boat::getBank() const {
-	return bank;
+bool Boat::isDockedTo(const Bank& isOnBank) const {
+	return bank == &isOnBank;
 }
 
-void Boat::setBank(const Bank* newBank) {
-	bank = newBank;
+void Boat::setBank(const Bank& newBank) {
+	bank = &newBank;
 }
 
 bool Boat::hasDriver() {

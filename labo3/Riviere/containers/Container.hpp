@@ -36,7 +36,7 @@ public:
 	 * @param person : pointeur sur la personne à ajouter
 	 * @return true si l'opération a été effectuée, false sinon
 	 */
-	bool addPerson(const Person* person);
+	bool addPerson(const Person& person);
 
 	/**
 	 * Ajoute plusieurs personnes au conteneur
@@ -82,7 +82,7 @@ protected:
 	 * @param person : personne à vérifier
 	 * @return true si la personne est là, false sinon
 	 */
-	bool contains(const Person* person) const;
+	bool contains(const Person& person) const;
 
 	/**
 	 * @return les personnes contenues sous représentation textuelle

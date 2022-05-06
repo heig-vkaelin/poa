@@ -15,17 +15,17 @@ Container::Container(const string& name) {
 	this->name = name;
 }
 
-bool Container::addPerson(const Person* person) {
-	if (person == nullptr || contains(person))
+bool Container::addPerson(const Person& person) {
+	if (contains(person))
 		return false;
 
-	persons.push_back(person);
+	persons.push_back(&person);
 	return true;
 }
 
 void Container::addPersons(const list<const Person*>& list) {
 	for (const Person* person: list)
-		addPerson(person);
+		addPerson(*person);
 }
 
 bool Container::empty() const {
@@ -51,8 +51,8 @@ list<const Person*>& Container::getPersons() {
 	return persons;
 }
 
-bool Container::contains(const Person* person) const {
-	return find(persons.begin(), persons.end(), person) != persons.end();
+bool Container::contains(const Person& person) const {
+	return find(persons.begin(), persons.end(), &person) != persons.end();
 }
 
 const Person* Container::findByName(const string& nameToFind) const {

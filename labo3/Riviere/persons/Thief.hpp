@@ -13,7 +13,7 @@
  */
 class Thief : public DependantPerson {
 public:
-	Thief(const std::string& name, const IndependantPerson* policeman);
+	Thief(const std::string& name, const IndependantPerson& policeman);
 private:
 	const IndependantPerson* policeman;
 };

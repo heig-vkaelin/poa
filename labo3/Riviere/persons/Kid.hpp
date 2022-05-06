@@ -12,12 +12,12 @@
  */
 class Kid : public DependantPerson {
 public:
-	Kid(const std::string& name, const IndependantPerson* mother,
-		 const IndependantPerson* father);
+	Kid(const std::string& name, const IndependantPerson& dependsOn,
+		 const IndependantPerson& cannotStayWith);
 
 private:
-	const IndependantPerson* mother;
-	const IndependantPerson* father;
+	const IndependantPerson* dependsOn;
+	const IndependantPerson* cannotStayWith;
 };
 
 

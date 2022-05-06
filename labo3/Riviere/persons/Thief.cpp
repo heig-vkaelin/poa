@@ -4,6 +4,6 @@
 
 #include "Thief.hpp"
 
-Thief::Thief(const std::string& name, const IndependantPerson* policeman) :
-	DependantPerson(name), policeman(policeman) {
+Thief::Thief(const std::string& name, const IndependantPerson& policeman) :
+	DependantPerson(name), policeman(&policeman) {
 }
