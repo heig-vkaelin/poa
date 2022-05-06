@@ -25,6 +25,12 @@ public:
 	void display() const;
 
 	/**
+	 * Affiche une erreur dans la console
+	 * @param error : l'erreur à afficher
+	 */
+	static void displayError(const std::string& error);
+
+	/**
 	 * Passe au tour suivant
 	 */
 	void nextTurn();
@@ -62,10 +68,6 @@ private:
 	void movePerson(Container& from, Container& to);
 
 	Bank& getCurrentBank();
-
-	bool isGameStateValid();
-
-	static void displayError(const std::string& error);
 
 	std::list<const Person*> people;
 	Boat boat;

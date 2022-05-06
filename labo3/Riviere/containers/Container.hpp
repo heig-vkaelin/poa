@@ -79,6 +79,12 @@ public:
 	const Person* findByName(const std::string& name) const;
 
 	/**
+	 * Vérifie l'état des personnes dans le conteneur
+	 * @return true si les personnes peuvent bien rester entre elles, false sinon
+	 */
+	bool isValid() const;
+
+	/**
 	 * Affiche le conteneur sur le stream souhaité
 	 * @param os : stream sur lequel afficher le conteneur
 	 * @return le stream avec les infos du conteneur

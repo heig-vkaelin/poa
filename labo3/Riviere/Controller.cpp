@@ -64,6 +64,10 @@ void Controller::display() const {
 	cout.fill(0);
 }
 
+void Controller::displayError(const string& error) {
+	cout << "### " << error << endl;
+}
+
 void Controller::nextTurn() {
 	cout << turn << ">";
 	char command;
@@ -173,7 +177,7 @@ void Controller::movePerson(Container& from, Container& to) {
 	from.removePerson(*person);
 
 	// On annule le déplacement de la personne s'il n'est pas valide
-	if (!isGameStateValid()) {
+	if (!getCurrentBank().isValid() || !boat.isValid()) {
 		from.addPerson(*person);
 		to.removePerson(*person);
 	}
@@ -181,25 +185,4 @@ void Controller::movePerson(Container& from, Container& to) {
 
 Bank& Controller::getCurrentBank() {
 	return boat.isDockedTo(leftBank) ? leftBank : rightBank;
-}
-
-bool Controller::isGameStateValid() {
-	for (const Person* person: getCurrentBank()) {
-		if (!person->isStateValid(getCurrentBank())) {
-			displayError(person->getErrorMessage());
-			return false;
-		}
-	}
-
-	for (const Person* person: boat) {
-		if (!person->isStateValid(boat)) {
-			displayError(person->getErrorMessage());
-			return false;
-		}
-	}
-	return true;
-}
-
-void Controller::displayError(const string& error) {
-	cout << "### " << error << endl;
 }
