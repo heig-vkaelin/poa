@@ -3,7 +3,7 @@
 
 #include "containers/Bank.hpp"
 #include "containers/Boat.hpp"
-#include "persons/Person.hpp"
+#include "people/Person.hpp"
 #include <list>
 
 /**
@@ -50,7 +50,7 @@ private:
 
 	static void displayError(const std::string& error) ;
 
-	std::list<const Person*> persons;
+	std::list<const Person*> people;
 	Boat boat;
 	Bank leftBank;
 	Bank rightBank;

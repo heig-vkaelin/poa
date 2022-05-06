@@ -4,7 +4,7 @@
 #include <string>
 #include <list>
 #include <iostream>
-#include "../persons/Person.hpp"
+#include "../people/Person.hpp"
 
 /**
  * Classe abstraite représentant une conteneur de tout type
@@ -42,7 +42,7 @@ public:
 	 * Ajoute plusieurs personnes au conteneur
 	 * @param list : liste des personnes à ajouter
 	 */
-	void addPersons(const std::list<const Person*>& list);
+	void addPeople(const std::list<const Person*>& list);
 
 	/**
 	 * @return true si le conteneur est vide, false sinon
@@ -87,16 +87,16 @@ protected:
 	/**
 	 * @return les personnes contenues sous représentation textuelle
 	 */
-	std::string personsToString() const;
+	std::string peopleToString() const;
 
 	/**
 	 * @return les personnes dans le conteneur
 	 */
-	std::list<const Person*>& getPersons();
+	std::list<const Person*>& getPeople();
 
 private:
 	std::string name;
-	std::list<const Person*> persons;
+	std::list<const Person*> people;
 };
 
 #endif // RIVIERE_CONTAINER_HPP

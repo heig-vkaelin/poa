@@ -12,7 +12,7 @@ Boat::Boat(const string& name, size_t capacity)
 }
 
 ostream& Boat::toStream(ostream& os) const {
-	return os << getName() << ": < " << personsToString() << " >";
+	return os << getName() << ": < " << peopleToString() << " >";
 }
 
 bool Boat::isDockedTo(const Bank& isOnBank) const {
@@ -24,7 +24,7 @@ void Boat::setBank(const Bank& newBank) {
 }
 
 bool Boat::hasDriver() {
-	return std::any_of(getPersons().begin(), getPersons().end(),
+	return std::any_of(getPeople().begin(), getPeople().end(),
 							 [](const Person* person) {
 								 return person->canDrive();
 							 });

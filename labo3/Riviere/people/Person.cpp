@@ -6,6 +6,9 @@
 
 using namespace std;
 
+Person::Person(const string& name) : name(name) {
+}
+
 string Person::getName() const {
 	return name;
 }

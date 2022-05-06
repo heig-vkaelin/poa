@@ -6,10 +6,10 @@
 #include <iomanip>
 #include <limits>
 #include "Controller.hpp"
-#include "persons/IndependantPerson.hpp"
-#include "persons/Thief.hpp"
-#include "persons/Boy.hpp"
-#include "persons/Girl.hpp"
+#include "people/IndependantPerson.hpp"
+#include "people/Thief.hpp"
+#include "people/Boy.hpp"
+#include "people/Girl.hpp"
 
 using namespace std;
 
@@ -26,17 +26,17 @@ Controller::Controller() : boat("Bateau", 2), leftBank("Gauche"),
 	IndependantPerson* policeman = new IndependantPerson{"policier"};
 	Thief* thief = new Thief{"voleur", *policeman};
 
-	persons.emplace_back(father);
-	persons.emplace_back(mother);
-	persons.emplace_back(paul);
-	persons.emplace_back(pierre);
-	persons.emplace_back(julie);
-	persons.emplace_back(jeanne);
-	persons.emplace_back(policeman);
-	persons.emplace_back(thief);
+	people.emplace_back(father);
+	people.emplace_back(mother);
+	people.emplace_back(paul);
+	people.emplace_back(pierre);
+	people.emplace_back(julie);
+	people.emplace_back(jeanne);
+	people.emplace_back(policeman);
+	people.emplace_back(thief);
 
 	// Situation initiale
-	leftBank.addPersons(persons);
+	leftBank.addPeople(people);
 	boat.setBank(leftBank);
 
 	// TMP
@@ -97,7 +97,7 @@ void Controller::reset() {
 	boat.clear();
 	leftBank.clear();
 	rightBank.clear();
-	leftBank.addPersons(persons);
+	leftBank.addPeople(people);
 	boat.setBank(leftBank);
 }
 
