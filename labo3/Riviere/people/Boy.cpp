@@ -4,6 +4,7 @@
 
 #include "Boy.hpp"
 
-Boy::Boy(const std::string& name, const IndependantPerson& mother,
-			const IndependantPerson& father) : Kid(name, mother, father) {
+Boy::Boy(const std::string& name, const IndependantPerson& dependsOn,
+			const IndependantPerson& cannotStayWith)
+	: Kid(name, dependsOn, cannotStayWith) {
 }

@@ -22,6 +22,8 @@ public:
 
 	std::ostream& toStream(std::ostream& os) const override;
 
+	bool addPerson(const Person& person) override;
+
 	/**
 	 * Vérifie si le bâteau est à quai de la rive souhaitée
 	 * @param bank : la rive à vérifier

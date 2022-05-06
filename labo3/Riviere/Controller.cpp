@@ -19,8 +19,8 @@ Controller::Controller() : boat("Bateau", 2), leftBank("Gauche"),
 	// Personnes
 	IndependantPerson* father = new IndependantPerson{"pere"};
 	IndependantPerson* mother = new IndependantPerson{"mere"};
-	Boy* paul = new Boy{"paul", *mother, *father};
-	Boy* pierre = new Boy{"pierre", *mother, *father};
+	Boy* paul = new Boy{"paul", *father, *mother};
+	Boy* pierre = new Boy{"pierre", *father, *mother};
 	Girl* julie = new Girl{"julie", *mother, *father};
 	Girl* jeanne = new Girl{"jeanne", *mother, *father};
 	IndependantPerson* policeman = new IndependantPerson{"policier"};
@@ -38,9 +38,6 @@ Controller::Controller() : boat("Bateau", 2), leftBank("Gauche"),
 	// Situation initiale
 	leftBank.addPeople(people);
 	boat.setBank(leftBank);
-
-	// TMP
-	boat.addPerson(*father);
 }
 
 void Controller::showMenu() {
@@ -113,15 +110,43 @@ void Controller::handleCommand(char command) {
 		case EMBARK: {
 			string name;
 			cin >> name;
-			// TODO: findByName dans le container et erreur s'il est pas là, sinon on
-			//  essaie de le foutre dedans + on check
+			const Person* person = getCurrentBank().findByName(name);
+			if (!person) {
+				displayError(name + " ne se trouve pas dans la rive.");
+				return;
+			}
+
+			getCurrentBank().removePerson(*person);
+			bool successfullyAddedToBoat = boat.addPerson(*person);
+			if (!successfullyAddedToBoat)
+				displayError("Le bateau est plein!");
+
+			// On annule le déplacement de la personne
+			if (!isGameStateValid()) {
+				boat.removePerson(*person);
+				getCurrentBank().addPerson(*person);
+				// TODO: afficher msg erreur en faisant:
+//				displayError(person.getErrorMessage());
+			}
 			break;
 		}
 		case DISEMBARK: {
 			string name;
 			cin >> name;
-			// TODO: findByName dans le container et erreur s'il est pas là, sinon on
-			//  essaie de l'enlever + on check
+			const Person* person = boat.findByName(name);
+			if (!person) {
+				displayError(name + " ne se trouve pas dans la rive.");
+				return;
+			}
+
+			getCurrentBank().addPerson(*person);
+			boat.removePerson(*person);
+			if (!isGameStateValid()) {
+				boat.addPerson(*person);
+				getCurrentBank().removePerson(*person);
+				// TODO: afficher msg erreur en faisant:
+//				displayError(person.getErrorMessage());
+			}
 			break;
 		}
 		case MOVE:
@@ -148,6 +173,23 @@ void Controller::moveBoat() {
 		boat.setBank(boat.isDockedTo(leftBank) ? rightBank : leftBank);
 	else
 		displayError("Bateau sans conducteur");
+}
+
+Bank& Controller::getCurrentBank() {
+	return boat.isDockedTo(leftBank) ? leftBank : rightBank;
+}
+
+bool Controller::isGameStateValid() {
+	bool valid = true;
+	for (const Person* person: getCurrentBank().getPeople()) {
+		if (!person->isStateValid(getCurrentBank()))
+			return false;
+	}
+	for (const Person* person: boat.getPeople()) {
+		if (!person->isStateValid(boat))
+			return false;
+	}
+	return valid;
 }
 
 void Controller::displayError(const string& error) {

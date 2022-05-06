@@ -28,6 +28,10 @@ void Container::addPeople(const list<const Person*>& list) {
 		addPerson(*person);
 }
 
+void Container::removePerson(const Person& person) {
+	people.remove(&person);
+}
+
 bool Container::empty() const {
 	return people.empty();
 }
@@ -61,7 +65,3 @@ const Person* Container::findByName(const string& nameToFind) const {
 			return person;
 	return nullptr;
 }
-
-
-
-

@@ -11,6 +11,6 @@ bool IndependantPerson::canDrive() const {
 	return true;
 }
 
-bool IndependantPerson::isStateValid(const Container& container) const {
+bool IndependantPerson::isStateValid(const Container&) const {
 	return true;
 }

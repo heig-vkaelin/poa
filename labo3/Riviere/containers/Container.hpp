@@ -36,13 +36,19 @@ public:
 	 * @param person : pointeur sur la personne à ajouter
 	 * @return true si l'opération a été effectuée, false sinon
 	 */
-	bool addPerson(const Person& person);
+	virtual bool addPerson(const Person& person);
 
 	/**
 	 * Ajoute plusieurs personnes au conteneur
 	 * @param list : liste des personnes à ajouter
 	 */
 	void addPeople(const std::list<const Person*>& list);
+
+	/**
+	 * Supprime la personne du conteneur (si elle se trouve à l'intérieur)
+	 * @param person  : la personne à supprimer
+	 */
+	void removePerson(const Person& person);
 
 	/**
 	 * @return true si le conteneur est vide, false sinon

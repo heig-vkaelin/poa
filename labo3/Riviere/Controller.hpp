@@ -48,7 +48,11 @@ private:
 
 	void moveBoat();
 
-	static void displayError(const std::string& error) ;
+	Bank& getCurrentBank();
+
+	bool isGameStateValid();
+
+	static void displayError(const std::string& error);
 
 	std::list<const Person*> people;
 	Boat boat;
