@@ -15,6 +15,8 @@ public:
 	Kid(const std::string& name, const IndependantPerson& dependsOn,
 		 const IndependantPerson& cannotStayWith);
 
+	bool isStateValid(const Container& container) const override;
+
 private:
 	const IndependantPerson* dependsOn;
 	const IndependantPerson* cannotStayWith;

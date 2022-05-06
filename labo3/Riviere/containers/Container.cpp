@@ -47,7 +47,7 @@ std::string Container::peopleToString() const {
 	return result;
 }
 
-list<const Person*>& Container::getPeople() {
+const list<const Person*>& Container::getPeople() const {
 	return people;
 }
 

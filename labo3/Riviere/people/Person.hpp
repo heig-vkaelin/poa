@@ -1,8 +1,9 @@
 #ifndef RIVIERE_PERSON_HPP
 #define RIVIERE_PERSON_HPP
 
-#include <list>
 #include <string>
+
+class Container;
 
 /**
  * Classe abstraite représentant une personne
@@ -23,14 +24,12 @@ public:
 	 */
 	virtual bool canDrive() const = 0;
 
-	// TODO: abstract = 0
 	/**
 	 * Vérifie si l'état du conteneur vérifie les contraintes de la personne
-	 * @param peopleInContainer : liste des personnes dans le conteneur
+	 * @param container : le conteneur à vérifier
 	 * @return true si les contraintes sont bien vérifiées, false sinon
 	 */
-	virtual bool isStateValid(std::list<Person*> peopleInContainer) const
-	{return true;};
+	virtual bool isStateValid(const Container& container) const = 0;
 
 	/**
 	 * @return le nom de la personne

@@ -111,15 +111,17 @@ void Controller::handleCommand(char command) {
 			display();
 			break;
 		case EMBARK: {
-			// TODO
 			string name;
 			cin >> name;
+			// TODO: findByName dans le container et erreur s'il est pas là, sinon on
+			//  essaie de le foutre dedans + on check
 			break;
 		}
 		case DISEMBARK: {
-			// TODO
 			string name;
 			cin >> name;
+			// TODO: findByName dans le container et erreur s'il est pas là, sinon on
+			//  essaie de l'enlever + on check
 			break;
 		}
 		case MOVE:

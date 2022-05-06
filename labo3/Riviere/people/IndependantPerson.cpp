@@ -10,3 +10,7 @@ IndependantPerson::IndependantPerson(const std::string& name) : Person(name) {
 bool IndependantPerson::canDrive() const {
 	return true;
 }
+
+bool IndependantPerson::isStateValid(const Container& container) const {
+	return true;
+}

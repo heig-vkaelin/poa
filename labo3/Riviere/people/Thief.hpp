@@ -14,6 +14,9 @@
 class Thief : public DependantPerson {
 public:
 	Thief(const std::string& name, const IndependantPerson& policeman);
+
+	bool isStateValid(const Container& container) const override;
+
 private:
 	const IndependantPerson* policeman;
 };

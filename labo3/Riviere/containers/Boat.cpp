@@ -24,7 +24,7 @@ void Boat::setBank(const Bank& newBank) {
 }
 
 bool Boat::hasDriver() {
-	return std::any_of(getPeople().begin(), getPeople().end(),
+	return any_of(getPeople().begin(), getPeople().end(),
 							 [](const Person* person) {
 								 return person->canDrive();
 							 });

@@ -76,6 +76,12 @@ public:
 
 	virtual ~Container() = default;
 
+	/**
+	 * @return les personnes dans le conteneur
+	 */
+	// TODO: en public pour le moment psk facilite mais faudra modif
+	const std::list<const Person*>& getPeople() const;
+
 protected:
 	/**
 	 * Vérifie si une personne est déjà dans le conteneur
@@ -88,11 +94,6 @@ protected:
 	 * @return les personnes contenues sous représentation textuelle
 	 */
 	std::string peopleToString() const;
-
-	/**
-	 * @return les personnes dans le conteneur
-	 */
-	std::list<const Person*>& getPeople();
 
 private:
 	std::string name;
