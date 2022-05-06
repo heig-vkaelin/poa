@@ -17,6 +17,8 @@ public:
 
 	bool isStateValid(const Container& container) const override;
 
+	std::string getErrorMessage() const override;
+
 private:
 	const IndependantPerson* policeman;
 };

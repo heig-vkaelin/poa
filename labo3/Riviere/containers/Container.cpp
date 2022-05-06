@@ -36,6 +36,10 @@ bool Container::empty() const {
 	return people.empty();
 }
 
+size_t Container::size() const {
+	return people.size();
+}
+
 void Container::clear() {
 	people.clear();
 }
@@ -64,4 +68,12 @@ const Person* Container::findByName(const string& nameToFind) const {
 		if (person->getName() == nameToFind)
 			return person;
 	return nullptr;
+}
+
+list<const Person*>::const_iterator Container::begin() const {
+	return people.begin();
+}
+
+list<const Person*>::const_iterator Container::end() const {
+	return people.end();
 }

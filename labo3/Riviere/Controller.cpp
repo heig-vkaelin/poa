@@ -40,18 +40,6 @@ Controller::Controller() : boat("Bateau", 2), leftBank("Gauche"),
 	boat.setBank(leftBank);
 }
 
-void Controller::showMenu() {
-	const int PADDING = 6;
-	const char SPACE = ' ';
-	cout << DISPLAY << setw(PADDING) << SPACE << ": afficher" << endl
-		  << EMBARK << setw(PADDING) << "<nom>" << ": embarquer <nom>" << endl
-		  << DISEMBARK << setw(PADDING) << "<nom>" << ": debarquer <nom>" << endl
-		  << MOVE << setw(PADDING) << SPACE << ": deplacer bateau" << endl
-		  << RESET << setw(PADDING) << SPACE << ": reinitialiser" << endl
-		  << QUIT << setw(PADDING) << SPACE << ": quitter" << endl
-		  << MENU << setw(PADDING) << SPACE << ": menu" << endl;
-}
-
 void Controller::display() const {
 	const unsigned WIDTH = 59;
 	cout
@@ -72,6 +60,7 @@ void Controller::display() const {
 		  << rightBank << endl
 		  << setw(WIDTH) << setfill('-') << "" << endl;
 
+	// Remise à 0 du fill sur le stream
 	cout.fill(0);
 }
 
@@ -80,10 +69,40 @@ void Controller::nextTurn() {
 	char command;
 	cin >> command;
 	handleCommand(command);
-
-	// TODO: seulement augmenter le tour s'il le faut
 	turn++;
-	display();
+	if (hasWon()) {
+		// TODO: essayer de trouver mieux que cette dingz
+		display();
+		cout << "Bravo, vous avez termine la partie!" << endl;
+		ended = true;
+	}
+	if (!hasEnded())
+		display();
+}
+
+void Controller::showMenu() {
+	const int PADDING = 6;
+	const char SPACE = ' ';
+	cout << DISPLAY << setw(PADDING) << SPACE << ": afficher" << endl
+		  << EMBARK << setw(PADDING) << "<nom>" << ": embarquer <nom>" << endl
+		  << DISEMBARK << setw(PADDING) << "<nom>" << ": debarquer <nom>" << endl
+		  << MOVE << setw(PADDING) << SPACE << ": deplacer bateau" << endl
+		  << RESET << setw(PADDING) << SPACE << ": reinitialiser" << endl
+		  << QUIT << setw(PADDING) << SPACE << ": quitter" << endl
+		  << MENU << setw(PADDING) << SPACE << ": menu" << endl;
+}
+
+bool Controller::hasWon() const {
+	return leftBank.empty() && boat.empty();
+}
+
+bool Controller::hasEnded() const {
+	return ended;
+}
+
+Controller::~Controller() {
+	for (const Person* person: people)
+		delete person;
 }
 
 void Controller::init() {
@@ -98,55 +117,21 @@ void Controller::reset() {
 	boat.setBank(leftBank);
 }
 
-bool Controller::hasEnded() const {
-	return ended;
-}
-
 void Controller::handleCommand(char command) {
 	switch (command) {
 		case DISPLAY:
 			display();
 			break;
 		case EMBARK: {
-			string name;
-			cin >> name;
-			const Person* person = getCurrentBank().findByName(name);
-			if (!person) {
-				displayError(name + " ne se trouve pas dans la rive.");
-				return;
+			if (boat.isFull()) {
+				displayError("Le bateau est plein.");
+				break;
 			}
-
-			getCurrentBank().removePerson(*person);
-			bool successfullyAddedToBoat = boat.addPerson(*person);
-			if (!successfullyAddedToBoat)
-				displayError("Le bateau est plein!");
-
-			// On annule le déplacement de la personne
-			if (!isGameStateValid()) {
-				boat.removePerson(*person);
-				getCurrentBank().addPerson(*person);
-				// TODO: afficher msg erreur en faisant:
-//				displayError(person.getErrorMessage());
-			}
+			movePerson(getCurrentBank(), boat);
 			break;
 		}
 		case DISEMBARK: {
-			string name;
-			cin >> name;
-			const Person* person = boat.findByName(name);
-			if (!person) {
-				displayError(name + " ne se trouve pas dans la rive.");
-				return;
-			}
-
-			getCurrentBank().addPerson(*person);
-			boat.removePerson(*person);
-			if (!isGameStateValid()) {
-				boat.addPerson(*person);
-				getCurrentBank().removePerson(*person);
-				// TODO: afficher msg erreur en faisant:
-//				displayError(person.getErrorMessage());
-			}
+			movePerson(boat, getCurrentBank());
 			break;
 		}
 		case MOVE:
@@ -162,10 +147,10 @@ void Controller::handleCommand(char command) {
 			showMenu();
 			break;
 		default:
-			cout << "Commande inconnue" << endl;
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			displayError("Commande inconnue");
 			break;
 	}
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
 void Controller::moveBoat() {
@@ -175,21 +160,44 @@ void Controller::moveBoat() {
 		displayError("Bateau sans conducteur");
 }
 
+void Controller::movePerson(Container& from, Container& to) {
+	string name;
+	cin >> name;
+	const Person* person = from.findByName(name);
+	if (!person) {
+		displayError(name + " ne se trouve pas dans la rive.");
+		return;
+	}
+
+	to.addPerson(*person);
+	from.removePerson(*person);
+
+	// On annule le déplacement de la personne s'il n'est pas valide
+	if (!isGameStateValid()) {
+		from.addPerson(*person);
+		to.removePerson(*person);
+	}
+}
+
 Bank& Controller::getCurrentBank() {
 	return boat.isDockedTo(leftBank) ? leftBank : rightBank;
 }
 
 bool Controller::isGameStateValid() {
-	bool valid = true;
-	for (const Person* person: getCurrentBank().getPeople()) {
-		if (!person->isStateValid(getCurrentBank()))
+	for (const Person* person: getCurrentBank()) {
+		if (!person->isStateValid(getCurrentBank())) {
+			displayError(person->getErrorMessage());
 			return false;
+		}
 	}
-	for (const Person* person: boat.getPeople()) {
-		if (!person->isStateValid(boat))
+
+	for (const Person* person: boat) {
+		if (!person->isStateValid(boat)) {
+			displayError(person->getErrorMessage());
 			return false;
+		}
 	}
-	return valid;
+	return true;
 }
 
 void Controller::displayError(const string& error) {

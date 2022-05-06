@@ -14,6 +14,8 @@ class Boy : public Kid {
 public:
 	Boy(const std::string& name, const IndependantPerson& dependsOn,
 		 const IndependantPerson& cannotStayWith);
+
+	std::string getErrorMessage() const override;
 };
 
 #endif // RIVIERE_BOY_HPP

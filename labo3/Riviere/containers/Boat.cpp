@@ -23,13 +23,13 @@ void Boat::setBank(const Bank& newBank) {
 	bank = &newBank;
 }
 
+bool Boat::isFull() const {
+	return getPeople().size() >= capacity;
+}
+
 bool Boat::hasDriver() {
 	return any_of(getPeople().begin(), getPeople().end(),
 					  [](const Person* person) {
 						  return person->canDrive();
 					  });
-}
-
-bool Boat::addPerson(const Person& person) {
-	return getPeople().size() < capacity && Container::addPerson(person);
 }

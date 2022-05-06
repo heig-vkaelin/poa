@@ -13,7 +13,11 @@ Thief::Thief(const string& name, const IndependantPerson& policeman) :
 }
 
 bool Thief::isStateValid(const Container& container) const {
-	return container.getPeople().size() == 1 ||
-			 find(container.getPeople().begin(), container.getPeople().end(),
-					policeman) != container.getPeople().end();
+	return container.size() == 1 ||
+			 find(container.begin(), container.end(),
+					policeman) != container.end();
+}
+
+string Thief::getErrorMessage() const {
+	return "voleur avec membre de la famille sans policier";
 }

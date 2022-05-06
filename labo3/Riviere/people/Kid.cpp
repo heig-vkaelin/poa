@@ -15,15 +15,9 @@ Kid::Kid(const string& name, const IndependantPerson& dependsOn,
 
 bool Kid::isStateValid(const Container& container) const {
 	bool isWithCannotStayWith =
-		find(container.getPeople().begin(), container.getPeople().end(),
-			  cannotStayWith) != container.getPeople().end();
+		find(container.begin(), container.end(), cannotStayWith) != container.end();
 	bool isWithDependsOn =
-		find(container.getPeople().begin(), container.getPeople().end(),
-			  dependsOn) != container.getPeople().end();
-
-//	cout << getName() << endl;
-//	cout << "cantStay: " << isWithCannotStayWith << " dependsOn: " <<
-//		  isWithDependsOn << endl;
+		find(container.begin(), container.end(), dependsOn) != container.end();
 
 	return !isWithCannotStayWith || isWithDependsOn;;
 }

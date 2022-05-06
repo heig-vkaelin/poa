@@ -8,3 +8,7 @@ Boy::Boy(const std::string& name, const IndependantPerson& dependsOn,
 			const IndependantPerson& cannotStayWith)
 	: Kid(name, dependsOn, cannotStayWith) {
 }
+
+std::string Boy::getErrorMessage() const {
+	return "garcon avec sa mere sans son pere";
+}

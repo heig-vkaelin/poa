@@ -35,9 +35,20 @@ public:
 	static void showMenu();
 
 	/**
-	 * @return true si le programme doit être arrêté
+	 * @return true si le joueur a gagné le jeu
+	 */
+	bool hasWon() const;
+
+	/**
+	 * @return true si le programme doit être arrêté (demané par l'utilisateur ou
+	 * fin du jeu)
 	 */
 	bool hasEnded() const;
+
+	/**
+	 * Destructeur du controller, désalloue toute la mémoire
+	 */
+	~Controller();
 
 private:
 	void init();
@@ -47,6 +58,8 @@ private:
 	void handleCommand(char command);
 
 	void moveBoat();
+
+	void movePerson(Container& from, Container& to);
 
 	Bank& getCurrentBank();
 

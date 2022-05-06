@@ -55,6 +55,11 @@ public:
 	 */
 	bool empty() const;
 
+	/**
+	 * @return le nombre de personnes dans le conteneur
+	 */
+	std::size_t size() const;
+
 	/*
 	 * Enlève toutes les personnes du conteneur
 	 */
@@ -80,13 +85,17 @@ public:
 	 */
 	virtual std::ostream& toStream(std::ostream& os) const = 0;
 
-	virtual ~Container() = default;
+	/**
+	 * @return un itérateur constant sur la première personne du conteneur
+	 */
+	std::list<const Person*>::const_iterator begin() const;
 
 	/**
-	 * @return les personnes dans le conteneur
+	 * @return un itérateur constant après la dernière personne du conteneur
 	 */
-	// TODO: en public pour le moment psk facilite mais faudra modif
-	const std::list<const Person*>& getPeople() const;
+	std::list<const Person*>::const_iterator end() const;
+
+	virtual ~Container() = default;
 
 protected:
 	/**
@@ -100,6 +109,11 @@ protected:
 	 * @return les personnes contenues sous représentation textuelle
 	 */
 	std::string peopleToString() const;
+
+	/**
+	 * @return les personnes dans le conteneur
+	 */
+	const std::list<const Person*>& getPeople() const;
 
 private:
 	std::string name;

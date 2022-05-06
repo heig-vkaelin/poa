@@ -22,8 +22,6 @@ public:
 
 	std::ostream& toStream(std::ostream& os) const override;
 
-	bool addPerson(const Person& person) override;
-
 	/**
 	 * Vérifie si le bâteau est à quai de la rive souhaitée
 	 * @param bank : la rive à vérifier
@@ -36,6 +34,11 @@ public:
 	 * @param bank : un pointeur sur la nouveau rive
 	 */
 	void setBank(const Bank& bank);
+
+	/**
+	 * @return true si le bâteau est plein, false sinon
+	 */
+	bool isFull() const;
 
 	/**
 	 * @return true si le bateau a un pilote, false sinon
