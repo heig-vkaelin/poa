@@ -89,6 +89,6 @@ int exMusician() {
 int main() {
 //	return exSeason();
 //	return exArray();
-	return exSharedPointer();
-//	return exMusician();
+//	return exSharedPointer();
+	return exMusician();
 }

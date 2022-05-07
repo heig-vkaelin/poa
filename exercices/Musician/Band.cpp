@@ -2,35 +2,39 @@
 // Created by Valentin Kaelin on 05.05.22.
 //
 
-#include "Band.hpp"
-
 #include <iostream>
 #include <utility>
+#include <sstream>
+#include "Band.hpp"
 
 using namespace std;
 
-Band::Band(const std::string& name) {
-	this->name = name;
-}
+Band::Band(string name) : name(move(name)), musicians() {}
 
-void Band::setMembers(list<shared_ptr<Musician>> _musicians) {
-	this->musicians = std::move(_musicians);
+void Band::setMembers(initializer_list<shared_ptr<Musician>> _musicians) {
+	// Suppression de tous les membres de l'ancien groupe
+	for (auto it = musicians.begin(); it != musicians.end();) {
+		(*it)->removeBand();
+		it = musicians.erase(it);
+	}
 
-	for (auto& musician: this->musicians) {
-		musician->setBand(shared_from_this());
+	for (const auto& musician: _musicians) {
+		if (musician->setBand(weak_from_this()))
+			musicians.push_back(musician);
 	}
 }
 
-std::string Band::getName() const {
+string Band::getName() const {
 	return name;
 }
 
-std::string Band::toString() const {
-	string result = name + ": ";
-	for (auto& musician: musicians) {
-		result += musician->getName() + " ";
+string Band::toString() const {
+	stringstream ss;
+	ss << name << ": ";
+	for (const auto& m: musicians) {
+		ss << m->getName() << " ";
 	}
-	return result;
+	return ss.str();
 }
 
 Band::~Band() {

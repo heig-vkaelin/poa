@@ -18,7 +18,9 @@ public:
 
 	std::string getName() const;
 
-	void setBand(std::shared_ptr<Band> band);
+	bool setBand(const std::weak_ptr<Band>& band);
+
+	void removeBand();
 
 	~Musician();
 
@@ -26,6 +28,5 @@ private:
 	std::string name;
 	std::weak_ptr<Band> band;
 };
-
 
 #endif // EXERCICES_MUSICIAN_HPP

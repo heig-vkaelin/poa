@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include <utility>
+#include <sstream>
 #include "Musician.hpp"
 #include "Band.hpp"
 
@@ -14,19 +14,29 @@ Musician::Musician(const string& name) {
 }
 
 string Musician::toString() const {
-	string bandStr = "<none>";
-	shared_ptr<Band> spBand = band.lock();
-	if (spBand)
-		bandStr = spBand->getName();
-	return name + ", band: " + bandStr;
+	stringstream ss;
+	auto b = band.lock();
+
+	ss << name << ", band: " << (b ? b->getName() : "<none>");
+	return ss.str();
 }
 
 string Musician::getName() const {
 	return name;
 }
 
-void Musician::setBand(std::shared_ptr<Band> _band) {
-	band = std::move(_band);
+bool Musician::setBand(const weak_ptr<Band>& _band) {
+	shared_ptr<Band> b = band.lock();
+	if (!b) {
+		band = _band;
+		return true;
+	}
+	cout << name << " is already in " << b->getName() << endl;
+	return false;
+}
+
+void Musician::removeBand() {
+	band.reset();
 }
 
 Musician::~Musician() {

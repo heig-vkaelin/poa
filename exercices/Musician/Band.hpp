@@ -12,9 +12,9 @@
 
 class Band : public std::enable_shared_from_this<Band> {
 public:
-	explicit Band(const std::string& name);
+	explicit Band(std::string name);
 
-	void setMembers(std::list<std::shared_ptr<Musician>> musicians);
+	void setMembers(std::initializer_list<std::shared_ptr<Musician>> musicians);
 
 	std::string getName() const;
 
@@ -26,6 +26,5 @@ private:
 	std::string name;
 	std::list<std::shared_ptr<Musician>> musicians;
 };
-
 
 #endif // EXERCICES_BAND_HPP
