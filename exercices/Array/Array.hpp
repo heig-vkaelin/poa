@@ -7,7 +7,6 @@
 
 #include <cstdlib>
 
-
 template<typename T>
 class Array {
 	class Iterator;
@@ -16,11 +15,15 @@ public:
 
 	Array(const Array& o);
 
+	Array(std::initializer_list<T> args);
+
 	~Array();
 
 	Array& operator=(const Array& o);
 
 	T& operator[](std::size_t index);
+
+	const T& operator[](std::size_t i) const;
 
 	std::size_t size() const;
 
@@ -33,6 +36,8 @@ private:
 	public:
 		explicit Iterator(T* ptr);
 
+		T& operator*() const;
+
 		Iterator& operator++();
 
 		Iterator operator++(int);
@@ -41,8 +46,6 @@ private:
 
 		bool operator!=(const Iterator& o) const;
 
-		T& operator*() const;
-
 	private:
 		T* ptr;
 	};
@@ -50,6 +53,8 @@ private:
 	void init(std::size_t size);
 
 	void destroy();
+
+	T& at(std::size_t i);
 
 	std::size_t _size;
 	T* data;

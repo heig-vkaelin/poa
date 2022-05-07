@@ -21,14 +21,33 @@ int exSeason() {
 	return EXIT_SUCCESS;
 }
 
+template<typename Iterator, typename Fn>
+Fn foreach(Iterator begin, Iterator end, Fn fn) {
+	for (; begin != end; ++begin) {
+		fn(*begin);
+	}
+	return fn;
+}
+
 int exArray() {
-	Array<string> a(10);
+	Array<int> a(5);
+	a[0] = 2;
+	a[1] = 4;
 
-	a[0] = "Hello";
-	a[1] = "World";
+	for (auto& i: a)
+		cout << i << " ";
 
-	for (auto i = a.begin(); i != a.end(); ++i)
-		cout << *i << endl;
+	cout << endl;
+
+	Array<string> b{"Ceci", "est", "un", "tableau", "de", "chaines"};
+	for (auto& i: b)
+		cout << i << " ";
+
+	cout << endl;
+
+	foreach(a.begin(), a.end(), [](int i) {
+		cout << i << " ";
+	});
 
 	return EXIT_SUCCESS;
 }
@@ -56,7 +75,7 @@ int exMusician() {
 }
 
 int main() {
-	return exSeason();
-//	return exArray();
+//	return exSeason();
+	return exArray();
 //	return exMusician();
 }
