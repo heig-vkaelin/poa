@@ -60,6 +60,6 @@ private:
 	T* data;
 };
 
-#include "Array_impl.hpp"
+#include "Array_Impl.hpp"
 
 #endif // EXERCICES_ARRAY_HPP

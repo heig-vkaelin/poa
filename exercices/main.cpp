@@ -4,6 +4,7 @@
 
 #include "Season/Season.hpp"
 #include "Array/Array.hpp"
+#include "SharedPointer/SharedPointer.hpp"
 #include "Musician/Band.hpp"
 #include "Musician/Musician.hpp"
 
@@ -52,6 +53,17 @@ int exArray() {
 	return EXIT_SUCCESS;
 }
 
+int exSharedPointer() {
+	SharedPointer<int> sp1(new int(1));
+	SharedPointer<int> sp2(sp1);
+	*sp2 = 2;
+	cout << *sp1 << endl;
+	SharedPointer<int> sp3(new int(3));
+	sp2 = sp3;
+	sp1 = SharedPointer<int>(new int(4));
+	return EXIT_SUCCESS;
+}
+
 int exMusician() {
 	shared_ptr<Musician>
 		john = make_shared<Musician>("John"),
@@ -76,6 +88,7 @@ int exMusician() {
 
 int main() {
 //	return exSeason();
-	return exArray();
+//	return exArray();
+	return exSharedPointer();
 //	return exMusician();
 }

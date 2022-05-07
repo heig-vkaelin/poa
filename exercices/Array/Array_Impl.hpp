@@ -1,10 +1,3 @@
-//
-// Created by Valentin Kaelin on 14.04.22.
-//
-
-#ifndef EXERCICES_ARRAY_IMPL_HPP
-#define EXERCICES_ARRAY_IMPL_HPP
-
 #include <stdexcept>
 #include "Array.hpp"
 
@@ -129,5 +122,3 @@ template<typename T>
 bool Array<T>::Iterator::operator!=(const Iterator& o) const {
 	return ptr != o.ptr;
 }
-
-#endif // EXERCICES_ARRAY_IMPL_HPP
