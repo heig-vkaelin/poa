@@ -22,7 +22,7 @@ public:
 	/**
 	 * @return true si la personne peut conduire le bâteau, false sinon
 	 */
-	virtual bool canDrive() const = 0;
+	virtual bool canDrive() const;
 
 	/**
 	 * Vérifie si l'état du conteneur vérifie les contraintes de la personne
@@ -50,6 +50,7 @@ public:
 
 private:
 	std::string name;
+	const static std::string ERROR_MESSAGE;
 };
 
 #endif // RIVIERE_PERSON_HPP

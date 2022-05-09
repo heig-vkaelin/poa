@@ -16,6 +16,8 @@ public:
 		 const IndependantPerson& cannotStayWith);
 
 	std::string getErrorMessage() const override;
+private:
+	const static std::string ERROR_MESSAGE;
 };
 
 #endif // RIVIERE_BOY_HPP

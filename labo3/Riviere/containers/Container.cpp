@@ -4,7 +4,6 @@
 
 #include <algorithm>
 #include "Container.hpp"
-#include "../Controller.hpp"
 
 using namespace std;
 
@@ -71,10 +70,10 @@ const Person* Container::findByName(const string& nameToFind) const {
 	return nullptr;
 }
 
-bool Container::isValid() const {
+bool Container::isValid(string& errorMessage) const {
 	for (const Person* person: people) {
 		if (!person->isStateValid(*this)) {
-			Controller::displayError(person->getErrorMessage());
+			errorMessage = person->getErrorMessage();
 			return false;
 		}
 	}

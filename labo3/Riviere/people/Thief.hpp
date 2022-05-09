@@ -2,7 +2,7 @@
 #define RIVIERE_THIEF_HPP
 
 #include <string>
-#include "DependantPerson.hpp"
+#include "Person.hpp"
 #include "IndependantPerson.hpp"
 
 /**
@@ -11,7 +11,7 @@
  * @author Lazar Pavicevic
  * @author Valentin Kaelin
  */
-class Thief : public DependantPerson {
+class Thief : public Person {
 public:
 	Thief(const std::string& name, const IndependantPerson& policeman);
 
@@ -21,6 +21,7 @@ public:
 
 private:
 	const IndependantPerson* policeman;
+	const static std::string ERROR_MESSAGE;
 };
 
 #endif // RIVIERE_THIEF_HPP

@@ -61,7 +61,7 @@ void Controller::display() const {
 		  << setw(WIDTH) << setfill('-') << "" << endl;
 
 	// Remise à 0 du fill sur le stream
-	cout.fill(0);
+	cout.fill(' ');
 }
 
 void Controller::displayError(const string& error) {
@@ -109,10 +109,6 @@ Controller::~Controller() {
 		delete person;
 }
 
-void Controller::init() {
-	// TODO: ptr + init ou ref et constructeur
-}
-
 void Controller::reset() {
 	boat.clear();
 	leftBank.clear();
@@ -126,18 +122,16 @@ void Controller::handleCommand(char command) {
 		case DISPLAY:
 			display();
 			break;
-		case EMBARK: {
+		case EMBARK:
 			if (boat.isFull()) {
 				displayError("Le bateau est plein.");
 				break;
 			}
 			movePerson(getCurrentBank(), boat);
 			break;
-		}
-		case DISEMBARK: {
+		case DISEMBARK:
 			movePerson(boat, getCurrentBank());
 			break;
-		}
 		case MOVE:
 			moveBoat();
 			break;
@@ -177,7 +171,9 @@ void Controller::movePerson(Container& from, Container& to) {
 	from.removePerson(*person);
 
 	// On annule le déplacement de la personne s'il n'est pas valide
-	if (!getCurrentBank().isValid() || !boat.isValid()) {
+	string error;
+	if (!getCurrentBank().isValid(error) || !boat.isValid(error)) {
+		displayError(error);
 		from.addPerson(*person);
 		to.removePerson(*person);
 	}

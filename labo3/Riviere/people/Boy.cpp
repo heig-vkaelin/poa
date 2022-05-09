@@ -4,11 +4,15 @@
 
 #include "Boy.hpp"
 
-Boy::Boy(const std::string& name, const IndependantPerson& dependsOn,
+using namespace std;
+
+const string Boy::ERROR_MESSAGE = "garcon avec sa mere sans son pere";
+
+Boy::Boy(const string& name, const IndependantPerson& dependsOn,
 			const IndependantPerson& cannotStayWith)
 	: Kid(name, dependsOn, cannotStayWith) {
 }
 
-std::string Boy::getErrorMessage() const {
-	return "garcon avec sa mere sans son pere";
+string Boy::getErrorMessage() const {
+	return ERROR_MESSAGE;
 }

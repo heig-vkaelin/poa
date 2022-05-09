@@ -20,6 +20,16 @@ public:
 	Controller();
 
 	/**
+	 * On bloque la copie de la classe Controller
+	 */
+	Controller(const Controller&) = delete;
+
+	/**
+	 * On bloque la copie de la classe Controller
+	 */
+	Controller& operator=(const Controller&) = delete;
+
+	/**
 	 * Affiche l'état du bateau et des rives de la rivière
 	 */
 	void display() const;
@@ -46,7 +56,7 @@ public:
 	bool hasWon() const;
 
 	/**
-	 * @return true si le programme doit être arrêté (demané par l'utilisateur ou
+	 * @return true si le programme doit être arrêté (demandé par l'utilisateur ou
 	 * fin du jeu)
 	 */
 	bool hasEnded() const;
@@ -57,8 +67,6 @@ public:
 	~Controller();
 
 private:
-	void init();
-
 	void reset();
 
 	void handleCommand(char command);

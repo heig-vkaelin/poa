@@ -80,9 +80,10 @@ public:
 
 	/**
 	 * Vérifie l'état des personnes dans le conteneur
+	 * @param errorMessage : message d'erreur si une personne est en erreur
 	 * @return true si les personnes peuvent bien rester entre elles, false sinon
 	 */
-	bool isValid() const;
+	bool isValid(std::string& errorMessage) const;
 
 	/**
 	 * Affiche le conteneur sur le stream souhaité

@@ -1,7 +1,7 @@
 #ifndef RIVIERE_KID_HPP
 #define RIVIERE_KID_HPP
 
-#include "DependantPerson.hpp"
+#include "Person.hpp"
 #include "IndependantPerson.hpp"
 
 /**
@@ -10,7 +10,7 @@
  * @author Lazar Pavicevic
  * @author Valentin Kaelin
  */
-class Kid : public DependantPerson {
+class Kid : public Person {
 public:
 	Kid(const std::string& name, const IndependantPerson& dependsOn,
 		 const IndependantPerson& cannotStayWith);

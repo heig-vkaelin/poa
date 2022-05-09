@@ -10,7 +10,7 @@ using namespace std;
 
 Kid::Kid(const string& name, const IndependantPerson& dependsOn,
 			const IndependantPerson& cannotStayWith)
-	: DependantPerson(name), dependsOn(&dependsOn), cannotStayWith(&cannotStayWith) {
+	: Person(name), dependsOn(&dependsOn), cannotStayWith(&cannotStayWith) {
 }
 
 bool Kid::isStateValid(const Container& container) const {

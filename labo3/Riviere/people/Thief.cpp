@@ -8,8 +8,10 @@
 
 using namespace std;
 
+const string Thief::ERROR_MESSAGE = "voleur avec membre de la famille sans policier";
+
 Thief::Thief(const string& name, const IndependantPerson& policeman) :
-	DependantPerson(name), policeman(&policeman) {
+	Person(name), policeman(&policeman) {
 }
 
 bool Thief::isStateValid(const Container& container) const {
@@ -19,5 +21,5 @@ bool Thief::isStateValid(const Container& container) const {
 }
 
 string Thief::getErrorMessage() const {
-	return "voleur avec membre de la famille sans policier";
+	return ERROR_MESSAGE;
 }
