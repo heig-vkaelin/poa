@@ -31,13 +31,15 @@ private:
 	public:
 		explicit Manager(T* ptr);
 
-		void addReference();
-
-		void removeReference();
+		~Manager();
 
 		T* ptr;
 		std::size_t refCount;
 	};
+
+	void addReference();
+
+	void removeReference();
 
 	Manager* manager;
 };

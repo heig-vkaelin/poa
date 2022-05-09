@@ -13,21 +13,16 @@ SharedPointer<T>::SharedPointer(T* ptr): manager(new Manager(ptr)) {
 template<typename T>
 SharedPointer<T>::SharedPointer(const SharedPointer& other)
 	: manager(other.manager) {
-	if (manager) {
-		manager->addReference();
-	}
+	if (manager != nullptr)
+		addReference();
 }
 
 template<typename T>
 SharedPointer<T>& SharedPointer<T>::operator=(const SharedPointer& other) {
 	if (this != &other) {
-		if (manager) {
-			manager->removeReference();
-		}
-		if (manager) {
-			manager = other.manager;
-			manager->addReference();
-		}
+		removeReference();
+		manager = other.manager;
+		addReference();
 	}
 	return *this;
 }
@@ -67,10 +62,26 @@ std::size_t SharedPointer<T>::useCount() const {
 
 template<typename T>
 SharedPointer<T>::~SharedPointer() {
-	manager->removeReference();
+	removeReference();
 }
 
 // Private
+template<typename T>
+void SharedPointer<T>::addReference() {
+	if (manager == nullptr) return;
+	manager->refCount++;
+}
+
+template<typename T>
+void SharedPointer<T>::removeReference() {
+	if (manager == nullptr) return;
+
+	--manager->refCount;
+
+	if (!manager->refCount) {
+		delete manager;
+	}
+}
 
 // Manager
 template<typename T>
@@ -78,15 +89,6 @@ SharedPointer<T>::Manager::Manager(T* ptr): ptr(ptr), refCount(1) {
 }
 
 template<typename T>
-void SharedPointer<T>::Manager::addReference() {
-	++refCount;
-}
-
-template<typename T>
-void SharedPointer<T>::Manager::removeReference() {
-	--refCount;
-	if (refCount == 0) {
-		delete ptr;
-		delete this;
-	}
+SharedPointer<T>::Manager::~Manager() {
+	delete ptr;
 }

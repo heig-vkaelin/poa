@@ -9,6 +9,10 @@
 
 class Season {
 public:
+	Season(const Season& other) = delete;
+
+	Season& operator=(const Season& other) = delete;
+
 	static const Season Spring;
 	static const Season Summer;
 	static const Season Autumn;
