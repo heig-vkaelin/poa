@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 14.04.22.
-//
+/**
+ * Conteneur représentant un bateau avec un capacité fixe
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 
 #include <algorithm>
 #include "Boat.hpp"

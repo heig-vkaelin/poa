@@ -102,6 +102,9 @@ public:
 	 */
 	std::list<const Person*>::const_iterator end() const;
 
+	/**
+	 * Destructeur virtuel afin de pouvoir être override
+	 */
 	virtual ~Container() = default;
 
 protected:

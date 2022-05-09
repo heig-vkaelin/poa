@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 05.05.22.
-//
+/**
+ * Classe représentant une personne indépendante
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 
 #include "IndependantPerson.hpp"
 

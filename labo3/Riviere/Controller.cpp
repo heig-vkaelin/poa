@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 14.04.22.
-//
+/**
+ * Classe gérant toute la logique globale du programme
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 
 #include <iostream>
 #include <iomanip>
@@ -115,6 +118,7 @@ void Controller::reset() {
 	rightBank.clear();
 	leftBank.addPeople(people);
 	boat.setBank(leftBank);
+	turn = 0;
 }
 
 void Controller::handleCommand(char command) {

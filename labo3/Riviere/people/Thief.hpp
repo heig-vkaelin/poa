@@ -13,6 +13,11 @@
  */
 class Thief : public Person {
 public:
+	/**
+	 * Crée un nouveau voleur
+	 * @param name : nom du voleur
+	 * @param policeman : policier qui s'occupe de ce voleur
+	 */
 	Thief(const std::string& name, const IndependantPerson& policeman);
 
 	bool isStateValid(const Container& container) const override;

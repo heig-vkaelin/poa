@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 05.05.22.
-//
+/**
+ * Classe abstraite représentant un enfant
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 
 #include <algorithm>
 #include "Kid.hpp"
@@ -21,3 +24,7 @@ bool Kid::isStateValid(const Container& container) const {
 
 	return !isWithCannotStayWith || isWithDependsOn;;
 }
+
+// Constructeur par défaut afin de ne pas être obligé de le redéfinir dans les
+// classes qui héritent de Kid
+Kid::~Kid() = default;

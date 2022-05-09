@@ -1,6 +1,10 @@
-//
-// Created by Valentin Kaelin on 14.04.22.
-//
+/**
+ * Classe abstraite représentant une conteneur de tout type
+ * Ce conteneur peut contenir un nombre inderterminé de personnes
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 
 #include <algorithm>
 #include "Container.hpp"

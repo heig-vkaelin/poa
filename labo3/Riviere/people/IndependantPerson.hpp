@@ -4,7 +4,7 @@
 #include "Person.hpp"
 
 /**
- * Classe abstraite représentant une personne indépendante
+ * Classe représentant une personne indépendante
  *
  * @author Lazar Pavicevic
  * @author Valentin Kaelin

@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 14.04.22.
-//
+/**
+ * Classe abstraite représentant une personne
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 
 #include <string>
 #include "Person.hpp"

@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 14.04.22.
-//
+/**
+ * Conteneur représentant la rive d'une rivière
+ *
+ * @author Lazar Pavicevic
+ * @author Valentin Kaelin
+ */
 
 #include "Bank.hpp"
 
