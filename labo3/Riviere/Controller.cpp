@@ -37,7 +37,7 @@ Controller::Controller() : boat("Bateau", 2), leftBank("Gauche"),
 }
 
 void Controller::display() const {
-	const unsigned WIDTH = 59;
+	const int WIDTH = 59;
 	displayBank(leftBank, WIDTH);
 
 	if (boat.isDockedTo(leftBank))
@@ -139,7 +139,7 @@ void Controller::handleCommand(char command) {
 			break;
 		case EMBARK:
 			if (boat.isFull()) {
-				displayError("Le bateau est plein.");
+				displayError("Le bateau est plein");
 				break;
 			}
 			movePerson(getCurrentBank(), boat);
@@ -194,7 +194,6 @@ void Controller::movePerson(Container& from, Container& to) {
 		to.removePerson(*person);
 	}
 }
-
 
 Bank& Controller::getCurrentBank() {
 	return boat.isDockedTo(leftBank) ? leftBank : rightBank;

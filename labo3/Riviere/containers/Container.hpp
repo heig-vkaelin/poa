@@ -9,7 +9,7 @@
 
 /**
  * Classe abstraite représentant une conteneur de tout type
- * Ce conteneur peut contenir un nombre inderterminé de personnes
+ * Ce conteneur peut contenir un nombre indéterminé de personnes
  *
  * @author Lazar Pavicevic
  * @author Valentin Kaelin

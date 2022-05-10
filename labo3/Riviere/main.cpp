@@ -11,10 +11,6 @@
 #include <sstream>
 #include <list>
 
-void boyWithMotherButWithoutFather();
-
-void girlWithFatherButWithoutMother();
-
 using namespace std;
 
 /**
@@ -55,7 +51,7 @@ bool runTest(const istringstream& in, const list<string>& needToBeDisplayed,
  * Teste la bonne solution du jeu
  */
 void correctSolution() {
-	cout << "TEST: Solution scenario : ";
+	cout << "TEST: Solution complete du jeu : ";
 
 	istringstream iss("e voleur\ne policier\nm\nd voleur\nm\ne jeanne\nm\n"
 							"d policier\nd jeanne\ne voleur\ne policier\nm\nd policier\n"
@@ -84,7 +80,7 @@ void resetProgram() {
 }
 
 /**
- * Test la règle qui dit que le garçon ne peut pas rester avec sa mère si son père
+ * Teste la règle qui dit que le garçon ne peut pas rester avec sa mère si son père
  * n'est pas là
  */
 void boyWithMotherButWithoutFather() {
@@ -99,7 +95,7 @@ void boyWithMotherButWithoutFather() {
 }
 
 /**
- * Test la règle qui dit que la fille ne peut pas rester avec son père si sa mère
+ * Teste la règle qui dit que la fille ne peut pas rester avec son père si sa mère
  * n'est pas là
  */
 void girlWithFatherButWithoutMother() {
@@ -114,6 +110,63 @@ void girlWithFatherButWithoutMother() {
 }
 
 /**
+ * Teste qu'un bâteau vide ne peut pas bouger de rive
+ */
+void emptyBoatCantMove() {
+	cout << "TEST: Bateau vide ne peut pas bouger : ";
+	istringstream iss("m\nq");
+
+	bool passed = runTest(iss, {
+		"Bateau sans conducteur",
+	});
+	cout << (passed ? "PASSED" : "FAILED") << endl;
+}
+
+/**
+ * Teste qu'il puisse y avoir au maximum 2 personnes dans le bâteau
+ */
+void onlyTwoPeopleOnTheBoat() {
+	cout << "TEST: Bateau avec max 2 personnes : ";
+
+	istringstream iss("e voleur\n e policier\n e paul\nq");
+
+	bool passed = runTest(iss, {
+		"Le bateau est plein",
+	});
+	cout << (passed ? "PASSED" : "FAILED") << endl;
+}
+
+/**
+ * Teste que le voleur ne puisse pas être seul avec la famille sans le policier
+ */
+void thiefWithFamilyWithoutPoliceman() {
+	cout << "TEST: voleur avec famille sans policier : ";
+
+	istringstream iss("e policier\ne voleur\ne policier\nq");
+
+	bool passed = runTest(iss, {
+		Controller::getErrorMessage(ErrorStatus::THIEF_ERROR),
+		"< voleur policier  >",
+	});
+	cout << (passed ? "PASSED" : "FAILED") << endl;
+}
+
+/**
+ * Teste que les enfants et le voleur ne puissent pas conduire le bâteau
+ */
+void thiefAndChildrenCannotDriveTheBoat() {
+	cout << "TEST: enfants et voleur ne peuvent pas conduire le bateau : ";
+
+	istringstream iss1("e paul\nm\nq");
+	istringstream iss2("e voleur\nm\nq");
+
+	bool passed1 = runTest(iss1, {"Bateau sans conducteur"});
+	bool passed2 = runTest(iss2, {"Bateau sans conducteur"});
+
+	cout << (passed1 && passed2 ? "PASSED" : "FAILED") << endl;
+}
+
+/**
  * Lance tous les tests créés ci-dessus
  */
 void testEverything() {
@@ -121,23 +174,22 @@ void testEverything() {
 	resetProgram();
 	boyWithMotherButWithoutFather();
 	girlWithFatherButWithoutMother();
-
-	// TODO: ces 3 tests et + si t'as d'autres idées
-//	thiefWithFamilyWithoutPoliceman();
-//	thiefAndChildrenCannotDriveTheBoat();
-//	onlyTwoPeopleOnTheBoat();
+	emptyBoatCantMove();
+	onlyTwoPeopleOnTheBoat();
+	thiefWithFamilyWithoutPoliceman();
+	thiefAndChildrenCannotDriveTheBoat();
 }
 
 int main() {
-//	testEverything();
-//	return EXIT_SUCCESS;
-
-	Controller controller;
-	Controller::showMenu();
-	controller.display();
-
-	while (!controller.hasEnded())
-		controller.nextTurn();
-
+	testEverything();
 	return EXIT_SUCCESS;
+
+//	Controller controller;
+//	Controller::showMenu();
+//	controller.display();
+//
+//	while (!controller.hasEnded())
+//		controller.nextTurn();
+//
+//	return EXIT_SUCCESS;
 }
