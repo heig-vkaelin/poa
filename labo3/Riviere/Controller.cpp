@@ -29,7 +29,7 @@ Controller::Controller() : boat("Bateau", 2), leftBank("Gauche"),
 	IndependantPerson* policeman = new IndependantPerson{"policier"};
 	Thief* thief = new Thief{"voleur", *policeman};
 
-   people = {father, mother, paul, pierre, julie, jeanne, policeman, thief};
+	people = {father, mother, paul, pierre, julie, jeanne, policeman, thief};
 
 	// Situation initiale
 	leftBank.addPeople(people);
@@ -38,10 +38,7 @@ Controller::Controller() : boat("Bateau", 2), leftBank("Gauche"),
 
 void Controller::display() const {
 	const unsigned WIDTH = 59;
-	cout
-		<< setw(WIDTH) << setfill('-') << "" << endl
-		<< leftBank << endl
-		<< setw(WIDTH) << setfill('-') << "" << endl;
+	displayBank(leftBank, WIDTH);
 
 	if (boat.isDockedTo(leftBank))
 		cout << boat;
@@ -51,10 +48,8 @@ void Controller::display() const {
 	if (boat.isDockedTo(rightBank))
 		cout << boat;
 
-	cout << endl
-		  << setw(WIDTH) << setfill('-') << "" << endl
-		  << rightBank << endl
-		  << setw(WIDTH) << setfill('-') << "" << endl;
+	cout << endl;
+	displayBank(leftBank, WIDTH);
 
 	// Remise à 0 du fill sur le stream
 	cout.fill(' ');
@@ -118,6 +113,16 @@ void Controller::displayError(const string& error) {
 	cout << "### " << error << endl;
 }
 
+void Controller::displayBank(const Bank& bank, int width) {
+	cout
+		<< setw(width) << setfill('-') << "" << endl
+		<< bank << endl
+		<< setw(width) << setfill('-') << "" << endl;
+
+	// Remise à 0 du fill sur le stream
+	cout.fill(' ');
+}
+
 void Controller::reset() {
 	boat.clear();
 	leftBank.clear();
@@ -173,7 +178,7 @@ void Controller::movePerson(Container& from, Container& to) {
 	cin >> name;
 	const Person* person = from.findByName(name);
 	if (!person) {
-		displayError(name + " ne se trouve pas dans la rive.");
+		displayError(name + " ne peut pas etre deplace.");
 		return;
 	}
 

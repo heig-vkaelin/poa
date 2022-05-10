@@ -67,6 +67,8 @@ public:
 private:
 	static void displayError(const std::string& error);
 
+	static void displayBank(const Bank& bank, int width);
+
 	void reset();
 
 	void handleCommand(char command);

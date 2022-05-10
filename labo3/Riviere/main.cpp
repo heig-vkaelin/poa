@@ -129,15 +129,15 @@ void testEverything() {
 }
 
 int main() {
-	testEverything();
-	return EXIT_SUCCESS;
-
-//	Controller controller;
-//	Controller::showMenu();
-//	controller.display();
-//
-//	while (!controller.hasEnded())
-//		controller.nextTurn();
-//
+//	testEverything();
 //	return EXIT_SUCCESS;
+
+	Controller controller;
+	Controller::showMenu();
+	controller.display();
+
+	while (!controller.hasEnded())
+		controller.nextTurn();
+
+	return EXIT_SUCCESS;
 }

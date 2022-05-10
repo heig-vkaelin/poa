@@ -17,6 +17,8 @@ Kid::Kid(const string& name, const IndependantPerson& dependsOn,
 }
 
 bool Kid::isStateValid(const Container& container) const {
+	// Si l'enfant est avec le parent avec qui il ne peut pas rester seul, il doit
+	// également être avec le parent dont il dépend
 	bool isWithCannotStayWith =
 		find(container.begin(), container.end(), cannotStayWith) != container.end();
 	bool isWithDependsOn =

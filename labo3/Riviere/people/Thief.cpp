@@ -16,6 +16,7 @@ Thief::Thief(const string& name, const IndependantPerson& policeman) :
 }
 
 bool Thief::isStateValid(const Container& container) const {
+	// Voleur seul ou accompagné du policier
 	return container.size() == 1 ||
 			 find(container.begin(), container.end(),
 					policeman) != container.end();
