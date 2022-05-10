@@ -2,6 +2,7 @@
 #define RIVIERE_PERSON_HPP
 
 #include <string>
+#include "ErrorStatus.hpp"
 
 class Container;
 
@@ -32,10 +33,10 @@ public:
 	virtual bool isStateValid(const Container& container) const = 0;
 
 	/**
-	 * @return le message d'erreur de la personne si celle-ci ne se trouve pas dans
+	 * @return le status d'erreur de la personne si celle-ci ne se trouve pas dans
 	 * un conteneur valide
 	 */
-	virtual std::string getErrorMessage() const;
+	virtual ErrorStatus getErrorStatus() const = 0;
 
 	/**
 	 * @return le nom de la personne
@@ -50,7 +51,6 @@ public:
 
 private:
 	std::string name;
-	const static std::string ERROR_MESSAGE;
 };
 
 #endif // RIVIERE_PERSON_HPP

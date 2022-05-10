@@ -5,6 +5,7 @@
 #include <list>
 #include <iostream>
 #include "../people/Person.hpp"
+#include "../people/ErrorStatus.hpp"
 
 /**
  * Classe abstraite représentant une conteneur de tout type
@@ -80,10 +81,9 @@ public:
 
 	/**
 	 * Vérifie l'état des personnes dans le conteneur
-	 * @param errorMessage : message d'erreur si une personne est en erreur
-	 * @return true si les personnes peuvent bien rester entre elles, false sinon
+	 * @return le status du conteneur contenant OK s'il est valide et l'erreur sinon
 	 */
-	bool isValid(std::string& errorMessage) const;
+	ErrorStatus isValid() const;
 
 	/**
 	 * Affiche le conteneur sur le stream souhaité

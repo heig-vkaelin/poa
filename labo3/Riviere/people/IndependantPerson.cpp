@@ -1,5 +1,6 @@
 /**
- * Classe représentant une personne indépendante
+ * Classe représentant une personne indépendante qui peut conduire et qui n'a
+ * besoin de personne
  *
  * @author Lazar Pavicevic
  * @author Valentin Kaelin
@@ -16,4 +17,8 @@ bool IndependantPerson::canDrive() const {
 
 bool IndependantPerson::isStateValid(const Container&) const {
 	return true;
+}
+
+ErrorStatus IndependantPerson::getErrorStatus() const {
+	return OK;
 }

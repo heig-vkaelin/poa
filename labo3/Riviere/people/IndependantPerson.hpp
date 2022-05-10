@@ -4,7 +4,8 @@
 #include "Person.hpp"
 
 /**
- * Classe représentant une personne indépendante
+ * Classe représentant une personne indépendante qui peut conduire et qui n'a
+ * besoin de personne
  *
  * @author Lazar Pavicevic
  * @author Valentin Kaelin
@@ -20,6 +21,8 @@ public:
 	bool canDrive() const override;
 
 	bool isStateValid(const Container& container) const override;
+
+	ErrorStatus getErrorStatus() const override;
 };
 
 #endif // RIVIERE_INDEPENDANTPERSON_HPP

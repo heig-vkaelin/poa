@@ -11,8 +11,6 @@
 
 using namespace std;
 
-const string Thief::ERROR_MESSAGE = "voleur avec membre de la famille sans policier";
-
 Thief::Thief(const string& name, const IndependantPerson& policeman) :
 	Person(name), policeman(&policeman) {
 }
@@ -23,6 +21,6 @@ bool Thief::isStateValid(const Container& container) const {
 					policeman) != container.end();
 }
 
-string Thief::getErrorMessage() const {
-	return ERROR_MESSAGE;
+ErrorStatus Thief::getErrorStatus() const {
+	return THIEF_ERROR;
 }

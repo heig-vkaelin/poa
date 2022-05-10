@@ -35,12 +35,6 @@ public:
 	void display() const;
 
 	/**
-	 * Affiche une erreur dans la console
-	 * @param error : l'erreur à afficher
-	 */
-	static void displayError(const std::string& error);
-
-	/**
 	 * Passe au tour suivant
 	 */
 	void nextTurn();
@@ -67,6 +61,10 @@ public:
 	~Controller();
 
 private:
+	static std::string getErrorMessage(ErrorStatus status);
+
+	static void displayError(const std::string& error);
+
 	void reset();
 
 	void handleCommand(char command);

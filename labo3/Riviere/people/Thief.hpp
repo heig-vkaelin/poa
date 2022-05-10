@@ -4,6 +4,7 @@
 #include <string>
 #include "Person.hpp"
 #include "IndependantPerson.hpp"
+#include "ErrorStatus.hpp"
 
 /**
  * Classe représentant un voleur
@@ -22,11 +23,10 @@ public:
 
 	bool isStateValid(const Container& container) const override;
 
-	std::string getErrorMessage() const override;
+	ErrorStatus getErrorStatus() const override;
 
 private:
 	const IndependantPerson* policeman;
-	const static std::string ERROR_MESSAGE;
 };
 
 #endif // RIVIERE_THIEF_HPP

@@ -74,14 +74,12 @@ const Person* Container::findByName(const string& nameToFind) const {
 	return nullptr;
 }
 
-bool Container::isValid(string& errorMessage) const {
+ErrorStatus Container::isValid() const {
 	for (const Person* person: people) {
-		if (!person->isStateValid(*this)) {
-			errorMessage = person->getErrorMessage();
-			return false;
-		}
+		if (!person->isStateValid(*this))
+			return person->getErrorStatus();
 	}
-	return true;
+	return OK;
 }
 
 list<const Person*>::const_iterator Container::begin() const {

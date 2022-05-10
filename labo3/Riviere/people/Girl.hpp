@@ -2,6 +2,7 @@
 #define RIVIERE_GIRL_HPP
 
 #include "Kid.hpp"
+#include "ErrorStatus.hpp"
 
 /**
  * Classe représentant une fille
@@ -20,10 +21,7 @@ public:
 	Girl(const std::string& name, const IndependantPerson& dependsOn,
 		  const IndependantPerson& cannotStayWith);
 
-	std::string getErrorMessage() const override;
-
-private:
-	const static std::string ERROR_MESSAGE;
+	ErrorStatus getErrorStatus() const override;
 };
 
 #endif // RIVIERE_GIRL_HPP

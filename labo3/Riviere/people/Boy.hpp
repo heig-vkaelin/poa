@@ -3,6 +3,7 @@
 
 #include "Kid.hpp"
 #include "IndependantPerson.hpp"
+#include "ErrorStatus.hpp"
 
 /**
  * Classe représentant un garçon
@@ -21,10 +22,7 @@ public:
 	Boy(const std::string& name, const IndependantPerson& dependsOn,
 		 const IndependantPerson& cannotStayWith);
 
-	std::string getErrorMessage() const override;
-
-private:
-	const static std::string ERROR_MESSAGE;
+	ErrorStatus getErrorStatus() const override;
 };
 
 #endif // RIVIERE_BOY_HPP

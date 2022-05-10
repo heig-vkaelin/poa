@@ -67,10 +67,6 @@ void Controller::display() const {
 	cout.fill(' ');
 }
 
-void Controller::displayError(const string& error) {
-	cout << "### " << error << endl;
-}
-
 void Controller::nextTurn() {
 	cout << turn << ">";
 	char command;
@@ -110,6 +106,23 @@ bool Controller::hasEnded() const {
 Controller::~Controller() {
 	for (const Person* person: people)
 		delete person;
+}
+
+string Controller::getErrorMessage(ErrorStatus status) {
+	switch (status) {
+		case ErrorStatus::BOY_ERROR:
+			return "garcon avec sa mere sans son pere";
+		case ErrorStatus::GIRL_ERROR:
+			return "fille avec son pere sans sa mere";
+		case ErrorStatus::THIEF_ERROR:
+			return "voleur avec membre de la famille sans policier";
+		default:
+			return "";
+	}
+}
+
+void Controller::displayError(const string& error) {
+	cout << "### " << error << endl;
 }
 
 void Controller::reset() {
@@ -175,13 +188,15 @@ void Controller::movePerson(Container& from, Container& to) {
 	from.removePerson(*person);
 
 	// On annule le déplacement de la personne s'il n'est pas valide
-	string error;
-	if (!getCurrentBank().isValid(error) || !boat.isValid(error)) {
-		displayError(error);
+	ErrorStatus status;
+	if ((status = getCurrentBank().isValid()) != OK ||
+		 (status = boat.isValid()) != OK) {
+		displayError(getErrorMessage(status));
 		from.addPerson(*person);
 		to.removePerson(*person);
 	}
 }
+
 
 Bank& Controller::getCurrentBank() {
 	return boat.isDockedTo(leftBank) ? leftBank : rightBank;
