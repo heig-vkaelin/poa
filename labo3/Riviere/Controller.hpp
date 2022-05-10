@@ -71,7 +71,7 @@ private:
 
 	void reset();
 
-	void handleCommand(char command);
+	void handleCommand(const std::string& command);
 
 	void moveBoat();
 
