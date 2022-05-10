@@ -29,14 +29,7 @@ Controller::Controller() : boat("Bateau", 2), leftBank("Gauche"),
 	IndependantPerson* policeman = new IndependantPerson{"policier"};
 	Thief* thief = new Thief{"voleur", *policeman};
 
-	people.emplace_back(father);
-	people.emplace_back(mother);
-	people.emplace_back(paul);
-	people.emplace_back(pierre);
-	people.emplace_back(julie);
-	people.emplace_back(jeanne);
-	people.emplace_back(policeman);
-	people.emplace_back(thief);
+   people = {father, mother, paul, pierre, julie, jeanne, policeman, thief};
 
 	// Situation initiale
 	leftBank.addPeople(people);
