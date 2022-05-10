@@ -90,7 +90,7 @@ public:
 	 * @param os : stream sur lequel afficher le conteneur
 	 * @return le stream avec les infos du conteneur
 	 */
-	virtual std::ostream& toStream(std::ostream& os) const = 0;
+	virtual std::ostream& toStream(std::ostream& os) const;
 
 	/**
 	 * @return un itérateur constant sur la première personne du conteneur
@@ -103,9 +103,10 @@ public:
 	std::list<const Person*>::const_iterator end() const;
 
 	/**
-	 * Destructeur virtuel afin de pouvoir être override
+	 * Destructeur virtuel afin de pouvoir être override et pour rendre la classe
+	 * abstraite
 	 */
-	virtual ~Container() = default;
+	virtual ~Container() = 0;
 
 protected:
 	/**

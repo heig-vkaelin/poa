@@ -13,5 +13,5 @@ Bank::Bank(const string& name) : Container(name) {
 }
 
 ostream& Bank::toStream(ostream& os) const {
-	return os << getName() << ": " << peopleToString();
+	return Container::toStream(os) << peopleToString();
 }

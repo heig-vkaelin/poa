@@ -23,9 +23,9 @@ public:
 	std::ostream& toStream(std::ostream& os) const override;
 
 	/**
-	 * Vérifie si le bâteau est à quai de la rive souhaitée
+	 * Vérifie si le bateau est à quai de la rive souhaitée
 	 * @param bank : la rive à vérifier
-	 * @return true si le bâteau se trouve bien sur la rive, false sinon
+	 * @return true si le bateau se trouve bien sur la rive, false sinon
 	 */
 	bool isDockedTo(const Bank& bank) const;
 
@@ -36,7 +36,7 @@ public:
 	void setBank(const Bank& bank);
 
 	/**
-	 * @return true si le bâteau est plein, false sinon
+	 * @return true si le bateau est plein, false sinon
 	 */
 	bool isFull() const;
 

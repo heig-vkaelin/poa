@@ -15,7 +15,7 @@ Boat::Boat(const string& name, size_t capacity)
 }
 
 ostream& Boat::toStream(ostream& os) const {
-	return os << getName() << ": < " << peopleToString() << " >";
+	return Container::toStream(os) << "< " << peopleToString() << " >";
 }
 
 bool Boat::isDockedTo(const Bank& isOnBank) const {
@@ -27,7 +27,7 @@ void Boat::setBank(const Bank& newBank) {
 }
 
 bool Boat::isFull() const {
-	return getPeople().size() >= capacity;
+	return size() >= capacity;
 }
 
 bool Boat::hasDriver() {

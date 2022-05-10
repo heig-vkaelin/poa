@@ -21,7 +21,7 @@ public:
 	explicit Person(const std::string& name);
 
 	/**
-	 * @return true si la personne peut conduire le bâteau, false sinon
+	 * @return true si la personne peut conduire le bateau, false sinon
 	 */
 	virtual bool canDrive() const;
 

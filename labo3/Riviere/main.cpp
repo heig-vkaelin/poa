@@ -110,7 +110,7 @@ void girlWithFatherButWithoutMother() {
 }
 
 /**
- * Teste qu'un bâteau vide ne peut pas bouger de rive
+ * Teste qu'un bateau vide ne peut pas bouger de rive
  */
 void emptyBoatCantMove() {
 	cout << "TEST: Bateau vide ne peut pas bouger : ";
@@ -123,7 +123,7 @@ void emptyBoatCantMove() {
 }
 
 /**
- * Teste qu'il puisse y avoir au maximum 2 personnes dans le bâteau
+ * Teste qu'il puisse y avoir au maximum 2 personnes dans le bateau
  */
 void onlyTwoPeopleOnTheBoat() {
 	cout << "TEST: Bateau avec max 2 personnes : ";
@@ -152,7 +152,7 @@ void thiefWithFamilyWithoutPoliceman() {
 }
 
 /**
- * Teste que les enfants et le voleur ne puissent pas conduire le bâteau
+ * Teste que les enfants et le voleur ne puissent pas conduire le bateau
  */
 void thiefAndChildrenCannotDriveTheBoat() {
 	cout << "TEST: enfants et voleur ne peuvent pas conduire le bateau : ";
@@ -181,15 +181,15 @@ void testEverything() {
 }
 
 int main() {
-	testEverything();
-	return EXIT_SUCCESS;
-
-//	Controller controller;
-//	Controller::showMenu();
-//	controller.display();
-//
-//	while (!controller.hasEnded())
-//		controller.nextTurn();
-//
+//	testEverything();
 //	return EXIT_SUCCESS;
+
+	Controller controller;
+	Controller::showMenu();
+	controller.display();
+
+	while (!controller.hasEnded())
+		controller.nextTurn();
+
+	return EXIT_SUCCESS;
 }
