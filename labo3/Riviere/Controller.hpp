@@ -34,6 +34,10 @@ public:
 	 */
 	void display() const;
 
+	// TODO: en public pour être utilisée dans les Tests du main... A voir ce qu'on
+	// fait
+	static std::string getErrorMessage(ErrorStatus status);
+
 	/**
 	 * Passe au tour suivant
 	 */
@@ -61,8 +65,6 @@ public:
 	~Controller();
 
 private:
-	static std::string getErrorMessage(ErrorStatus status);
-
 	static void displayError(const std::string& error);
 
 	void reset();

@@ -26,7 +26,7 @@ public:
 	/*
 	 * Destructeur abstrait afin de rendre la classe abstraite
 	 */
-	virtual ~Kid() = 0;
+	~Kid() override = 0;
 
 private:
 	const IndependantPerson* dependsOn;
