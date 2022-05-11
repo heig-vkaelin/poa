@@ -96,6 +96,10 @@ Controller::~Controller() {
 		delete person;
 }
 
+void Controller::displayError(const string& error) {
+	cout << "### " << error << endl;
+}
+
 string Controller::getErrorMessage(ErrorStatus status) {
 	switch (status) {
 		case ErrorStatus::BOY_ERROR:
@@ -107,10 +111,6 @@ string Controller::getErrorMessage(ErrorStatus status) {
 		default:
 			return "";
 	}
-}
-
-void Controller::displayError(const string& error) {
-	cout << "### " << error << endl;
 }
 
 void Controller::displayBank(const Bank& bank, int width) {

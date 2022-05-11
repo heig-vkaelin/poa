@@ -4,6 +4,7 @@
 #include "containers/Bank.hpp"
 #include "containers/Boat.hpp"
 #include "people/Person.hpp"
+#include "Test.hpp"
 #include <list>
 
 /**
@@ -13,6 +14,10 @@
  * @author Valentin Kaelin
  */
 class Controller {
+	// Classe Test friend pour qu'elle puisse avoir accès aux messages d'erreurs
+	// privés
+	friend class Test;
+
 public:
 	/**
 	 * Crée un nouveau contrôleur qui gère le déroulement du programme
@@ -33,10 +38,6 @@ public:
 	 * Affiche l'état du bateau et des rives de la rivière
 	 */
 	void display() const;
-
-	// TODO: en public pour être utilisée dans les Tests du main... A voir ce qu'on
-	// fait
-	static std::string getErrorMessage(ErrorStatus status);
 
 	/**
 	 * Passe au tour suivant
@@ -66,6 +67,8 @@ public:
 
 private:
 	static void displayError(const std::string& error);
+
+	static std::string getErrorMessage(ErrorStatus status);
 
 	static void displayBank(const Bank& bank, int width);
 
