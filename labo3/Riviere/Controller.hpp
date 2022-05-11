@@ -97,6 +97,14 @@ private:
 		RESET = 'r',
 		QUIT = 'q',
 		MENU = 'h';
+
+	static const std::string
+		WIN_MESSAGE,
+		INVALID_COMMAND,
+		UNKNOWN_COMMAND,
+		BOAT_FULL,
+		BOAT_WITHOUT_DRIVER,
+		PERSON_CANT_BE_MOVED;
 };
 
 #endif // RIVIERE_CONTROLLER_HPP

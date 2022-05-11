@@ -16,6 +16,13 @@
 
 using namespace std;
 
+const string Controller::WIN_MESSAGE = "Bravo, vous avez termine la partie!";
+const string Controller::INVALID_COMMAND = "Commande invalide";
+const string Controller::UNKNOWN_COMMAND = "Commande inconnue";
+const string Controller::BOAT_FULL = "Le bateau est plein";
+const string Controller::BOAT_WITHOUT_DRIVER = "Bateau sans conducteur";
+const string Controller::PERSON_CANT_BE_MOVED = " ne peut pas etre deplace.";
+
 Controller::Controller() : boat("Bateau", 2), leftBank("Gauche"),
 									rightBank("Droite"),
 									turn(0), ended(false) {
@@ -62,9 +69,8 @@ void Controller::nextTurn() {
 	handleCommand(command);
 	turn++;
 	if (hasWon()) {
-		// TODO: essayer de trouver mieux que cette dingz
 		display();
-		cout << "Bravo, vous avez termine la partie!" << endl;
+		cout << WIN_MESSAGE << endl;
 		ended = true;
 	}
 	if (!hasEnded())
@@ -134,7 +140,7 @@ void Controller::reset() {
 
 void Controller::handleCommand(const string& command) {
 	if (command.length() != 1) {
-		displayError("Commande invalide");
+		displayError(INVALID_COMMAND);
 		return;
 	}
 	switch (command[0]) {
@@ -143,7 +149,7 @@ void Controller::handleCommand(const string& command) {
 			break;
 		case EMBARK:
 			if (boat.isFull()) {
-				displayError("Le bateau est plein");
+				displayError(BOAT_FULL);
 				break;
 			}
 			movePerson(getCurrentBank(), boat);
@@ -164,7 +170,7 @@ void Controller::handleCommand(const string& command) {
 			showMenu();
 			break;
 		default:
-			displayError("Commande inconnue");
+			displayError(UNKNOWN_COMMAND);
 			break;
 	}
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -174,7 +180,7 @@ void Controller::moveBoat() {
 	if (boat.hasDriver())
 		boat.setBank(boat.isDockedTo(leftBank) ? rightBank : leftBank);
 	else
-		displayError("Bateau sans conducteur");
+		displayError(BOAT_WITHOUT_DRIVER);
 }
 
 void Controller::movePerson(Container& from, Container& to) {
@@ -182,7 +188,7 @@ void Controller::movePerson(Container& from, Container& to) {
 	cin >> name;
 	const Person* person = from.findByName(name);
 	if (!person) {
-		displayError(name + " ne peut pas etre deplace.");
+		displayError(name + PERSON_CANT_BE_MOVED);
 		return;
 	}
 

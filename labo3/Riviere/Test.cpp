@@ -24,7 +24,7 @@ void Test::correctSolution(bool debug) {
 							"m\nd policier\nd voleur\nq");
 
 	bool passed = runTest(iss, {
-		"Bravo, vous avez termine la partie!"
+		Controller::WIN_MESSAGE,
 	}, debug);
 	cout << (passed ? "PASSED" : "FAILED") << endl;
 }
@@ -67,7 +67,7 @@ void Test::emptyBoatCantMove(bool debug) {
 	istringstream iss("m\nq");
 
 	bool passed = runTest(iss, {
-		"Bateau sans conducteur",
+		Controller::BOAT_WITHOUT_DRIVER,
 	}, debug);
 	cout << (passed ? "PASSED" : "FAILED") << endl;
 }
@@ -78,7 +78,7 @@ void Test::onlyTwoPeopleOnTheBoat(bool debug) {
 	istringstream iss("e voleur\n e policier\n e paul\nq");
 
 	bool passed = runTest(iss, {
-		"Le bateau est plein",
+		Controller::BOAT_FULL,
 	}, debug);
 	cout << (passed ? "PASSED" : "FAILED") << endl;
 }

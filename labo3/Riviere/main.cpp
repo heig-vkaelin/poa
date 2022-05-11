@@ -5,8 +5,8 @@
  * @author Valentin Kaelin
  */
 
-#include "Controller.hpp"
 #include "Test.hpp"
+#include "Controller.hpp"
 #include <cstdlib>
 
 using namespace std;
