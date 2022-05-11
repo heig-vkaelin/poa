@@ -14,7 +14,7 @@
  * @author Valentin Kaelin
  */
 class Controller {
-	// Classe Test friend pour qu'elle puisse avoir accès aux messages d'erreurs
+	// Classe Test friend pour qu'elle puisse avoir accès aux messages d'erreur
 	// privés
 	friend class Test;
 

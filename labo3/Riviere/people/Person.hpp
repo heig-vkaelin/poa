@@ -27,7 +27,8 @@ public:
 
 	/**
 	 * Vérifie si l'état du conteneur vérifie les contraintes de la personne
-	 * @param container : le conteneur à vérifier
+	 * @param container : le conteneur à vérifier (la personne courante se trouve dans
+	 * le conteneur)
 	 * @return true si les contraintes sont bien vérifiées, false sinon
 	 */
 	virtual bool isStateValid(const Container& container) const = 0;
