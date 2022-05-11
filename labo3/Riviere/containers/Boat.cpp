@@ -31,8 +31,7 @@ bool Boat::isFull() const {
 }
 
 bool Boat::hasDriver() {
-	return any_of(getPeople().begin(), getPeople().end(),
-					  [](const Person* person) {
-						  return person->canDrive();
-					  });
+	return any_of(begin(), end(), [](const Person* person) {
+		return person->canDrive();
+	});
 }

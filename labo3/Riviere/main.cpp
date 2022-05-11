@@ -146,7 +146,7 @@ void thiefWithFamilyWithoutPoliceman() {
 
 	bool passed = runTest(iss, {
 		Controller::getErrorMessage(ErrorStatus::THIEF_ERROR),
-		"< voleur policier  >",
+		"< voleur policier >",
 	});
 	cout << (passed ? "PASSED" : "FAILED") << endl;
 }
@@ -181,15 +181,15 @@ void testEverything() {
 }
 
 int main() {
-//	testEverything();
-//	return EXIT_SUCCESS;
-
-	Controller controller;
-	Controller::showMenu();
-	controller.display();
-
-	while (!controller.hasEnded())
-		controller.nextTurn();
-
+	testEverything();
 	return EXIT_SUCCESS;
+
+//	Controller controller;
+//	Controller::showMenu();
+//	controller.display();
+//
+//	while (!controller.hasEnded())
+//		controller.nextTurn();
+//
+//	return EXIT_SUCCESS;
 }
