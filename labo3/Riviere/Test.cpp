@@ -11,7 +11,7 @@
 
 using namespace std;
 
-void Test::correctSolution() {
+void Test::correctSolution(bool debug) {
 	cout << "TEST: Solution complete du jeu : ";
 
 	istringstream iss("e voleur\ne policier\nm\nd voleur\nm\ne jeanne\nm\n"
@@ -25,65 +25,65 @@ void Test::correctSolution() {
 
 	bool passed = runTest(iss, {
 		"Bravo, vous avez termine la partie!"
-	});
+	}, debug);
 	cout << (passed ? "PASSED" : "FAILED") << endl;
 }
 
-void Test::resetProgram() {
+void Test::resetProgram(bool debug) {
 	cout << "TEST: Reset du jeu : ";
 
 	istringstream iss("e voleur\ne policier\nm\nd voleur\nm\ne paul\nr\nq");
 
 	bool passed = runTest(iss, {
 		"<  >",
-	});
+	}, debug);
 	cout << (passed ? "PASSED" : "FAILED") << endl;
 }
 
-void Test::boyWithMotherButWithoutFather() {
+void Test::boyWithMotherButWithoutFather(bool debug) {
 	cout << "TEST: Garcon avec sa mere mais sans son pere : ";
 
 	istringstream iss("e pere\ne paul\ne pere\nq");
 
 	bool passed = runTest(iss, {
 		Controller::getErrorMessage(ErrorStatus::BOY_ERROR),
-	});
+	}, debug);
 	cout << (passed ? "PASSED" : "FAILED") << endl;
 }
 
-void Test::girlWithFatherButWithoutMother() {
+void Test::girlWithFatherButWithoutMother(bool debug) {
 	cout << "TEST: Fille avec son pere mais sans sa mere : ";
 
 	istringstream iss("e mere\ne jeanne\ne mere\nq");
 
 	bool passed = runTest(iss, {
 		Controller::getErrorMessage(ErrorStatus::GIRL_ERROR),
-	});
+	}, debug);
 	cout << (passed ? "PASSED" : "FAILED") << endl;
 }
 
-void Test::emptyBoatCantMove() {
+void Test::emptyBoatCantMove(bool debug) {
 	cout << "TEST: Bateau vide ne peut pas bouger : ";
 	istringstream iss("m\nq");
 
 	bool passed = runTest(iss, {
 		"Bateau sans conducteur",
-	});
+	}, debug);
 	cout << (passed ? "PASSED" : "FAILED") << endl;
 }
 
-void Test::onlyTwoPeopleOnTheBoat() {
+void Test::onlyTwoPeopleOnTheBoat(bool debug) {
 	cout << "TEST: Bateau avec max 2 personnes : ";
 
 	istringstream iss("e voleur\n e policier\n e paul\nq");
 
 	bool passed = runTest(iss, {
 		"Le bateau est plein",
-	});
+	}, debug);
 	cout << (passed ? "PASSED" : "FAILED") << endl;
 }
 
-void Test::thiefWithFamilyWithoutPoliceman() {
+void Test::thiefWithFamilyWithoutPoliceman(bool debug) {
 	cout << "TEST: voleur avec famille sans policier : ";
 
 	istringstream iss("e policier\ne voleur\ne policier\nq");
@@ -91,31 +91,31 @@ void Test::thiefWithFamilyWithoutPoliceman() {
 	bool passed = runTest(iss, {
 		Controller::getErrorMessage(ErrorStatus::THIEF_ERROR),
 		"< voleur policier >",
-	});
+	}, debug);
 	cout << (passed ? "PASSED" : "FAILED") << endl;
 }
 
-void Test::thiefAndChildrenCannotDriveTheBoat() {
+void Test::thiefAndChildrenCannotDriveTheBoat(bool debug) {
 	cout << "TEST: enfants et voleur ne peuvent pas conduire le bateau : ";
 
 	istringstream iss1("e paul\nm\nq");
 	istringstream iss2("e voleur\nm\nq");
 
-	bool passed1 = runTest(iss1, {"Bateau sans conducteur"});
-	bool passed2 = runTest(iss2, {"Bateau sans conducteur"});
+	bool passed1 = runTest(iss1, {"Bateau sans conducteur"}, debug);
+	bool passed2 = runTest(iss2, {"Bateau sans conducteur"}, debug);
 
 	cout << (passed1 && passed2 ? "PASSED" : "FAILED") << endl;
 }
 
-void Test::testEverything() {
-	correctSolution();
-	resetProgram();
-	boyWithMotherButWithoutFather();
-	girlWithFatherButWithoutMother();
-	emptyBoatCantMove();
-	onlyTwoPeopleOnTheBoat();
-	thiefWithFamilyWithoutPoliceman();
-	thiefAndChildrenCannotDriveTheBoat();
+void Test::testEverything(bool debug) {
+	correctSolution(debug);
+	resetProgram(debug);
+	boyWithMotherButWithoutFather(debug);
+	girlWithFatherButWithoutMother(debug);
+	emptyBoatCantMove(debug);
+	onlyTwoPeopleOnTheBoat(debug);
+	thiefWithFamilyWithoutPoliceman(debug);
+	thiefAndChildrenCannotDriveTheBoat(debug);
 }
 
 bool Test::runTest(const istringstream& in, const list<string>& needToBeDisplayed,

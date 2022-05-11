@@ -15,51 +15,60 @@ class Test {
 public:
 	/**
 	 * Teste la bonne solution du jeu
+	 * @param debug : si vaut true, le déroulement du jeu est affiché
 	 */
-	static void correctSolution();
+	static void correctSolution(bool debug = false);
 
 	/**
 	 * Teste la bonne remise à zéro lors de la demande de réinitialisation de
 	 * l'utilisateur
+	 * @param debug : si vaut true, le déroulement du jeu est affiché
 	 */
-	static void resetProgram();
+	static void resetProgram(bool debug = false);
 
 	/**
 	 * Teste la règle qui dit que le garçon ne peut pas rester avec sa mère si son père
 	 * n'est pas là
+	 * @param debug : si vaut true, le déroulement du jeu est affiché
 	 */
-	static void boyWithMotherButWithoutFather();
+	static void boyWithMotherButWithoutFather(bool debug = false);
 
 	/**
 	 * Teste la règle qui dit que la fille ne peut pas rester avec son père si sa mère
 	 * n'est pas là
+	 * @param debug : si vaut true, le déroulement du jeu est affiché
 	 */
-	static void girlWithFatherButWithoutMother();
+	static void girlWithFatherButWithoutMother(bool debug = false);
 
 	/**
 	 * Teste qu'un bateau vide ne peut pas bouger de rive
+	 * @param debug : si vaut true, le déroulement du jeu est affiché
 	 */
-	static void emptyBoatCantMove();
+	static void emptyBoatCantMove(bool debug = false);
 
 	/**
 	 * Teste qu'il puisse y avoir au maximum 2 personnes dans le bateau
+	 * @param debug : si vaut true, le déroulement du jeu est affiché
 	 */
-	static void onlyTwoPeopleOnTheBoat();
+	static void onlyTwoPeopleOnTheBoat(bool debug = false);
 
 	/**
 	 * Teste que le voleur ne puisse pas être seul avec la famille sans le policier
+	 * @param debug : si vaut true, le déroulement du jeu est affiché
 	 */
-	static void thiefWithFamilyWithoutPoliceman();
+	static void thiefWithFamilyWithoutPoliceman(bool debug = false);
 
 	/**
 	 * Teste que les enfants et le voleur ne puissent pas conduire le bateau
+	 * @param debug : si vaut true, le déroulement du jeu est affiché
 	 */
-	static void thiefAndChildrenCannotDriveTheBoat();
+	static void thiefAndChildrenCannotDriveTheBoat(bool debug = false);
 
 	/**
 	 * Lance tous les tests créés ci-dessus
+	 * @param debug : si vaut true, le déroulement du jeu est affiché
 	 */
-	static void testEverything();
+	static void testEverything(bool debug = false);
 
 private:
 	/**
@@ -73,7 +82,7 @@ private:
 	*/
 	static bool runTest(const std::istringstream& in,
 							  const std::list<std::string>& needToBeDisplayed,
-							  bool debug = false);
+							  bool debug);
 };
 
 #endif // RIVIERE_TEST_HPP
