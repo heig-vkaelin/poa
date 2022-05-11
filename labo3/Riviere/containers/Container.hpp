@@ -121,11 +121,6 @@ protected:
 	 */
 	std::string peopleToString() const;
 
-	/**
-	 * @return les personnes dans le conteneur
-	 */
-	const std::list<const Person*>& getPeople() const;
-
 private:
 	std::string name;
 	std::list<const Person*> people;

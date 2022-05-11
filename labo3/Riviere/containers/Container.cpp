@@ -63,10 +63,6 @@ std::string Container::peopleToString() const {
 	return ss.str();
 }
 
-const list<const Person*>& Container::getPeople() const {
-	return people;
-}
-
 bool Container::contains(const Person& person) const {
 	return find(people.begin(), people.end(), &person) != people.end();
 }
