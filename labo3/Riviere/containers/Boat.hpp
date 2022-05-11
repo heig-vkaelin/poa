@@ -43,7 +43,7 @@ public:
 	/**
 	 * @return true si le bateau a un pilote, false sinon
 	 */
-	bool hasDriver();
+	bool hasDriver() const;
 
 private:
 	const Bank* bank;

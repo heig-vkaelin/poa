@@ -30,7 +30,7 @@ bool Boat::isFull() const {
 	return size() >= capacity;
 }
 
-bool Boat::hasDriver() {
+bool Boat::hasDriver() const {
 	return any_of(begin(), end(), [](const Person* person) {
 		return person->canDrive();
 	});

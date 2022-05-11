@@ -88,8 +88,8 @@
     <association aggregation="NONE" direction="FIRST_TO_SECOND" id="12210" name="contains &gt;">
       <role componentId="12034" name="" visibility="PRIVATE">
         <multiplicity>
-          <min>1</min>
-          <max>1</max>
+          <min>2147483647</min>
+          <max>2147483647</max>
         </multiplicity>
       </role>
       <role componentId="12037" name="" visibility="PRIVATE">
@@ -148,12 +148,12 @@
       <EnumValue>THIEF_ERROR</EnumValue>
     </entity>
     <entity entityType="CLASS" id="13691" isAbstract="true" name="Kid" visibility="PUBLIC">
-      <method is-constructor="true" isAbstract="false" isStatic="false" name="Kid" returnType="" view="DEFAULT" visibility="PUBLIC">
+      <method is-constructor="true" isAbstract="true" isStatic="false" name="Kid" returnType="" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="name" type="const_string&amp;"/>
         <variable const="false" name="dependsOn" type="const_IndependantPerson&amp;"/>
         <variable const="false" name="cannotStayWith" type="const_IndependantPerson&amp;"/>
       </method>
-      <method is-constructor="true" isAbstract="false" isStatic="false" name="~Kid" returnType="" view="DEFAULT" visibility="PUBLIC"/>
+      <method is-constructor="true" isAbstract="true" isStatic="false" name="~Kid" returnType="" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="false" isStatic="false" name="isStateValid_const" returnType="bool" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="container" type="const_Container&amp;"/>
       </method>
@@ -192,6 +192,12 @@
       <attribute const="false" defaultValue="" isStatic="true" name="RESET" type="const_char" visibility="PRIVATE"/>
       <attribute const="false" defaultValue="" isStatic="true" name="QUIT" type="const_char" visibility="PRIVATE"/>
       <attribute const="false" defaultValue="" isStatic="true" name="MENU" type="const_char" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="true" name="WIN_MESSAGE" type="const_string" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="true" name="INVALID_COMMAND" type="const_string" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="true" name="UNKNOWN_COMMAND" type="const_string" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="true" name="BOAT_FULL" type="const_string" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="true" name="BOAT_WITHOUT_DRIVER" type="const_string" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="true" name="PERSON_CANT_BE_MOVED" type="const_string" visibility="PRIVATE"/>
       <attribute const="false" defaultValue="" isStatic="false" name="turn" type="int" visibility="PRIVATE"/>
       <attribute const="false" defaultValue="" isStatic="false" name="ended" type="bool" visibility="PRIVATE"/>
       <method is-constructor="true" isAbstract="false" isStatic="false" name="Controller" returnType="" view="DEFAULT" visibility="PUBLIC"/>
@@ -202,24 +208,24 @@
       <method isAbstract="false" isStatic="false" name="operator=" returnType="Controller&amp;" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="/" type="const_Controller&amp;"/>
       </method>
-      <method isAbstract="false" isStatic="false" name="display" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="display_const" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="false" isStatic="false" name="nextTurn" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="false" isStatic="false" name="hasWon_const" returnType="bool" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="false" isStatic="false" name="hasEnded_const" returnType="bool" view="DEFAULT" visibility="PUBLIC"/>
-      <method isAbstract="false" isStatic="true" name="getErrorMessage" returnType="string" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="status" type="ErrorStatus"/>
-      </method>
       <method isAbstract="false" isStatic="true" name="showMenu" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="false" isStatic="false" name="reset" returnType="void" view="DEFAULT" visibility="PRIVATE"/>
       <method isAbstract="false" isStatic="false" name="handleCommand" returnType="void" view="DEFAULT" visibility="PRIVATE">
         <variable const="false" name="command" type="const_string&amp;"/>
       </method>
-      <method isAbstract="false" isStatic="false" name="moveBoeat" returnType="void" view="DEFAULT" visibility="PRIVATE"/>
+      <method isAbstract="false" isStatic="false" name="moveBoat" returnType="void" view="DEFAULT" visibility="PRIVATE"/>
       <method isAbstract="false" isStatic="false" name="movePerson" returnType="void" view="DEFAULT" visibility="PRIVATE">
         <variable const="false" name="from" type="Container&amp;"/>
         <variable const="false" name="to" type="Container&amp;"/>
       </method>
       <method isAbstract="false" isStatic="false" name="getCurrentBank" returnType="Bank&amp;" view="DEFAULT" visibility="PRIVATE"/>
+      <method isAbstract="false" isStatic="true" name="getErrorMessage" returnType="string" view="DEFAULT" visibility="PRIVATE">
+        <variable const="false" name="status" type="ErrorStatus"/>
+      </method>
       <method isAbstract="false" isStatic="true" name="displayBank" returnType="void" view="DEFAULT" visibility="PRIVATE">
         <variable const="false" name="bank" type="const_Bank&amp;"/>
         <variable const="false" name="int" type="width"/>
@@ -230,14 +236,14 @@
     </entity>
     <entity entityType="CLASS" id="12037" isAbstract="true" name="Person" visibility="PUBLIC">
       <attribute const="false" defaultValue="" isStatic="false" name="name" type="string" visibility="PRIVATE"/>
-      <method is-constructor="true" isAbstract="true" isStatic="false" name="Person" returnType="" view="DEFAULT" visibility="PUBLIC"/>
-      <method is-constructor="true" isAbstract="true" isStatic="false" name="~Person" returnType="" view="DEFAULT" visibility="PUBLIC">
+      <method is-constructor="true" isAbstract="true" isStatic="false" name="Person" returnType="" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="name" type="const_string&amp;"/>
       </method>
+      <method is-constructor="true" isAbstract="true" isStatic="false" name="~Person" returnType="" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="false" isStatic="false" name="canDrive_const" returnType="bool" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="false" isStatic="false" name="getName_const" returnType="string" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="true" isStatic="false" name="isStateValid_const" returnType="bool" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="conainer" type="const_Container&amp;"/>
+        <variable const="false" name="container" type="const_Container&amp;"/>
       </method>
       <method isAbstract="true" isStatic="false" name="getErrorStatus_const" returnType="ErrorStatus" view="DEFAULT" visibility="PUBLIC"/>
     </entity>
@@ -265,11 +271,13 @@
         <variable const="false" name="bank" type="const_Bank&amp;"/>
       </method>
       <method isAbstract="false" isStatic="false" name="isFull_const" returnType="bool" view="DEFAULT" visibility="PUBLIC"/>
-      <method isAbstract="false" isStatic="false" name="hasDriver" returnType="bool" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="hasDriver_const" returnType="bool" view="DEFAULT" visibility="PUBLIC"/>
     </entity>
     <entity entityType="CLASS" id="12034" isAbstract="true" name="Container" visibility="PUBLIC">
       <attribute const="false" defaultValue="" isStatic="false" name="name" type="string" visibility="PRIVATE"/>
-      <method is-constructor="true" isAbstract="true" isStatic="false" name="Container" returnType="" view="DEFAULT" visibility="PUBLIC"/>
+      <method is-constructor="true" isAbstract="true" isStatic="false" name="Container" returnType="" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="name" type="const_string&amp;"/>
+      </method>
       <method is-constructor="true" isAbstract="true" isStatic="false" name="~Container" returnType="" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="false" isStatic="false" name="addPerson" returnType="bool" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="person" type="const_Person&amp;"/>
@@ -288,17 +296,17 @@
         <variable const="false" name="name" type="const_string&amp;"/>
       </method>
       <method isAbstract="false" isStatic="false" name="isValid_const" returnType="ErrorStatus" view="DEFAULT" visibility="PUBLIC"/>
-      <method isAbstract="false" isStatic="false" name="begin_const" returnType="list&lt;const_Person*&gt;::const_iterator" view="DEFAULT" visibility="PUBLIC"/>
-      <method isAbstract="false" isStatic="false" name="end_const" returnType="list&lt;const_Person*&gt;::const_iterator" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="false" isStatic="false" name="toStream_const" returnType="ostream&amp;" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="os" type="ostream&amp;"/>
       </method>
+      <method isAbstract="false" isStatic="false" name="begin_const" returnType="list&lt;const_Person*&gt;::const_iterator" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="end_const" returnType="list&lt;const_Person*&gt;::const_iterator" view="DEFAULT" visibility="PUBLIC"/>
       <method isAbstract="false" isStatic="false" name="contains_const" returnType="bool" view="DEFAULT" visibility="PROTECTED">
         <variable const="false" name="person" type="const_Person&amp;"/>
       </method>
       <method isAbstract="false" isStatic="false" name="peopleToString_const" returnType="string" view="DEFAULT" visibility="PROTECTED"/>
     </entity>
-    <entity entityType="CLASS" id="12697" isAbstract="true" name="IndependantPerson" visibility="PUBLIC">
+    <entity entityType="CLASS" id="12697" isAbstract="false" name="IndependantPerson" visibility="PUBLIC">
       <method is-constructor="true" isAbstract="true" isStatic="false" name="IndependantPerson" returnType="" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="name" type="const_string&amp;"/>
       </method>
@@ -340,8 +348,8 @@
         <h>16</h>
       </roleAssociation>
       <multipliciteAssociation>
-        <x>334</x>
-        <y>744</y>
+        <x>345</x>
+        <y>747</y>
         <w>8</w>
         <h>16</h>
       </multipliciteAssociation>
@@ -474,9 +482,9 @@
         <h>16</h>
       </roleAssociation>
       <multipliciteAssociation>
-        <x>735</x>
-        <y>219</y>
-        <w>8</w>
+        <x>737</x>
+        <y>220</y>
+        <w>7</w>
         <h>16</h>
       </multipliciteAssociation>
       <multipliciteAssociation>
@@ -855,7 +863,7 @@
         <x>830</x>
         <y>600</y>
         <w>330</w>
-        <h>445</h>
+        <h>535</h>
       </geometry>
     </componentView>
     <componentView color="-2079" componentID="13109" displayAttributes="true" displayDefault="true" displayMethods="true">
@@ -898,7 +906,7 @@
         <h>119</h>
       </geometry>
     </componentView>
-    <note color="-2079" content="operator&lt;&lt;(os : ostream&amp;, container : const_Container&amp;) : ostream&amp;, ~Container() est virtuel pure">
+    <note color="-2079" content="operator&lt;&lt;(os : ostream&amp;, container : const_Container&amp;) : ostream&amp;, ~Container() = 0">
       <noteGeometry>
         <x>360</x>
         <y>130</y>
@@ -918,37 +926,37 @@
     </note>
     <note color="-2079" content="Controller(const Controller&amp;) = delete; Controller&amp; operator=(const Controller&amp;) = delete;">
       <noteGeometry>
-        <x>820</x>
-        <y>1080</y>
+        <x>830</x>
+        <y>1150</y>
         <w>280</w>
         <h>60</h>
       </noteGeometry>
       <noteLine color="-12566464" relationId="12038">
         <point>
-          <x>921</x>
-          <y>1081</y>
+          <x>931</x>
+          <y>1151</y>
         </point>
         <point>
-          <x>921</x>
-          <y>1046</y>
+          <x>931</x>
+          <y>1136</y>
         </point>
       </noteLine>
     </note>
-    <note color="-2079" content="~Kid() = 0;">
+    <note color="-2079" content="~Kid() = 0">
       <noteGeometry>
         <x>1160</x>
-        <y>520</y>
-        <w>82</w>
+        <y>540</y>
+        <w>80</w>
         <h>30</h>
       </noteGeometry>
       <noteLine color="-12566464" relationId="13691">
         <point>
-          <x>1243</x>
-          <y>541</y>
+          <x>1241</x>
+          <y>561</y>
         </point>
         <point>
           <x>1271</x>
-          <y>541</y>
+          <y>561</y>
         </point>
       </noteLine>
     </note>
@@ -965,7 +973,7 @@
           <y>411</y>
         </point>
         <point>
-          <x>2453</x>
+          <x>2455</x>
           <y>531</y>
         </point>
       </noteLine>
@@ -983,7 +991,7 @@
           <y>721</y>
         </point>
         <point>
-          <x>2663</x>
+          <x>2665</x>
           <y>691</y>
         </point>
       </noteLine>
@@ -993,25 +1001,25 @@
           <y>721</y>
         </point>
         <point>
-          <x>2592</x>
+          <x>2594</x>
           <y>651</y>
         </point>
       </noteLine>
     </note>
-    <note color="-2079" content="CI : Une personne n'est contenue que dans un seul &quot;conteneur&quot; à la fois">
+    <note color="-2079" content="CI : Une personne n'est que dans un seul conteneur à la fois">
       <noteGeometry>
-        <x>820</x>
-        <y>130</y>
-        <w>320</w>
-        <h>45</h>
+        <x>790</x>
+        <y>180</y>
+        <w>348</w>
+        <h>30</h>
       </noteGeometry>
       <noteLine color="-12566464" relationId="12210">
         <point>
-          <x>931</x>
-          <y>176</y>
+          <x>901</x>
+          <y>211</y>
         </point>
         <point>
-          <x>933</x>
+          <x>902</x>
           <y>241</y>
         </point>
       </noteLine>
