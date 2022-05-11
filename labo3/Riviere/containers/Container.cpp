@@ -7,6 +7,7 @@
  */
 
 #include <algorithm>
+#include <sstream>
 #include "Container.hpp"
 
 using namespace std;
@@ -53,10 +54,13 @@ const string& Container::getName() const {
 }
 
 std::string Container::peopleToString() const {
-	string result;
-	for (const Person* person: people)
-		result += person->getName() + " ";
-	return result;
+	stringstream ss;
+	for (auto it = people.begin(); it != people.end(); ++it) {
+		ss << (*it)->getName();
+		if (it != prev(people.end()))
+			ss << " ";
+	}
+	return ss.str();
 }
 
 const list<const Person*>& Container::getPeople() const {
@@ -89,3 +93,9 @@ list<const Person*>::const_iterator Container::begin() const {
 list<const Person*>::const_iterator Container::end() const {
 	return people.end();
 }
+
+std::ostream& Container::toStream(ostream& os) const {
+	return os << getName() << ": ";
+}
+
+Container::~Container() = default;

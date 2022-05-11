@@ -57,7 +57,7 @@ void Controller::display() const {
 
 void Controller::nextTurn() {
 	cout << turn << ">";
-	char command;
+	string command;
 	cin >> command;
 	handleCommand(command);
 	turn++;
@@ -132,8 +132,12 @@ void Controller::reset() {
 	turn = 0;
 }
 
-void Controller::handleCommand(char command) {
-	switch (command) {
+void Controller::handleCommand(const string& command) {
+	if (command.length() != 1) {
+		displayError("Commande invalide");
+		return;
+	}
+	switch (command[0]) {
 		case DISPLAY:
 			display();
 			break;
