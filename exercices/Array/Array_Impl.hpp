@@ -1,7 +1,11 @@
 #include <stdexcept>
 #include "Array.hpp"
 
-// Public methods
+// Public
+template<typename T>
+Array<T>::Array() {
+	init(0);
+}
 
 template<typename T>
 Array<T>::Array(std::size_t size) {
@@ -9,21 +13,19 @@ Array<T>::Array(std::size_t size) {
 }
 
 template<typename T>
-Array<T>::Array(const Array& o) {
-	init(o._size);
-	for (std::size_t i = 0; i < _size; i++) {
-		data[i] = o.data[i];
+Array<T>::Array(std::initializer_list<T> args) {
+	init(args.size());
+
+	std::size_t i = 0;
+	const auto END = args.end();
+	for (auto it = args.begin(); it != END; ++it, ++i) {
+		data[i] = *it;
 	}
 }
 
 template<typename T>
-Array<T>::Array(std::initializer_list<T> args) {
-	init(args.size());
-	int i = 0;
-	auto end = args.end();
-	for (const T* val = args.begin(); val != end; ++val, ++i) {
-		data[i] = *val;
-	}
+Array<T>::Array(const Array& other) {
+	init(other.length, other.data);
 }
 
 template<typename T>
@@ -32,20 +34,15 @@ Array<T>::~Array() {
 }
 
 template<typename T>
-Array<T>& Array<T>::operator=(const Array& o) {
-	if (this != &o) {
-		destroy();
-		init(o._size);
-		for (std::size_t i = 0; i < _size; i++) {
-			data[i] = o.data[i];
-		}
-	}
-	return *this;
-}
+Array<T>& Array<T>::operator=(const Array& other) {
+	if (this == &other) return *this;
 
-template<typename T>
-std::size_t Array<T>::size() const {
-	return _size;
+	if (other.data != nullptr)
+		destroy();
+
+	init(other.length, other.data);
+
+	return *this;
 }
 
 template<typename T>
@@ -59,42 +56,52 @@ const T& Array<T>::operator[](std::size_t i) const {
 }
 
 template<typename T>
+std::size_t Array<T>::size() const {
+	return length;
+}
+
+template<typename T>
 typename Array<T>::Iterator Array<T>::begin() {
 	return Iterator(data);
 }
 
 template<typename T>
 typename Array<T>::Iterator Array<T>::end() {
-	return Iterator(data + _size);
+	return Iterator(data + length);
 }
 
-// Private methods
-
+// Private
 template<typename T>
-void Array<T>::init(std::size_t size) {
-	_size = size;
-	data = new T[size];
+void Array<T>::init(std::size_t size, T* src) {
+	this->length = size;
+	this->data = size > 0 ? new T[size] : nullptr;
+
+	if (src != nullptr) {
+		for (std::size_t i = 0; i < size; i++) {
+			data[i] = src[i];
+		}
+	}
 }
 
 template<typename T>
 void Array<T>::destroy() {
-	delete[] data;
+	delete[] this->data;
 }
 
 template<typename T>
-T& Array<T>::at(std::size_t i) {
-	if (i >= _size)
+T& Array<T>::at(std::size_t i) const {
+	if (i >= length) {
 		throw std::out_of_range("Index out of range");
-
+	}
 	return data[i];
 }
 
-// Iterator class
-
+// Iterator private
 template<typename T>
-Array<T>::Iterator::Iterator(T* ptr) : ptr(ptr) {
+Array<T>::Iterator::Iterator(T* data) : ptr(data) {
 }
 
+// Iterator public
 template<typename T>
 T& Array<T>::Iterator::operator*() const {
 	return *ptr;
@@ -108,17 +115,22 @@ typename Array<T>::Iterator& Array<T>::Iterator::operator++() {
 
 template<typename T>
 typename Array<T>::Iterator Array<T>::Iterator::operator++(int) {
-	Iterator tmp = *this;
-	++ptr;
+	Iterator tmp(*this);
+	++(*this);
 	return tmp;
 }
 
 template<typename T>
-bool Array<T>::Iterator::operator==(const Iterator& o) const {
-	return ptr == o.ptr;
+bool Array<T>::Iterator::operator!=(const Array::Iterator& other) {
+	return ptr != other.ptr;
 }
 
 template<typename T>
-bool Array<T>::Iterator::operator!=(const Iterator& o) const {
-	return ptr != o.ptr;
+bool Array<T>::Iterator::operator==(const Array::Iterator& other) {
+	return ptr == other.ptr;
+}
+
+template<typename T>
+T* Array<T>::Iterator::operator->() const {
+	return ptr;
 }

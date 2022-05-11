@@ -9,19 +9,42 @@
 
 template<typename T>
 class Array {
-	class Iterator;
 public:
-	explicit Array(std::size_t size);
+	class Iterator {
+		friend class Array;
 
-	Array(const Array& o);
+	public:
+		T& operator*() const;
+
+		Iterator& operator++();
+
+		Iterator operator++(int);
+
+		bool operator!=(const Iterator& other);
+
+		bool operator==(const Iterator& other);
+
+		T* operator->() const;
+
+	private:
+		T* ptr;
+
+		explicit Iterator(T* data);
+	};
+
+	Array();
+
+	explicit Array(std::size_t size);
 
 	Array(std::initializer_list<T> args);
 
+	Array(const Array& other);
+
 	~Array();
 
-	Array& operator=(const Array& o);
+	Array& operator=(const Array& other);
 
-	T& operator[](std::size_t index);
+	T& operator[](std::size_t i);
 
 	const T& operator[](std::size_t i) const;
 
@@ -32,32 +55,14 @@ public:
 	Iterator end();
 
 private:
-	class Iterator {
-	public:
-		explicit Iterator(T* ptr);
+	T* data;
+	std::size_t length;
 
-		T& operator*() const;
-
-		Iterator& operator++();
-
-		Iterator operator++(int);
-
-		bool operator==(const Iterator& o) const;
-
-		bool operator!=(const Iterator& o) const;
-
-	private:
-		T* ptr;
-	};
-
-	void init(std::size_t size);
+	void init(std::size_t size, T* src = nullptr);
 
 	void destroy();
 
-	T& at(std::size_t i);
-
-	std::size_t _size;
-	T* data;
+	T& at(std::size_t i) const;
 };
 
 #include "Array_Impl.hpp"

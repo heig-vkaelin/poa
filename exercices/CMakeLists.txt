@@ -6,3 +6,5 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wconversion -Wsign-conversion -pedantic")
 
 add_executable(exercices main.cpp Season/Season.cpp
         Musician/Musician.cpp Musician/Band.cpp)
+
+add_executable(Jedi Jedi/TE_canva.cpp)
