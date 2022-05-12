@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.21)
 project(exercices)
 
 set(CMAKE_CXX_STANDARD 11)
@@ -8,3 +8,5 @@ add_executable(exercices main.cpp Season/Season.cpp
         Musician/Musician.cpp Musician/Band.cpp)
 
 add_executable(Jedi Jedi/TE_canva.cpp)
+
+add_executable(TE1 TE1/TE.cpp)

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <utility>
 #include <sstream>
+#include <memory>
 #include "Band.hpp"
 
 using namespace std;
@@ -19,7 +20,8 @@ void Band::setMembers(initializer_list<shared_ptr<Musician>> _musicians) {
 	}
 
 	for (const auto& musician: _musicians) {
-		if (musician->setBand(weak_from_this()))
+		// TODO: weak_from_this() ici
+		if (musician->setBand(shared_from_this()))
 			musicians.push_back(musician);
 	}
 }
