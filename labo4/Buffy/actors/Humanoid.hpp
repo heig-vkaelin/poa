@@ -11,6 +11,8 @@ class Field;
 
 class Humanoid {
 public:
+    Humanoid(unsigned maxWidth, unsigned maxHeight);
+
 	virtual void setAction(const Field& field) = 0;
 
 	virtual void executeAction(Field& field) = 0;
@@ -19,8 +21,13 @@ public:
 
 	virtual ~Humanoid() = 0;
 
+    unsigned getXPos() const;
+
+    unsigned getYPos() const;
+
 private:
 	Action* action;
+    unsigned x, y;
 };
 
 #endif // BUFFY_HUMANOID_HPP

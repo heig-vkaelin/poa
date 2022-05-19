@@ -6,4 +6,4 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wconversion -Wsign-conversion -pedantic")
 
 add_executable(Buffy main.cpp actors/Buffy.cpp
         actors/Human.cpp actors/Vampire.cpp actors/Humanoid.cpp
-        Field.cpp actions/Action.cpp)
+        Field.cpp actions/Action.cpp Utils/Utils.cpp Utils/Utils.hpp)
