@@ -3,3 +3,5 @@
 //
 
 #include "Buffy.hpp"
+
+Buffy::Buffy(unsigned int x, unsigned int y) : Humanoid(x,y){}

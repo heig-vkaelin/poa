@@ -3,3 +3,5 @@
 //
 
 #include "Vampire.hpp"
+
+Vampire::Vampire(unsigned int x, unsigned int y) : Humanoid(x,y){}

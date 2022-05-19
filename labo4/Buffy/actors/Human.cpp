@@ -3,3 +3,5 @@
 //
 
 #include "Human.hpp"
+
+Human::Human(unsigned int x, unsigned int y) : Humanoid(x,y){}

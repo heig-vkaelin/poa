@@ -5,8 +5,11 @@
 #ifndef BUFFY_BUFFY_HPP
 #define BUFFY_BUFFY_HPP
 
+#include "Humanoid.hpp"
 
-class Buffy {
+class Buffy : public Humanoid {
+public:
+    Buffy(unsigned x,unsigned y);
 
 };
 
