@@ -24,11 +24,11 @@ Field::Field(unsigned width, unsigned height, unsigned nbHumans,
 
 int Field::nextTurn() {
 	// Déterminer les prochaines actions
-	for (auto it = humanoids.begin(); it != humanoids.end();)
+	for (auto it = humanoids.begin(); it != humanoids.end(); it++)
 		(*it)->setAction(*this);
 
 	// Exécuter les actions
-	for (auto it = humanoids.begin(); it != humanoids.end();)
+	for (auto it = humanoids.begin(); it != humanoids.end(); it++)
 		(*it)->executeAction(*this);
 
 	// Enlever les humanoides tués
@@ -46,12 +46,13 @@ T* Field::findClosestHumanoid(const Humanoid& closeTo) const {
 	unsigned minDist = UINT_MAX;
 	T** closest = nullptr;
 
-	for (auto humanoid: humanoids) {
+	for (Humanoid* humanoid: humanoids) {
 		unsigned dist = Utils::getDistance(
 			humanoid->getXPos(), humanoid->getYPos(),
 			closeTo.getXPos(), closeTo.getYPos()
 		);
-		if (dist < minDist && dynamic_cast<T*>(humanoid) != nullptr) {
+		// && dynamic_cast<T*>(humanoid) != nullptr
+		if (dist < minDist) {
 			minDist = dist;
 			closest = humanoid;
 		}
@@ -67,7 +68,15 @@ unsigned Field::getHeight() const {
 	return height;
 }
 
+list<Humanoid*>::const_iterator Field::begin() const {
+	return humanoids.begin();
+}
+
+list<Humanoid*>::const_iterator Field::end() const {
+	return humanoids.end();
+}
+
 Field::~Field() {
-	for (auto humanoid: humanoids)
+	for (Humanoid* humanoid: humanoids)
 		delete humanoid;
 }

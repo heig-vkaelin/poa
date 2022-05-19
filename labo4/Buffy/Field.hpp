@@ -32,6 +32,16 @@ public:
 	 */
 	unsigned getHeight() const;
 
+	/**
+	 * @return un itérateur constant sur le premier acteur de la grille
+	 */
+	std::list<Humanoid*>::const_iterator begin() const;
+
+	/**
+	 * @return un itérateur constant après le dernier acteur de la grille
+	 */
+	std::list<Humanoid*>::const_iterator end() const;
+
 	~Field();
 
 private:
