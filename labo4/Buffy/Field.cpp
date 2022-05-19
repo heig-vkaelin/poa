@@ -4,6 +4,9 @@
 
 #include "Field.hpp"
 #include "displayers/Displayer.hpp"
+#include "Utils/Utils.hpp"
+#include "actors/Human.hpp"
+#include "actors/Vampire.hpp"
 
 using namespace std;
 
@@ -12,12 +15,10 @@ Field::Field(unsigned width, unsigned height, unsigned nbHumans,
 	: width(width), height(height), turn(0), displayer(displayer), humanoids() {
 
 	for (unsigned i = 0; i < nbHumans; ++i) {
-		// TODO
-//		humanoids.emplace_back(new Human());
+		humanoids.emplace_back(new Human(width, height));
 	}
-	for (unsigned i = 0; i < nbHumans; ++i) {
-		// TODO
-//		humanoids.emplace_back(new Vampire());
+	for (unsigned i = 0; i < nbVampires; ++i) {
+		humanoids.emplace_back(new Vampire(width, height));
 	}
 }
 
@@ -42,12 +43,20 @@ int Field::nextTurn() {
 
 template<typename T>
 T* Field::findClosestHumanoid(const Humanoid& closeTo) const {
-	for (auto it = humanoids.begin(); it != humanoids.end();) {
-		// TODO
-//		if ((*it)->getPosition() == closeTo.getPosition())
-//			return *it;
-//		++it;
+	unsigned minDist = UINT_MAX;
+	T** closest = nullptr;
+
+	for (auto humanoid: humanoids) {
+		unsigned dist = Utils::getDistance(
+			humanoid->getXPos(), humanoid->getYPos(),
+			closeTo.getXPos(), closeTo.getYPos()
+		);
+		if (dist < minDist && dynamic_cast<T*>(humanoid) != nullptr) {
+			minDist = dist;
+			closest = humanoid;
+		}
 	}
+	return closest ? *closest : nullptr;
 }
 
 unsigned Field::getWidth() const {
@@ -56,4 +65,9 @@ unsigned Field::getWidth() const {
 
 unsigned Field::getHeight() const {
 	return height;
+}
+
+Field::~Field() {
+	for (auto humanoid: humanoids)
+		delete humanoid;
 }

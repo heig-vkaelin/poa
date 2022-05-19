@@ -32,6 +32,8 @@ public:
 	 */
 	unsigned getHeight() const;
 
+	~Field();
+
 private:
 	unsigned width, height;
 	int turn;

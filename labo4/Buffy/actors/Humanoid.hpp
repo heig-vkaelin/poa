@@ -11,23 +11,24 @@ class Field;
 
 class Humanoid {
 public:
-    Humanoid(unsigned maxWidth, unsigned maxHeight);
+	Humanoid(unsigned maxWidth, unsigned maxHeight);
 
-	virtual void setAction(const Field& field) = 0;
+	virtual void setAction(const Field& field);
 
-	virtual void executeAction(Field& field) = 0;
+	virtual void executeAction(Field& field);
 
-	virtual bool isAlive() const = 0;
+	virtual bool isAlive() const;
+
+	unsigned getXPos() const;
+
+	unsigned getYPos() const;
 
 	virtual ~Humanoid() = 0;
 
-    unsigned getXPos() const;
-
-    unsigned getYPos() const;
-
 private:
 	Action* action;
-    unsigned x, y;
+	unsigned x, y;
+	bool alive;
 };
 
 #endif // BUFFY_HUMANOID_HPP
