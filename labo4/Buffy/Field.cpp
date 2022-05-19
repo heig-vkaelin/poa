@@ -3,11 +3,22 @@
 //
 
 #include "Field.hpp"
+#include "displayers/Displayer.hpp"
 
 using namespace std;
 
-Field::Field(unsigned width, unsigned height)
-	: width(width), height(height), turn(0), humanoids() {
+Field::Field(unsigned width, unsigned height, unsigned nbHumans,
+				 unsigned nbVampires, const Displayer* displayer)
+	: width(width), height(height), turn(0), displayer(displayer), humanoids() {
+
+	for (unsigned i = 0; i < nbHumans; ++i) {
+		// TODO
+//		humanoids.emplace_back(new Human());
+	}
+	for (unsigned i = 0; i < nbHumans; ++i) {
+		// TODO
+//		humanoids.emplace_back(new Vampire());
+	}
 }
 
 int Field::nextTurn() {

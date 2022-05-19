@@ -9,9 +9,13 @@
 #include <cstdlib>
 #include "list"
 
+class Displayer;
+
 class Field {
 public:
-	Field(unsigned width, unsigned height);
+	Field(unsigned width, unsigned height,
+			unsigned nbHumans, unsigned nbVampires,
+			const Displayer* displayer = nullptr);
 
 	int nextTurn();
 
@@ -31,6 +35,7 @@ public:
 private:
 	unsigned width, height;
 	int turn;
+	const Displayer* displayer;
 	std::list<Humanoid*> humanoids;
 };
 
