@@ -8,6 +8,7 @@
 #include "Humanoid.hpp"
 
 class Vampire : public Humanoid{
+public:
     Vampire(unsigned x, unsigned y);
 };
 
