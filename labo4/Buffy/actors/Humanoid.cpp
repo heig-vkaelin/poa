@@ -12,6 +12,8 @@ Humanoid::Humanoid(unsigned maxWidth, unsigned maxHeight)
 	  y(Utils::find_random_position(0, maxHeight)), alive(true) {
 }
 
+Humanoid::~Humanoid() = default;
+
 void Humanoid::setAction(const Field& field) {
 
 }
@@ -31,5 +33,3 @@ unsigned Humanoid::getXPos() const {
 unsigned Humanoid::getYPos() const {
 	return y;
 }
-
-Humanoid::~Humanoid() = default;

@@ -9,9 +9,9 @@
 
 class Buffy : public Humanoid {
 public:
-    Buffy(unsigned x,unsigned y);
+	Buffy(unsigned x, unsigned y);
 
+	char getSymbol() const override;
 };
-
 
 #endif // BUFFY_BUFFY_HPP

@@ -4,4 +4,8 @@
 
 #include "Human.hpp"
 
-Human::Human(unsigned int x, unsigned int y) : Humanoid(x,y){}
+Human::Human(unsigned x, unsigned y) : Humanoid(x, y) {}
+
+char Human::getSymbol() const {
+	return 'H';
+}

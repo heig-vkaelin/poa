@@ -7,10 +7,11 @@
 
 #include "Humanoid.hpp"
 
-class Vampire : public Humanoid{
+class Vampire : public Humanoid {
 public:
-    Vampire(unsigned x, unsigned y);
-};
+	Vampire(unsigned x, unsigned y);
 
+	char getSymbol() const override;
+};
 
 #endif // BUFFY_VAMPIRE_HPP

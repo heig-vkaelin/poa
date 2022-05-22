@@ -13,6 +13,10 @@ class Humanoid {
 public:
 	Humanoid(unsigned maxWidth, unsigned maxHeight);
 
+	virtual ~Humanoid() = 0;
+
+	virtual char getSymbol() const = 0;
+
 	virtual void setAction(const Field& field);
 
 	virtual void executeAction(Field& field);
@@ -22,8 +26,6 @@ public:
 	unsigned getXPos() const;
 
 	unsigned getYPos() const;
-
-	virtual ~Humanoid() = 0;
 
 private:
 	Action* action;

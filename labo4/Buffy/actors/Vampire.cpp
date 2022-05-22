@@ -4,4 +4,8 @@
 
 #include "Vampire.hpp"
 
-Vampire::Vampire(unsigned int x, unsigned int y) : Humanoid(x,y){}
+Vampire::Vampire(unsigned x, unsigned y) : Humanoid(x, y) {}
+
+char Vampire::getSymbol() const {
+	return 'V';
+}

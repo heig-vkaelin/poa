@@ -3,16 +3,14 @@
 //
 
 #include "Field.hpp"
-#include "displayers/Displayer.hpp"
 #include "Utils/Utils.hpp"
 #include "actors/Human.hpp"
 #include "actors/Vampire.hpp"
 
 using namespace std;
 
-Field::Field(unsigned width, unsigned height, unsigned nbHumans,
-				 unsigned nbVampires, const Displayer* displayer)
-	: width(width), height(height), turn(0), displayer(displayer), humanoids() {
+Field::Field(unsigned width, unsigned height, unsigned nbHumans, unsigned nbVampires)
+	: width(width), height(height), turn(0), humanoids() {
 
 	for (unsigned i = 0; i < nbHumans; ++i) {
 		humanoids.emplace_back(new Human(width, height));

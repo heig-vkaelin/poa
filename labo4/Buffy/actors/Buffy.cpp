@@ -4,4 +4,8 @@
 
 #include "Buffy.hpp"
 
-Buffy::Buffy(unsigned int x, unsigned int y) : Humanoid(x,y){}
+Buffy::Buffy(unsigned x, unsigned y) : Humanoid(x, y) {}
+
+char Buffy::getSymbol() const {
+	return 'B';
+}
