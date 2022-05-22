@@ -6,6 +6,6 @@
 
 Buffy::Buffy(unsigned x, unsigned y) : Humanoid(x, y) {}
 
-char Buffy::getSymbol() const {
-	return 'B';
+ActorType Buffy::getType() const {
+	return ActorType::BUFFY;
 }

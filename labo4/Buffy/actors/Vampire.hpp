@@ -11,7 +11,7 @@ class Vampire : public Humanoid {
 public:
 	Vampire(unsigned x, unsigned y);
 
-	char getSymbol() const override;
+	ActorType getType() const override;
 };
 
 #endif // BUFFY_VAMPIRE_HPP

@@ -6,13 +6,18 @@
 #define BUFFY_FIELD_HPP
 
 #include "actors/Humanoid.hpp"
+#include "EndStatus.hpp"
 #include <cstdlib>
 #include "list"
+
+class Controller;
 
 class Field {
 public:
 	Field(unsigned width, unsigned height,
 			unsigned nbHumans, unsigned nbVampires);
+
+	~Field();
 
 	int nextTurn();
 
@@ -39,7 +44,7 @@ public:
 	 */
 	std::list<Humanoid*>::const_iterator end() const;
 
-	~Field();
+	EndStatus isFinished() const;
 
 private:
 	unsigned width, height;

@@ -11,7 +11,7 @@ class Buffy : public Humanoid {
 public:
 	Buffy(unsigned x, unsigned y);
 
-	char getSymbol() const override;
+	ActorType getType() const override;
 };
 
 #endif // BUFFY_BUFFY_HPP

@@ -8,8 +8,8 @@
 
 Humanoid::Humanoid(unsigned maxWidth, unsigned maxHeight)
 	: action(nullptr),
-	  x(Utils::find_random_position(0, maxWidth)),
-	  y(Utils::find_random_position(0, maxHeight)), alive(true) {
+	  x(Utils::randomPosition(0, maxWidth)),
+	  y(Utils::randomPosition(0, maxHeight)), alive(true) {
 }
 
 Humanoid::~Humanoid() = default;

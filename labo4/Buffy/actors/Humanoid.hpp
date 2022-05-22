@@ -6,6 +6,7 @@
 #define BUFFY_HUMANOID_HPP
 
 #include "../actions/Action.hpp"
+#include "ActorType.hpp"
 
 class Field;
 
@@ -15,7 +16,7 @@ public:
 
 	virtual ~Humanoid() = 0;
 
-	virtual char getSymbol() const = 0;
+	virtual ActorType getType() const = 0;
 
 	virtual void setAction(const Field& field);
 

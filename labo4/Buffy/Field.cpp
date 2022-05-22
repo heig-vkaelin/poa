@@ -12,22 +12,25 @@ using namespace std;
 Field::Field(unsigned width, unsigned height, unsigned nbHumans, unsigned nbVampires)
 	: width(width), height(height), turn(0), humanoids() {
 
-	for (unsigned i = 0; i < nbHumans; ++i) {
+	for (unsigned i = 0; i < nbHumans; ++i)
 		humanoids.emplace_back(new Human(width, height));
-	}
-	for (unsigned i = 0; i < nbVampires; ++i) {
+	for (unsigned i = 0; i < nbVampires; ++i)
 		humanoids.emplace_back(new Vampire(width, height));
-	}
+}
+
+Field::~Field() {
+	for (Humanoid* humanoid: humanoids)
+		delete humanoid;
 }
 
 int Field::nextTurn() {
 	// Déterminer les prochaines actions
-	for (auto it = humanoids.begin(); it != humanoids.end(); it++)
-		(*it)->setAction(*this);
+	for (auto& humanoid: humanoids)
+		humanoid->setAction(*this);
 
 	// Exécuter les actions
-	for (auto it = humanoids.begin(); it != humanoids.end(); it++)
-		(*it)->executeAction(*this);
+	for (auto& humanoid: humanoids)
+		humanoid->executeAction(*this);
 
 	// Enlever les humanoides tués
 	for (auto it = humanoids.begin(); it != humanoids.end();)
@@ -74,7 +77,20 @@ list<Humanoid*>::const_iterator Field::end() const {
 	return humanoids.end();
 }
 
-Field::~Field() {
-	for (Humanoid* humanoid: humanoids)
-		delete humanoid;
+EndStatus Field::isFinished() const {
+	bool vampireAlive = false;
+	bool humanAlive = false;
+
+	// TODO cast ou alors getter du nbr de vivants sur le field ≤?
+	for (Humanoid* humanoid: humanoids) {
+		if (dynamic_cast<Vampire*>(humanoid) != nullptr) {
+			vampireAlive = true;
+		} else if (dynamic_cast<Human*>(humanoid) != nullptr) {
+			humanAlive = true;
+		}
+	}
+
+	if (humanAlive)
+		return vampireAlive ? EndStatus::RUNNING : EndStatus::WIN;
+	return EndStatus::LOSE;
 }

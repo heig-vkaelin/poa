@@ -5,7 +5,14 @@
 #include "Utils.hpp"
 #include <cmath>
 
-unsigned int Utils::find_random_position(unsigned min, unsigned max) {
+unsigned Utils::randomPosition(unsigned min, unsigned max) {
+	static bool alreadyCalled = false;
+	if (!alreadyCalled) {
+		srand((unsigned)time(nullptr));
+		alreadyCalled = true;
+	}
+
+	// TODO: clean this cast
 	return min + (rand() % max);
 }
 

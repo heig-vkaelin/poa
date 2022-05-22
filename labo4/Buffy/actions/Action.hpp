@@ -12,5 +12,4 @@ public:
 	virtual void execute(Field& f) = 0;
 };
 
-
 #endif // BUFFY_ACTION_HPP

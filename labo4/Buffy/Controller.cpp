@@ -5,6 +5,7 @@
 #include "Controller.hpp"
 #include "displayers/Displayer.hpp"
 #include "Field.hpp"
+#include "EndStatus.hpp"
 #include <iostream>
 
 using namespace std;
@@ -61,18 +62,16 @@ void Controller::quit() {
 }
 
 void Controller::statistics() {
-	// TODO
 	unsigned wins = 0;
-	unsigned losses = 0;
-
-	for (size_t i = 0; i < NB_SIMULATIONS; ++i) {
+	for (unsigned i = 0; i < NB_SIMULATIONS; ++i) {
 		Field simulation(width, height, nbHumans, nbVampires);
 
-//		while (simulation has humans && simulation has vampires) {
-//			simulation.nextTurn();
-//		}
-//
-//		check Si Win ? ++wins : ++losses;
+		while (simulation.isFinished() == EndStatus::RUNNING) {
+			simulation.nextTurn();
+		}
+
+		if (simulation.isFinished() == EndStatus::WIN)
+			++wins;
 	}
-	displayer->displayStats();
+	displayer->displayStats(wins, NB_SIMULATIONS);
 }

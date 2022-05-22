@@ -3,9 +3,10 @@
 //
 
 #include "Vampire.hpp"
+#include "ActorType.hpp"
 
 Vampire::Vampire(unsigned x, unsigned y) : Humanoid(x, y) {}
 
-char Vampire::getSymbol() const {
-	return 'V';
+ActorType Vampire::getType() const {
+	return ActorType::VAMPIRE;
 }

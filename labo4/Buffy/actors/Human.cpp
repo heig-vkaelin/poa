@@ -6,6 +6,6 @@
 
 Human::Human(unsigned x, unsigned y) : Humanoid(x, y) {}
 
-char Human::getSymbol() const {
-	return 'H';
+ActorType Human::getType() const {
+	return ActorType::HUMAN;
 }
