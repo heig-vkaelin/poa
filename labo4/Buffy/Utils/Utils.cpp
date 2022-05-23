@@ -4,6 +4,7 @@
 
 #include "Utils.hpp"
 #include <cmath>
+#include <ctime>
 
 unsigned Utils::randomPosition(unsigned min, unsigned max) {
 	static bool alreadyCalled = false;
