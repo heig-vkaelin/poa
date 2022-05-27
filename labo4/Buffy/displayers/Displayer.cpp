@@ -34,7 +34,7 @@ void Displayer::displayStats(unsigned wins, unsigned total) const {
 }
 
 void Displayer::displayPrompt(int turn, char quit, char stats, char next) {
-	cout << '[' << turn << ']'
+	cout << "[" << turn << "] "
 		  << quit << ")uit "
 		  << stats << ")tatistics "
 		  << next << ")ext: ";

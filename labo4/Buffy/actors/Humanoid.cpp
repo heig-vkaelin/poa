@@ -19,7 +19,9 @@ void Humanoid::setAction(const Field& field) {
 }
 
 void Humanoid::executeAction(Field& field) {
-
+	if (action != nullptr) {
+		action->execute(field);
+	}
 }
 
 bool Humanoid::isAlive() const {
@@ -32,4 +34,9 @@ unsigned Humanoid::getXPos() const {
 
 unsigned Humanoid::getYPos() const {
 	return y;
+}
+
+void Humanoid::setPosition(unsigned _x, unsigned _y) {
+	x = _x;
+	y = _y;
 }

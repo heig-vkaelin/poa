@@ -18,7 +18,7 @@ public:
 
 	virtual ActorType getType() const = 0;
 
-	virtual void setAction(const Field& field);
+	virtual void setAction(const Field& field); // TODO: = 0
 
 	virtual void executeAction(Field& field);
 
@@ -28,8 +28,12 @@ public:
 
 	unsigned getYPos() const;
 
-private:
+	void setPosition(unsigned x, unsigned y);
+
+protected:
 	Action* action;
+
+private:
 	unsigned x, y;
 	bool alive;
 };

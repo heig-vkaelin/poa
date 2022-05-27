@@ -12,6 +12,8 @@ public:
     Human(unsigned x, unsigned y);
 
 	ActorType getType() const override;
+
+	void setAction(const Field& field) override;
 };
 
 #endif // BUFFY_HUMAN_HPP

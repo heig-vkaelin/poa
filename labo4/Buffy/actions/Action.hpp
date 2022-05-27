@@ -10,6 +10,8 @@ class Field;
 class Action {
 public:
 	virtual void execute(Field& f) = 0;
+
+	virtual ~Action() = default;
 };
 
 #endif // BUFFY_ACTION_HPP
