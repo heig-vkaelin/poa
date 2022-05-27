@@ -8,4 +8,4 @@ add_executable(Buffy main.cpp actors/Buffy.cpp
         actors/Human.cpp actors/Vampire.cpp actors/Humanoid.cpp
         Field.cpp actions/Action.cpp actions/Move.cpp Utils/Direction.cpp Utils/Utils.cpp
         displayers/Displayer.cpp displayers/UnixDisplayer.cpp displayers/WindowsDisplayer.cpp
-        Controller.cpp EndStatus.hpp actors/ActorType.hpp)
+        Controller.cpp EndStatus.hpp actors/ActorType.hpp actions/Kill.cpp actions/Kill.hpp actions/Transform.cpp actions/Transform.hpp)

@@ -15,8 +15,10 @@ ActorType Human::getType() const {
 
 void Human::setAction(const Field& field) {
 	// TODO: constante pas en dur
-	delete action;
-	action = new Move(1, this);
+    if(action != nullptr) {
+        delete action;
+    }
+	action = new Move(1, *this);
 }
 
 void Human::display(const Displayer& displayer) const {

@@ -3,6 +3,11 @@
 //
 
 #include "Vampire.hpp"
+#include "Human.hpp"
+#include "Buffy.hpp"
+#include "../Field.hpp"
+
+#include "../actions/Transform.hpp"
 #include "ActorType.hpp"
 
 Vampire::Vampire(unsigned x, unsigned y) : Humanoid(x, y) {}
@@ -13,4 +18,15 @@ ActorType Vampire::getType() const {
 
 void Vampire::display(const Displayer& displayer) const {
 	displayer.displayVampire();
+}
+
+void Vampire::setAction(const Field &field) {
+    if(action != nullptr) {
+        delete action;
+    }
+    action = new Transform(*field.findClosestHumanoid<Human>(*this));
+}
+
+void Vampire::executeAction(Field &field) {
+    action->execute(field);
 }

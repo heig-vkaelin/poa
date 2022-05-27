@@ -14,6 +14,11 @@ public:
 	ActorType getType() const override;
 
 	void display(const Displayer& displayer) const override;
+
+    void setAction(const Field& field) override;
+
+    void executeAction(Field& field) override;
+
 };
 
 #endif // BUFFY_VAMPIRE_HPP

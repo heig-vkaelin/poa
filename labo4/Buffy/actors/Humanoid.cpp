@@ -28,6 +28,10 @@ bool Humanoid::isAlive() const {
 	return true;
 }
 
+void Humanoid::kill() {
+    alive = false;
+}
+
 unsigned Humanoid::getXPos() const {
 	return x;
 }

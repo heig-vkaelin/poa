@@ -27,6 +27,8 @@ public:
 
 	virtual bool isAlive() const;
 
+    void kill();
+
 	unsigned getXPos() const;
 
 	unsigned getYPos() const;
