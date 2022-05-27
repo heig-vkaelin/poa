@@ -7,7 +7,7 @@
 
 #include "actors/Humanoid.hpp"
 #include "EndStatus.hpp"
-#include "Utils/Utils.hpp"
+#include "Utils/Random.hpp"
 #include <cstdlib>
 #include "list"
 

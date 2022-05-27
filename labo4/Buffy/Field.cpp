@@ -3,7 +3,7 @@
 //
 
 #include "Field.hpp"
-#include "Utils/Utils.hpp"
+#include "Utils/Random.hpp"
 #include "actors/Buffy.hpp"
 #include "actors/Human.hpp"
 #include "actors/Vampire.hpp"

@@ -5,7 +5,7 @@
 #include "Move.hpp"
 #include "../actors/Humanoid.hpp"
 #include "../Field.hpp"
-#include "../Utils/Utils.hpp"
+#include "../Utils/Random.hpp"
 
 using namespace std;
 
@@ -13,7 +13,7 @@ void Move::execute(Field& field) {
 	vector<const Direction*> directions = getPossibleDirections(field);
 	// TODO: remove these casts
 	const Direction* direction = directions.at(
-		(unsigned long)(Utils::randomPosition(0, (int)directions.size()))
+		(unsigned long)(Random::randomPosition(0, (int)directions.size()))
 	);
 	// TODO: clean this shit
 	humanoid->setPosition(Position(

@@ -4,7 +4,7 @@
 
 #include <cmath>
 #include "Position.hpp"
-#include "Utils.hpp"
+#include "Random.hpp"
 
 Position::Position(int x, int y) : x(x), y(y) {
 }
@@ -23,7 +23,7 @@ double Position::getDistance(const Position& from, const Position& to) {
 
 Position Position::getRandomPosition(int maxX, int maxY) {
 	return {
-		Utils::randomPosition(0, maxX),
-		Utils::randomPosition(0, maxY)
+		Random::randomPosition(0, maxX),
+		Random::randomPosition(0, maxY)
 	};
 }

@@ -4,7 +4,7 @@
 
 #include "Humanoid.hpp"
 #include "../Field.hpp"
-#include "../Utils/Utils.hpp"
+#include "../Utils/Random.hpp"
 
 Humanoid::Humanoid(unsigned maxWidth, unsigned maxHeight)
 	: action(nullptr), alive(true),
