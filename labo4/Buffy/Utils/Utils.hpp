@@ -9,9 +9,9 @@
 
 class Utils {
 public:
-	static unsigned randomPosition(unsigned min, unsigned max);
+	static int randomPosition(int min, int max);
 
-	static unsigned getDistance(unsigned x1, unsigned y1, unsigned x2, unsigned y2);
+	static double getDistance(int x1, int y1, int x2, int y2);
 };
 
 #endif // BUFFY_UTILS_HPP

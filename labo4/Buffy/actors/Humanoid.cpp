@@ -7,9 +7,8 @@
 #include "../Utils/Utils.hpp"
 
 Humanoid::Humanoid(unsigned maxWidth, unsigned maxHeight)
-	: action(nullptr),
-	  x(Utils::randomPosition(0, maxWidth)),
-	  y(Utils::randomPosition(0, maxHeight)), alive(true) {
+	: action(nullptr), alive(true),
+	  position(Position::getRandomPosition(maxWidth, maxHeight)) {
 }
 
 Humanoid::~Humanoid() = default;
@@ -25,22 +24,17 @@ void Humanoid::executeAction(Field& field) {
 }
 
 bool Humanoid::isAlive() const {
-	return true;
+	return alive;
 }
 
 void Humanoid::kill() {
-    alive = false;
+	alive = false;
 }
 
-unsigned Humanoid::getXPos() const {
-	return x;
+Position Humanoid::getPosition() const {
+	return position;
 }
 
-unsigned Humanoid::getYPos() const {
-	return y;
-}
-
-void Humanoid::setPosition(unsigned _x, unsigned _y) {
-	x = _x;
-	y = _y;
+void Humanoid::setPosition(Position _position) {
+	position = _position;
 }

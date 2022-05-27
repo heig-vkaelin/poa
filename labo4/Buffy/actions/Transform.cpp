@@ -10,8 +10,9 @@ Transform::Transform(Humanoid& humanoid) {
 	this->humanoid = &humanoid;
 }
 
-void Transform::execute(Field& f) {
-	Humanoid* tmp = humanoid;
-	humanoid = new Vampire(tmp->getXPos(), tmp->getYPos());
-	delete tmp;
+void Transform::execute(Field& field) {
+	// TODO: fix crash
+//	Humanoid* tmp = humanoid;
+//	humanoid = new Vampire(tmp->getX(), tmp->getY());
+//	delete tmp;
 }

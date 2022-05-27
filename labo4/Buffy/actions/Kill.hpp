@@ -6,17 +6,17 @@
 #define BUFFY_KILL_HPP
 
 #include "Action.hpp"
+
 class Humanoid;
 
-class Kill : public Action{
+class Kill : public Action {
 public:
-    Kill(Humanoid& humanoid);
+	Kill(Humanoid& humanoid);
 
-    void execute(Field &gameState) override;
+	void execute(Field& field) override;
+
 private:
-    Humanoid* humanoid;
-
+	Humanoid* humanoid;
 };
 
-
-#endif //BUFFY_KILL_HPP
+#endif // BUFFY_KILL_HPP

@@ -8,6 +8,7 @@
 #include "../actions/Action.hpp"
 #include "../displayers/Displayer.hpp"
 #include "ActorType.hpp"
+#include "../Utils/Position.hpp"
 
 class Field;
 
@@ -27,20 +28,18 @@ public:
 
 	virtual bool isAlive() const;
 
-    void kill();
+	void kill();
 
-	unsigned getXPos() const;
+	Position getPosition() const;
 
-	unsigned getYPos() const;
-
-	void setPosition(unsigned x, unsigned y);
+	void setPosition(Position position);
 
 protected:
 	Action* action;
 
 private:
-	unsigned x, y;
 	bool alive;
+	Position position;
 };
 
 #endif // BUFFY_HUMANOID_HPP

@@ -11,14 +11,15 @@ using namespace std;
 
 void Move::execute(Field& field) {
 	vector<const Direction*> directions = getPossibleDirections(field);
+	// TODO: remove these casts
 	const Direction* direction = directions.at(
-		Utils::randomPosition(0, (unsigned)directions.size())
+		(unsigned long)(Utils::randomPosition(0, (int)directions.size()))
 	);
-	// TODO: clean these conversions
-	humanoid->setPosition(
-		(unsigned)((int)humanoid->getXPos() + direction->getX() * (int)range),
-		(unsigned)((int)humanoid->getYPos() + direction->getY() * (int)range)
-	);
+	// TODO: clean this shit
+	humanoid->setPosition(Position(
+		humanoid->getPosition().getX() + direction->getX() * (int)range,
+		humanoid->getPosition().getY() + direction->getY() * (int)range
+	));
 }
 
 Move::Move(unsigned range, Humanoid& humanoid)
@@ -28,8 +29,8 @@ Move::Move(unsigned range, Humanoid& humanoid)
 vector<const Direction*> Move::getPossibleDirections(const Field& field) const {
 	vector<const Direction*> possibleDirections;
 
-	unsigned x = humanoid->getXPos();
-	unsigned y = humanoid->getYPos();
+	int x = humanoid->getPosition().getX();
+	int y = humanoid->getPosition().getY();
 	unsigned maxX = field.getWidth();
 	unsigned maxY = field.getHeight();
 

@@ -6,7 +6,7 @@
 #include <cmath>
 #include <ctime>
 
-unsigned Utils::randomPosition(unsigned min, unsigned max) {
+int Utils::randomPosition(int min, int max) {
 	static bool alreadyCalled = false;
 	if (!alreadyCalled) {
 		srand((unsigned)time(nullptr));
@@ -17,6 +17,6 @@ unsigned Utils::randomPosition(unsigned min, unsigned max) {
 	return min + (rand() % max);
 }
 
-unsigned Utils::getDistance(unsigned x1, unsigned y1, unsigned x2, unsigned y2) {
-	return (unsigned)(hypot(x1 - x2, y1 - y2));
+double Utils::getDistance(int x1, int y1, int x2, int y2) {
+	return (hypot(x1 - x2, y1 - y2));
 }

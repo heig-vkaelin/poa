@@ -5,10 +5,13 @@
 #include "Kill.hpp"
 #include "../actors/Humanoid.hpp"
 
-Kill::Kill(Humanoid &humanoid) {
-    this->humanoid = &humanoid;
+#include <iostream>
+
+Kill::Kill(Humanoid& humanoid) {
+	this->humanoid = &humanoid;
 }
 
-void Kill::execute(Field &gameState) {
-    this->humanoid->kill();
+void Kill::execute(Field& field) {
+	std::cout << "KILL" << std::endl;
+	humanoid->kill();
 }

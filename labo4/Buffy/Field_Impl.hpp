@@ -5,17 +5,17 @@
 #ifndef BUFFY_FIELD_IMPL_HPP
 #define BUFFY_FIELD_IMPL_HPP
 
+#include <limits>
+
 template<typename T>
 T* Field::findClosestHumanoid(const Humanoid& closeTo) const {
-	unsigned minDist = UINT_MAX;
+	double minDist = std::numeric_limits<double>::max();
 	T* closest = nullptr;
 	T* converted;
 
 	for (Humanoid* humanoid: humanoids) {
-		unsigned dist = Utils::getDistance(
-			humanoid->getXPos(), humanoid->getYPos(),
-			closeTo.getXPos(), closeTo.getYPos()
-		);
+		double dist =
+			Position::getDistance(humanoid->getPosition(), closeTo.getPosition());
 		if (dist < minDist && (converted = dynamic_cast<T*>(humanoid)) != nullptr) {
 			minDist = dist;
 			closest = converted;

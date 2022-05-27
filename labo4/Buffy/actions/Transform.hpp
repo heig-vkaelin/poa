@@ -11,13 +11,12 @@ class Humanoid;
 
 class Transform : public Action {
 public:
-    Transform(Humanoid &humanoid);
+	Transform(Humanoid& humanoid);
 
-    void execute(Field &f) override;
+	void execute(Field& field) override;
 
 private:
-    Humanoid *humanoid;
+	Humanoid* humanoid;
 };
 
-
-#endif //BUFFY_TRANSFORM_HPP
+#endif // BUFFY_TRANSFORM_HPP

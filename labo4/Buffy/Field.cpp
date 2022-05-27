@@ -17,7 +17,7 @@ Field::Field(unsigned width, unsigned height, unsigned nbHumans, unsigned nbVamp
 		humanoids.emplace_back(new Human(width, height));
 	for (unsigned i = 0; i < nbVampires; ++i)
 		humanoids.emplace_back(new Vampire(width, height));
-	
+
 	humanoids.emplace_back(new Buffy(width, height));
 }
 
@@ -47,7 +47,7 @@ int Field::nextTurn() {
 
 const Humanoid* Field::getHumanoidAt(unsigned x, unsigned y) const {
 	for (Humanoid* humanoid: humanoids) {
-		if (humanoid->getXPos() == x && humanoid->getYPos() == y)
+		if (humanoid->getPosition().getX() == x && humanoid->getPosition().getY() == y)
 			return humanoid;
 	}
 	return nullptr;
