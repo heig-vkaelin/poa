@@ -5,6 +5,8 @@
 #ifndef BUFFY_WINDOWSDISPLAYER_HPP
 #define BUFFY_WINDOWSDISPLAYER_HPP
 
+#ifdef __WIN32
+
 #include "Displayer.hpp"
 #include <windows.h>
 
@@ -28,5 +30,7 @@ private:
 		HUMAN_COLOR = 0x0D,
 		VAMPIRE_COLOR = 0x01;
 };
+
+#endif // __WIN32
 
 #endif // BUFFY_WINDOWSDISPLAYER_HPP

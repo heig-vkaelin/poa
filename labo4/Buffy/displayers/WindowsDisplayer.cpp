@@ -4,6 +4,8 @@
 
 #include "WindowsDisplayer.hpp"
 
+#ifdef __WIN32
+
 using namespace std;
 
 void WindowsDisplayer::displayBuffy() const {
@@ -41,3 +43,5 @@ void WindowsDisplayer::clear() const {
 	// TODO: voir si utile
 	system("cls");
 }
+
+#endif // __WIN32
