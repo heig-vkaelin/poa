@@ -7,6 +7,7 @@
 
 #include "actors/Humanoid.hpp"
 #include "EndStatus.hpp"
+#include "Utils/Utils.hpp"
 #include <cstdlib>
 #include "list"
 
@@ -53,5 +54,7 @@ private:
 	int turn;
 	std::list<Humanoid*> humanoids;
 };
+
+#include "Field_Impl.hpp"
 
 #endif // BUFFY_FIELD_HPP

@@ -13,15 +13,15 @@ class Humanoid;
 
 class Move : public Action {
 public:
-    Move(unsigned range, Humanoid &humanoid);
+	Move(unsigned range, Humanoid& humanoid);
 
-    void execute(Field &f) override;
+	void execute(Field& f) override;
 
 private:
-    std::vector<const Direction *> getPossibleDirections(const Field &field) const;
+	std::vector<const Direction*> getPossibleDirections(const Field& field) const;
 
-    unsigned range;
-    Humanoid *humanoid;
+	unsigned range;
+	Humanoid* humanoid;
 };
 
 #endif // BUFFY_MOVE_HPP

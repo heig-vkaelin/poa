@@ -45,25 +45,6 @@ int Field::nextTurn() {
 	return turn++;
 }
 
-template<typename T>
-T* Field::findClosestHumanoid(const Humanoid& closeTo) const {
-	unsigned minDist = UINT_MAX;
-	T** closest = nullptr;
-
-	for (Humanoid* humanoid: humanoids) {
-		unsigned dist = Utils::getDistance(
-			humanoid->getXPos(), humanoid->getYPos(),
-			closeTo.getXPos(), closeTo.getYPos()
-		);
-		// && dynamic_cast<T*>(humanoid) != nullptr
-		if (dist < minDist) {
-			minDist = dist;
-			closest = humanoid;
-		}
-	}
-	return closest ? *closest : nullptr;
-}
-
 const Humanoid* Field::getHumanoidAt(unsigned x, unsigned y) const {
 	for (Humanoid* humanoid: humanoids) {
 		if (humanoid->getXPos() == x && humanoid->getYPos() == y)
