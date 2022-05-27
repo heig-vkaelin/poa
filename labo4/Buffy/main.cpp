@@ -6,7 +6,7 @@ using namespace std;
 #include "actors/Human.hpp"
 #include "actors/Vampire.hpp"
 #include "displayers/Displayer.hpp"
-#include "displayers/MacDisplayer.hpp"
+#include "displayers/UnixDisplayer.hpp"
 #include "displayers/WindowsDisplayer.hpp"
 
 int main(int argc, char* argv[]) {
@@ -14,8 +14,8 @@ int main(int argc, char* argv[]) {
 	const unsigned NB_HUMANS = 20;
 	const unsigned NB_VAMPIRES = 10;
 
-#ifdef __linux__
-	MacDisplayer displayer;
+#if  defined(__linux__) || defined(__APPLE__)
+	UnixDisplayer displayer;
 #elif __WIN32
 	WindowsDisplayer displayer;
 #else
