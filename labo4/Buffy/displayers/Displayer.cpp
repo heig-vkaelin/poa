@@ -10,21 +10,32 @@
 using namespace std;
 
 void Displayer::display(const Field& field) const {
+	const Humanoid* humanoid;
 	displayHorizontalBorder(field);
-	for (size_t y = 0; y < field.getHeight(); y++) {
+	for (unsigned y = 0; y < field.getHeight(); y++) {
 		cout << VERTICAL_BORDER;
-		for (size_t x = 0; x < field.getWidth(); x++) {
-			char content = EMPTY;
-			for (Humanoid* humanoid: field) {
-				if (humanoid->getXPos() == x && humanoid->getYPos() == y) {
-					content = getActorSymbol(humanoid->getType());
-				}
+		for (unsigned x = 0; x < field.getWidth(); x++) {
+			if ((humanoid = field.getHumanoidAt(x, y)) != nullptr) {
+				humanoid->display(*this);
+			} else {
+				cout << EMPTY;
 			}
-			cout << content;
 		}
 		cout << VERTICAL_BORDER << endl;
 	}
 	displayHorizontalBorder(field);
+}
+
+void Displayer::displayBuffy() const {
+	cout << BUFFY;
+}
+
+void Displayer::displayHuman() const {
+	cout << HUMAN;
+}
+
+void Displayer::displayVampire() const {
+	cout << VAMPIRE;
 }
 
 void Displayer::displayStats(unsigned wins, unsigned total) const {
@@ -40,24 +51,25 @@ void Displayer::displayPrompt(int turn, char quit, char stats, char next) {
 		  << next << ")ext: ";
 }
 
+void Displayer::clear() const {
+	// TODO: surtout pour les couleurs par après
+}
+
+string Displayer::getActorSymbol(ActorType type) const {
+	switch (type) {
+		case ActorType::HUMAN:
+			return "H";
+		case ActorType::VAMPIRE:
+			return "V";
+		case ActorType::BUFFY:
+			return "B";
+	}
+	return {};
+}
+
 void Displayer::displayHorizontalBorder(const Field& field) {
 	cout << CORNER << setfill(HORIZONTAL_BORDER)
 		  << setw((int)field.getWidth() + 1) << CORNER << endl;
 
 	cout << setfill(EMPTY);
-}
-
-void Displayer::clear() const {
-	// TODO: surtout pour les couleurs par après
-}
-
-char Displayer::getActorSymbol(ActorType type) {
-	switch (type) {
-		case ActorType::HUMAN:
-			return 'H';
-		case ActorType::VAMPIRE:
-			return 'V';
-		case ActorType::BUFFY:
-			return 'B';
-	}
 }

@@ -9,3 +9,7 @@ Buffy::Buffy(unsigned x, unsigned y) : Humanoid(x, y) {}
 ActorType Buffy::getType() const {
 	return ActorType::BUFFY;
 }
+
+void Buffy::display(const Displayer& displayer) const {
+	displayer.displayBuffy();
+}

@@ -5,6 +5,7 @@
 #ifndef BUFFY_DISPLAYER_HPP
 #define BUFFY_DISPLAYER_HPP
 
+#include <string>
 #include "../actors/ActorType.hpp"
 
 class Field;
@@ -13,16 +14,28 @@ class Displayer {
 public:
 	virtual void display(const Field& field) const;
 
+	virtual void displayBuffy() const;
+
+	virtual void displayHuman() const;
+
+	virtual void displayVampire() const;
+
 	virtual void displayStats(unsigned wins, unsigned total) const;
 
 	static void displayPrompt(int turn, char quit, char stats, char next);
 
-	void clear() const;
+	virtual void clear() const;
+
+protected:
+	virtual std::string getActorSymbol(ActorType type) const;
+
+	static constexpr char
+		BUFFY = 'B',
+		HUMAN = 'h',
+		VAMPIRE = 'v';
 
 private:
 	static void displayHorizontalBorder(const Field& field);
-
-	static char getActorSymbol(ActorType type);
 
 	static constexpr char
 		CORNER = '+',

@@ -24,6 +24,8 @@ public:
 	template<typename T>
 	T* findClosestHumanoid(const Humanoid& closeTo) const;
 
+	const Humanoid* getHumanoidAt(unsigned x, unsigned y) const;
+
 	/**
 	 * @return la largeur de la grille
 	 */

@@ -6,6 +6,7 @@
 #define BUFFY_HUMANOID_HPP
 
 #include "../actions/Action.hpp"
+#include "../displayers/Displayer.hpp"
 #include "ActorType.hpp"
 
 class Field;
@@ -15,6 +16,8 @@ public:
 	Humanoid(unsigned maxWidth, unsigned maxHeight);
 
 	virtual ~Humanoid() = 0;
+
+	virtual void display(const Displayer& displayer) const = 0;
 
 	virtual ActorType getType() const = 0;
 

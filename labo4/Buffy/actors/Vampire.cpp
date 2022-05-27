@@ -10,3 +10,7 @@ Vampire::Vampire(unsigned x, unsigned y) : Humanoid(x, y) {}
 ActorType Vampire::getType() const {
 	return ActorType::VAMPIRE;
 }
+
+void Vampire::display(const Displayer& displayer) const {
+	displayer.displayVampire();
+}

@@ -4,6 +4,7 @@
 
 #include "Field.hpp"
 #include "Utils/Utils.hpp"
+#include "actors/Buffy.hpp"
 #include "actors/Human.hpp"
 #include "actors/Vampire.hpp"
 
@@ -16,6 +17,8 @@ Field::Field(unsigned width, unsigned height, unsigned nbHumans, unsigned nbVamp
 		humanoids.emplace_back(new Human(width, height));
 	for (unsigned i = 0; i < nbVampires; ++i)
 		humanoids.emplace_back(new Vampire(width, height));
+	
+	humanoids.emplace_back(new Buffy(width, height));
 }
 
 Field::~Field() {
@@ -59,6 +62,14 @@ T* Field::findClosestHumanoid(const Humanoid& closeTo) const {
 		}
 	}
 	return closest ? *closest : nullptr;
+}
+
+const Humanoid* Field::getHumanoidAt(unsigned x, unsigned y) const {
+	for (Humanoid* humanoid: humanoids) {
+		if (humanoid->getXPos() == x && humanoid->getYPos() == y)
+			return humanoid;
+	}
+	return nullptr;
 }
 
 unsigned Field::getWidth() const {

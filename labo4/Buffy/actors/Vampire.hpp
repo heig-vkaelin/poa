@@ -12,6 +12,8 @@ public:
 	Vampire(unsigned x, unsigned y);
 
 	ActorType getType() const override;
+
+	void display(const Displayer& displayer) const override;
 };
 
 #endif // BUFFY_VAMPIRE_HPP
