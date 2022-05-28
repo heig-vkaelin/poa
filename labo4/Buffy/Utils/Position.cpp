@@ -6,6 +6,16 @@
 #include "Position.hpp"
 #include "Random.hpp"
 
+const Position Position::UP(0, -1);
+const Position Position::UP_LEFT(-1, -1);
+const Position Position::UP_RIGHT(1, -1);
+const Position Position::DOWN(0, 1);
+const Position Position::DOWN_LEFT(-1, 1);
+const Position Position::DOWN_RIGHT(1, 1);
+const Position Position::LEFT(-1, 0);
+const Position Position::RIGHT(1, 0);
+const Position Position::NONE(0, 0);
+
 Position::Position(int x, int y) : x(x), y(y) {
 }
 
@@ -15,6 +25,26 @@ int Position::getX() const {
 
 int Position::getY() const {
 	return y;
+}
+
+Position& Position::add(const Position& other) {
+	x += other.x;
+	y += other.y;
+	return *this;
+}
+
+Position Position::addVal(const Position& other) const {
+	return {x + other.x, y + other.y};
+}
+
+Position& Position::multiply(int factor) {
+	x *= factor;
+	y *= factor;
+	return *this;
+}
+
+Position Position::multiplyVal(int factor) const {
+	return {x * factor, y * factor};
 }
 
 double Position::getDistance(const Position& from, const Position& to) {

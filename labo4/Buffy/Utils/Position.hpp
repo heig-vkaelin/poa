@@ -13,9 +13,27 @@ public:
 
 	int getY() const;
 
+	Position& add(const Position& other);
+
+	Position addVal(const Position& other) const;
+
+	Position& multiply(int factor);
+
+	Position multiplyVal(int factor) const;
+
 	static double getDistance(const Position& from, const Position& to);
 
 	static Position getRandomPosition(int maxX, int maxY);
+
+	static const Position UP;
+	static const Position UP_LEFT;
+	static const Position LEFT;
+	static const Position DOWN_LEFT;
+	static const Position DOWN;
+	static const Position DOWN_RIGHT;
+	static const Position RIGHT;
+	static const Position UP_RIGHT;
+	static const Position NONE;
 
 private:
 	int x;

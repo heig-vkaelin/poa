@@ -8,6 +8,7 @@
 #include <vector>
 #include "Action.hpp"
 #include "../Utils/Direction.hpp"
+#include "../Utils/Position.hpp"
 
 class Humanoid;
 
@@ -18,9 +19,9 @@ public:
 	void execute(Field& f) override;
 
 private:
-	std::vector<const Direction*> getPossibleDirections(const Field& field) const;
+	std::vector<const Position*> getPossibleDirections(const Field& field) const;
 
-	unsigned range;
+	unsigned _range;
 	Humanoid* humanoid;
 };
 

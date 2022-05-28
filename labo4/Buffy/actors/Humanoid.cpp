@@ -8,7 +8,7 @@
 
 Humanoid::Humanoid(unsigned maxWidth, unsigned maxHeight)
 	: action(nullptr), alive(true),
-	  position(Position::getRandomPosition(maxWidth, maxHeight)) {
+	  position(Position::getRandomPosition((int)maxWidth, (int)maxHeight)) {
 }
 
 Humanoid::~Humanoid() = default;
