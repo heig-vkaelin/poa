@@ -25,15 +25,18 @@ public:
 
 	static Position getRandomPosition(int maxX, int maxY);
 
-	static const Position UP;
-	static const Position UP_LEFT;
-	static const Position LEFT;
-	static const Position DOWN_LEFT;
-	static const Position DOWN;
-	static const Position DOWN_RIGHT;
-	static const Position RIGHT;
-	static const Position UP_RIGHT;
-	static const Position NONE;
+	static const Position* getDirection(int fromX, int fromY, int toX, int toY);
+
+	static const Position
+		UP,
+		UP_LEFT,
+		LEFT,
+		DOWN_LEFT,
+		DOWN,
+		DOWN_RIGHT,
+		RIGHT,
+		UP_RIGHT,
+		NONE;
 
 private:
 	int x;

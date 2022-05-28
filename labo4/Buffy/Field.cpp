@@ -47,7 +47,8 @@ int Field::nextTurn() {
 
 const Humanoid* Field::getHumanoidAt(unsigned x, unsigned y) const {
 	for (Humanoid* humanoid: humanoids) {
-		if (humanoid->getPosition().getX() == x && humanoid->getPosition().getY() == y)
+		if (humanoid->getPosition().getX() == (int)x
+			 && humanoid->getPosition().getY() == (int)y)
 			return humanoid;
 	}
 	return nullptr;
