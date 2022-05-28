@@ -8,7 +8,7 @@
 class Position {
 public:
 	Position();
-	
+
 	Position(int x, int y);
 
 	int getX() const;
@@ -27,7 +27,7 @@ public:
 
 	static Position getRandomPosition(int maxX, int maxY);
 
-	static const Position* getDirection(int fromX, int fromY, int toX, int toY);
+	static const Position* getDirection(const Position& from, const Position& to);
 
 	static const Position
 		UP,

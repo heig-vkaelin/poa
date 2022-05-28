@@ -60,27 +60,27 @@ Position Position::getRandomPosition(int maxX, int maxY) {
 	};
 }
 
-const Position* Position::getDirection(int fromX, int fromY, int toX, int toY) {
-	int tmpX = toX - fromX;
-	int tmpY = toY - fromY;
+const Position* Position::getDirection(const Position& from, const Position& to) {
+	int x = to.x - from.x;
+	int y = to.y - from.y;
 
-	if (tmpX < 0 && tmpY < 0)
+	if (x < 0 && y < 0)
 		return &UP_LEFT;
-	if (tmpX < 0 && tmpY == 0)
+	if (x < 0 && y == 0)
 		return &LEFT;
-	if (tmpX < 0 && tmpY > 0)
+	if (x < 0 && y > 0)
 		return &DOWN_LEFT;
-	if (tmpX == 0 && tmpY < 0)
+	if (x == 0 && y < 0)
 		return &UP;
-	if (tmpX == 0 && tmpY == 0)
+	if (x == 0 && y == 0)
 		return &NONE;
-	if (tmpX == 0 && tmpY > 0)
+	if (x == 0 && y > 0)
 		return &DOWN;
-	if (tmpX > 0 && tmpY < 0)
+	if (x > 0 && y < 0)
 		return &UP_RIGHT;
-	if (tmpX > 0 && tmpY == 0)
+	if (x > 0 && y == 0)
 		return &RIGHT;
-	if (tmpX > 0 && tmpY > 0)
+	if (x > 0 && y > 0)
 		return &DOWN_RIGHT;
 
 	return &NONE;
