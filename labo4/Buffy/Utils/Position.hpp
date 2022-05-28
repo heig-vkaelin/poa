@@ -7,6 +7,8 @@
 
 class Position {
 public:
+	Position();
+	
 	Position(int x, int y);
 
 	int getX() const;

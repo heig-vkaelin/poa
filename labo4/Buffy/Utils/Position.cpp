@@ -16,6 +16,8 @@ const Position Position::LEFT(-1, 0);
 const Position Position::RIGHT(1, 0);
 const Position Position::NONE(0, 0);
 
+Position::Position() : x(0), y(0) {}
+
 Position::Position(int x, int y) : x(x), y(y) {
 }
 

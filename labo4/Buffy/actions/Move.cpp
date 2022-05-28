@@ -9,20 +9,25 @@
 
 using namespace std;
 
-void Move::execute(Field& field) {
-	vector<const Position*> directions = getPossibleDirections(field);
-	// TODO: remove these casts
-	const Position* direction = directions.at(
-		(unsigned long)(Random::randomPosition(0, (int)directions.size()))
-	);
-
-	humanoid->setPosition(
-		direction->multiplyVal((int)_range).add(humanoid->getPosition())
-	);
+Move::Move(unsigned range, Humanoid& humanoid, const Position* direction)
+	: _range(range), humanoid(&humanoid), direction(direction) {
 }
 
-Move::Move(unsigned range, Humanoid& humanoid)
-	: _range(range), humanoid(&humanoid) {
+void Move::execute(Field& field) {
+	Position target;
+	if (direction) {
+		target = *direction;
+	} else {
+		vector<const Position*> directions = getPossibleDirections(field);
+		// TODO: remove these casts
+		target = *directions.at(
+			(unsigned long)(Random::randomPosition(0, (int)directions.size()))
+		);
+	}
+
+	humanoid->setPosition(
+		target.multiplyVal((int)_range).add(humanoid->getPosition())
+	);
 }
 
 vector<const Position*> Move::getPossibleDirections(const Field& field) const {

@@ -13,7 +13,7 @@ class Humanoid;
 
 class Move : public Action {
 public:
-	Move(unsigned range, Humanoid& humanoid);
+	Move(unsigned range, Humanoid& humanoid, const Position* direction = nullptr);
 
 	void execute(Field& f) override;
 
@@ -22,6 +22,7 @@ private:
 
 	unsigned _range;
 	Humanoid* humanoid;
+	const Position* direction;
 };
 
 #endif // BUFFY_MOVE_HPP
