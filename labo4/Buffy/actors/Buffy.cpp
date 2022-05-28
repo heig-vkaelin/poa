@@ -34,23 +34,13 @@ void Buffy::setAction(const Field& field) {
 		return;
 	}
 
-	cout << "Buffy: "
-		  << getPosition().getX() << " " << getPosition().getY() << endl;
-	cout << "Vampire: "
-		  << target->getPosition().getX() << " " << target->getPosition().getY()
-		  << endl;
-	cout << "DIST: "
-		  << Position::getDistance(getPosition(), target->getPosition()) << endl;
-
 	if (Position::getDistance(getPosition(), target->getPosition()) <= 2) {
 		// TODO: pk segfault quand on kill
 		cout << "KILL" << endl;
 //		action = new Kill(*target);
 	} else {
-		// TODO: voir pk ça marche pas du tout (elle va pas au bon endroit)
-		// indice: 0,0 est en haut à gauche donc faut tout changer dans position + move
 		cout << "CLOSING TO TARGET" << endl;
-		action = new Move(2, *this, target->getPosition());
+		action = new Move(2, *this, target);
 	}
 }
 

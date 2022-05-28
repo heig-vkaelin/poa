@@ -20,13 +20,15 @@ void Vampire::display(const Displayer& displayer) const {
 	displayer.displayVampire();
 }
 
-void Vampire::setAction(const Field &field) {
-    if(action != nullptr) {
-        delete action;
-    }
-    action = new Transform(*field.findClosestHumanoid<Human>(*this));
+void Vampire::setAction(const Field& field) {
+//	if (action != nullptr) {
+//		delete action;
+//	}
+//    action = new Transform(*field.findClosestHumanoid<Human>(*this));
 }
 
-void Vampire::executeAction(Field &field) {
-    action->execute(field);
+void Vampire::executeAction(Field& field) {
+//	if (action != nullptr) {
+//		action->execute(field);
+//	}
 }

@@ -7,40 +7,30 @@
 #include "../actors/Humanoid.hpp"
 #include "../Field.hpp"
 
-#include <iostream>
-
 using namespace std;
 
-Move::Move(unsigned int range, Humanoid& humanoid) {
-	init(range, humanoid, nullptr);
-}
-
-Move::Move(unsigned range, Humanoid& humanoid, const Position& target) {
-	init(range, humanoid, &target);
+Move::Move(unsigned range, Humanoid& humanoid, const Humanoid* target) :
+	range(range), humanoid(&humanoid), target(target) {
 }
 
 void Move::execute(Field& field) {
 	Position direction;
+	Position newPosition = humanoid->getPosition();
 	if (target) {
-		direction = *Position::getDirection(humanoid->getPosition(), *target);
-		cout << "direction: " << direction.getX() << " " << direction.getY() << endl;
+		for (unsigned i = 0; i < range; ++i) {
+			direction = *Position::getDirection(newPosition, target->getPosition());
+			newPosition.add(direction);
+		}
 	} else {
 		vector<const Position*> directions = getPossibleDirections(field);
 		// TODO: remove these casts
 		direction = *directions.at(
 			(unsigned long)(Random::randomPosition(0, (int)directions.size()))
 		);
+		newPosition.add(direction);
 	}
 
-	humanoid->setPosition(
-		direction.multiplyVal((int)range).add(humanoid->getPosition())
-	);
-}
-
-void Move::init(unsigned _range, Humanoid& _humanoid, const Position* _target) {
-	range = _range;
-	humanoid = &_humanoid;
-	target = _target;
+	humanoid->setPosition(newPosition);
 }
 
 vector<const Position*> Move::getPossibleDirections(const Field& field) const {
