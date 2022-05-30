@@ -16,28 +16,30 @@ Move::Move(unsigned range, Humanoid& humanoid, const Humanoid* target) :
 void Move::execute(Field& field) {
 	Position direction;
 	Position newPosition = humanoid->getPosition();
-	if (target) {
-		for (unsigned i = 0; i < range; ++i) {
+
+	for (unsigned i = 0; i < range; ++i) {
+		if (target) {
 			direction = *Position::getDirection(newPosition, target->getPosition());
-			newPosition.add(direction);
+		} else {
+			vector<const Position*> directions = getPossibleDirections(newPosition,
+																						  field);
+			// TODO: remove these casts
+			direction = *directions.at(
+				(unsigned long)(Random::randomPosition(0, (int)directions.size()))
+			);
 		}
-	} else {
-		vector<const Position*> directions = getPossibleDirections(field);
-		// TODO: remove these casts
-		direction = *directions.at(
-			(unsigned long)(Random::randomPosition(0, (int)directions.size()))
-		);
 		newPosition.add(direction);
 	}
 
 	humanoid->setPosition(newPosition);
 }
 
-vector<const Position*> Move::getPossibleDirections(const Field& field) const {
+vector<const Position*> Move::getPossibleDirections(const Position& position,
+																	 const Field& field) const {
 	vector<const Position*> possibleDirections;
 
-	int x = humanoid->getPosition().getX();
-	int y = humanoid->getPosition().getY();
+	int x = position.getX();
+	int y = position.getY();
 	int maxX = (int)field.getWidth();
 	int maxY = (int)field.getHeight();
 	int reach = (int)range;

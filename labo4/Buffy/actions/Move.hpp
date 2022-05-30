@@ -18,7 +18,8 @@ public:
 	void execute(Field& f) override;
 
 private:
-	std::vector<const Position*> getPossibleDirections(const Field& field) const;
+	std::vector<const Position*> getPossibleDirections(const Position& position,
+																		const Field& field) const;
 
 	unsigned range;
 	Humanoid* humanoid;
