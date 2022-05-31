@@ -6,13 +6,16 @@
 #define BUFFY_DISPLAYER_HPP
 
 #include <string>
+#include <vector>
 #include "../actors/ActorType.hpp"
 
 class Field;
 
 class Displayer {
 public:
-	virtual void display(const Field& field) const;
+	Displayer(unsigned width, unsigned height);
+
+	virtual void display(const Field& field);
 
 	virtual void displayBuffy() const;
 
@@ -27,7 +30,7 @@ public:
 	virtual void clear() const;
 
 protected:
-	virtual std::string getActorSymbol(ActorType type) const;
+	virtual char getActorSymbol(ActorType type) const;
 
 	static constexpr char
 		BUFFY = 'B',
@@ -42,6 +45,8 @@ private:
 		HORIZONTAL_BORDER = '-',
 		VERTICAL_BORDER = '|',
 		EMPTY = ' ';
+
+	std::vector<std::vector<char>> content;
 };
 
 #endif // BUFFY_DISPLAYER_HPP

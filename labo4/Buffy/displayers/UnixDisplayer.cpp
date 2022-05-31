@@ -11,6 +11,10 @@ const string UnixDisplayer::BUFFY_COLOR("\033[1m\033[33m");
 const string UnixDisplayer::HUMAN_COLOR("\033[35m");
 const string UnixDisplayer::VAMPIRE_COLOR("\033[34m");
 
+UnixDisplayer::UnixDisplayer(unsigned width, unsigned height)
+	: Displayer(width, height) {
+}
+
 void UnixDisplayer::displayBuffy() const {
 	cout << BUFFY_COLOR;
 	Displayer::displayBuffy();

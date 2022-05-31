@@ -12,6 +12,8 @@
 
 class WindowsDisplayer : public Displayer {
 public:
+	WindowsDisplayer(unsigned width, unsigned height);
+
 	void displayBuffy() const override;
 
 	void displayHuman() const override;

@@ -8,6 +8,10 @@
 
 using namespace std;
 
+WindowsDisplayer::WindowsDisplayer(unsigned width, unsigned height)
+	: Displayer(width, height) {
+}
+
 void WindowsDisplayer::displayBuffy() const {
 	WORD savedColor = getColor();
 	changeColor(BUFFY_COLOR);

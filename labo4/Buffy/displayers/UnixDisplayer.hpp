@@ -10,6 +10,8 @@
 
 class UnixDisplayer : public Displayer {
 public:
+	UnixDisplayer(unsigned width, unsigned height);
+	
 	void displayBuffy() const override;
 
 	void displayHuman() const override;
