@@ -12,7 +12,7 @@ WindowsDisplayer::WindowsDisplayer(unsigned width, unsigned height)
 	: Displayer(width, height) {
 }
 
-void UnixDisplayer::display(ActorType actor) const {
+void WindowsDisplayer::display(ActorType actor) const {
 	WORD savedColor = getCurrentColor();
 	changeColor(getColor(actor));
 	Displayer::display(actor);
@@ -40,7 +40,7 @@ void WindowsDisplayer::displayVampire() const {
 	changeColor(savedColor);
 }
 
-WORD UnixDisplayer::getColor(ActorType actor) {
+WORD WindowsDisplayer::getColor(ActorType actor) {
 	switch (actor) {
 		case ActorType::BUFFY:
 			return BUFFY_COLOR;
