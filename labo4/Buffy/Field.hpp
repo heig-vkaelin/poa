@@ -6,6 +6,9 @@
 #define BUFFY_FIELD_HPP
 
 #include "actors/Humanoid.hpp"
+#include "actors/Buffy.hpp"
+#include "actors/Human.hpp"
+#include "actors/Vampire.hpp"
 #include "EndStatus.hpp"
 #include "Utils/Random.hpp"
 #include <cstdlib>

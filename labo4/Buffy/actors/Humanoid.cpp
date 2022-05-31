@@ -14,7 +14,6 @@ Humanoid::Humanoid(unsigned maxWidth, unsigned maxHeight)
 Humanoid::~Humanoid() = default;
 
 void Humanoid::setAction(const Field& field) {
-
 }
 
 void Humanoid::executeAction(Field& field) {

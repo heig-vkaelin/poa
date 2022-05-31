@@ -13,7 +13,7 @@ class Controller {
 public:
 	Controller(unsigned width, unsigned height,
 				  unsigned nbHumans, unsigned nbVampires,
-				  const Displayer* displayer = nullptr);
+				  Displayer* displayer = nullptr);
 
 	void run();
 
@@ -26,7 +26,7 @@ private:
 
 	void handleCommand();
 
-	const Displayer* displayer;
+	Displayer* displayer;
 	Field field;
 	int turn;
 	bool finished;

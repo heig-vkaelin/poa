@@ -15,11 +15,11 @@ int main(int argc, char* argv[]) {
 	const unsigned NB_VAMPIRES = 1;
 
 #if  defined(__linux__) || defined(__APPLE__)
-	UnixDisplayer displayer;
+	UnixDisplayer displayer(SIZE, SIZE);
 #elif __WIN32
-	WindowsDisplayer displayer;
+	WindowsDisplayer displayer(SIZE, SIZE);
 #else
-	Displayer displayer;
+	Displayer displayer(SIZE, SIZE);
 #endif
 
 //	size_t size = strtoul(argv[1], nullptr, 0);

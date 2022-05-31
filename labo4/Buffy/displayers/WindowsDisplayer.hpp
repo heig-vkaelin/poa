@@ -12,6 +12,10 @@
 
 class WindowsDisplayer : public Displayer {
 public:
+	WindowsDisplayer(unsigned width, unsigned height);
+
+	void display(ActorType actor) const override;
+
 	void displayBuffy() const override;
 
 	void displayHuman() const override;
@@ -21,7 +25,9 @@ public:
 	void clear() const override;
 
 private:
-	static WORD getColor();
+	static WORD getCurrentColor();
+
+	static WORD getColor(ActorType actor);
 
 	static void changeColor(WORD color);
 
