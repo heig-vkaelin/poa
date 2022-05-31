@@ -15,6 +15,12 @@ UnixDisplayer::UnixDisplayer(unsigned width, unsigned height)
 	: Displayer(width, height) {
 }
 
+void UnixDisplayer::display(ActorType actor) const {
+	cout << getColor(actor);
+	Displayer::display(actor);
+	resetColor();
+}
+
 void UnixDisplayer::displayBuffy() const {
 	cout << BUFFY_COLOR;
 	Displayer::displayBuffy();
@@ -31,6 +37,19 @@ void UnixDisplayer::displayVampire() const {
 	cout << VAMPIRE_COLOR;
 	Displayer::displayVampire();
 	resetColor();
+}
+
+string UnixDisplayer::getColor(ActorType actor) {
+	switch (actor) {
+		case ActorType::BUFFY:
+			return BUFFY_COLOR;
+		case ActorType::HUMAN:
+			return HUMAN_COLOR;
+		case ActorType::VAMPIRE:
+			return VAMPIRE_COLOR;
+		default:
+			return "";
+	}
 }
 
 void UnixDisplayer::resetColor() {

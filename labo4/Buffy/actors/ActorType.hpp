@@ -8,7 +8,8 @@
 enum class ActorType {
 	HUMAN,
 	VAMPIRE,
-	BUFFY
+	BUFFY,
+	UNKNOWN
 };
 
 #endif // BUFFY_ACTORTYPE_HPP

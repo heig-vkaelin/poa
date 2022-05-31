@@ -11,7 +11,9 @@
 class UnixDisplayer : public Displayer {
 public:
 	UnixDisplayer(unsigned width, unsigned height);
-	
+
+	void display(ActorType actor) const override;
+
 	void displayBuffy() const override;
 
 	void displayHuman() const override;
@@ -19,6 +21,8 @@ public:
 	void displayVampire() const override;
 
 private:
+	static std::string getColor(ActorType actor);
+
 	static void resetColor();
 
 	static const std::string

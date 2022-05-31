@@ -17,6 +17,8 @@ public:
 
 	virtual void display(const Field& field);
 
+	virtual void display(ActorType actor) const;
+
 	virtual void displayBuffy() const;
 
 	virtual void displayHuman() const;
@@ -46,7 +48,7 @@ private:
 		VERTICAL_BORDER = '|',
 		EMPTY = ' ';
 
-	std::vector<std::vector<char>> content;
+	std::vector<std::vector<ActorType>> content;
 };
 
 #endif // BUFFY_DISPLAYER_HPP

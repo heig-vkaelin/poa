@@ -11,7 +11,7 @@
 using namespace std;
 
 Displayer::Displayer(unsigned width, unsigned height)
-	: content(height, vector<char>(width, ' ')) {
+	: content(height, vector<ActorType>(width, ActorType::UNKNOWN)) {
 }
 
 void Displayer::display(const Field& field) {
@@ -19,24 +19,28 @@ void Displayer::display(const Field& field) {
 
 	// Clear the content
 	for (auto& v: content) {
-		fill(v.begin(), v.end(), ' ');
+		fill(v.begin(), v.end(), ActorType::UNKNOWN);
 	}
 
 	// Set content
 	for (auto humanoid: field) {
 		position = humanoid->getPosition();
 		content.at((unsigned)position.getY()).at((unsigned)position.getX())
-			= getActorSymbol(humanoid->getType());
+			= humanoid->getType();
 	}
 
 	displayHorizontalBorder(field);
 	for (unsigned y = 0; y < field.getHeight(); y++) {
 		cout << VERTICAL_BORDER;
 		for (unsigned x = 0; x < field.getWidth(); x++)
-			cout << content.at(y).at(x);
+			display(content.at(y).at(x));
 		cout << VERTICAL_BORDER << endl;
 	}
 	displayHorizontalBorder(field);
+}
+
+void Displayer::display(ActorType actor) const {
+	cout << getActorSymbol(actor);
 }
 
 void Displayer::displayBuffy() const {
@@ -71,13 +75,15 @@ void Displayer::clear() const {
 char Displayer::getActorSymbol(ActorType type) const {
 	switch (type) {
 		case ActorType::HUMAN:
-			return 'H';
+			return HUMAN;
 		case ActorType::VAMPIRE:
-			return 'V';
+			return VAMPIRE;
 		case ActorType::BUFFY:
-			return 'B';
+			return BUFFY;
+		case ActorType::UNKNOWN:
+			return EMPTY;
 	}
-	return {};
+	return EMPTY;
 }
 
 void Displayer::displayHorizontalBorder(const Field& field) {
