@@ -36,12 +36,13 @@ int Field::nextTurn() {
 		humanoid->executeAction(*this);
 
 	// Enlever les humanoides tués
-	for (auto it = humanoids.begin(); it != humanoids.end();)
+	for (auto it = humanoids.begin(); it != humanoids.end();) {
 		if (!(*it)->isAlive()) {
-			it = humanoids.erase(it);  // suppression de l’élément dans la liste
 			delete *it;
+			it = humanoids.erase(it);
 		} else
 			++it;
+	}
 	return turn++;
 }
 
