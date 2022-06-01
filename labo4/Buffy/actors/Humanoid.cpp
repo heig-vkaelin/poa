@@ -11,6 +11,11 @@ Humanoid::Humanoid(unsigned maxWidth, unsigned maxHeight)
 	  position(Position::getRandomPosition((int)maxWidth, (int)maxHeight)) {
 }
 
+Humanoid::Humanoid(const Humanoid &humanoid) noexcept
+        : action(nullptr), alive(true),
+          position(humanoid.position) {
+}
+
 Humanoid::~Humanoid() = default;
 
 void Humanoid::setAction(const Field& field) {

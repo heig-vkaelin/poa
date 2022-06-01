@@ -30,6 +30,8 @@ public:
 
 	const Humanoid* getHumanoidAt(unsigned x, unsigned y) const;
 
+    void addCharacter(Humanoid* humanoid);
+
 	/**
 	 * @return la largeur de la grille
 	 */

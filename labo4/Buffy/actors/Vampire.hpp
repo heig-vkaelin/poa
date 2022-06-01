@@ -11,6 +11,8 @@ class Vampire : public Humanoid {
 public:
 	Vampire(unsigned x, unsigned y);
 
+    Vampire(const Humanoid &other) noexcept;
+
 	ActorType getType() const override;
 
 	void display(const Displayer& displayer) const override;

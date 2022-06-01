@@ -15,6 +15,7 @@ class Field;
 class Humanoid {
 public:
 	Humanoid(unsigned maxWidth, unsigned maxHeight);
+    Humanoid(const Humanoid &humanoid) noexcept;
 
 	virtual ~Humanoid() = 0;
 

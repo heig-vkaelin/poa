@@ -46,6 +46,15 @@ int Field::nextTurn() {
 	return turn++;
 }
 
+void Field::addCharacter(Humanoid *humanoid) {
+    auto end = this->end();
+    for (auto i = this->begin(); i != end; ++i) {
+        if(*i == humanoid)
+            return;
+    }
+    humanoids.emplace_back(humanoid);
+}
+
 const Humanoid* Field::getHumanoidAt(unsigned x, unsigned y) const {
 	for (Humanoid* humanoid: humanoids) {
 		if (humanoid->getPosition().getX() == (int)x

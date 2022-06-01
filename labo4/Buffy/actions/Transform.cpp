@@ -5,6 +5,7 @@
 #include "Transform.hpp"
 #include "../actors/Humanoid.hpp"
 #include "../actors/Vampire.hpp"
+#include "../Field.hpp"
 
 Transform::Transform(Humanoid& humanoid) {
 	this->humanoid = &humanoid;
@@ -12,7 +13,6 @@ Transform::Transform(Humanoid& humanoid) {
 
 void Transform::execute(Field& field) {
 	// TODO: fix crash
-//	Humanoid* tmp = humanoid;
-//	humanoid = new Vampire(tmp->getX(), tmp->getY());
-//	delete tmp;
+    humanoid->kill();
+    field.addCharacter(new Vampire(*humanoid));
 }
