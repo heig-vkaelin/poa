@@ -3,15 +3,12 @@
 //
 
 #include "Random.hpp"
-#include <cmath>
-#include <ctime>
 
-// TODO: use a real random number generator
+std::random_device Random::rand_dev;
+std::mt19937 Random::generator(Random::rand_dev());
+
 int Random::randomPosition(int min, int max) {
-	static bool alreadyCalled = false;
-	if (!alreadyCalled) {
-		srand((unsigned)time(nullptr));
-		alreadyCalled = true;
-	}
-	return min + (rand() % max);
+	std::uniform_int_distribution<int> distr(min, max);
+	int tmp = distr(generator);
+	return tmp;
 }

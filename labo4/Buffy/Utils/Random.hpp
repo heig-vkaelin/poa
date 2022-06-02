@@ -10,6 +10,10 @@
 class Random {
 public:
 	static int randomPosition(int min, int max);
+
+private:
+   static std::random_device rand_dev;
+	static std::mt19937 generator;
 };
 
 #endif // BUFFY_RANDOM_HPP

@@ -14,10 +14,11 @@ Field::Field(unsigned width, unsigned height, unsigned nbHumans, unsigned nbVamp
 	: width(width), height(height), turn(0),
 	  nbHumans(nbHumans), nbVampires(nbVampires), humanoids() {
 
-	for (unsigned i = 0; i < nbHumans; ++i)
-		humanoids.emplace_back(new Human(width, height));
 	for (unsigned i = 0; i < nbVampires; ++i)
 		humanoids.emplace_back(new Vampire(width, height));
+	for (unsigned i = 0; i < nbHumans; ++i)
+		humanoids.emplace_back(new Human(width, height));
+
 
 	humanoids.emplace_back(new Buffy(width, height));
 }
