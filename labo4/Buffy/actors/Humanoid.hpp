@@ -6,7 +6,6 @@
 #define BUFFY_HUMANOID_HPP
 
 #include "../actions/Action.hpp"
-#include "ActorType.hpp"
 #include "../Utils/Position.hpp"
 #include "../displayers/Color.hpp"
 
@@ -19,8 +18,6 @@ public:
 	Humanoid(const Humanoid& humanoid) noexcept;
 
 	virtual ~Humanoid() = 0;
-
-	virtual ActorType getType() const = 0;
 
 	virtual void setAction(const Field& field) = 0;
 

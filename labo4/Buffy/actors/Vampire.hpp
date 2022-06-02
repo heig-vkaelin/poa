@@ -13,8 +13,6 @@ public:
 
 	explicit Vampire(const Humanoid& other) noexcept;
 
-	ActorType getType() const override;
-
 	void setAction(const Field& field) override;
 
 	void kill(Field& field) override;

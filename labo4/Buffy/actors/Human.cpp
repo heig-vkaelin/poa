@@ -10,12 +10,8 @@ using namespace std;
 
 Human::Human(unsigned x, unsigned y) : Humanoid(x, y) {}
 
-ActorType Human::getType() const {
-	return ActorType::HUMAN;
-}
-
 void Human::setAction(const Field& field) {
-	if(action != nullptr) {
+	if (action != nullptr) {
 		delete action;
 	}
 	// TODO: constante pas en dur

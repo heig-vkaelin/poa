@@ -11,9 +11,9 @@ Humanoid::Humanoid(unsigned maxWidth, unsigned maxHeight)
 	  position(Position::getRandomPosition((int)maxWidth, (int)maxHeight)) {
 }
 
-Humanoid::Humanoid(const Humanoid &humanoid) noexcept
-        : action(nullptr), alive(true),
-          position(humanoid.position) {
+Humanoid::Humanoid(const Humanoid& humanoid) noexcept
+	: action(nullptr), alive(true),
+	  position(humanoid.position) {
 }
 
 Humanoid::~Humanoid() = default;
@@ -29,7 +29,7 @@ bool Humanoid::isAlive() const {
 }
 
 void Humanoid::kill(Field&) {
-	if(action != nullptr) {
+	if (action != nullptr) {
 		delete action;
 	}
 	action = nullptr;

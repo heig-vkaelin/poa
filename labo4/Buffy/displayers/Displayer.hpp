@@ -7,7 +7,6 @@
 
 #include <string>
 #include <vector>
-#include "../actors/ActorType.hpp"
 #include "../actors/Humanoid.hpp"
 
 class Field;

@@ -13,10 +13,6 @@ using namespace std;
 
 Buffy::Buffy(unsigned x, unsigned y) : Humanoid(x, y) {}
 
-ActorType Buffy::getType() const {
-	return ActorType::BUFFY;
-}
-
 void Buffy::setAction(const Field& field) {
 	if (action != nullptr) {
 		delete action;

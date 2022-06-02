@@ -5,18 +5,12 @@
 #include "Vampire.hpp"
 #include "Human.hpp"
 #include "../Field.hpp"
-
 #include "../actions/Transform.hpp"
 #include "../actions/Move.hpp"
-#include "ActorType.hpp"
 
 Vampire::Vampire(unsigned x, unsigned y) : Humanoid(x, y) {}
 
 Vampire::Vampire(const Humanoid& other) noexcept: Humanoid(other) {}
-
-ActorType Vampire::getType() const {
-	return ActorType::VAMPIRE;
-}
 
 void Vampire::setAction(const Field& field) {
 	if (action != nullptr) {
