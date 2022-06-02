@@ -19,27 +19,6 @@ void WindowsDisplayer::display(ActorType actor) const {
 	changeColor(savedColor);
 }
 
-void WindowsDisplayer::displayBuffy() const {
-	WORD savedColor = getCurrentColor();
-	changeColor(BUFFY_COLOR);
-	Displayer::displayBuffy();
-	changeColor(savedColor);
-}
-
-void WindowsDisplayer::displayHuman() const {
-	WORD savedColor = getCurrentColor();
-	changeColor(HUMAN_COLOR);
-	Displayer::displayHuman();
-	changeColor(savedColor);
-}
-
-void WindowsDisplayer::displayVampire() const {
-	WORD savedColor = getCurrentColor();
-	changeColor(VAMPIRE_COLOR);
-	Displayer::displayVampire();
-	changeColor(savedColor);
-}
-
 WORD WindowsDisplayer::getColor(ActorType actor) {
 	switch (actor) {
 		case ActorType::BUFFY:

@@ -13,11 +13,13 @@ public:
 
 	ActorType getType() const override;
 
-	void display(const Displayer& displayer) const override;
-
 	void setAction(const Field& field) override;
 
 	void kill(Field& field) override;
+
+	char getSymbol() const override;
+
+	Color getColor() const override;
 };
 
 #endif // BUFFY_HUMAN_HPP

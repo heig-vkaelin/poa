@@ -16,12 +16,6 @@ public:
 
 	void display(ActorType actor) const override;
 
-	void displayBuffy() const override;
-
-	void displayHuman() const override;
-
-	void displayVampire() const override;
-
 	void clear() const override;
 
 private:

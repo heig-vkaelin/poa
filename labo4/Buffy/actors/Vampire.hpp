@@ -11,17 +11,19 @@ class Vampire : public Humanoid {
 public:
 	Vampire(unsigned x, unsigned y);
 
-    Vampire(const Humanoid &other) noexcept;
+    explicit Vampire(const Humanoid &other) noexcept;
 
 	ActorType getType() const override;
-
-	void display(const Displayer& displayer) const override;
 
     void setAction(const Field& field) override;
 
     void executeAction(Field& field) override;
 
 	void kill(Field& field) override;
+
+	char getSymbol() const override;
+
+	Color getColor() const override;
 };
 
 #endif // BUFFY_VAMPIRE_HPP

@@ -22,11 +22,15 @@ void Human::setAction(const Field& field) {
 	action = new Move(1, *this);
 }
 
-void Human::display(const Displayer& displayer) const {
-	displayer.displayHuman();
-}
-
 void Human::kill(Field& field) {
 	Humanoid::kill(field);
 	field.humanDied();
+}
+
+char Human::getSymbol() const {
+	return 'h';
+}
+
+Color Human::getColor() const {
+	return Color::PINK;
 }

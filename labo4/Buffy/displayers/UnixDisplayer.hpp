@@ -12,23 +12,12 @@ class UnixDisplayer : public Displayer {
 public:
 	UnixDisplayer(unsigned width, unsigned height);
 
-	void display(ActorType actor) const override;
-
-	void displayBuffy() const override;
-
-	void displayHuman() const override;
-
-	void displayVampire() const override;
+	void display(const Humanoid* humanoid) const override;
 
 private:
-	static std::string getColor(ActorType actor);
+	static std::string getColor(Color color);
 
 	static void resetColor();
-
-	static const std::string
-		BUFFY_COLOR,
-		HUMAN_COLOR,
-		VAMPIRE_COLOR;
 };
 
 #endif // BUFFY_UNIXDISPLAYER_HPP

@@ -2,13 +2,6 @@
 
 using namespace std;
 
-/**
- * Questions
- *
- * - Humain transformé en vampire, bouge avant ou pas ?
- * - Décrémenter nbr humains / vampires
- */
-
 #include "Controller.hpp"
 #include "displayers/Displayer.hpp"
 #include "displayers/UnixDisplayer.hpp"

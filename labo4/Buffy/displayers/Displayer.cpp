@@ -11,7 +11,7 @@
 using namespace std;
 
 Displayer::Displayer(unsigned width, unsigned height)
-	: content(height, vector<ActorType>(width, ActorType::UNKNOWN)) {
+	: content(height, vector<const Humanoid*>(width, nullptr)) {
 }
 
 void Displayer::display(const Field& field) {
@@ -19,40 +19,32 @@ void Displayer::display(const Field& field) {
 
 	// Clear the content
 	for (auto& v: content) {
-		fill(v.begin(), v.end(), ActorType::UNKNOWN);
+		fill(v.begin(), v.end(), nullptr);
 	}
 
 	// Set content
 	for (auto humanoid: field) {
 		position = humanoid->getPosition();
 		content.at((unsigned)position.getY()).at((unsigned)position.getX())
-			= humanoid->getType();
+			= humanoid;
 	}
 
 	displayHorizontalBorder(field);
 	for (unsigned y = 0; y < field.getHeight(); y++) {
 		cout << VERTICAL_BORDER;
-		for (unsigned x = 0; x < field.getWidth(); x++)
-			display(content.at(y).at(x));
+		for (unsigned x = 0; x < field.getWidth(); x++) {
+			if (content.at(y).at(x))
+				display(content.at(y).at(x));
+			else
+				cout << EMPTY;
+		}
 		cout << VERTICAL_BORDER << endl;
 	}
 	displayHorizontalBorder(field);
 }
 
-void Displayer::display(ActorType actor) const {
-	cout << getActorSymbol(actor);
-}
-
-void Displayer::displayBuffy() const {
-	cout << BUFFY;
-}
-
-void Displayer::displayHuman() const {
-	cout << HUMAN;
-}
-
-void Displayer::displayVampire() const {
-	cout << VAMPIRE;
+void Displayer::display(const Humanoid* humanoid) const {
+	cout << humanoid->getSymbol();
 }
 
 void Displayer::displayStats(unsigned wins, unsigned total) const {
@@ -70,20 +62,6 @@ void Displayer::displayPrompt(int turn, char quit, char stats, char next) {
 
 void Displayer::clear() const {
 	// TODO: surtout pour les couleurs par après
-}
-
-char Displayer::getActorSymbol(ActorType type) const {
-	switch (type) {
-		case ActorType::HUMAN:
-			return HUMAN;
-		case ActorType::VAMPIRE:
-			return VAMPIRE;
-		case ActorType::BUFFY:
-			return BUFFY;
-		case ActorType::UNKNOWN:
-			return EMPTY;
-	}
-	return EMPTY;
 }
 
 void Displayer::displayHorizontalBorder(const Field& field) {

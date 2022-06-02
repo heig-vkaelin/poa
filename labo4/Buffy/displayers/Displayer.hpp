@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include "../actors/ActorType.hpp"
+#include "../actors/Humanoid.hpp"
 
 class Field;
 
@@ -17,27 +18,13 @@ public:
 
 	virtual void display(const Field& field);
 
-	virtual void display(ActorType actor) const;
-
-	virtual void displayBuffy() const;
-
-	virtual void displayHuman() const;
-
-	virtual void displayVampire() const;
+	virtual void display(const Humanoid* humanoid) const;
 
 	virtual void displayStats(unsigned wins, unsigned total) const;
 
 	static void displayPrompt(int turn, char quit, char stats, char next);
 
 	virtual void clear() const;
-
-protected:
-	virtual char getActorSymbol(ActorType type) const;
-
-	static constexpr char
-		BUFFY = 'B',
-		HUMAN = 'h',
-		VAMPIRE = 'v';
 
 private:
 	static void displayHorizontalBorder(const Field& field);
@@ -48,7 +35,7 @@ private:
 		VERTICAL_BORDER = '|',
 		EMPTY = ' ';
 
-	std::vector<std::vector<ActorType>> content;
+	std::vector<std::vector<const Humanoid*>> content;
 };
 
 #endif // BUFFY_DISPLAYER_HPP

@@ -18,10 +18,6 @@ ActorType Vampire::getType() const {
 	return ActorType::VAMPIRE;
 }
 
-void Vampire::display(const Displayer& displayer) const {
-	displayer.displayVampire();
-}
-
 void Vampire::setAction(const Field& field) {
 	if (action != nullptr) {
 		delete action;
@@ -48,4 +44,12 @@ void Vampire::executeAction(Field& field) {
 void Vampire::kill(Field& field) {
 	Humanoid::kill(field);
 	field.vampireDied();
+}
+
+char Vampire::getSymbol() const {
+	return 'V';
+}
+
+Color Vampire::getColor() const {
+	return Color::BLUE;
 }
