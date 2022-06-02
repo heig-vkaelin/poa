@@ -14,21 +14,16 @@ class WindowsDisplayer : public Displayer {
 public:
 	WindowsDisplayer(unsigned width, unsigned height);
 
-	void display(ActorType actor) const override;
+	void display(const Humanoid* humanoid) const override;
 
 	void clear() const override;
 
 private:
 	static WORD getCurrentColor();
 
-	static WORD getColor(ActorType actor);
+	static WORD getColor(Color color);
 
 	static void changeColor(WORD color);
-
-	static const WORD
-		BUFFY_COLOR = 0x0E,
-		HUMAN_COLOR = 0x0D,
-		VAMPIRE_COLOR = 0x01;
 };
 
 #endif // __WIN32

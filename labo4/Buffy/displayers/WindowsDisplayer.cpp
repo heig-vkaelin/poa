@@ -12,23 +12,23 @@ WindowsDisplayer::WindowsDisplayer(unsigned width, unsigned height)
 	: Displayer(width, height) {
 }
 
-void WindowsDisplayer::display(ActorType actor) const {
+void WindowsDisplayer::display(const Humanoid* humanoid) const {
 	WORD savedColor = getCurrentColor();
-	changeColor(getColor(actor));
-	Displayer::display(actor);
+	changeColor(getColor(humanoid->getColor()));
+	Displayer::display(humanoid);
 	changeColor(savedColor);
 }
 
-WORD WindowsDisplayer::getColor(ActorType actor) {
-	switch (actor) {
-		case ActorType::BUFFY:
-			return BUFFY_COLOR;
-		case ActorType::HUMAN:
-			return HUMAN_COLOR;
-		case ActorType::VAMPIRE:
-			return VAMPIRE_COLOR;
+WORD WindowsDisplayer::getColor(Color color) {
+	switch (color) {
+		case Color::BLUE:
+			return 0x0D;
+		case Color::YELLOW:
+			return 0x0E;
+		case Color::PINK:
+			return  0x01;
 		default:
-			return getCurrentColor(); // TODO: comment dire ne rien mettre
+			return getCurrentColor();
 	}
 }
 
