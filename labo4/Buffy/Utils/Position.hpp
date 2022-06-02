@@ -23,11 +23,11 @@ public:
 
 	Position multiplyVal(int factor) const;
 
-	static double getDistance(const Position& from, const Position& to);
+	Position getDirection(const Position& to) const;
+
+	double getDistance(const Position& to) const;
 
 	static Position getRandomPosition(int maxX, int maxY);
-
-	static const Position* getDirection(const Position& from, const Position& to);
 
 	static const Position
 		UP,
@@ -37,8 +37,7 @@ public:
 		DOWN,
 		DOWN_RIGHT,
 		RIGHT,
-		UP_RIGHT,
-		NONE;
+		UP_RIGHT;
 
 private:
 	int x;

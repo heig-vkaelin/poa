@@ -14,7 +14,6 @@ const Position Position::DOWN_LEFT(-1, 1);
 const Position Position::DOWN_RIGHT(1, 1);
 const Position Position::LEFT(-1, 0);
 const Position Position::RIGHT(1, 0);
-const Position Position::NONE(0, 0);
 
 Position::Position() : x(0), y(0) {}
 
@@ -49,8 +48,18 @@ Position Position::multiplyVal(int factor) const {
 	return {x * factor, y * factor};
 }
 
-double Position::getDistance(const Position& from, const Position& to) {
-	return hypot(from.getX() - to.getX(), from.getY() - to.getY());
+Position Position::getDirection(const Position& to) const {
+	int _x = to.x - x;
+	int _y = to.y - y;
+
+	return {
+		_x == 0 ? 0 : _x / abs(_x),
+		_y == 0 ? 0 : _y / abs(_y)
+	};
+}
+
+double Position::getDistance(const Position& to) const {
+	return hypot(x - to.x, x - to.y);
 }
 
 Position Position::getRandomPosition(int maxX, int maxY) {
@@ -58,30 +67,4 @@ Position Position::getRandomPosition(int maxX, int maxY) {
 		Random::randomPosition(0, maxX),
 		Random::randomPosition(0, maxY)
 	};
-}
-
-const Position* Position::getDirection(const Position& from, const Position& to) {
-	int x = to.x - from.x;
-	int y = to.y - from.y;
-
-	if (x < 0 && y < 0)
-		return &UP_LEFT;
-	if (x < 0 && y == 0)
-		return &LEFT;
-	if (x < 0 && y > 0)
-		return &DOWN_LEFT;
-	if (x == 0 && y < 0)
-		return &UP;
-	if (x == 0 && y == 0)
-		return &NONE;
-	if (x == 0 && y > 0)
-		return &DOWN;
-	if (x > 0 && y < 0)
-		return &UP_RIGHT;
-	if (x > 0 && y == 0)
-		return &RIGHT;
-	if (x > 0 && y > 0)
-		return &DOWN_RIGHT;
-
-	return &NONE;
 }

@@ -19,7 +19,7 @@ void Move::execute(Field& field) {
 
 	for (unsigned i = 0; i < range; ++i) {
 		if (target) {
-			direction = *Position::getDirection(newPosition, target->getPosition());
+			direction = newPosition.getDirection(target->getPosition());
 		} else {
 			vector<const Position*> directions = getPossibleDirections(newPosition,
 																						  field);

@@ -23,7 +23,7 @@ void Buffy::setAction(const Field& field) {
 		return;
 	}
 
-	if (Position::getDistance(getPosition(), target->getPosition()) <= 2) {
+	if (getPosition().getDistance(target->getPosition()) <= 2) {
 		action = new Kill(*target);
 	} else {
 		action = new Move(2, *this, target);

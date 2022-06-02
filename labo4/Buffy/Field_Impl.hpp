@@ -14,9 +14,11 @@ T* Field::findClosestHumanoid(const Humanoid& closeTo) const {
 	T* converted;
 
 	for (Humanoid* humanoid: humanoids) {
-		double dist =
-			Position::getDistance(humanoid->getPosition(), closeTo.getPosition());
-		if (dist < minDist && (converted = dynamic_cast<T*>(humanoid)) != nullptr) {
+		if ((converted = dynamic_cast<T*>(humanoid)) == nullptr)
+			continue;
+
+		double dist = humanoid->getPosition().getDistance(closeTo.getPosition());
+		if (dist < minDist) {
 			minDist = dist;
 			closest = converted;
 		}
