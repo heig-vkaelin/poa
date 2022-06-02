@@ -24,7 +24,7 @@ public:
 
 	virtual void setAction(const Field& field) = 0;
 
-	virtual void executeAction(Field& field);
+	void executeAction(Field& field);
 
 	virtual bool isAlive() const;
 

@@ -19,7 +19,7 @@ ActorType Vampire::getType() const {
 }
 
 void Vampire::setAction(const Field& field) {
-	if(action != nullptr) {
+	if (action != nullptr) {
 		delete action;
 	}
 	Human* target = field.findClosestHumanoid<Human>(*this);
@@ -31,12 +31,6 @@ void Vampire::setAction(const Field& field) {
 		action = new Transform(*target);
 	} else {
 		action = new Move(1, *this, target);
-	}
-}
-
-void Vampire::executeAction(Field& field) {
-	if (action != nullptr) {
-		action->execute(field);
 	}
 }
 
