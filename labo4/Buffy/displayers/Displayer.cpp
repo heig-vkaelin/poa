@@ -17,12 +17,7 @@ Displayer::Displayer(unsigned width, unsigned height)
 void Displayer::display(const Field& field) {
 	Position position;
 
-	// Clear the content
-	for (auto& v: content) {
-		fill(v.begin(), v.end(), nullptr);
-	}
-
-	// Set content
+	// Ajoute les acteurs à leur position
 	for (auto humanoid: field) {
 		position = humanoid->getPosition();
 		content.at((unsigned)position.getY()).at((unsigned)position.getX())
@@ -33,9 +28,10 @@ void Displayer::display(const Field& field) {
 	for (unsigned y = 0; y < field.getHeight(); y++) {
 		cout << VERTICAL_BORDER;
 		for (unsigned x = 0; x < field.getWidth(); x++) {
-			if (content.at(y).at(x))
+			if (content.at(y).at(x)) {
 				display(content.at(y).at(x));
-			else
+				content.at(y).at(x) = nullptr;
+			} else
 				cout << EMPTY;
 		}
 		cout << VERTICAL_BORDER << endl;
