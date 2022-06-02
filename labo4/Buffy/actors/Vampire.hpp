@@ -21,6 +21,7 @@ public:
 
     void executeAction(Field& field) override;
 
+	void kill(Field& field) override;
 };
 
 #endif // BUFFY_VAMPIRE_HPP

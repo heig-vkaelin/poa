@@ -28,9 +28,13 @@ public:
 	template<typename T>
 	T* findClosestHumanoid(const Humanoid& closeTo) const;
 
-	const Humanoid* getHumanoidAt(unsigned x, unsigned y) const;
-
     void addCharacter(Humanoid* humanoid);
+
+	 void humanDied();
+
+	 void vampireDied();
+
+	 void vampireBorn();
 
 	/**
 	 * @return la largeur de la grille
@@ -57,6 +61,7 @@ public:
 private:
 	unsigned width, height;
 	int turn;
+	unsigned nbHumans, nbVampires;
 	std::list<Humanoid*> humanoids;
 };
 

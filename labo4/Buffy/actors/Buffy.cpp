@@ -35,7 +35,6 @@ void Buffy::setAction(const Field& field) {
 	}
 
 	if (Position::getDistance(getPosition(), target->getPosition()) <= 2) {
-		// TODO: pk segfault quand on kill
 		cout << "KILL" << endl;
 		action = new Kill(*target);
 	} else {

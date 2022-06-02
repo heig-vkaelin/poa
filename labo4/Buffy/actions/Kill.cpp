@@ -10,5 +10,5 @@ Kill::Kill(Humanoid& humanoid) {
 }
 
 void Kill::execute(Field& field) {
-	humanoid->kill();
+	humanoid->kill(field);
 }

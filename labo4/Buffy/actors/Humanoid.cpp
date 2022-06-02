@@ -18,9 +18,6 @@ Humanoid::Humanoid(const Humanoid &humanoid) noexcept
 
 Humanoid::~Humanoid() = default;
 
-void Humanoid::setAction(const Field& field) {
-}
-
 void Humanoid::executeAction(Field& field) {
 	if (action != nullptr) {
 		action->execute(field);
@@ -31,7 +28,7 @@ bool Humanoid::isAlive() const {
 	return alive;
 }
 
-void Humanoid::kill() {
+void Humanoid::kill(Field&) {
 	alive = false;
 }
 

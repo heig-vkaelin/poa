@@ -23,13 +23,13 @@ public:
 
 	virtual ActorType getType() const = 0;
 
-	virtual void setAction(const Field& field); // TODO: = 0
+	virtual void setAction(const Field& field) = 0;
 
 	virtual void executeAction(Field& field);
 
 	virtual bool isAlive() const;
 
-	void kill();
+	virtual void kill(Field& field);
 
 	Position getPosition() const;
 

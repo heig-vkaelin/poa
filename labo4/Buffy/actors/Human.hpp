@@ -16,6 +16,8 @@ public:
 	void display(const Displayer& displayer) const override;
 
 	void setAction(const Field& field) override;
+
+	void kill(Field& field) override;
 };
 
 #endif // BUFFY_HUMAN_HPP

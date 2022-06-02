@@ -2,9 +2,14 @@
 
 using namespace std;
 
+/**
+ * Questions
+ *
+ * - Humain transformé en vampire, bouge avant ou pas ?
+ * - Décrémenter nbr humains / vampires
+ */
+
 #include "Controller.hpp"
-#include "actors/Human.hpp"
-#include "actors/Vampire.hpp"
 #include "displayers/Displayer.hpp"
 #include "displayers/UnixDisplayer.hpp"
 #include "displayers/WindowsDisplayer.hpp"
@@ -28,10 +33,6 @@ int main(int argc, char* argv[]) {
 
 	Controller controller(SIZE, SIZE, NB_HUMANS, NB_VAMPIRES, &displayer);
 	controller.run();
-
-	// TODO: le générique ne marche pas
-//	const Humanoid* first = *field.begin();
-//	Humanoid* closest = field.findClosestHumanoid<Human>(*first);
 
 	return EXIT_SUCCESS;
 }

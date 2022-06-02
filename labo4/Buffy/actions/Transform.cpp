@@ -12,7 +12,6 @@ Transform::Transform(Humanoid& humanoid) {
 }
 
 void Transform::execute(Field& field) {
-	// TODO: fix crash
-    humanoid->kill();
+    humanoid->kill(field);
     field.addCharacter(new Vampire(*humanoid));
 }

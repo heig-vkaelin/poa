@@ -11,7 +11,8 @@
 using namespace std;
 
 Field::Field(unsigned width, unsigned height, unsigned nbHumans, unsigned nbVampires)
-	: width(width), height(height), turn(0), humanoids() {
+	: width(width), height(height), turn(0),
+	  nbHumans(nbHumans), nbVampires(nbVampires), humanoids() {
 
 	for (unsigned i = 0; i < nbHumans; ++i)
 		humanoids.emplace_back(new Human(width, height));
@@ -46,22 +47,28 @@ int Field::nextTurn() {
 	return turn++;
 }
 
-void Field::addCharacter(Humanoid *humanoid) {
-    auto end = this->end();
-    for (auto i = this->begin(); i != end; ++i) {
-        if(*i == humanoid)
-            return;
-    }
-    humanoids.emplace_back(humanoid);
+void Field::addCharacter(Humanoid* humanoid) {
+	auto end = this->end();
+	for (auto i = this->begin(); i != end; ++i) {
+		if (*i == humanoid)
+			return;
+	}
+	humanoids.emplace_back(humanoid);
 }
 
-const Humanoid* Field::getHumanoidAt(unsigned x, unsigned y) const {
-	for (Humanoid* humanoid: humanoids) {
-		if (humanoid->getPosition().getX() == (int)x
-			 && humanoid->getPosition().getY() == (int)y)
-			return humanoid;
-	}
-	return nullptr;
+void Field::humanDied() {
+	if (nbHumans)
+		--nbHumans;
+}
+
+void Field::vampireDied() {
+	if (nbVampires)
+		--nbVampires;
+}
+
+void Field::vampireBorn() {
+	humanDied();
+	++nbVampires;
 }
 
 unsigned Field::getWidth() const {
@@ -81,19 +88,7 @@ list<Humanoid*>::const_iterator Field::end() const {
 }
 
 EndStatus Field::isFinished() const {
-	bool vampireAlive = false;
-	bool humanAlive = false;
-
-	// TODO cast ou alors getter du nbr de vivants sur le field ≤?
-	for (Humanoid* humanoid: humanoids) {
-		if (dynamic_cast<Vampire*>(humanoid) != nullptr) {
-			vampireAlive = true;
-		} else if (dynamic_cast<Human*>(humanoid) != nullptr) {
-			humanAlive = true;
-		}
-	}
-
-	if (humanAlive)
-		return vampireAlive ? EndStatus::RUNNING : EndStatus::WIN;
+	if (nbHumans > 0)
+		return nbVampires > 0 ? EndStatus::RUNNING : EndStatus::WIN;
 	return EndStatus::LOSE;
 }

@@ -4,6 +4,7 @@
 
 #include "Human.hpp"
 #include "../actions/Move.hpp"
+#include "../Field.hpp"
 
 using namespace std;
 
@@ -23,4 +24,9 @@ void Human::setAction(const Field& field) {
 
 void Human::display(const Displayer& displayer) const {
 	displayer.displayHuman();
+}
+
+void Human::kill(Field& field) {
+	Humanoid::kill(field);
+	field.humanDied();
 }
