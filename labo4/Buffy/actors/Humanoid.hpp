@@ -15,7 +15,7 @@ class Humanoid {
 public:
 	Humanoid(unsigned maxWidth, unsigned maxHeight);
 
-	Humanoid(const Humanoid& humanoid) noexcept;
+	Humanoid(const Humanoid& humanoid);
 
 	virtual ~Humanoid() = 0;
 
@@ -39,6 +39,8 @@ protected:
 	Action* action;
 
 private:
+	void init(const Position& position);
+
 	bool alive;
 	Position position;
 };

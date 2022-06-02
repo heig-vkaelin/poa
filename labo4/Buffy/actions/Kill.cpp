@@ -5,10 +5,9 @@
 #include "Kill.hpp"
 #include "../actors/Humanoid.hpp"
 
-Kill::Kill(Humanoid& humanoid) {
-	this->humanoid = &humanoid;
+Kill::Kill(Humanoid& humanoid) : Action(humanoid) {
 }
 
 void Kill::execute(Field& field) {
-	humanoid->kill(field);
+	getHumanoid()->kill(field);
 }

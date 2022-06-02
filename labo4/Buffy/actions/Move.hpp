@@ -22,7 +22,6 @@ private:
 																		const Field& field) const;
 
 	unsigned range;
-	Humanoid* humanoid;
 	const Humanoid* target;
 };
 

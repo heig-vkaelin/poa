@@ -11,12 +11,9 @@ class Humanoid;
 
 class Transform : public Action {
 public:
-	Transform(Humanoid& humanoid);
+	explicit Transform(Humanoid& humanoid);
 
 	void execute(Field& field) override;
-
-private:
-	Humanoid* humanoid;
 };
 
 #endif // BUFFY_TRANSFORM_HPP

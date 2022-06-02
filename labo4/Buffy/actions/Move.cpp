@@ -9,13 +9,13 @@
 
 using namespace std;
 
-Move::Move(unsigned range, Humanoid& humanoid, const Humanoid* target) :
-	range(range), humanoid(&humanoid), target(target) {
+Move::Move(unsigned range, Humanoid& humanoid, const Humanoid* target)
+	: Action(humanoid), range(range), target(target) {
 }
 
 void Move::execute(Field& field) {
 	Position direction;
-	Position newPosition = humanoid->getPosition();
+	Position newPosition = getHumanoid()->getPosition();
 
 	for (unsigned i = 0; i < range; ++i) {
 		if (target) {
@@ -31,7 +31,7 @@ void Move::execute(Field& field) {
 		newPosition.add(direction);
 	}
 
-	humanoid->setPosition(newPosition);
+	getHumanoid()->setPosition(newPosition);
 }
 
 vector<const Position*> Move::getPossibleDirections(const Position& position,

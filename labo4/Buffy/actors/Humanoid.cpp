@@ -4,16 +4,13 @@
 
 #include "Humanoid.hpp"
 #include "../Field.hpp"
-#include "../Utils/Random.hpp"
 
-Humanoid::Humanoid(unsigned maxWidth, unsigned maxHeight)
-	: action(nullptr), alive(true),
-	  position(Position::getRandomPosition((int)maxWidth, (int)maxHeight)) {
+Humanoid::Humanoid(unsigned maxWidth, unsigned maxHeight) {
+	init(Position::getRandomPosition((int)maxWidth, (int)maxHeight));
 }
 
-Humanoid::Humanoid(const Humanoid& humanoid) noexcept
-	: action(nullptr), alive(true),
-	  position(humanoid.position) {
+Humanoid::Humanoid(const Humanoid& humanoid) {
+	init(humanoid.position);
 }
 
 Humanoid::~Humanoid() = default;
@@ -41,5 +38,11 @@ Position Humanoid::getPosition() const {
 }
 
 void Humanoid::setPosition(Position _position) {
+	position = _position;
+}
+
+void Humanoid::init(const Position& _position) {
+	action = nullptr;
+	alive = true;
 	position = _position;
 }

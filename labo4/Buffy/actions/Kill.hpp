@@ -7,16 +7,11 @@
 
 #include "Action.hpp"
 
-class Humanoid;
-
 class Kill : public Action {
 public:
-	Kill(Humanoid& humanoid);
+	explicit Kill(Humanoid& humanoid);
 
 	void execute(Field& field) override;
-
-private:
-	Humanoid* humanoid;
 };
 
 #endif // BUFFY_KILL_HPP
