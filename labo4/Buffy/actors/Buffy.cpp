@@ -18,10 +18,9 @@ ActorType Buffy::getType() const {
 }
 
 void Buffy::setAction(const Field& field) {
-	if (action != nullptr) {
+	if(action != nullptr) {
 		delete action;
 	}
-
 	Vampire* target = field.findClosestHumanoid<Vampire>(*this);
 	if (target == nullptr) {
 		action = new Move(2, *this);

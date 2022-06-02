@@ -29,6 +29,10 @@ bool Humanoid::isAlive() const {
 }
 
 void Humanoid::kill(Field&) {
+	if(action != nullptr) {
+		delete action;
+	}
+	action = nullptr;
 	alive = false;
 }
 

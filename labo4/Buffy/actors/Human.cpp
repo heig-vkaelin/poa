@@ -15,7 +15,7 @@ ActorType Human::getType() const {
 }
 
 void Human::setAction(const Field& field) {
-	if (action != nullptr) {
+	if(action != nullptr) {
 		delete action;
 	}
 	// TODO: constante pas en dur
