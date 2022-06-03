@@ -25,7 +25,7 @@ void Move::execute(Field& field) {
 																						  field);
 			// TODO: remove these casts
 			direction = *directions.at(
-				(unsigned long)(Random::randomPosition(0, (int)directions.size()))
+				(unsigned long)(Random::generate((int)directions.size()))
 			);
 		}
 		newPosition.add(direction);

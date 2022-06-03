@@ -64,7 +64,7 @@ double Position::getDistance(const Position& to) const {
 
 Position Position::getRandomPosition(int maxX, int maxY) {
 	return {
-		Random::randomPosition(0, maxX),
-		Random::randomPosition(0, maxY)
+		Random::generate(maxX),
+		Random::generate(maxY)
 	};
 }

@@ -4,11 +4,16 @@
 
 #include "Random.hpp"
 
-std::random_device Random::rand_dev;
-std::mt19937 Random::generator(Random::rand_dev());
+using namespace std;
 
-int Random::randomPosition(int min, int max) {
-	std::uniform_int_distribution<int> distr(min, max - 1);
-	int tmp = distr(generator);
-	return tmp;
+random_device Random::rand_dev;
+mt19937 Random::generator(rand_dev());
+
+int Random::generate(int min, int max) {
+	uniform_int_distribution<int> distribution(min, max - 1);
+	return distribution(generator);
+}
+
+int Random::generate(int max) {
+	return generate(0, max);
 }
