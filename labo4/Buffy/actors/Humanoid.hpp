@@ -6,7 +6,7 @@
 #define BUFFY_HUMANOID_HPP
 
 #include "../actions/Action.hpp"
-#include "../Utils/Position.hpp"
+#include "../utils/Position.hpp"
 #include "../displayers/Color.hpp"
 
 class Field;

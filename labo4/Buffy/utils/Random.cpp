@@ -17,3 +17,8 @@ int Random::generate(int min, int max) {
 int Random::generate(int max) {
 	return generate(0, max);
 }
+
+bool Random::generateBool() {
+	int random = generate(0, 2);
+	return random == 1;
+}

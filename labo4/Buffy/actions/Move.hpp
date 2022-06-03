@@ -7,7 +7,7 @@
 
 #include <vector>
 #include "Action.hpp"
-#include "../Utils/Position.hpp"
+#include "../utils/Position.hpp"
 
 class Humanoid;
 

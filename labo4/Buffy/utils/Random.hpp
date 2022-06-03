@@ -24,6 +24,12 @@ public:
 	 */
 	static int generate(int min, int max);
 
+	/**
+	 * Génère un boolean true ou false
+	 * @return le boolean aléatoire
+	 */
+	static bool generateBool();
+
 private:
 	static std::random_device rand_dev;
 	static std::mt19937 generator;

@@ -10,7 +10,7 @@
 #include "actors/Human.hpp"
 #include "actors/Vampire.hpp"
 #include "EndStatus.hpp"
-#include "Utils/Random.hpp"
+#include "utils/Random.hpp"
 #include <cstdlib>
 #include "list"
 

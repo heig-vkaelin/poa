@@ -3,7 +3,7 @@
 //
 
 #include "Move.hpp"
-#include "../Utils/Random.hpp"
+#include "../utils/Random.hpp"
 #include "../actors/Humanoid.hpp"
 #include "../Field.hpp"
 
