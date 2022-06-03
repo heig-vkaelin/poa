@@ -10,7 +10,7 @@ using namespace std;
 
 Human::Human(unsigned x, unsigned y) : Humanoid(x, y) {}
 
-void Human::setAction(const Field& field) {
+void Human::setAction(const Field&) {
 	if (action != nullptr) {
 		delete action;
 	}

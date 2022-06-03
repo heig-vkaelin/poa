@@ -59,7 +59,7 @@ Position Position::getDirection(const Position& to) const {
 }
 
 double Position::getDistance(const Position& to) const {
-	return hypot(x - to.x, x - to.y);
+	return hypot(x - to.x, y - to.y);
 }
 
 Position Position::getRandomPosition(int maxX, int maxY) {

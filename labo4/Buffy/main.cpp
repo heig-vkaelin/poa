@@ -7,6 +7,12 @@ using namespace std;
 #include "displayers/UnixDisplayer.hpp"
 #include "displayers/WindowsDisplayer.hpp"
 
+/**
+ * Questions:
+ * - random move de Buffy: 1 ou 2 cases
+ * - ordre des actions (ex: vampire tue humain mais buffy tue vampire aussi)
+ */
+
 int main(int argc, char* argv[]) {
 	const unsigned SIZE = 15;
 	const unsigned NB_HUMANS = 2;

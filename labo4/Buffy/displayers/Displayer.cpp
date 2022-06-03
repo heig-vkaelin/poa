@@ -43,7 +43,7 @@ void Displayer::display(const Humanoid* humanoid) const {
 }
 
 void Displayer::displayStats(unsigned wins, unsigned total) const {
-	unsigned winrate = wins * 100 / total;
+	double winrate = wins * 100.0 / total;
 	cout << "\rBuffy's win rate: " << left << setw(6) << setprecision(2) << fixed <<
 		  winrate << "% " << "(" << total << " iterations)" << endl;
 }
