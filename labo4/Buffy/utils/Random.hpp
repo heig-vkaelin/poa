@@ -31,7 +31,6 @@ public:
 	static bool generateBool();
 
 private:
-	static std::random_device rand_dev;
 	static std::mt19937 generator;
 };
 

@@ -3,11 +3,10 @@
 //
 
 #include "Random.hpp"
-
+#include <chrono>
 using namespace std;
 
-random_device Random::rand_dev;
-mt19937 Random::generator(rand_dev());
+mt19937 Random::generator((unsigned) chrono::system_clock::now().time_since_epoch().count());
 
 int Random::generate(int min, int max) {
 	uniform_int_distribution<int> distribution(min, max - 1);
