@@ -13,6 +13,10 @@ using namespace std;
  * - ordre des actions (ex: vampire tue humain mais buffy tue vampire aussi)
  */
 
+/**
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 int main(int argc, char* argv[]) {
 	const unsigned SIZE = 50;
 	const unsigned NB_HUMANS = 20;
