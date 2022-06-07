@@ -11,7 +11,7 @@ class Vampire : public Humanoid {
 public:
 	Vampire(unsigned x, unsigned y);
 
-	explicit Vampire(const Humanoid& other) noexcept;
+	explicit Vampire(const Humanoid& other);
 
 	void setAction(const Field& field) override;
 

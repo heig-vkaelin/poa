@@ -68,7 +68,6 @@ void Field::vampireDied() {
 }
 
 void Field::vampireBorn() {
-	humanDied();
 	++nbVampires;
 }
 

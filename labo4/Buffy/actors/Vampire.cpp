@@ -11,7 +11,7 @@
 
 Vampire::Vampire(unsigned x, unsigned y) : Humanoid(x, y) {}
 
-Vampire::Vampire(const Humanoid& other) noexcept: Humanoid(other) {}
+Vampire::Vampire(const Humanoid& other) : Humanoid(other) {}
 
 void Vampire::setAction(const Field& field) {
 	if (action != nullptr) {

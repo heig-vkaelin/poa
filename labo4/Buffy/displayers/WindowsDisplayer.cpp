@@ -44,7 +44,7 @@ void WindowsDisplayer::changeColor(WORD color) {
 
 void WindowsDisplayer::clear() const {
 	// TODO: voir si utile
-	system("cls");
+//	system("cls");
 }
 
 #endif // __WIN32

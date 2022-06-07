@@ -25,7 +25,7 @@ public:
 
 	Position getDirection(const Position& to) const;
 
-	double getDistance(const Position& to) const;
+	int getDistance(const Position& to) const;
 
 	static Position getRandomPosition(int maxX, int maxY);
 

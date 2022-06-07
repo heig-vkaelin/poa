@@ -9,5 +9,7 @@ Kill::Kill(Humanoid& humanoid) : Action(humanoid) {
 }
 
 void Kill::execute(Field& field) {
-	getHumanoid()->kill(field);
+	if (getHumanoid()->isAlive()) {
+		getHumanoid()->kill(field);
+	}
 }
