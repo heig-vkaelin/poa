@@ -10,6 +10,11 @@
 #include "Displayer.hpp"
 #include <windows.h>
 
+/**
+ * Classe WindowsDisplayer
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 class WindowsDisplayer : public Displayer {
 public:
 	WindowsDisplayer(unsigned width, unsigned height);

@@ -5,6 +5,11 @@
 #ifndef BUFFY_POSITION_HPP
 #define BUFFY_POSITION_HPP
 
+/**
+ * Classe Position
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 class Position {
 public:
 	Position();

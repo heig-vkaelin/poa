@@ -6,9 +6,14 @@
 #define BUFFY_CONTROLLER_HPP
 
 #include "Field.hpp"
-
+//Déclaration de la classe Displayer
 class Displayer;
 
+/**
+ * Classe Controller
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 class Controller {
 public:
 	Controller(unsigned width, unsigned height,

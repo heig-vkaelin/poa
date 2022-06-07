@@ -6,7 +6,10 @@
 #define BUFFY_FIELD_IMPL_HPP
 
 #include <limits>
-
+/**
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 template<typename T>
 T* Field::findClosestHumanoid(const Humanoid& closeTo) const {
 	double minDist = std::numeric_limits<double>::max();

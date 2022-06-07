@@ -7,6 +7,11 @@
 
 #include <random>
 
+/**
+ * Classe Random
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 class Random {
 public:
 	/**

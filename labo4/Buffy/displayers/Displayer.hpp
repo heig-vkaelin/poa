@@ -11,6 +11,11 @@
 
 class Field;
 
+/**
+ * Classe Displayer
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 class Displayer {
 public:
 	Displayer(unsigned width, unsigned height);

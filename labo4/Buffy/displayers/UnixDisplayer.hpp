@@ -8,6 +8,11 @@
 #include <string>
 #include "Displayer.hpp"
 
+/**
+ * Classe UnixDisplayer
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 class UnixDisplayer : public Displayer {
 public:
 	UnixDisplayer(unsigned width, unsigned height);

@@ -14,8 +14,14 @@
 #include <cstdlib>
 #include "list"
 
+//Déclaration de la classe Controller
 class Controller;
 
+/**
+ * Classe Field
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 class Field {
 public:
 	Field(unsigned width, unsigned height,
