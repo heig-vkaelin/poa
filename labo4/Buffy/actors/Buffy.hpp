@@ -6,6 +6,7 @@
 #define BUFFY_BUFFY_HPP
 
 #include "Humanoid.hpp"
+
 /**
  * Classe Buffy
  * @author Alexandre Jaquier
@@ -21,12 +22,6 @@ public:
 	Buffy(unsigned x, unsigned y);
 
 	/**
-	 * Méthode permettant de choisir une action à effectuer
-	 * @param field Field sur lequel l'action doit être effectuée
-	 */
-	void setAction(const Field& field) override;
-
-	/**
 	 * Méthode permettant de récupérer le symbole de Buffy
 	 * @return Symbole de Buffy
 	 */
@@ -37,6 +32,13 @@ public:
 	 * @return Couleur de Buffy
 	 */
 	Color getColor() const override;
+
+protected:
+	/**
+	 * Méthode permettant de choisir une action à effectuer
+	 * @param field Field sur lequel l'action doit être effectuée
+	 */
+	Action* getNextAction(const Field& field) override;
 };
 
 #endif // BUFFY_BUFFY_HPP

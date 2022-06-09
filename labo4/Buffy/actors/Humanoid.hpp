@@ -38,10 +38,10 @@ public:
 	virtual ~Humanoid() = 0;
 
 	/**
-	 * Méthode permettant de choisir une action à effectuer
+	 * Méthode permettant d'assigner une action à effectuer
 	 * @param field Field sur lequel l'action doit être effectuée
 	 */
-	virtual void setAction(const Field& field) = 0;
+	virtual void setAction(const Field& field);
 
 	/**
 	 * Méthode permettant d'executer l'action choisie
@@ -86,7 +86,11 @@ public:
 	virtual Color getColor() const = 0;
 
 protected:
-	Action* action;
+	/**
+	 * Méthode permettant de choisir une action à effectuer
+	 * @param field Field sur lequel l'action doit être effectuée
+	 */
+	virtual Action* getNextAction(const Field& field) = 0;
 
 private:
 	/**
@@ -97,6 +101,7 @@ private:
 
 	bool alive;
 	Position position;
+	Action* action;
 };
 
 #endif // BUFFY_HUMANOID_HPP

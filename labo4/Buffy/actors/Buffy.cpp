@@ -12,27 +12,21 @@ using namespace std;
 
 Buffy::Buffy(unsigned x, unsigned y) : Humanoid(x, y) {}
 
-void Buffy::setAction(const Field& field) {
-	if (action != nullptr) {
-		delete action;
-	}
-	Vampire* target = field.findClosestHumanoid<Vampire>(*this);
-	if (target == nullptr) {
-		action = new Move(1, *this);
-		return;
-	}
-
-	if (getPosition().getDistance(target->getPosition()) <= 1) {
-		action = new Kill(*target);
-	} else {
-		action = new Move(2, *this, target);
-	}
-}
-
 char Buffy::getSymbol() const {
 	return 'B';
 }
 
 Color Buffy::getColor() const {
 	return Color::YELLOW;
+}
+
+Action* Buffy::getNextAction(const Field& field) {
+	if (!field.hasVampires())
+		return new Move(1, *this);
+
+	Vampire* target = field.findClosestHumanoid<Vampire>(*this);
+	if (getPosition().getDistance(target->getPosition()) <= 1)
+		return new Kill(*target);
+
+	return new Move(2, *this, target);
 }

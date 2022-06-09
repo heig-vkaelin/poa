@@ -15,9 +15,15 @@ Humanoid::Humanoid(const Humanoid& humanoid) {
 
 Humanoid::~Humanoid() = default;
 
+void Humanoid::setAction(const Field& field) {
+	action = getNextAction(field);
+}
+
 void Humanoid::executeAction(Field& field) {
 	if (action != nullptr) {
 		action->execute(field);
+		delete action;
+		action = nullptr;
 	}
 }
 

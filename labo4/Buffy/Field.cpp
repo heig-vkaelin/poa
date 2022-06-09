@@ -57,6 +57,14 @@ void Field::addCharacter(Humanoid* humanoid) {
 	humanoids.emplace_back(humanoid);
 }
 
+bool Field::hasHumans() const {
+	return nbHumans > 0;
+}
+
+bool Field::hasVampires() const {
+	return nbVampires > 0;
+}
+
 void Field::humanDied() {
 	if (nbHumans)
 		--nbHumans;

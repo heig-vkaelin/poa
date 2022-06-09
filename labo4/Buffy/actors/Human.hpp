@@ -6,6 +6,7 @@
 #define BUFFY_HUMAN_HPP
 
 #include "Humanoid.hpp"
+
 /**
  * Classe Human
  * @author Alexandre Jaquier
@@ -19,12 +20,6 @@ public:
 	 * @param y Hauteur du Field
 	 */
 	Human(unsigned x, unsigned y);
-
-	/**
-	 * Méthode permettant de choisir une action à effectuer
-	 * @param field Field sur lequel l'action doit être effectuée
-	 */
-	void setAction(const Field& field) override;
 
 	/**
 	 * Méthode permettant de tuer l'Human
@@ -43,6 +38,13 @@ public:
 	 * @return Couleur des Human
 	 */
 	Color getColor() const override;
+
+protected:
+	/**
+	 * Méthode permettant de choisir une action à effectuer
+	 * @param field Field sur lequel l'action doit être effectuée
+	 */
+	Action* getNextAction(const Field& field) override;
 };
 
 #endif // BUFFY_HUMAN_HPP

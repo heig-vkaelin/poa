@@ -28,12 +28,6 @@ public:
 	explicit Vampire(const Humanoid& other);
 
 	/**
-	 * Méthode permettant de choisir une action à effectuer
-	 * @param field Field sur lequel l'action doit être effectuée
-	 */
-	void setAction(const Field& field) override;
-
-	/**
 	 * Méthode permettant de tuer le Vampire
 	 * @param field Field sur lequel le Vampire se trouve
 	 */
@@ -50,6 +44,13 @@ public:
 	 * @return Couleur des Vampire
 	 */
 	Color getColor() const override;
+
+protected:
+	/**
+	 * Méthode permettant de choisir une action à effectuer
+	 * @param field Field sur lequel l'action doit être effectuée
+	 */
+	Action* getNextAction(const Field& field) override;
 };
 
 #endif // BUFFY_VAMPIRE_HPP

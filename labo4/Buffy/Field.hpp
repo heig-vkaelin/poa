@@ -58,22 +58,32 @@ public:
 	 * Méthode permettant d'ajouter un Humanoid à la liste des Humanoids en jeu
 	 * @param humanoid
 	 */
-    void addCharacter(Humanoid* humanoid);
+	void addCharacter(Humanoid* humanoid);
 
-	 /**
-	  * Méthode permettant de gérer ce qu'il se passe lorsqu'un Human meurt
-	  */
-	 void humanDied();
+	/**
+	 * @return true s'il reste des humains vivants, false sinon
+	 */
+	bool hasHumans() const;
 
-	 /**
-	  * Méthode permettant de gérer ce qu'il se passe lorsqu'un Vampire meurt
-	  */
-	 void vampireDied();
+	/**
+	 * @return true s'il reste des vampires vivants, false sinon
+	 */
+	bool hasVampires() const;
 
-	 /**
-	  * Méthode permettant de gérer ce qu'il se passe lorsqu'un Human est transformé en Vampire
-	  */
-	 void vampireBorn();
+	/**
+	 * Méthode permettant de gérer ce qu'il se passe lorsqu'un Human meurt
+	 */
+	void humanDied();
+
+	/**
+	 * Méthode permettant de gérer ce qu'il se passe lorsqu'un Vampire meurt
+	 */
+	void vampireDied();
+
+	/**
+	 * Méthode permettant de gérer ce qu'il se passe lorsqu'un Human est transformé en Vampire
+	 */
+	void vampireBorn();
 
 	/**
 	 * Méthode permettant de récupérer le largeur du Field
