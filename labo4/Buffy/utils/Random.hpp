@@ -18,6 +18,7 @@ public:
 	 * Génère un nombre aléatoire entre 0 et max non compris
 	 * @param max : borne supérieure
 	 * @return le nombre aléatoire
+	 * @throws invalid_argument si max <= 0
 	 */
 	static int generate(int max);
 
@@ -26,6 +27,7 @@ public:
 	 * @param min : borne inférieure
 	 * @param max : borne supérieure
 	 * @return le nombre aléatoire
+	 * @throws invalid_argument si max <= min
 	 */
 	static int generate(int min, int max);
 
