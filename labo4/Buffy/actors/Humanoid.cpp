@@ -13,8 +13,6 @@ Humanoid::Humanoid(const Humanoid& humanoid) {
 	init(humanoid.position);
 }
 
-Humanoid::~Humanoid() = default;
-
 void Humanoid::setAction(const Field& field) {
 	action = getNextAction(field);
 }

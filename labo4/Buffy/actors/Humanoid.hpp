@@ -35,13 +35,13 @@ public:
 	/**
 	 * Destructeur par défaut, virtuel pur de la classe Humanoid
 	 */
-	virtual ~Humanoid() = 0;
+	virtual ~Humanoid() = default;
 
 	/**
 	 * Méthode permettant d'assigner une action à effectuer
 	 * @param field Field sur lequel l'action doit être effectuée
 	 */
-	virtual void setAction(const Field& field);
+	void setAction(const Field& field);
 
 	/**
 	 * Méthode permettant d'executer l'action choisie
