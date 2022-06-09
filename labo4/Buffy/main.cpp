@@ -9,8 +9,7 @@ using namespace std;
 
 /**
  * Questions:
- * - random move de Buffy: 1 ou 2 cases
- * - ordre des actions (ex: vampire tue humain mais buffy tue vampire aussi)
+ * - random move de Buffy: 1 case
  */
 
 /**

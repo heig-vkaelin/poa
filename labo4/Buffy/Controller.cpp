@@ -62,6 +62,7 @@ void Controller::quit() {
 }
 
 void Controller::statistics() {
+	displayer->displayStarting();
 	unsigned wins = 0;
 	for (unsigned i = 0; i < NB_SIMULATIONS; ++i) {
 		Field simulation(width, height, nbHumans, nbVampires);
@@ -73,5 +74,5 @@ void Controller::statistics() {
 		if (simulation.isFinished() == EndStatus::WIN)
 			++wins;
 	}
-	displayer->displayStats(wins, NB_SIMULATIONS);
+	displayer->displayStats(wins * 100.0 / NB_SIMULATIONS, NB_SIMULATIONS);
 }

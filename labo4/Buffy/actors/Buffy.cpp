@@ -4,7 +4,6 @@
 
 #include "Buffy.hpp"
 #include "Vampire.hpp"
-#include "Human.hpp"
 #include "../Field.hpp"
 #include "../actions/Kill.hpp"
 #include "../actions/Move.hpp"
@@ -19,7 +18,7 @@ void Buffy::setAction(const Field& field) {
 	}
 	Vampire* target = field.findClosestHumanoid<Vampire>(*this);
 	if (target == nullptr) {
-		action = new Move(2, *this);
+		action = new Move(1, *this);
 		return;
 	}
 

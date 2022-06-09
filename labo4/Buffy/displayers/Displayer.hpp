@@ -38,11 +38,16 @@ public:
 	virtual void display(const Humanoid* humanoid) const;
 
 	/**
+	 * Affiche une message indiquant que le calcul des statistiques est en cours
+	 */
+	virtual void displayStarting() const;
+
+	/**
 	 * Méthode permettant d'afficher les statistiques
-	 * @param wins Nombre de victoires
+	 * @param winrate pourcentage de victoire
 	 * @param total Nombre total de parties
 	 */
-	virtual void displayStats(unsigned wins, unsigned total) const;
+	virtual void displayStats(double winrate, unsigned total) const;
 
 	/**
 	 * Méthode permettant d'afficher le menu
