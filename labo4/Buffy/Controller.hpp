@@ -1,25 +1,32 @@
-//
-// Created by Valentin Kaelin on 22.05.22.
-//
-
 #ifndef BUFFY_CONTROLLER_HPP
 #define BUFFY_CONTROLLER_HPP
 
 #include "Field.hpp"
-//Déclaration de la classe Displayer
+
 class Displayer;
 
 /**
- * Classe Controller
+ * Classe Controller gérant toute la logique globale du programme
  * @author Alexandre Jaquier
  * @author Valentin Kaelin
  */
 class Controller {
 public:
+	/**
+	 * Crée un nouveau contrôleur
+	 * @param width : largeur du Field
+	 * @param height : hauteur du Field
+	 * @param nbHumans : nombre d'humains initial
+	 * @param nbVampires : nombre de vampires initial
+	 * @param displayer : potentiel afficheur
+	 */
 	Controller(unsigned width, unsigned height,
 				  unsigned nbHumans, unsigned nbVampires,
 				  Displayer* displayer = nullptr);
 
+	/**
+	 * Lance la simulation
+	 */
 	void run();
 
 private:

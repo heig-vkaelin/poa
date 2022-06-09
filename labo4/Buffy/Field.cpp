@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 19.05.22.
-//
+/**
+ * Classe Field représentant le terrain de la simulation sur lequel évolue les
+ * acteurs
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 
 #include "Field.hpp"
 #include "utils/Random.hpp"
@@ -18,7 +21,6 @@ Field::Field(unsigned width, unsigned height, unsigned nbHumans, unsigned nbVamp
 		humanoids.emplace_back(new Vampire(width, height));
 	for (unsigned i = 0; i < nbHumans; ++i)
 		humanoids.emplace_back(new Human(width, height));
-
 
 	humanoids.emplace_back(new Buffy(width, height));
 }

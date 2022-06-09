@@ -1,6 +1,8 @@
-//
-// Created by Valentin Kaelin on 22.05.22.
-//
+/**
+ * Classe Controller gérant toute la logique globale du programme
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 
 #include "Controller.hpp"
 #include "displayers/Displayer.hpp"

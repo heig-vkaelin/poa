@@ -1,95 +1,66 @@
-//
-// Created by Valentin Kaelin on 28.05.22.
-//
-
 #ifndef BUFFY_POSITION_HPP
 #define BUFFY_POSITION_HPP
 
 /**
- * Classe Position
+ * Classe Position représentant une position dans la simulation en 2 dimensions
  * @author Alexandre Jaquier
  * @author Valentin Kaelin
  */
 class Position {
 public:
 	/**
-	 * Constructeur de la classe Position
+	 * Crée une nouvelle position aux coordonnées (0, 0)
 	 */
 	Position();
 
 	/**
-	 * Constructeur de la classe Position
-	 * @param x Position x
-	 * @param y Position y
+	 * Crée une position aux coordonnées souhaitées
+	 * @param x : coordonnée x
+	 * @param y : coordonnée y
 	 */
 	Position(int x, int y);
 
 	/**
-	 * Méthode permettant de récupérer la position x
-	 * @return Position x
+	 * @return la coordonnée x
 	 */
 	int getX() const;
 
 	/**
-	 * Méthode permettant de récupérer la position y
-	 * @return Position y
+	 * @return la coordonnée y
 	 */
 	int getY() const;
 
 	/**
-	 * Méthode permettant de déplacer la position en y ajoutant une autre
-	 * @param other Position à ajouter
-	 * @return Position déplacée
+	 * Ajoute une Position à celle-ci
+	 * @param other : position à ajouter
+	 * @return position initiale modifiée
 	 */
 	Position& add(const Position& other);
 
 	/**
-	 * Méthode permettant de déplacer la position en y ajoutant une autre (sans modifier la
-	 * position actuelle)
-	 * @param other Position à ajouter
-	 * @return Position déplacée
-	 */
-	Position addVal(const Position& other) const;
-
-	/**
-	 * Méthode permettant de déplacer la position en la multipliant par un facteur
-	 * @param factor Facteur de multiplication
-	 * @return Position déplacée
-	 */
-	Position& multiply(int factor);
-
-	/**
-	 * Méthode permettant de déplacer la position en la multipliant par un facteur (sans modifier
-	 * la position actuelle)
-	 * @param factor Facteur de multiplication
-	 * @return Position déplacée
-	 */
-	Position multiplyVal(int factor) const;
-
-	/**
-	 * Méthode permettant de récupérer la direction d'une position en fonction d'une autre
-	 * @param to Position à comparer
-	 * @return Direction de la position
+	 * Récupérer la direction permettant d'aller à la position souhaitée
+	 * @param to : position d'arrivée souhaitée
+	 * @return la direction
 	 */
 	Position getDirection(const Position& to) const;
 
 	/**
-	 * Méthode permettant de récupérer la distance d'une position en fonction d'une autre
-	 * @param to Position à comparer
-	 * @return Distance de la position
+	 * Calcule la distance jusqu'à la position souhaitée
+	 * @param to : position d'arrivée souhaitée
+	 * @return la distance
 	 */
 	int getDistance(const Position& to) const;
 
 	/**
-	 * Méthode permettant de récupérer une position aléatoire
-	 * @param maxX Borne max de la position x
-	 * @param maxY Borne max de la position y
-	 * @return Position aléatoire
+	 * Génère une position aléatoire
+	 * @param maxX : borne max de la position x
+	 * @param maxY : borne max de la position y
+	 * @return la position aléatoire créée
 	 */
 	static Position getRandomPosition(int maxX, int maxY);
 
 	/**
-	 * Différente direction possible
+	 * Différentes directions possibles
 	 */
 	static const Position
 		UP,

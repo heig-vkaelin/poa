@@ -1,6 +1,8 @@
-//
-// Created by Valentin Kaelin on 19.05.22.
-//
+/**
+ * Classe Displayer permettant d'afficher la simulation dans la console
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 
 #include "Displayer.hpp"
 #include "../Field.hpp"
@@ -56,10 +58,6 @@ void Displayer::displayPrompt(int turn, char quit, char stats, char next) {
 		  << quit << ")uit "
 		  << stats << ")tatistics "
 		  << next << ")ext: ";
-}
-
-void Displayer::clear() const {
-	// TODO: surtout pour les couleurs par après
 }
 
 void Displayer::displayHorizontalBorder(const Field& field) {

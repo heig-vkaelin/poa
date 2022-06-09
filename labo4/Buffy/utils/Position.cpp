@@ -1,6 +1,8 @@
-//
-// Created by Valentin Kaelin on 28.05.22.
-//
+/**
+ * Classe Position représentant une position dans la simulation en 2 dimensions
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 
 #include <cmath>
 #include "Position.hpp"
@@ -32,20 +34,6 @@ Position& Position::add(const Position& other) {
 	x += other.x;
 	y += other.y;
 	return *this;
-}
-
-Position Position::addVal(const Position& other) const {
-	return {x + other.x, y + other.y};
-}
-
-Position& Position::multiply(int factor) {
-	x *= factor;
-	y *= factor;
-	return *this;
-}
-
-Position Position::multiplyVal(int factor) const {
-	return {x * factor, y * factor};
 }
 
 Position Position::getDirection(const Position& to) const {

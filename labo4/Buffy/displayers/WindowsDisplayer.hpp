@@ -30,11 +30,6 @@ public:
 	 */
 	void display(const Humanoid* humanoid) const override;
 
-	/**
-	 * Méthode permettant de nettoyer la console
-	 */
-	void clear() const override;
-
 private:
 	/**
 	 * Méthode permettant de récupérer la couleur actuelle d'écriture

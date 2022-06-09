@@ -1,7 +1,3 @@
-//
-// Created by Valentin Kaelin on 19.05.22.
-//
-
 #ifndef BUFFY_FIELD_HPP
 #define BUFFY_FIELD_HPP
 
@@ -12,13 +8,13 @@
 #include "EndStatus.hpp"
 #include "utils/Random.hpp"
 #include <cstdlib>
-#include "list"
+#include <list>
 
-//Déclaration de la classe Controller
 class Controller;
 
 /**
- * Classe Field
+ * Classe Field représentant le terrain de la simulation sur lequel évolue les
+ * acteurs
  * @author Alexandre Jaquier
  * @author Valentin Kaelin
  */
@@ -26,37 +22,37 @@ class Field {
 public:
 	/**
 	 * Constructeur de la classe Field
-	 * @param width Largeur du Field
-	 * @param height Hauteur du Field
-	 * @param nbHumans Nombre d'humains dans le Field
-	 * @param nbVampires Nombre de vampires dans le Field
+	 * @param width : largeur du Field
+	 * @param height : hauteur du Field
+	 * @param nbHumans : nombre d'humains dans le Field
+	 * @param nbVampires : nombre de vampires dans le Field
 	 */
 	Field(unsigned width, unsigned height,
 			unsigned nbHumans, unsigned nbVampires);
 
 	/**
-	 * Déstructeur de la classe Field
+	 * Destructeur de la classe Field
 	 */
 	~Field();
 
 	/**
-	 * Méthode gérant un tour de jeu
-	 * @return Numéro du tour
+	 * Augmente d'un tour le nombre de tours passés dans la simulation
+	 * @return le numéro du tour actuel
 	 */
 	int nextTurn();
 
 	/**
-	 * Méthode permettant de connaitre l'humanoid le plus proche d'un autre
-	 * @tparam T Type de l'humanoid à rechercher
-	 * @param closeTo Humanoid à comparer
-	 * @return Humanoid le plus proche
+	 * Méthode permettant de trouver l'humanoïde le plus proche d'un autre
+	 * @tparam T : type de l'humanoïde à rechercher
+	 * @param closeTo : humanoïde à comparer
+	 * @return l'humanoïde le plus proche du type souhaité (nullptr si aucun)
 	 */
 	template<typename T>
 	T* findClosestHumanoid(const Humanoid& closeTo) const;
 
 	/**
-	 * Méthode permettant d'ajouter un Humanoid à la liste des Humanoids en jeu
-	 * @param humanoid
+	 * Ajoute un humanoïde à la liste des humanoïdes en jeu
+	 * @param humanoid : humanoïde à ajouter
 	 */
 	void addCharacter(Humanoid* humanoid);
 
@@ -71,47 +67,42 @@ public:
 	bool hasVampires() const;
 
 	/**
-	 * Méthode permettant de gérer ce qu'il se passe lorsqu'un Human meurt
+	 * Indique à la simulation qu'un humain est mort
 	 */
 	void humanDied();
 
 	/**
-	 * Méthode permettant de gérer ce qu'il se passe lorsqu'un Vampire meurt
+	 * Indique à la simulation qu'un vampire est mort
 	 */
 	void vampireDied();
 
 	/**
-	 * Méthode permettant de gérer ce qu'il se passe lorsqu'un Human est transformé en Vampire
+	 * Indique à la simulation qu'un nouveau vampire est né
 	 */
 	void vampireBorn();
 
 	/**
-	 * Méthode permettant de récupérer le largeur du Field
-	 * @return la largeur de la grille
+	 * @return la largeur du Field
 	 */
 	unsigned getWidth() const;
 
 	/**
-	 * Méthode permettant de récupérer la hauteur du Field
-	 * @return la hauteur de la grille
+	 * @return la hauteur du Field
 	 */
 	unsigned getHeight() const;
 
 	/**
-	 * Méthode permettant de récupérer l'itérateur constant du début de la liste des Humanoids
-	 * @return un itérateur constant sur le premier acteur de la grille
+	 * @return un itérateur constant sur le premier acteur du Field
 	 */
 	std::list<Humanoid*>::const_iterator begin() const;
 
 	/**
-	 * Méthode permettant de récupérer l'itérateur constant de la fin de la liste des Humanoids
-	 * @return un itérateur constant après le dernier acteur de la grille
+	 * @return un itérateur constant après le dernier acteur du Field
 	 */
 	std::list<Humanoid*>::const_iterator end() const;
 
 	/**
-	 * Méthode permettant de savoir si le jeu est terminé
-	 * @return
+	 * @return un status concernant la fin potentielle de la simulation
 	 */
 	EndStatus isFinished() const;
 

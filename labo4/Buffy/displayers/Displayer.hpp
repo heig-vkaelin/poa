@@ -1,7 +1,3 @@
-//
-// Created by Valentin Kaelin on 19.05.22.
-//
-
 #ifndef BUFFY_DISPLAYER_HPP
 #define BUFFY_DISPLAYER_HPP
 
@@ -12,28 +8,28 @@
 class Field;
 
 /**
- * Classe Displayer
+ * Classe Displayer permettant d'afficher la simulation dans la console
  * @author Alexandre Jaquier
  * @author Valentin Kaelin
  */
 class Displayer {
 public:
 	/**
-	 * Constructeur de la classe Displayer
-	 * @param width Largeur du Field à afficher
-	 * @param height Hauteur du Field à afficher
+	 * Crée un Displayer
+	 * @param width : largeur du Field à afficher
+	 * @param height : hauteur du Field à afficher
 	 */
 	Displayer(unsigned width, unsigned height);
 
 	/**
-	 * Méthode permettant d'afficher le Field
-	 * @param field Field à afficher
+	 * Affiche le Field ainsi que son contenu
+	 * @param field : field à afficher
 	 */
 	virtual void display(const Field& field);
 
 	/**
-	 * Méthode permettant d'afficher un Humanoid
-	 * @param humanoid Humanoid à afficher
+	 * Affiche l'humanoïde
+	 * @param humanoid : humanoïde à afficher
 	 */
 	virtual void display(const Humanoid* humanoid) const;
 
@@ -43,25 +39,20 @@ public:
 	virtual void displayStarting() const;
 
 	/**
-	 * Méthode permettant d'afficher les statistiques
-	 * @param winrate pourcentage de victoire
-	 * @param total Nombre total de parties
+	 * Affiche le résultat des statistiques
+	 * @param winrate : pourcentage de victoire
+	 * @param total : nombre total de parties
 	 */
 	virtual void displayStats(double winrate, unsigned total) const;
 
 	/**
-	 * Méthode permettant d'afficher le menu
-	 * @param turn Numéro du tour
-	 * @param quit Caractère représentant l'option quitter
-	 * @param stats Caractère représentant l'option statistiques
-	 * @param next Caractère représentant l'option tour suivant
+	 * Afficher le menu du programme
+	 * @param turn : tour actuel
+	 * @param quit : caractère représentant l'option quitter
+	 * @param stats : caractère représentant l'option statistiques
+	 * @param next : caractère représentant l'option tour suivant
 	 */
 	static void displayPrompt(int turn, char quit, char stats, char next);
-
-	/**
-	 * Méthode permettant de nettoyer la console
-	 */
-	virtual void clear() const;
 
 private:
 	/**

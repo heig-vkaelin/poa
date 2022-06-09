@@ -42,9 +42,4 @@ void WindowsDisplayer::changeColor(WORD color) {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
-void WindowsDisplayer::clear() const {
-	// TODO: voir si utile
-//	system("cls");
-}
-
 #endif // __WIN32

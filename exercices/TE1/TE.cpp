@@ -113,7 +113,7 @@ private:
 
 		if (!message.empty())
 			displayMessage(message);
-		
+
 		_visits[town->index()] = town;
 		_town = town;
 	}

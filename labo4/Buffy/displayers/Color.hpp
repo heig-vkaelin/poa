@@ -1,11 +1,8 @@
-//
-// Created by Valentin Kaelin on 02.06.22.
-//
-
 #ifndef BUFFY_COLOR_HPP
 #define BUFFY_COLOR_HPP
+
 /**
- * Enum représentant les différentes couleurs possibles des personnages
+ * Enum représentant les différentes couleurs possibles dans l'affichage
  * @author Alexandre Jaquier
  * @author Valentin Kaelin
  */

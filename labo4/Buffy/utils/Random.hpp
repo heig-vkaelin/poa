@@ -1,14 +1,10 @@
-//
-// Created by Alexandre Jaquier on 19.05.2022.
-//
-
 #ifndef BUFFY_RANDOM_HPP
 #define BUFFY_RANDOM_HPP
 
 #include <random>
 
 /**
- * Classe Random
+ * Classe permettant de générer facilement des nombres aléatoires
  * @author Alexandre Jaquier
  * @author Valentin Kaelin
  */

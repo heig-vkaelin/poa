@@ -1,3 +1,9 @@
+/**
+ * Point d'entrée du programme.
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
+
 #include <iostream>
 #include "Controller.hpp"
 #include "displayers/Displayer.hpp"
@@ -7,8 +13,10 @@
 using namespace std;
 
 /**
- * @author Alexandre Jaquier
- * @author Valentin Kaelin
+ * Point d'entrée du programme
+ * @param argc : nombre d'arguments
+ * @param argv : tableau des arguments
+ * @return le code de sortie du programme
  */
 int main(int argc, char* argv[]) {
 	const int NB_ARGS = 5;

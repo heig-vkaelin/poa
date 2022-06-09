@@ -1,6 +1,8 @@
-//
-// Created by Alexandre Jaquier on 19.05.2022.
-//
+/**
+ * Classe permettant de générer facilement des nombres aléatoires
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 
 #include "Random.hpp"
 #include <chrono>
@@ -8,7 +10,8 @@
 using namespace std;
 
 mt19937 Random::generator(
-	(unsigned)chrono::system_clock::now().time_since_epoch().count());
+	(unsigned)chrono::system_clock::now().time_since_epoch().count()
+);
 
 int Random::generate(int min, int max) {
 	if (max <= min)
