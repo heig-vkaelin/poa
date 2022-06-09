@@ -113,15 +113,8 @@ private:
 
 		if (!message.empty())
 			displayMessage(message);
-
-		for (size_t i = 0; i < Town::size(); i++) {
-			if (_visits[i] == nullptr) {
-				_visits[i] = town;
-				break;
-			} else if (_visits[i] == town) {
-				break;
-			}
-		}
+		
+		_visits[town->index()] = town;
 		_town = town;
 	}
 
