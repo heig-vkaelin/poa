@@ -1,6 +1,8 @@
-//
-// Created by valik on 27.05.2022.
-//
+/**
+ * Classe Move représentant le déplacement d'un humanoïde
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 
 #include "Move.hpp"
 #include "../utils/Random.hpp"
@@ -21,9 +23,12 @@ void Move::execute(Field& field) {
 		if (target) {
 			direction = newPosition.getDirection(target->getPosition());
 		} else {
-			vector<const Position*> directions = getPossibleDirections(newPosition,
-																						  field);
-			// TODO: remove these casts
+			vector<const Position*> directions =
+				getPossibleDirections(newPosition, field);
+
+			if (directions.empty())
+				break;
+
 			direction = *directions.at(
 				(unsigned long)(Random::generate((int)directions.size()))
 			);

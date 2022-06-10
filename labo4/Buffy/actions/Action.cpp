@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 19.05.22.
-//
+/**
+ * Classe abstraite représentant une action réalisée par un humanoïde de la
+ * simulation
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 
 #include "Action.hpp"
 #include "../Field.hpp"

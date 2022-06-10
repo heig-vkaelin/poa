@@ -1,6 +1,8 @@
-//
-// Created by Alexandre Jaquier on 27.05.2022.
-//
+/**
+ * Classe Kill représentant la mort de l'humanoïde souhaité
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 
 #include "Kill.hpp"
 #include "../actors/Humanoid.hpp"

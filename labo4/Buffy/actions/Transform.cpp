@@ -1,6 +1,8 @@
-//
-// Created by Alexandre Jaquier on 27.05.2022.
-//
+/**
+ * Classe Transform représentant la transformation d'un humain en vampire
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 
 #include "Transform.hpp"
 #include "../actors/Humanoid.hpp"

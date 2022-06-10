@@ -1,7 +1,3 @@
-//
-// Created by valik on 27.05.2022.
-//
-
 #ifndef BUFFY_MOVE_HPP
 #define BUFFY_MOVE_HPP
 
@@ -9,37 +5,26 @@
 #include "Action.hpp"
 #include "../utils/Position.hpp"
 
-//Declaration de la classe Humanoid
 class Humanoid;
 
 /**
- * Classe Move
+ * Classe Move représentant le déplacement d'un humanoïde
  * @author Alexandre Jaquier
  * @author Valentin Kaelin
  */
 class Move : public Action {
 public:
-	 /**
-	  * Constructeur de la classe Move
-	  * @param range Longueur du déplacement
-	  * @param humanoid Humanoid associé à l'action
-	  * @param target Cible à atteindre (déplacement aléatoire si nullptr)
-	  */
+	/**
+	 * Crée un nouveau déplacement (aléatoire si aucun cible n'est spécifiée)
+	 * @param range : longueur du déplacement
+	 * @param humanoid : Humanoid à déplacer
+	 * @param target : potentielle cible à atteindre
+	 */
 	Move(unsigned range, Humanoid& humanoid, const Humanoid* target = nullptr);
 
-	/**
-	 * Méthode permettant d'executer l'action Move
-	 * @param f Field sur lequel l'action doit être effectuée
-	 */
 	void execute(Field& f) override;
 
 private:
-	/**
-	 * Méthode permettant de générer une direction aléatoire
-	 * @param position Position de départ
-	 * @param field Field sur lequel l'action doit être effectuée
-	 * @return Positions possible
-	 */
 	std::vector<const Position*> getPossibleDirections(const Position& position,
 																		const Field& field) const;
 
