@@ -1,12 +1,14 @@
-//
-// Created by Valentin Kaelin on 19.05.22.
-//
+/**
+ * Classe Humanoid représentant tous les acteurs de la simulation
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 
 #include "Humanoid.hpp"
 #include "../Field.hpp"
 
-Humanoid::Humanoid(unsigned maxWidth, unsigned maxHeight) {
-	init(Position::getRandomPosition((int)maxWidth, (int)maxHeight));
+Humanoid::Humanoid(unsigned maxX, unsigned maxY) {
+	init(Position::getRandomPosition((int)maxX, (int)maxY));
 }
 
 Humanoid::Humanoid(const Humanoid& humanoid) {

@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 19.05.22.
-//
+/**
+ * Classe Humain représentant un acteur se déplaçant aléatoirement dans la
+ * simulation et pouvant être transformé en vampire
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 
 #include "Human.hpp"
 #include "../actions/Move.hpp"
@@ -8,7 +11,7 @@
 
 using namespace std;
 
-Human::Human(unsigned x, unsigned y) : Humanoid(x, y) {}
+Human::Human(unsigned maxX, unsigned maxY) : Humanoid(maxX, maxY) {}
 
 void Human::kill(Field& field) {
 	Humanoid::kill(field);

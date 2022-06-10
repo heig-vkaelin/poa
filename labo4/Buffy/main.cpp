@@ -35,8 +35,8 @@ int main(int argc, char* argv[]) {
 		}
 		width = (unsigned)stoi(argv[1]);
 		height = (unsigned)stoi(argv[2]);
-		nbHumans = (unsigned)stoi(argv[2]);
-		nbVampires = (unsigned)stoi(argv[3]);
+		nbHumans = (unsigned)stoi(argv[3]);
+		nbVampires = (unsigned)stoi(argv[4]);
 	} catch (exception& e) {
 		throw invalid_argument("Erreur: Un argument n'a pas une valeur positive.");
 	}

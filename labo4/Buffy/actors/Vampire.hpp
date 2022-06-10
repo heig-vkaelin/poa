@@ -1,55 +1,36 @@
-//
-// Created by Valentin Kaelin on 19.05.22.
-//
-
 #ifndef BUFFY_VAMPIRE_HPP
 #define BUFFY_VAMPIRE_HPP
 
 #include "Humanoid.hpp"
 
 /**
- * Classe Vampire
+ * Classe Vampire représentant un acteur chassant les humains et pouvant transformer
+ * les transformer en vampires
  * @author Alexandre Jaquier
  * @author Valentin Kaelin
  */
 class Vampire : public Humanoid {
 public:
 	/**
-	 * Constructeur de la classe Vampire
-	 * @param x Largeur du Field
-	 * @param y Hauteur du Field
+	 * Crée un nouveau Vampire à un position aléatoire
+	 * @param maxX : borne supérieure de la coordonnée x
+	 * @param maxY : borne supérieure de la coordonnée y
 	 */
-	Vampire(unsigned x, unsigned y);
+	Vampire(unsigned maxX, unsigned maxY);
 
 	/**
-	 * Constructeur de copie de la classe Vampire
-	 * @param other Vampire à copier
+	 * Crée par copie un Vampire à la même position
+	 * @param other : vampire à copier
 	 */
 	explicit Vampire(const Humanoid& other);
 
-	/**
-	 * Méthode permettant de tuer le Vampire
-	 * @param field Field sur lequel le Vampire se trouve
-	 */
 	void kill(Field& field) override;
 
-	/**
-	 * Méthode permettant de récupérer le symbole des Vampire
-	 * @return Symbole des Vampire
-	 */
 	char getSymbol() const override;
 
-	/**
-	 * Méthode permettant de récupérer la couleur des Vampire
-	 * @return Couleur des Vampire
-	 */
 	Color getColor() const override;
 
 protected:
-	/**
-	 * Méthode permettant de choisir une action à effectuer
-	 * @param field Field sur lequel l'action doit être effectuée
-	 */
 	Action* getNextAction(const Field& field) override;
 };
 

@@ -1,7 +1,3 @@
-//
-// Created by Valentin Kaelin on 19.05.22.
-//
-
 #ifndef BUFFY_HUMANOID_HPP
 #define BUFFY_HUMANOID_HPP
 
@@ -9,94 +5,85 @@
 #include "../utils/Position.hpp"
 #include "../displayers/Color.hpp"
 
-//Déclaration de la classe Field
 class Field;
 
 /**
- * Classe Humanoid
+ * Classe Humanoid représentant tous les acteurs de la simulation
  * @author Alexandre Jaquier
  * @author Valentin Kaelin
  */
 class Humanoid {
 public:
 	/**
-	 * Constructeur de la classe Humanoid
-	 * @param maxWidth Largeur du Field
-	 * @param maxHeight Hauteur du Field
+	 * Crée un nouvel humanoïde à une position aléatoire
+	 * @param maxX : borne supérieure de la coordonnée x
+	 * @param maxY : borne supérieure de la coordonnée y
 	 */
-	Humanoid(unsigned maxWidth, unsigned maxHeight);
+	Humanoid(unsigned maxX, unsigned maxY);
 
 	/**
-	 * Constructeur de copie de la classe Humanoid
-	 * @param humanoid Humanoid à copier
+	 * Crée par copie un humanoïde à la même position
+	 * @param humanoid : humanoïde à copier
 	 */
 	Humanoid(const Humanoid& humanoid);
 
 	/**
-	 * Destructeur par défaut, virtuel pur de la classe Humanoid
+	 * Destructeur par défaut, pouvant être surchargé
 	 */
 	virtual ~Humanoid() = default;
 
 	/**
-	 * Méthode permettant d'assigner une action à effectuer
-	 * @param field Field sur lequel l'action doit être effectuée
+	 * Assigne une action à effectuer lors du prochain tour
+	 * @param field : Field sur lequel l'action doit être effectuée
 	 */
 	void setAction(const Field& field);
 
 	/**
-	 * Méthode permettant d'executer l'action choisie
+	 * Execute l'action associée à l'humanoïde
 	 * @param field
 	 */
 	void executeAction(Field& field);
 
 	/**
-	 * Méthode permettant de savoir si le Humanoid est vivant
-	 * @return true si le Humanoid est vivant, false sinon
+	 * @return true si l'humanoïde est vivant, false sinon
 	 */
 	virtual bool isAlive() const;
 
 	/**
-	 * Méthode permettant de tuer l'Humanoid
-	 * @param field Field sur lequel l'Humanoid se trouve
+	 * Tue l'humanoïde
+	 * @param field : field sur lequel l'humanoïde se trouve
 	 */
 	virtual void kill(Field& field);
 
 	/**
-	 * Méthode permettant de récupérer la position de l'Humanoid
-	 * @return Position de l'Humanoid
+	 * @return la position courante de l'humanoïde
 	 */
 	Position getPosition() const;
 
 	/**
-	 * Méthode permettant de définir la position de l'humanoid
-	 * @param position Nouvelle position de l'Humanoid
+	 * Définit la nouvelle position de l'humanoïde
+	 * @param position : nouvelle position de l'humanoïde
 	 */
 	void setPosition(Position position);
 
 	/**
-	 * Méthode permettant de récupérer le symbole de l'Humanoid
-	 * @return Symbole de l'Humanoid
+	 * @return le symbole associé à l'humanoïde
 	 */
 	virtual char getSymbol() const = 0;
 
 	/**
-	 * Méthode permettant de récupérer la couleur de l'Humanoid
-	 * @return Couleur de l'Humanoid
+	 * @return la couleur associée à l'humanoïde
 	 */
 	virtual Color getColor() const = 0;
 
 protected:
 	/**
-	 * Méthode permettant de choisir une action à effectuer
-	 * @param field Field sur lequel l'action doit être effectuée
+	 * @param field : field sur lequel l'action doit être effectuée
+	 * @return la prochaine action à effectuer
 	 */
 	virtual Action* getNextAction(const Field& field) = 0;
 
 private:
-	/**
-	 * Méthode permettant d'initialiser les attributs de l'Humanoid
-	 * @param position Position de l'Humanoid
-	 */
 	void init(const Position& position);
 
 	bool alive;

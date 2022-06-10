@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 19.05.22.
-//
+/**
+ * Classe Vampire représentant un acteur chassant les humains et pouvant transformer
+ * les transformer en vampires
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 
 #include "Vampire.hpp"
 #include "Human.hpp"
@@ -9,7 +12,7 @@
 #include "../actions/Move.hpp"
 #include "../actions/Transform.hpp"
 
-Vampire::Vampire(unsigned x, unsigned y) : Humanoid(x, y) {}
+Vampire::Vampire(unsigned maxX, unsigned maxY) : Humanoid(maxX, maxY) {}
 
 Vampire::Vampire(const Humanoid& other) : Humanoid(other) {}
 
@@ -31,6 +34,7 @@ Action* Vampire::getNextAction(const Field& field) {
 		return nullptr;
 
 	Human* target = field.findClosestHumanoid<Human>(*this);
+	// TODO: remove constants
 	if (getPosition().getDistance(target->getPosition()) <= 1) {
 		// 50% de chance de tuer, 50% de chance de transformer
 		if (Random::generateBool())
