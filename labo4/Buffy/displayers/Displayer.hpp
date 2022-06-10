@@ -55,13 +55,8 @@ public:
 	static void displayPrompt(int turn, char quit, char stats, char next);
 
 private:
-	/**
-	 * Méthode permettant d'afficher les bordure horizontale du Field
-	 * @param field Field à afficher
-	 */
 	static void displayHorizontalBorder(const Field& field);
 
-	//TODO commenter ça
 	static constexpr char
 		CORNER = '+',
 		HORIZONTAL_BORDER = '-',

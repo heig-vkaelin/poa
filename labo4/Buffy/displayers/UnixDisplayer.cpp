@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 19.05.22.
-//
+/**
+ * Classe UnixDisplayer permettant d'afficher la simulation dans la console avec
+ * des couleurs sur les plateformes Unix
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 
 #include <iostream>
 #include "UnixDisplayer.hpp"
@@ -20,11 +23,11 @@ void UnixDisplayer::display(const Humanoid* humanoid) const {
 string UnixDisplayer::getColor(Color color) {
 	switch (color) {
 		case Color::BLUE:
-			return "\033[34m";
+			return "\033[1m\033[34m";
 		case Color::YELLOW:
 			return "\033[1m\033[33m";
 		case Color::PINK:
-			return "\033[35m";
+			return "\033[1m\033[35m";
 		default:
 			return "";
 	}

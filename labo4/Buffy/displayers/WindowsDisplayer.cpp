@@ -1,6 +1,9 @@
-//
-// Created by Valentin Kaelin on 19.05.22.
-//
+/**
+ * Classe Windows permettant d'afficher la simulation dans la console avec
+ * des couleurs sur Windows
+ * @author Alexandre Jaquier
+ * @author Valentin Kaelin
+ */
 
 #include "WindowsDisplayer.hpp"
 
@@ -28,6 +31,7 @@ WORD WindowsDisplayer::getColor(Color color) {
 		case Color::PINK:
 			return  0x01;
 		default:
+			// TODO: sur windows, stoquer la couleur initiale qq part et la return ici
 			return getCurrentColor();
 	}
 }

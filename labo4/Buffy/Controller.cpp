@@ -31,7 +31,6 @@ void Controller::run() {
 
 void Controller::nextTurn() {
 	turn = field.nextTurn();
-	displayer->clear();
 	displayer->display(field);
 }
 

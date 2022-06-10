@@ -17,6 +17,7 @@ Displayer::Displayer(unsigned width, unsigned height)
 
 void Displayer::display(const Field& field) {
 	Position position;
+	const Humanoid** toDisplay;
 
 	// Ajoute les acteurs à leur position
 	for (auto humanoid: field) {
@@ -29,9 +30,10 @@ void Displayer::display(const Field& field) {
 	for (unsigned y = 0; y < field.getHeight(); y++) {
 		cout << VERTICAL_BORDER;
 		for (unsigned x = 0; x < field.getWidth(); x++) {
-			if (content.at(y).at(x)) {
-				display(content.at(y).at(x));
-				content.at(y).at(x) = nullptr;
+			toDisplay = &content.at(y).at(x);
+			if (*toDisplay) {
+				display(*toDisplay);
+				*toDisplay = nullptr;
 			} else
 				cout << EMPTY;
 		}

@@ -7,7 +7,6 @@
  * @author Valentin Kaelin
  */
 enum class Color {
-	WHITE,
 	BLUE,
 	YELLOW,
 	PINK,
