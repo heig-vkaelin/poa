@@ -34,8 +34,7 @@ Action* Vampire::getNextAction(const Field& field) {
 		return nullptr;
 
 	Human* target = field.findClosestHumanoid<Human>(*this);
-	// TODO: remove constants
-	if (getPosition().getDistance(target->getPosition()) <= 1) {
+	if (getPosition().getDistance(target->getPosition()) <= HUNT_RANGE) {
 		// 50% de chance de tuer, 50% de chance de transformer
 		if (Random::generateBool())
 			return new Kill(*target);
@@ -43,5 +42,5 @@ Action* Vampire::getNextAction(const Field& field) {
 			return new Transform(*target);
 	}
 
-	return new Move(1, *this, target);
+	return new Move(MOVE_RANGE, *this, target);
 }

@@ -24,6 +24,11 @@ public:
 
 	Color getColor() const override;
 
+	/**
+	 * Portée de déplacement des humains
+	 */
+	static constexpr int MOVE_RANGE = 1;
+
 protected:
 	Action* getNextAction(const Field& field) override;
 };

@@ -27,6 +27,5 @@ Color Human::getColor() const {
 }
 
 Action* Human::getNextAction(const Field&) {
-	// TODO: constante pas en dur
-	return new Move(1, *this);
+	return new Move(MOVE_RANGE, *this);
 }

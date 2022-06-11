@@ -23,6 +23,11 @@ public:
 
 protected:
 	Action* getNextAction(const Field& field) override;
+
+private:
+	static constexpr int
+		HUNT_RANGE = 1,
+		MOVE_RANGE = 2;
 };
 
 #endif // BUFFY_BUFFY_HPP

@@ -5,6 +5,7 @@
  */
 
 #include "Buffy.hpp"
+#include "Human.hpp"
 #include "Vampire.hpp"
 #include "../Field.hpp"
 #include "../actions/Kill.hpp"
@@ -23,13 +24,12 @@ Color Buffy::getColor() const {
 }
 
 Action* Buffy::getNextAction(const Field& field) {
-	// TODO: constantes pas en dur
 	if (!field.hasVampires())
-		return new Move(1, *this);
+		return new Move(Human::MOVE_RANGE, *this);
 
 	Vampire* target = field.findClosestHumanoid<Vampire>(*this);
-	if (getPosition().getDistance(target->getPosition()) <= 1)
+	if (getPosition().getDistance(target->getPosition()) <= HUNT_RANGE)
 		return new Kill(*target);
 
-	return new Move(2, *this, target);
+	return new Move(MOVE_RANGE, *this, target);
 }
