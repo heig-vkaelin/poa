@@ -26,9 +26,11 @@ public:
 private:
 	static WORD getCurrentColor();
 
-	static WORD getColor(Color color);
-
 	static void changeColor(WORD color);
+
+	WORD getColor(Color color) const;
+
+	WORD defaultColor;
 };
 
 #endif // __WIN32

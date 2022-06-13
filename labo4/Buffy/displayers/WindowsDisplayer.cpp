@@ -12,27 +12,25 @@
 using namespace std;
 
 WindowsDisplayer::WindowsDisplayer(unsigned width, unsigned height)
-	: Displayer(width, height) {
+	: Displayer(width, height), defaultColor(getCurrentColor()) {
 }
 
 void WindowsDisplayer::display(const Humanoid* humanoid) const {
-	WORD savedColor = getCurrentColor();
 	changeColor(getColor(humanoid->getColor()));
 	Displayer::display(humanoid);
-	changeColor(savedColor);
+	changeColor(defaultColor);
 }
 
-WORD WindowsDisplayer::getColor(Color color) {
+WORD WindowsDisplayer::getColor(Color color) const {
 	switch (color) {
 		case Color::BLUE:
 			return 0x0D;
 		case Color::YELLOW:
 			return 0x0E;
 		case Color::PINK:
-			return  0x01;
+			return 0x01;
 		default:
-			// TODO: sur windows, stoquer la couleur initiale qq part et la return ici
-			return getCurrentColor();
+			return defaultColor;
 	}
 }
 
