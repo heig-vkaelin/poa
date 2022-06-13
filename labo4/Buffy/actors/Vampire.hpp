@@ -12,11 +12,10 @@
 class Vampire : public Humanoid {
 public:
 	/**
-	 * Crée un nouveau Vampire à un position aléatoire
-	 * @param maxX : borne supérieure de la coordonnée x
-	 * @param maxY : borne supérieure de la coordonnée y
+	 * Crée un nouveau Vampire à un position donnée
+	 * @param position : position du vampire
 	 */
-	Vampire(unsigned maxX, unsigned maxY);
+	explicit Vampire(const Position& position);
 
 	/**
 	 * Crée par copie un Vampire à la même position

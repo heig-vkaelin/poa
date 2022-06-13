@@ -12,11 +12,10 @@
 class Human : public Humanoid {
 public:
 	/**
-	 * Constructeur de la classe Human
-	 * @param maxX : borne supérieure de la coordonnée x
-	 * @param maxY : borne supérieure de la coordonnée x
+	 * Crée un humain à une position donnée
+	 * @param position : position de l'humain
 	 */
-	Human(unsigned maxX, unsigned maxY);
+	explicit Human(const Position& position);
 
 	void kill(Field& field) override;
 

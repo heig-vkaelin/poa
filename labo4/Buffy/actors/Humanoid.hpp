@@ -15,24 +15,25 @@ class Field;
 class Humanoid {
 public:
 	/**
-	 * Crée un nouvel humanoïde à une position aléatoire
-	 * @param maxX : borne supérieure de la coordonnée x
-	 * @param maxY : borne supérieure de la coordonnée y
+	 * Crée un nouvel humanoïde à une donnée
+	 * @param position : position de l'humanoïde
 	 */
-	Humanoid(unsigned maxX, unsigned maxY);
+	explicit Humanoid(const Position& position);
 
 	/**
-	 * Crée par copie un humanoïde à la même position
-	 * @param humanoid : humanoïde à copier
+	 * Empêche la copie d'un humanoïde
 	 */
-	Humanoid(const Humanoid& humanoid);
+	Humanoid(const Humanoid&) = delete;
 
-	Humanoid& operator=(const Humanoid& humanoid);
+	/**
+	 * Empêche la copie d'un humanoïde
+	 */
+	Humanoid& operator=(const Humanoid&) = delete;
 
 	/**
 	 * Destructeur par défaut, pouvant être surchargé
 	 */
-	virtual ~Humanoid() = default;
+	virtual ~Humanoid() = default; // TODO: delete action
 
 	/**
 	 * Assigne une action à effectuer lors du prochain tour

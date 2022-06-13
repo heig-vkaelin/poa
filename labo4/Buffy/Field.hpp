@@ -1,14 +1,12 @@
 #ifndef BUFFY_FIELD_HPP
 #define BUFFY_FIELD_HPP
 
+#include <list>
 #include "actors/Humanoid.hpp"
 #include "actors/Buffy.hpp"
 #include "actors/Human.hpp"
 #include "actors/Vampire.hpp"
 #include "EndStatus.hpp"
-#include "utils/Random.hpp"
-#include <cstdlib>
-#include <list>
 
 class Controller;
 

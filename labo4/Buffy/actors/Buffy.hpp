@@ -11,11 +11,10 @@
 class Buffy : public Humanoid {
 public:
 	/**
-	 * Constructeur de la classe Buffy
-	 * @param maxX : borne supérieure de la coordonnée x
-	 * @param maxY : borne supérieure de la coordonnée y
+	 * Crée une nouvelle Buffy à une position donnée
+	 * @param position : position de Buffy
 	 */
-	Buffy(unsigned maxX, unsigned maxY);
+	explicit Buffy(const Position& position);
 
 	char getSymbol() const override;
 

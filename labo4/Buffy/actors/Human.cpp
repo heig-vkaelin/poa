@@ -11,7 +11,7 @@
 
 using namespace std;
 
-Human::Human(unsigned maxX, unsigned maxY) : Humanoid(maxX, maxY) {}
+Human::Human(const Position& position) : Humanoid(position) {}
 
 void Human::kill(Field& field) {
 	Humanoid::kill(field);

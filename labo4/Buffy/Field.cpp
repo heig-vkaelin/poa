@@ -7,9 +7,7 @@
 
 #include "Field.hpp"
 #include "utils/Random.hpp"
-#include "actors/Buffy.hpp"
-#include "actors/Human.hpp"
-#include "actors/Vampire.hpp"
+
 
 using namespace std;
 
@@ -17,12 +15,15 @@ Field::Field(unsigned width, unsigned height, unsigned nbHumans, unsigned nbVamp
 	: width(width), height(height), turn(0),
 	  nbHumans(nbHumans), nbVampires(nbVampires), humanoids() {
 
-	for (unsigned i = 0; i < nbVampires; ++i)
-		humanoids.emplace_back(new Vampire(width, height));
-	for (unsigned i = 0; i < nbHumans; ++i)
-		humanoids.emplace_back(new Human(width, height));
+	int maxX = (int)width;
+	int maxY = (int)height;
 
-	humanoids.emplace_back(new Buffy(width, height));
+	for (unsigned i = 0; i < nbVampires; ++i)
+		humanoids.emplace_back(new Vampire(Position::getRandomPosition(maxX, maxY)));
+	for (unsigned i = 0; i < nbHumans; ++i)
+		humanoids.emplace_back(new Human(Position::getRandomPosition(maxX, maxY)));
+
+	humanoids.emplace_back(new Buffy(Position::getRandomPosition(maxX, maxY)));
 }
 
 Field::~Field() {

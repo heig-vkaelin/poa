@@ -13,7 +13,7 @@
 
 using namespace std;
 
-Buffy::Buffy(unsigned maxX, unsigned maxY) : Humanoid(maxX, maxY) {}
+Buffy::Buffy(const Position& position) : Humanoid(position) {}
 
 char Buffy::getSymbol() const {
 	return 'B';

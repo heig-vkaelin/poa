@@ -7,19 +7,8 @@
 #include "Humanoid.hpp"
 #include "../Field.hpp"
 
-Humanoid::Humanoid(unsigned maxX, unsigned maxY) {
-	init(Position::getRandomPosition((int)maxX, (int)maxY));
-}
-
-Humanoid::Humanoid(const Humanoid& humanoid) {
-	init(humanoid.position);
-}
-
-Humanoid& Humanoid::operator=(const Humanoid& humanoid) {
-	if (this != &humanoid) {
-		init(humanoid.position);
-	}
-	return *this;
+Humanoid::Humanoid(const Position& position) {
+	init(position);
 }
 
 void Humanoid::setAction(const Field& field) {

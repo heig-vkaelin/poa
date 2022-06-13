@@ -15,7 +15,7 @@ Transform::Transform(Humanoid& humanoid) : Action(humanoid) {
 void Transform::execute(Field& field) {
 	if (getHumanoid()->isAlive()) {
 		getHumanoid()->kill(field);
-		field.addCharacter(new Vampire(*getHumanoid()));
+		field.addCharacter(new Vampire(getHumanoid()->getPosition()));
 		field.vampireBorn();
 	}
 }

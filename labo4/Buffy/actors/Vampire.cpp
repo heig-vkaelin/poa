@@ -11,10 +11,9 @@
 #include "../actions/Kill.hpp"
 #include "../actions/Move.hpp"
 #include "../actions/Transform.hpp"
+#include "../utils/Random.hpp"
 
-Vampire::Vampire(unsigned maxX, unsigned maxY) : Humanoid(maxX, maxY) {}
-
-Vampire::Vampire(const Humanoid& other) : Humanoid(other) {}
+Vampire::Vampire(const Position& position) : Humanoid(position) {}
 
 void Vampire::kill(Field& field) {
 	Humanoid::kill(field);
