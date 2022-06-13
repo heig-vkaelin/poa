@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
 		nbHumans = (unsigned)stoi(argv[3]);
 		nbVampires = (unsigned)stoi(argv[4]);
 	} catch (exception& e) {
-		throw invalid_argument("Erreur: Un argument n'a pas une valeur positive.");
+		throw invalid_argument("Erreur: Un argument du programme est invalide.");
 	}
 
 #if  defined(__linux__) || defined(__APPLE__)
