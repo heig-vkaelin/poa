@@ -11,6 +11,10 @@ Humanoid::Humanoid(const Position& position) {
 	init(position);
 }
 
+Humanoid::~Humanoid() {
+	delete action;
+}
+
 void Humanoid::setAction(const Field& field) {
 	action = getNextAction(field);
 }

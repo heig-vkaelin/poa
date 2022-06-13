@@ -26,14 +26,14 @@ public:
 	Humanoid(const Humanoid&) = delete;
 
 	/**
-	 * Empêche la copie d'un humanoïde
+	 * Empêche re-affectation d'un humanoïde
 	 */
 	Humanoid& operator=(const Humanoid&) = delete;
 
 	/**
-	 * Destructeur par défaut, pouvant être surchargé
+	 * Destructeur supprimant l'allocation dynamique de l'action
 	 */
-	virtual ~Humanoid() = default; // TODO: delete action
+	virtual ~Humanoid();
 
 	/**
 	 * Assigne une action à effectuer lors du prochain tour

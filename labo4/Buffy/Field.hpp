@@ -29,9 +29,19 @@ public:
 			unsigned nbHumans, unsigned nbVampires);
 
 	/**
-	 * Destructeur de la classe Field
+	 * Destructeur de la classe Field supprimant les allocations dynamiques
 	 */
 	~Field();
+
+	/**
+	 * Empêche la copie d'un Field
+	 */
+	Field(const Field&) = delete;
+
+	/**
+	 * Empêche re-affectation d'un Field
+	 */
+	Field& operator=(const Field&) = delete;
 
 	/**
 	 * Augmente d'un tour le nombre de tours passés dans la simulation

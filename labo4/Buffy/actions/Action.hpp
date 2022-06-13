@@ -25,6 +25,16 @@ public:
 	virtual ~Action() = default;
 
 	/**
+	 * Empêche la copie d'une Action
+	 */
+	Action(const Action&) = delete;
+
+	/**
+	 * Empêche re-affectation d'une Action
+	 */
+	Action& operator=(const Action&) = delete;
+
+	/**
 	 * Execute l'action
 	 * @param field : Field sur lequel l'action doit être effectuée
 	 */

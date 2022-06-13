@@ -8,7 +8,6 @@
 #include "Field.hpp"
 #include "utils/Random.hpp"
 
-
 using namespace std;
 
 Field::Field(unsigned width, unsigned height, unsigned nbHumans, unsigned nbVampires)
