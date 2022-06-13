@@ -15,6 +15,13 @@ Humanoid::Humanoid(const Humanoid& humanoid) {
 	init(humanoid.position);
 }
 
+Humanoid& Humanoid::operator=(const Humanoid& humanoid) {
+	if (this != &humanoid) {
+		init(humanoid.position);
+	}
+	return *this;
+}
+
 void Humanoid::setAction(const Field& field) {
 	action = getNextAction(field);
 }
@@ -39,7 +46,7 @@ void Humanoid::kill(Field&) {
 	alive = false;
 }
 
-Position Humanoid::getPosition() const {
+const Position& Humanoid::getPosition() const {
 	return position;
 }
 

@@ -27,6 +27,8 @@ public:
 	 */
 	Humanoid(const Humanoid& humanoid);
 
+	Humanoid& operator=(const Humanoid& humanoid);
+
 	/**
 	 * Destructeur par défaut, pouvant être surchargé
 	 */
@@ -58,7 +60,7 @@ public:
 	/**
 	 * @return la position courante de l'humanoïde
 	 */
-	Position getPosition() const;
+	const Position& getPosition() const;
 
 	/**
 	 * Définit la nouvelle position de l'humanoïde
