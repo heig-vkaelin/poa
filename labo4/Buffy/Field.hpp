@@ -60,6 +60,8 @@ public:
 
 	/**
 	 * Ajoute un humanoïde à la liste des humanoïdes en jeu
+	 *
+	 * Remarque: si l'humanoïde est déjà présent, ne fait rien
 	 * @param humanoid : humanoïde à ajouter
 	 */
 	void addCharacter(Humanoid* humanoid);
