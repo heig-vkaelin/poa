@@ -67,7 +67,7 @@ public:
 	 * Définit la nouvelle position de l'humanoïde
 	 * @param position : nouvelle position de l'humanoïde
 	 */
-	void setPosition(Position position);
+	void setPosition(const Position& position);
 
 	/**
 	 * @return le symbole associé à l'humanoïde

@@ -17,12 +17,6 @@ public:
 	 */
 	explicit Vampire(const Position& position);
 
-	/**
-	 * Crée par copie un Vampire à la même position
-	 * @param other : vampire à copier
-	 */
-	explicit Vampire(const Humanoid& other);
-
 	void kill(Field& field) override;
 
 	char getSymbol() const override;

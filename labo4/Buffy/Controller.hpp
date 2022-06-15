@@ -19,6 +19,7 @@ public:
 	 * @param nbHumans : nombre d'humains initial
 	 * @param nbVampires : nombre de vampires initial
 	 * @param displayer : afficheur
+	 * @throws invalid_argument si des paramètres valent 0
 	 */
 	Controller(unsigned width, unsigned height,
 				  unsigned nbHumans, unsigned nbVampires,

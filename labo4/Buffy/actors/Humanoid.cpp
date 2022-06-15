@@ -43,6 +43,6 @@ const Position& Humanoid::getPosition() const {
 	return position;
 }
 
-void Humanoid::setPosition(Position _position) {
+void Humanoid::setPosition(const Position& _position) {
 	position = _position;
 }
