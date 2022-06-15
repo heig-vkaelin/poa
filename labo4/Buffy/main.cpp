@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
 	Displayer displayer(width, height);
 #endif
 
-	Controller controller(width, height, nbHumans, nbVampires, &displayer);
+	Controller controller(width, height, nbHumans, nbVampires, displayer);
 	controller.run();
 
 	return EXIT_SUCCESS;

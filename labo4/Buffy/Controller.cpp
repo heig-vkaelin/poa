@@ -14,8 +14,8 @@ using namespace std;
 
 Controller::Controller(unsigned width, unsigned height,
 							  unsigned nbHumans, unsigned nbVampires,
-							  Displayer* displayer)
-	: displayer(displayer), field(width, height, nbHumans, nbVampires),
+							  Displayer& displayer)
+	: displayer(&displayer), field(width, height, nbHumans, nbVampires),
 	  turn(0), finished(false), width(width), height(height),
 	  nbHumans(nbHumans), nbVampires(nbVampires) {
 

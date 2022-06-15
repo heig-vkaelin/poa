@@ -18,11 +18,11 @@ public:
 	 * @param height : hauteur du Field
 	 * @param nbHumans : nombre d'humains initial
 	 * @param nbVampires : nombre de vampires initial
-	 * @param displayer : potentiel afficheur
+	 * @param displayer : afficheur
 	 */
 	Controller(unsigned width, unsigned height,
 				  unsigned nbHumans, unsigned nbVampires,
-				  Displayer* displayer = nullptr);
+				  Displayer& displayer);
 
 	/**
 	 * Lance la simulation
