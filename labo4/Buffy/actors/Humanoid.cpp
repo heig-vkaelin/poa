@@ -7,8 +7,8 @@
 #include "Humanoid.hpp"
 #include "../Field.hpp"
 
-Humanoid::Humanoid(const Position& position) {
-	init(position);
+Humanoid::Humanoid(const Position& position)
+	: alive(true), position(position), action(nullptr) {
 }
 
 Humanoid::~Humanoid() {
@@ -44,11 +44,5 @@ const Position& Humanoid::getPosition() const {
 }
 
 void Humanoid::setPosition(Position _position) {
-	position = _position;
-}
-
-void Humanoid::init(const Position& _position) {
-	action = nullptr;
-	alive = true;
 	position = _position;
 }

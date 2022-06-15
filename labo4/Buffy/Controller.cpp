@@ -20,7 +20,7 @@ Controller::Controller(unsigned width, unsigned height,
 	  nbHumans(nbHumans), nbVampires(nbVampires) {
 
 	if (width == 0 || height == 0)
-		throw invalid_argument("Erreur: Les dimensions du Field doivent être > 0.");
+		throw invalid_argument("Erreur: Les dimensions du Field doivent etre > 0.");
 
 	if (nbHumans == 0 || nbVampires == 0)
 		throw invalid_argument(

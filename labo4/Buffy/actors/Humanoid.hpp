@@ -87,8 +87,6 @@ protected:
 	virtual Action* getNextAction(const Field& field) = 0;
 
 private:
-	void init(const Position& position);
-
 	bool alive;
 	Position position;
 	Action* action;
