@@ -47,13 +47,13 @@ public class Company {
 
 
         System.out.println("\n-- 5. Most hobbies :");
-//        Developer[] mostHobbies = developers.stream()
-//                .sorted(Comparator.comparing(d -> d.hobbies().size(), Comparator.reverseOrder()))
-//                .limit(3)
-//                .toArray(Developer[]::new);
-//
-//        for (Developer d : mostHobbies)
-//            System.out.println("> " + d.name());
+        Developer[] mostHobbies = developers.stream()
+                .sorted(Comparator.comparing(d -> d.hobbies().size(), Comparator.reverseOrder()))
+                .limit(3)
+                .toArray(Developer[]::new);
+
+        for (Developer d : mostHobbies)
+            System.out.println("> " + d.name());
 
 
         System.out.println("\n-- 6. Total coffee consumption of Java coders");
