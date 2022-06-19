@@ -56,7 +56,7 @@ void Controller::display() const {
 		cout << boat;
 
 	cout << endl;
-	displayBank(leftBank, WIDTH);
+	displayBank(rightBank, WIDTH);
 
 	// Remise à 0 du fill sur le stream
 	cout.fill(' ');
